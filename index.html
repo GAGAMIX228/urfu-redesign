@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Один УрФУ — один вход · прототип редизайна сайта УрФУ</title>
+<style>
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-SemiBold.ttf') format('truetype');font-weight:600}
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Bold.ttf') format('truetype');font-weight:700}
+*{box-sizing:border-box}
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0E1B2B;background:#FFFFFF;line-height:1.5}
+.hero{background:#0E1B2B;color:#FFFFFF;padding:64px 24px}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-size:44px;line-height:1.1;margin:16px 0 12px;letter-spacing:-0.02em}
+.sub{color:#C9D1DA;font-size:19px;max-width:640px}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:6px;background:#FFFFFF;color:#0E1B2B;font-weight:600;text-decoration:none}
+.btn.alt{background:transparent;color:#FFFFFF;border:1px solid #3A4E66}
+.btn:hover{background:#E8EEF7}.btn.alt:hover{background:#173451}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+main{padding:48px 24px 64px}
+h2{font-size:24px;margin:40px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{display:block;border:1px solid #E1E5EA;border-radius:8px;padding:16px 18px;text-decoration:none;color:#0E1B2B;transition:border-color .15s,transform .15s}
+.card:hover{border-color:#1D4E9E;transform:translateY(-2px)}
+.card b{display:block;font-size:16px}.card span{font-size:14px;color:#56606B}
+.note{color:#56606B;font-size:14px;margin-top:40px;max-width:760px}
+a:focus-visible{outline:3px solid #1D4E9E;outline-offset:2px}
+</style>
+</head>
+<body>
+<section class="hero"><div class="wrap">
+<div class="brand"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="3" fill="#1D4E9E"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg>УрФУ</div>
+<h1>Один УрФУ — один вход</h1>
+<p class="sub">Прототип редизайна сайта УрФУ для конкурса «Взломай веб-дизайн». Все страницы связаны между собой: фильтры, поиск и переключатели работают. Автор — Кирилл Бурдин.</p>
+<div class="btns"><a class="btn" href="Main.dc.html">Открыть сайт</a><a class="btn alt" href="Concept.dc.html">Концепция</a><a class="btn alt" href="MainMobile.dc.html">Версия для телефона</a></div>
+</div></section>
+<main><div class="wrap">
+<h2>О проекте</h2>
+<div class="grid">
+<a class="card" href="Concept.dc.html"><b>Концепция</b><span>Идея, принципы, было → стало</span></a>
+<a class="card" href="Logo.dc.html"><b>Логотип и стиль</b><span>Знак, палитра, шрифт</span></a>
+</div>
+<h2>Главная</h2>
+<div class="grid">
+<a class="card" href="Main.dc.html"><b>Главная</b><span>Выбор роли, поиск с подсказками</span></a>
+<a class="card" href="MainEn.dc.html"><b>Главная на английском</b><span>Переключатель RU / EN</span></a>
+<a class="card" href="MainMobile.dc.html"><b>Главная, телефон</b><span>Мобильная версия</span></a>
+</div>
+<h2>Поступление</h2>
+<div class="grid">
+<a class="card" href="Catalog.dc.html"><b>Каталог программ</b><span>Фильтр по ЕГЭ и баллам, сравнение</span></a>
+<a class="card" href="Program.dc.html"><b>Страница программы</b><span>Программная инженерия</span></a>
+<a class="card" href="Admission.dc.html"><b>Как поступить</b><span>5 шагов, сроки, вопросы</span></a>
+<a class="card" href="Dorms.dc.html"><b>Общежития</b><span>Цены и как получить место</span></a>
+</div>
+<h2>Учёба и жизнь</h2>
+<div class="grid">
+<a class="card" href="Schedule.dc.html"><b>Расписание</b><span>Телефон, переключение дней</span></a>
+<a class="card" href="Events.dc.html"><b>Календарь событий</b><span>Фильтр по типу</span></a>
+<a class="card" href="Life.dc.html"><b>Жизнь в УрФУ</b><span>Клубы и спорт</span></a>
+</div>
+<h2>Университет</h2>
+<div class="grid">
+<a class="card" href="News.dc.html"><b>Новости</b><span>Лента с фильтром</span></a>
+<a class="card" href="Article.dc.html"><b>Статья</b><span>Итоги приёма-2026</span></a>
+<a class="card" href="Institute.dc.html"><b>Страница института</b><span>Единый шаблон, ИРИТ-РтФ</span></a>
+<a class="card" href="Person.dc.html"><b>Профиль преподавателя</b><span>Курсы и публикации</span></a>
+<a class="card" href="Contacts.dc.html"><b>Контакты и карта</b><span>Схема кампуса</span></a>
+<a class="card" href="Search.dc.html"><b>Поиск по сайту</b><span>Живой поиск, вкладки</span></a>
+<a class="card" href="NotFound.dc.html"><b>Страница 404</b><span>Служебная</span></a>
+</div>
+<p class="note">Данные по программам, срокам приёма и общежитиям взяты из открытых источников и требуют сверки с priem.urfu.ru. Значения в квадратных скобках — места для данных, которые заполняются при внедрении. Версия для слабовидящих — кнопка с глазом в шапке любой страницы.</p>
+</div></main>
+</body>
+</html>
