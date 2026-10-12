@@ -80,7 +80,9 @@ a:hover .arrow{transform:translateX(4px)}
 .hd-in{display:flex;align-items:center;gap:16px;min-height:72px}
 .brand{display:flex;flex:none;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:600;font-size:20px;letter-spacing:-0.01em}
 .brand:hover{color:var(--text)}
-.brand small{display:block;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);line-height:1.2}
+.lk{display:flex;flex-direction:column}
+.lk b{font-size:15px;font-weight:600;line-height:1.02;letter-spacing:-0.005em}
+.lk i{font-style:normal;font-size:10.5px;font-weight:500;line-height:1.2;color:var(--muted);margin-top:3px;letter-spacing:0}
 .nav{display:flex;gap:2px;flex:1}
 .nav a{position:relative;white-space:nowrap;color:var(--text);text-decoration:none;padding:10px 10px;border-radius:var(--r);font-weight:500;min-height:44px;display:inline-flex;align-items:center;transition:color .15s ease}
 .nav a::after{content:"";position:absolute;left:10px;right:10px;bottom:6px;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .2s var(--ease)}
@@ -262,7 +264,7 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 .ft-col{display:flex;flex-direction:column;gap:10px}
 .ft-h{color:#FFFFFF;font-weight:600;margin-bottom:4px}
 .ft .brand,.ft .brand:hover{color:#FFFFFF}
-.ft .brand small{color:var(--on-dark-muted)}
+.ft .lk i{color:var(--on-dark-muted)}
 
 /* ===== Доступность ===== */
 .skip{position:absolute;left:16px;top:-60px;z-index:50;background:var(--blue);color:#FFFFFF;padding:12px 18px;border-radius:var(--r-sm);font-weight:600;text-decoration:none}
@@ -277,13 +279,13 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
 
 /* ===== Планшет и телефон ===== */
-@media (max-width:1420px){.brand small{display:none}}
+@media (max-width:1420px){.hd .lk i{display:none}}
 @media (max-width:1240px){.nav{display:none}.mnav{display:block}}
 @media (max-width:1100px){.mnav{display:block}.hero-grid{grid-template-columns:minmax(0,1fr)}.hero-art{max-width:520px}.news{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.news .ev{grid-column:span 2}}
 @media (max-width:900px){.qgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.inst{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(3){padding-left:0;border-left:0}.stat:nth-child(n+3){border-top:1px solid rgba(255,255,255,.14)}.story{grid-template-columns:minmax(0,1fr)}.story .art{min-height:240px}.ft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.steps::before{display:none}}
 @media (max-width:640px){
   .wrap{padding:0 16px}
-  .hd-in{gap:8px}.tools{gap:2px}.tools .btn,.brand small{display:none}
+  .hd-in{gap:8px}.tools{gap:2px}.tools .btn{display:none}.hd .lk b{font-size:13px}
   .hero-grid{padding:48px 0 40px;gap:24px}.hero h1{font-size:40px}.hero-lead{font-size:17px}.hero-art{display:none}
   .search-box .btn{padding:0 16px}.search-box input{font-size:16px}
   .stat b{font-size:32px}.stat{padding:20px 12px 24px 0}.stat+.stat{padding-left:12px}.stat:nth-child(3){padding-left:0}
@@ -311,7 +313,7 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 <template id="dc-tpl">
 <div><input type="checkbox" id="a11y" class="a11y-cb"><a href="#main" class="skip">Перейти к содержимому</a>
 <header class="hd"><div class="wrap hd-in">
-<a class="brand" href="Main.v2.dc.html" aria-label="УрФУ, на главную"><svg class="mark" width="36" height="44" viewBox="0 0 40 48" aria-hidden="true"><polygon points="4,3 13,3 20.5,21.5" fill="#E07A7A"></polygon><polygon points="4,3 20.5,21.5 16.8,28" fill="#A63A3A"></polygon><polygon points="27,3 36,3 30.6,16.5" fill="#5CC9AA"></polygon><polygon points="27,3 30.6,16.5 22,16" fill="#0B7A63"></polygon><polygon points="22,16 30.6,16.5 24.8,31.5" fill="#4F7FD0"></polygon><polygon points="22,16 24.8,31.5 16.8,28" fill="#1D4E9E"></polygon><polygon points="16.8,28 24.8,31.5 12.5,46" fill="#9B7FD0"></polygon><polygon points="16.8,28 12.5,46 6.5,42.5" fill="#6A4C9C"></polygon></svg><span>УрФУ<small>Уральский федеральный</small></span></a>
+<a class="brand" href="Main.v2.dc.html" aria-label="УрФУ, на главную"><svg class="mark" width="30" height="44" viewBox="0 0 42 62" aria-hidden="true"><defs><linearGradient id="gemH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 1.5 H28 V4.6 H23 L40 36 C37 47 28 60 13 60 C10.5 60 9 59 9.6 57.6 C17.5 55.5 24 49 25.6 38 L5.6 4.6 H4.2 Z" fill="url(#gemH)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a>
 <nav class="nav" aria-label="Главное меню"><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></nav>
 <div class="tools" style="margin-left:auto">
 <label for="a11y" class="ico a11y-lbl" title="Версия для слабовидящих"><span class="sr">Версия для слабовидящих</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></label>
@@ -453,7 +455,7 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 </main>
 
 <footer class="ft"><div class="wrap"><div class="ft-grid">
-<div class="ft-col"><a class="brand" href="Main.v2.dc.html"><svg class="mark" width="36" height="44" viewBox="0 0 40 48" aria-hidden="true"><polygon points="4,3 13,3 20.5,21.5" fill="#E07A7A"></polygon><polygon points="4,3 20.5,21.5 16.8,28" fill="#A63A3A"></polygon><polygon points="27,3 36,3 30.6,16.5" fill="#5CC9AA"></polygon><polygon points="27,3 30.6,16.5 22,16" fill="#0B7A63"></polygon><polygon points="22,16 30.6,16.5 24.8,31.5" fill="#4F7FD0"></polygon><polygon points="22,16 24.8,31.5 16.8,28" fill="#1D4E9E"></polygon><polygon points="16.8,28 24.8,31.5 12.5,46" fill="#9B7FD0"></polygon><polygon points="16.8,28 12.5,46 6.5,42.5" fill="#6A4C9C"></polygon></svg><span>УрФУ<small>Уральский федеральный</small></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p></div>
+<div class="ft-col"><a class="brand" href="Main.v2.dc.html"><svg class="mark" width="30" height="44" viewBox="0 0 42 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 1.5 H28 V4.6 H23 L40 36 C37 47 28 60 13 60 C10.5 60 9 59 9.6 57.6 C17.5 55.5 24 49 25.6 38 L5.6 4.6 H4.2 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p></div>
 <div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
 <div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dc.html">Расписание</a><a href="Schedule.dc.html">Личный кабинет</a><a href="Search.dc.html">Поиск по сайту</a><a href="Contacts.dc.html">Контакты и карта</a></div>
 <div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dc.html">Сведения об образовательной организации</a><a href="NotFound.dc.html">Противодействие коррупции</a><a href="NotFound.dc.html">Доступная среда</a><a href="MainEn.dc.html" lang="en">English</a></div>
