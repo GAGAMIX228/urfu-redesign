@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Новости УрФУ: наука, образование, поступление и партнёрство.">
+<title>[Тёмная тема] Новости — УрФУ</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="dark.css">
+<script src="theme.js"></script>
+<style>
+a.nc{display:flex;flex-direction:column;gap:10px;min-height:220px;padding:24px;border-top:4px solid var(--c)}
+.nc .tag{align-self:flex-start}
+.nc-t{font-weight:600;font-size:19px;line-height:1.35}
+.nc-d{font-size:14px}
+.nc-more{margin-top:auto;color:var(--blue);font-weight:600;font-size:15px}
+.nc:hover .nc-t{text-decoration:underline}
+.nc-a1{--c:var(--a1)}.nc-a2{--c:var(--a2)}.nc-a3{--c:var(--a3)}.nc-a4{--c:var(--a4)}
+</style>
+</head>
+<body>
+<template id="dc-tpl">
+<div><a href="#main" class="skip">Перейти к содержимому</a><input type="checkbox" id="a11y" class="a11y-cb"><header class="hd"><div class="wrap hd-in">
+<a class="brand" href="Main.dark.dc.html" aria-label="УрФУ, на главную"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemH)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a>
+<nav class="nav" aria-label="Главное меню"><a href="Admission.dark.dc.html">Поступить</a><a href="Schedule.dark.dc.html">Учиться</a><a href="Article.dark.dc.html">Наука</a><a href="Life.dark.dc.html">Жизнь в УрФУ</a><a href="Contacts.dark.dc.html">Партнёрам</a><a href="Institute.dark.dc.html" aria-current="page">Об университете</a></nav>
+<div class="tools" style="margin-left:auto">
+<label for="a11y" class="ico a11y-lbl" title="Версия для слабовидящих"><span class="sr">Версия для слабовидящих</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></label>
+<a class="ico" href="Search.dark.dc.html" aria-label="Поиск"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+<div class="lang" role="group" aria-label="Язык сайта"><span aria-current="true">RU</span><a href="MainEn.dark.dc.html" lang="en" aria-label="English version">EN</a></div>
+<a class="btn" href="Schedule.dark.dc.html">Личный кабинет</a>
+<details class="mnav"><summary class="ico" aria-label="Меню"><svg class="i-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="i-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></summary>
+<nav class="mnav-panel" aria-label="Главное меню"><a href="Admission.dark.dc.html">Поступить</a><a href="Schedule.dark.dc.html">Учиться</a><a href="Article.dark.dc.html">Наука</a><a href="Life.dark.dc.html">Жизнь в УрФУ</a><a href="Contacts.dark.dc.html">Партнёрам</a><a href="Institute.dark.dc.html" aria-current="page">Об университете</a><a href="Schedule.dark.dc.html">Личный кабинет</a></nav></details>
+</div>
+</div></header><main id="main" tabindex="-1" style="outline:none"><section class="phead"><div class="wrap">
+<div class="crumbs"><a href="Main.dark.dc.html">Главная</a> / <a href="Institute.dark.dc.html">Об университете</a> / Новости</div>
+<h1 class="big" style="font-size:48px">Новости</h1>
+</div></section><div class="wrap">
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:28px">
+<sc-for list="{{tags}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="chip on" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
+</sc-for>
+</div>
+<a href="Article.dark.dc.html" class="card g2" style="margin-top:32px;padding:0;overflow:hidden;gap:0">
+<div class="ph art t1 photo" style="--img:url('photos/shkolniki.webp');min-height:340px;border-radius:0;position:relative;overflow:hidden"><span class="lbl">Фото: urfu.ru</span></div>
+<div style="padding:40px;display:flex;flex-direction:column;justify-content:center;gap:14px"><span class="tag" style="align-self:flex-start">Главное</span><h2>Почти 50 тысяч заявлений на бюджет: УрФУ подвёл итоги приёма-2026</h2><p class="muted">Заявлений стало на 7,5 тысячи больше, чем годом раньше, а целевых — на 40% больше, чем выделено мест.</p><span class="muted" style="font-size:14px">Июль 2026 · по данным ОТВ</span></div>
+</a>
+<div class="g3" style="margin-top:24px">
+<sc-for list="{{items}}" as="n" hint-placeholder-count="6">
+<a class="{{n.cls}}" href="Article.dark.dc.html"><span class="tag">{{n.tag}}</span><div class="nc-t">{{n.t}}</div><div class="muted nc-d">{{n.d}}</div><span class="nc-more" aria-hidden="true">Читать →</span></a>
+</sc-for>
+</div>
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}"><p class="muted" style="margin-top:8px">В этой рубрике пока нет новостей. <a href="Events.dark.dc.html">Посмотрите календарь событий</a>.</p></sc-if>
+</div>
+</main><footer class="ft"><div class="wrap"><div class="ft-grid">
+<div class="ft-col"><a class="brand" href="Main.dark.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p><p style="margin-top:12px">Контакт-центр, бесплатно по России:<br><a href="tel:88001005044" style="color:#FFFFFF;font-weight:600;font-size:18px">8-800-100-50-44</a><br><a href="mailto:contact@urfu.ru">contact@urfu.ru</a></p></div>
+<div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dark.dc.html">Поступить</a><a href="Schedule.dark.dc.html">Учиться</a><a href="Article.dark.dc.html">Наука</a><a href="Life.dark.dc.html">Жизнь в УрФУ</a><a href="Contacts.dark.dc.html">Партнёрам</a><a href="Institute.dark.dc.html">Об университете</a></div>
+<div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dark.dc.html">Расписание</a><a href="Schedule.dark.dc.html">Личный кабинет</a><a href="Search.dark.dc.html">Поиск по сайту</a><a href="Contacts.dark.dc.html">Контакты и карта</a></div>
+<div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dark.dc.html">Сведения об образовательной организации</a><a href="NotFound.dark.dc.html">Противодействие коррупции</a><a href="NotFound.dark.dc.html">Доступная среда</a><a href="MainEn.dark.dc.html" lang="en">English</a></div>
+</div><p style="margin-top:48px;padding-top:24px;border-top:1px solid var(--ink-line)">© УрФУ, 1920–2026</p></div></footer></div>
+</template>
+<div id="dc-root"></div>
+<script type="text/x-dc" id="dc-logic">
+class Component extends DCLogic {
+renderVals() {
+const tag = (this.state && this.state.tag) || 'Все';
+const names = ['Все','Наука','Студентам','Поступающим','Образование','Партнёрство'];
+const pool = [
+{tag:'Наука', t:'Учёные УрФУ и УрО РАН объяснили одну из загадочных причин мужского бесплодия', d:'2026 · РИА Новости'},
+{tag:'Образование', t:'Около 500 преподавателей освоили нейросети для создания учебных курсов', d:'2026 · urfu.ru'},
+{tag:'Поступающим', t:'УрФУ вошёл в пилотный проект новой системы высшего образования', d:'2026 · urfu.ru'},
+{tag:'Партнёрство', t:'Четыре компании пришли на партнёрскую пятницу в УрФУ', d:'2026 · urfu.ru'},
+{tag:'Наука', t:'В Екатеринбурге открылся V Международный форум по когнитивным нейронаукам', d:'2026 · АиФ-Урал'},
+{tag:'Поступающим', t:'Приём на платные места: внутренние испытания до 15 августа, ЕГЭ до 20 августа', d:'Июль 2026 · ОТВ'}
+];
+const C = {'Наука':'a2','Образование':'a3','Поступающим':'a1','Партнёрство':'a4','Студентам':'a1'};
+const items = pool.filter(x => tag === 'Все' || x.tag === tag).map(x => Object.assign({}, x, { cls: 'card nc nc-' + C[x.tag] }));
+return { empty: items.length === 0, tags: names.map(l => ({ label: l, on: l === tag, off: l !== tag, pick: () => this.setState({ tag: l }) })), items };
+}
+}
+</script>
+<script src="dc-lite.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

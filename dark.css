@@ -1,0 +1,93 @@
+/* ЭКСПЕРИМЕНТ «Тёмная тема». Включается кнопкой с луной в шапке: на <html> ставится data-theme="dark".
+   Тёмные блоки (первый экран, подвал) остаются тёмными, светлые карточки становятся графитовыми,
+   самоцветы — светлыми оттенками, чтобы текст читался (контраст не ниже WCAG AA). */
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --page:#0C131C; --bg:#131D29; --bg-soft:#1A2634; --bg-soft-2:#16212D;
+  --text:#E8EDF3; --muted:#A9B5C2;
+  --line:#26354A; --line-strong:#35485F;
+  --blue:#8DB2F0; --blue-dark:#B4CCF5; --blue-soft:#1B2B44; --blue-line:#2E4669;
+  --ink:#070D14; --ink-2:#1A2C44; --ink-line:#22334A;
+  --copper:#EBA374;
+  --a1:#5FCFB2; --a2:#B9A2EA; --a3:#8DB2F0; --a4:#F0A0A0;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  --shadow-up:0 2px 4px rgba(0,0,0,.4),0 18px 40px rgba(0,0,0,.5);
+  --card-dark:#131D29;
+}
+html[data-theme="dark"] body{background:var(--page)}
+
+/* белые поверхности → графит */
+html[data-theme="dark"] :is(.card,.q,.inst a,.mnav-panel,.sug,.chip,.input,.seg button[aria-pressed="true"],.adm .tag,.hd){background:var(--bg)}
+html[data-theme="dark"] .hd{border-bottom-color:var(--line)}
+html[data-theme="dark"] .steps li::before{background:var(--page)}
+html[data-theme="dark"] [style*="background:#FFFFFF"]:not(.btn):not([class*="phone-top"]),
+html[data-theme="dark"] [style*="background:#F6F7F9"]{background:var(--bg) !important}
+html[data-theme="dark"] .search-box{background:#FFFFFF} /* строка поиска на фото остаётся светлой — её видно лучше всего */
+html[data-theme="dark"] .search-box input{color:#0E1B2B}
+
+/* кнопки: синяя заливка потемнее, чтобы белый текст читался */
+html[data-theme="dark"] .btn,html[data-theme="dark"] [style*="background:var(--blue)"]:not([style*="height:110px"]){background:#2D63C2 !important;color:#FFFFFF !important}
+html[data-theme="dark"] .btn:hover{background:#3A72D4 !important}
+html[data-theme="dark"] .btn[style*="background:#FFFFFF"]{background:#FFFFFF !important;color:#0E1B2B !important}
+html[data-theme="dark"] .btn2{color:var(--text);border-color:var(--line-strong)}
+html[data-theme="dark"] .chip.on,html[data-theme="dark"] .chip.on:hover,html[data-theme="dark"] .chip[aria-pressed="true"]{background:#E8EDF3 !important;color:#0C131C !important;border-color:#E8EDF3 !important}
+
+/* текст, заданный прямо в разметке тёмно-синим, — светлый */
+html[data-theme="dark"] [style*="color:var(--ink)"]:not(.btn):not([style*="height:110px"]){color:var(--text) !important}
+html[data-theme="dark"] [style*="color:#2B3946"]{color:var(--text) !important}
+html[data-theme="dark"] [style*="color:#7A3B14"]{color:#F2B78E !important}
+html[data-theme="dark"] [style*="color:var(--blue-dark)"]{color:var(--blue-dark) !important}
+
+/* плашки с примесью самоцвета к белому — примесь к графиту */
+html[data-theme="dark"] .q .n{background:color-mix(in srgb,var(--c) 16%,var(--bg))}
+html[data-theme="dark"] .q:hover{background:color-mix(in srgb,var(--c) 10%,var(--bg))}
+html[data-theme="dark"] .q:hover .n{color:#0C131C !important}
+html[data-theme="dark"] .adm{background:color-mix(in srgb,var(--a1) 10%,var(--bg))}
+html[data-theme="dark"] .adm::after{border-color:var(--line);box-shadow:none}
+html[data-theme="dark"] .qgrid{background:var(--line);border-color:var(--line)}
+html[data-theme="dark"] .tag{background:var(--bg-soft);color:var(--text)}
+html[data-theme="dark"] .tag[style*="background:#E"]{background:var(--bg-soft) !important;color:var(--text) !important}
+html[data-theme="dark"] .phead{background:var(--bg-soft)}
+html[data-theme="dark"] .phead.dark{background:var(--ink)}
+html[data-theme="dark"] summary::after{background:var(--blue-soft);color:var(--blue)}
+html[data-theme="dark"] details{border-color:var(--line)}
+
+/* тёмные блоки чуть отделяются от тёмной страницы */
+html[data-theme="dark"] .ft{border-top:1px solid var(--line)}
+html[data-theme="dark"] .story,html[data-theme="dark"] [style*="background:var(--ink)"]{box-shadow:inset 0 0 0 1px var(--line)}
+
+/* фото чуть приглушены, чтобы не слепили в темноте */
+html[data-theme="dark"] .photo{filter:brightness(.92)}
+
+/* схема на «Контактах» */
+html[data-theme="dark"] .cmap svg rect[fill="#FFFFFF"],html[data-theme="dark"] .cmap svg g[fill="#FFFFFF"] rect{fill:#1C2938}
+html[data-theme="dark"] .cmap svg g[fill="#FFFFFF"]{fill:#1C2938;stroke:var(--line)}
+
+/* белый текст на цветной плашке: самоцветы здесь остаются исходными, тёмными — как в светлой теме */
+html[data-theme="dark"] [style*="background:var(--a"][style*="color:#FFFFFF"],
+html[data-theme="dark"] [style*="background:var(--copper)"][style*="color:#FFFFFF"],
+html[data-theme="dark"] .cn,html[data-theme="dark"] .cmap,html[data-theme="dark"] .art:not(.photo),html[data-theme="dark"] .ph:not(.photo){
+  --a1:#0B7A63;--a2:#6A4C9C;--a3:#1D4E9E;--a4:#A63A3A;--copper:#A3521F;--blue:#1D4E9E}
+html[data-theme="dark"] .cmap svg > rect:first-child{fill:#101924}
+
+/* свои карточки страниц «Расписание» и «События» */
+html[data-theme="dark"] .wday,html[data-theme="dark"] .mc:not(.mc-e){background:var(--bg)}
+
+/* на телефоне кнопка темы — в меню, в шапке ей тесно */
+.theme-row{display:none}
+@media (max-width:480px){.tools .theme-btn{display:none}.mnav-panel .theme-row{display:flex}}
+.theme-row{align-items:center;gap:10px;width:100%;padding:12px 14px;min-height:44px;border:0;border-radius:var(--r);background:transparent;font:inherit;font-weight:500;color:var(--text);cursor:pointer;text-align:left}
+.theme-row:hover{background:var(--bg-soft)}
+
+/* страница «Логотип»: образцы цветов и знак на светлом фоне показываются как есть */
+html[data-theme="dark"] [style*="height:110px"]{--blue:#1D4E9E;--ink:#0E1B2B;--copper:#A3521F;--bg-soft:#EEF1F4;--a1:#0B7A63;--a2:#6A4C9C;--a3:#1D4E9E;--a4:#A63A3A}
+html[data-theme="dark"] .keep-light{background:#FFFFFF !important;color:#0E1B2B;--muted:#56606B;--text:#0E1B2B}
+
+/* кнопка переключения темы */
+.theme-btn .i-moon{display:block}.theme-btn .i-sun{display:none}
+html[data-theme="dark"] .theme-btn .i-moon{display:none}
+html[data-theme="dark"] .theme-btn .i-sun{display:block}
+
+/* плавная смена темы (кроме тех, кто просил меньше движения) */
+html.theme-anim,html.theme-anim *{transition:background-color .35s ease,color .35s ease,border-color .35s ease !important}
+@media (prefers-reduced-motion:reduce){html.theme-anim,html.theme-anim *{transition:none !important}}
