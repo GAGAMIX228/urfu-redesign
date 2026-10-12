@@ -296,6 +296,7 @@ h1{font-size:44px}h2{font-size:32px}h3{font-size:20px}
 .card{border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;background:#FFFFFF}
 a.card{display:block;text-decoration:none;color:var(--text);transition:transform .2s var(--ease),border-color .2s ease,box-shadow .2s ease}
 a.card:hover{border-color:var(--blue);color:var(--text);transform:translateY(-2px);box-shadow:var(--shadow)}
+a.card.g2,a.card.g3,a.card.g4{display:grid}
 .tag{display:inline-block;padding:4px 10px;border-radius:var(--r-sm);background:var(--bg-soft);font-size:13px;font-weight:600;color:var(--text)}
 .chip{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line-strong);background:#FFFFFF;font:inherit;font-size:15px;font-weight:500;color:var(--text);cursor:pointer;text-decoration:none;transition:background .15s ease,color .15s ease,border-color .15s ease}
 .chip:hover{border-color:var(--blue);color:var(--blue)}
@@ -330,3 +331,9 @@ table{border-collapse:collapse}
 
 @media (max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}.big{font-size:32px !important}h2{font-size:24px}.phead{padding-bottom:32px}}
+
+/* карточки в сетке чередуют самоцветы, даже если нарисованы по одному шаблону */
+:is(.g2,.g3,.g4) > :nth-child(4n+1) .ph.art{--g:var(--a1)}
+:is(.g2,.g3,.g4) > :nth-child(4n+2) .ph.art{--g:var(--a2)}
+:is(.g2,.g3,.g4) > :nth-child(4n+3) .ph.art{--g:var(--a3)}
+:is(.g2,.g3,.g4) > :nth-child(4n+4) .ph.art{--g:var(--a4)}

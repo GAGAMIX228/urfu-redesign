@@ -86,7 +86,7 @@ label.sync input{width:18px;height:18px}
   var lock=false;
   function follow(src,dst){
     if(lock||!document.getElementById('sync').checked) return;
-    var a=src.contentDocument&&src.contentDocument.documentElement, b=dst.contentDocument&&dst.contentDocument.documentElement;
+    var a,b; try{ a=src.contentDocument&&src.contentDocument.documentElement; b=dst.contentDocument&&dst.contentDocument.documentElement; }catch(e){ return; }
     if(!a||!b) return;
     var p=a.scrollTop/Math.max(1,a.scrollHeight-a.clientHeight);
     lock=true; dst.contentWindow.scrollTo(0,p*(b.scrollHeight-b.clientHeight));
@@ -94,8 +94,9 @@ label.sync input{width:18px;height:18px}
   }
   function hook(src,dst){
     function attach(){
+      /* при открытии файла без сервера браузер не даёт заглянуть внутрь — тогда просто без общей прокрутки */
       var w=src.contentWindow;
-      if(!w||w.__synced||!src.contentDocument||src.contentDocument.readyState==='loading') return;
+      try{ if(!w||w.__synced||!src.contentDocument||src.contentDocument.readyState==='loading') return; }catch(e){ return; }
       w.__synced=true;
       w.addEventListener('scroll',function(){follow(src,dst);});
     }
