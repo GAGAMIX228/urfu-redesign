@@ -43,7 +43,7 @@
 <h2 style="margin-top:44px;font-size:28px">Что меняется в университете</h2>
 <p style="margin-top:16px">УрФУ стал участником пилотного проекта новой системы высшего образования. Вместо привычной схемы «бакалавриат — магистратура» в вузе будет два уровня: базовое и специализированное высшее образование.</p>
 <p style="margin-top:28px;font-size:15px;color:var(--muted)">Источник: <a href="https://obltv.ru/news/bolshe-50-tysyach-abiturientov-podali-zayavleniya-v-urfu-v-2026-33873">ОТВ</a>. Текст пересказан для прототипа.</p>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid var(--line);align-items:center"><span class="muted" style="font-size:15px">Поделиться:</span><a class="chip" href="Article.dc.html">ВКонтакте</a><a class="chip" href="Article.dc.html">Telegram</a><a class="chip" href="Article.dc.html">Скопировать ссылку</a></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid var(--line);align-items:center"><span class="muted" style="font-size:15px">Поделиться:</span><a class="chip" href="https://vk.com/share.php?url=https%3A%2F%2Fgagamix228.github.io%2Furfu-redesign%2FArticle.dc.html" target="_blank" rel="noopener">ВКонтакте</a><a class="chip" href="https://t.me/share/url?url=https%3A%2F%2Fgagamix228.github.io%2Furfu-redesign%2FArticle.dc.html" target="_blank" rel="noopener">Telegram</a><button class="chip" type="button" onClick="{{copy}}">{{copyLbl}}</button></div>
 </div>
 </article>
 <section class="wrap sec">
@@ -65,7 +65,20 @@
 <script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {
-return {};
+const copied = this.state && this.state.copied;
+const done = () => { this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 2500); };
+return {
+copyLbl: copied ? 'Ссылка скопирована ✓' : 'Скопировать ссылку',
+copy: () => {
+const url = location.href;
+const fallback = () => {
+const t = document.createElement('textarea'); t.value = url; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;left:-9999px;top:0';
+document.body.appendChild(t); t.select(); let ok = false; try { ok = document.execCommand('copy'); } catch (e) {} t.remove();
+if (ok) done(); else window.prompt('Скопируйте ссылку:', url);
+};
+if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, fallback); else fallback();
+}
+};
 }
 }
 </script>
