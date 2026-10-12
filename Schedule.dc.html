@@ -12,10 +12,77 @@ body{background:var(--bg-soft);padding:32px 16px;margin:0}
 .phone{width:390px;max-width:100%;height:844px;margin:0 auto;border-radius:28px;overflow:hidden;box-shadow:0 30px 70px rgba(14,27,43,.25);outline:1px solid var(--line)}
 .phone-top{background:radial-gradient(420px 260px at 90% 0%,var(--hero-1),transparent 70%),radial-gradient(360px 260px at 0% 100%,var(--hero-2),transparent 70%),var(--ink) !important}
 @media (max-width:480px){body{padding:0}.phone{width:100%;height:100vh;height:100dvh;border-radius:0;box-shadow:none;outline:0}}
+/* компьютер: обычная страница сайта с неделей по столбцам; телефон: экран приложения */
+.desk{display:none}
+@media (min-width:900px){
+body{padding:0;background:var(--bg)}
+.phone{display:none !important}
+.desk{display:block}
+}
+.week{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:32px}
+.wday{border:1px solid var(--line);border-radius:10px;background:#FFFFFF;display:flex;flex-direction:column;min-height:320px;overflow:hidden}
+.wday-h{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;font-weight:600;background:var(--bg-soft)}
+.wday-h span{font-weight:400;font-size:13px;color:var(--muted)}
+.wday.today{border-color:var(--blue);box-shadow:inset 0 3px 0 var(--blue)}
+.wday.today .wday-h{background:var(--blue-soft)}
+.wday-b{padding:10px;display:flex;flex-direction:column;gap:8px;flex:1}
+.wp{border-radius:8px;padding:10px 12px;background:var(--bg-soft);box-shadow:inset 3px 0 0 var(--c,var(--a1))}
+.wp b{display:block;font-size:14px;line-height:1.35;margin-top:2px}
+.wp small{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.wp .tm{font-size:12px;font-weight:600;color:var(--muted)}
+.wp.k-lec{--c:var(--a3)}.wp.k-pr{--c:var(--a1)}.wp.k-lab{--c:var(--a2)}.wp.k-sem{--c:var(--a4)}
+.wfree{margin:auto;color:var(--muted);font-size:14px;text-align:center;padding:24px 8px}
+.wlegend{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;font-size:14px;color:var(--muted)}
+.wlegend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:var(--c)}
+@media (max-width:1180px){.week{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
 <body>
 <template id="dc-tpl">
+<div>
+<div class="desk">
+<a href="#main" class="skip">Перейти к содержимому</a><input type="checkbox" id="a11y" class="a11y-cb"><header class="hd"><div class="wrap hd-in">
+<a class="brand" href="Main.dc.html" aria-label="УрФУ, на главную"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemH)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a>
+<nav class="nav" aria-label="Главное меню"><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html" aria-current="page">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></nav>
+<div class="tools" style="margin-left:auto">
+<label for="a11y" class="ico a11y-lbl" title="Версия для слабовидящих"><span class="sr">Версия для слабовидящих</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></label>
+<a class="ico" href="Search.dc.html" aria-label="Поиск"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+<div class="lang" role="group" aria-label="Язык сайта"><span aria-current="true">RU</span><a href="MainEn.dc.html" lang="en" aria-label="English version">EN</a></div>
+<a class="btn" href="Schedule.dc.html">Личный кабинет</a>
+<details class="mnav"><summary class="ico" aria-label="Меню"><svg class="i-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="i-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></summary>
+<nav class="mnav-panel" aria-label="Главное меню"><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html" aria-current="page">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a><a href="Schedule.dc.html">Личный кабинет</a></nav></details>
+</div>
+</div></header><main id="main" tabindex="-1" style="outline:none"><section class="phead dark">
+<div class="wrap" style="padding-bottom:56px">
+<div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="Schedule.dc.html">Учиться</a> / Расписание</div>
+<h1 class="big" style="font-size:48px;margin-top:16px;color:#FFFFFF">Расписание</h1>
+<p style="color:var(--on-dark-muted);font-size:18px;margin-top:12px">Группа [номер] · неделя [дд.мм — дд.мм] · [чётная/нечётная]</p>
+</div>
+</section>
+<div class="wrap" style="padding-bottom:72px">
+<div class="week">
+<sc-for list="{{week}}" as="w" hint-placeholder-count="6">
+<section class="{{w.cls}}" aria-label="{{w.full}}">
+<div class="wday-h">{{w.w}}<span>{{w.n}}</span></div>
+<div class="wday-b">
+<sc-for list="{{w.pairs}}" as="p" hint-placeholder-count="3">
+<div class="{{p.cls}}"><span class="tm">{{p.from}}–{{p.to}}</span><b>{{p.t}}</b><small>{{p.kind}} · ауд. [номер]</small></div>
+</sc-for>
+<sc-if value="{{w.empty}}" hint-placeholder-val="{{false}}"><div class="wfree">Пар нет</div></sc-if>
+</div>
+</section>
+</sc-for>
+</div>
+<div class="wlegend" aria-label="Обозначения"><span><i style="--c:var(--a3)"></i>Лекция</span><span><i style="--c:var(--a1)"></i>Практика</span><span><i style="--c:var(--a2)"></i>Лабораторная</span><span><i style="--c:var(--a4)"></i>Семинар</span></div>
+<p class="muted" style="margin-top:12px;font-size:14px">Аудитории и преподаватели — [из системы расписания УрФУ]. На телефоне эта страница открывается как экран приложения.</p>
+</div>
+</main><footer class="ft"><div class="wrap"><div class="ft-grid">
+<div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p></div>
+<div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
+<div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dc.html">Расписание</a><a href="Schedule.dc.html">Личный кабинет</a><a href="Search.dc.html">Поиск по сайту</a><a href="Contacts.dc.html">Контакты и карта</a></div>
+<div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dc.html">Сведения об образовательной организации</a><a href="NotFound.dc.html">Противодействие коррупции</a><a href="NotFound.dc.html">Доступная среда</a><a href="MainEn.dc.html" lang="en">English</a></div>
+</div><p style="margin-top:48px;padding-top:24px;border-top:1px solid var(--ink-line)">© УрФУ, 1920–2026</p></div></footer>
+</div>
 <div class="phone" style="background:#F6F7F9;display:flex;flex-direction:column;font-family:'IBM Plex Sans',sans-serif;color:var(--ink)">
 <div class="phone-top" style="color:#FFFFFF;padding:20px 20px 16px">
 <div style="display:flex;justify-content:space-between;align-items:center"><a href="MainMobile.dc.html" aria-label="На главную" style="display:flex"><svg width="18" height="32" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9A7AD6"></stop><stop offset=".5" stop-color="#5B8BDB"></stop><stop offset="1" stop-color="#3CCFA6"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemS)"></path></svg></a><span style="font-size:14px;color:var(--on-dark-muted)">Группа [номер]</span></div>
@@ -44,7 +111,7 @@ body{background:var(--bg-soft);padding:32px 16px;margin:0}
 <a href="Institute.dc.html" style="flex:1;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;color:var(--muted);text-decoration:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>Меню</a>
 </nav>
 </div>
-
+</div>
 </template>
 <div id="dc-root"></div>
 <script type="text/x-dc" id="dc-logic">
@@ -61,10 +128,17 @@ const plan = [
 [[1,'Алгебра и геометрия','Лекция'],[2,'Алгебра и геометрия','Практика']],
 []
 ];
+const full = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+const KC = {'Лекция':'k-lec','Практика':'k-pr','Лабораторная':'k-lab','Семинар':'k-sem'};
+const week = days.map(([w, n], k) => {
+const ps = plan[k].map(([i, t, kind]) => ({ from: T[i][0], to: T[i][1], t, kind, cls: 'wp ' + KC[kind] }));
+return { w, n, full: full[k], cls: 'wday' + (k === 0 ? ' today' : ''), pairs: ps, empty: ps.length === 0 };
+});
 const pairs = plan[d].map(([i, t, kind]) => ({ from: T[i][0], to: T[i][1], t, kind }));
 return {
 days: days.map(([w, n], k) => ({ w, n, on: k === d, off: k !== d, pick: () => this.setState({ d: k }) })),
 pairs,
+week,
 empty: pairs.length === 0
 };
 }
