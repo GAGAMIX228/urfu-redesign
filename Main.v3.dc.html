@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Главная — УрФУ (прототип v3, конструктивизм)</title>
+<style>
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Medium.ttf') format('truetype');font-weight:500;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+
+/* ===== Цвета: чёрный, белый, синий УрФУ и один «сигнальный» для фигур ===== */
+:root{
+  --ink:#111214; --paper:#FFFFFF; --paper-2:#F2F2EE;
+  --blue:#1D4E9E; --blue-dark:#163B78;
+  --signal:#FF5A1F;      /* только для фигур, не для текста */
+  --muted:#4A4F57;
+  --line:#111214;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:1360px;margin:0 auto;padding:0 32px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.inv :focus-visible,.bluebg :focus-visible{outline-color:#FFFFFF}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+/* крупная типографика */
+.disp{font-weight:700;text-transform:uppercase;letter-spacing:-0.035em;line-height:.9}
+.out{color:transparent;-webkit-text-stroke:2px currentColor}
+.out{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.inv .out{-webkit-text-stroke-color:#FFFFFF}
+.label{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+
+/* кнопки — прямоугольные, с жёсткой тенью */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:var(--ink);color:#FFFFFF;border:2px solid var(--ink);font:inherit;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:14px;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .15s var(--ease),box-shadow .15s var(--ease),background .15s ease}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--blue)}
+.btn:active{transform:none;box-shadow:none}
+.btn.blue{background:var(--blue);border-color:var(--blue)}
+.btn.blue:hover{box-shadow:3px 3px 0 var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.white{background:#FFFFFF;color:var(--ink);border-color:#FFFFFF}
+.btn.white:hover{box-shadow:3px 3px 0 var(--ink)}
+.arr{display:inline-block;transition:transform .2s var(--ease)}
+a:hover .arr{transform:translateX(6px)}
+
+/* ===== Шапка ===== */
+.hd{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:2px solid var(--line)}
+.hd-in{display:flex;align-items:stretch;min-height:68px}
+.brand{display:flex;align-items:center;gap:12px;padding-right:24px;margin-right:8px;border-right:2px solid var(--line);text-decoration:none;font-weight:700;font-size:22px;letter-spacing:-0.02em;flex:none}
+.nav{display:flex;flex:1}
+.nav a{display:flex;align-items:center;padding:0 14px;min-height:44px;text-decoration:none;font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;transition:background .15s ease,color .15s ease}
+.nav a:hover{background:var(--ink);color:#FFFFFF}
+.tools{display:flex;align-items:center;gap:6px;margin-left:auto;padding-left:12px}
+.ico{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;color:var(--ink);text-decoration:none;cursor:pointer;border:2px solid transparent}
+.ico:hover{border-color:var(--ink)}
+.lang{display:flex;border:2px solid var(--ink);font-size:13px;font-weight:700}
+.lang>*{min-height:40px;min-width:42px;display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--ink)}
+.lang>[aria-current]{background:var(--ink);color:#FFFFFF}
+.mnav{display:none;position:relative}
+.mnav summary{list-style:none}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav-panel{position:absolute;right:0;top:calc(100% + 14px);width:min(320px,calc(100vw - 32px));background:var(--paper);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--blue);display:flex;flex-direction:column}
+.mnav-panel a{padding:14px 16px;min-height:48px;text-decoration:none;font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:.04em;border-bottom:1px solid var(--ink)}
+.mnav-panel a:last-child{border-bottom:0}
+.mnav-panel a:hover{background:var(--ink);color:#FFFFFF}
+.mnav[open] .i-open,.mnav:not([open]) .i-close{display:none}
+
+/* ===== Первый экран ===== */
+.hero{position:relative;border-bottom:2px solid var(--line);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);min-height:640px}
+.hero-l{padding:56px 40px 48px 0;display:flex;flex-direction:column;justify-content:space-between;gap:32px;position:relative;z-index:1}
+.hero h1{font-size:clamp(52px,8.4vw,128px)}
+.hero h1 .bl{display:inline-block;background:var(--blue);color:#FFFFFF;padding:0 .12em;margin-left:-.06em}
+.hero-lead{font-size:20px;max-width:520px;font-weight:500}
+.search{position:relative;max-width:680px}
+.search-box{display:flex;border:2px solid var(--ink);background:var(--paper);box-shadow:6px 6px 0 var(--ink);transition:box-shadow .15s ease}
+.search-box:focus-within{box-shadow:6px 6px 0 var(--blue)}
+.search-box input{flex:1;min-width:0;min-height:60px;border:0;padding:0 18px;font:inherit;font-size:18px;background:transparent;color:var(--ink)}
+.search-box input:focus{outline:none}
+.search-box input::placeholder{color:#6B7079}
+.search-box .btn{min-height:auto;border:0;border-left:2px solid var(--ink)}
+.search-box .btn:hover{transform:none;box-shadow:none;background:var(--blue)}
+.sug{position:absolute;left:0;right:0;top:calc(100% + 12px);background:var(--paper);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--blue);z-index:30}
+.sug a{display:flex;justify-content:space-between;gap:16px;padding:12px 18px;text-decoration:none;border-bottom:1px solid var(--ink);align-items:center}
+.sug a:last-child{border-bottom:0}
+.sug a:hover{background:var(--ink);color:#FFFFFF}
+.sug a:hover .muted{color:#D0D3D8}
+.often{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:20px;font-size:14px;font-weight:600}
+.often a{padding:6px 12px;border:2px solid var(--ink);text-decoration:none;text-transform:uppercase;font-size:12px;letter-spacing:.06em;font-weight:700}
+.often a:hover{background:var(--ink);color:#FFFFFF}
+
+/* правая часть первого экрана — конструктивистская композиция */
+.hero-r{position:relative;border-left:2px solid var(--line);background:var(--paper-2);overflow:hidden}
+.hero-r svg{position:absolute;inset:0;width:100%;height:100%}
+.hero-r .tag{position:absolute;left:24px;bottom:24px;background:var(--ink);color:#FFFFFF;padding:8px 12px}
+@keyframes slide{from{transform:translateX(-30px);opacity:0}to{transform:none;opacity:1}}
+@keyframes drop{from{transform:translateY(-40px);opacity:0}to{transform:none;opacity:1}}
+@keyframes spin{from{transform:rotate(-30deg);opacity:0}to{transform:none;opacity:1}}
+html:not(.ready) .rv{animation:slide .6s var(--ease) both}
+html:not(.ready) .rv2{animation-delay:.08s}html:not(.ready) .rv3{animation-delay:.16s}html:not(.ready) .rv4{animation-delay:.24s}
+html:not(.ready) .hero-r .c{animation:drop .7s var(--ease) both;transform-box:fill-box}
+html:not(.ready) .hero-r .d{animation:spin .9s var(--ease) both;transform-box:fill-box;transform-origin:center}
+
+/* ===== Полоса с цифрами ===== */
+.inv{background:var(--ink);color:#FFFFFF}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.stat{padding:36px 24px 36px 0;border-right:1px solid #3A3D42}
+.stat+.stat{padding-left:28px}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-size:clamp(44px,5vw,72px);font-weight:700;letter-spacing:-0.03em;line-height:1}
+.stat:nth-child(even) b{color:transparent;-webkit-text-stroke:2px #FFFFFF}
+.stat span{display:block;margin-top:10px;color:#D0D3D8;font-size:15px;max-width:220px}
+
+/* ===== Секции ===== */
+.sec{padding:96px 0 0}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding-bottom:24px;border-bottom:2px solid var(--line);margin-bottom:0}
+.sec-h h2{font-size:clamp(44px,7vw,104px)}
+.sec-h .label{display:block;margin-bottom:12px;color:var(--blue)}
+.more{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:.06em;text-decoration:none;border-bottom:2px solid var(--ink)}
+.more:hover{color:var(--blue);border-color:var(--blue)}
+
+/* роли — вкладки-коробки */
+.roles{display:flex;flex-wrap:wrap;border:2px solid var(--ink);border-top:0}
+.roles button{flex:1 1 160px;min-height:56px;border:0;border-right:2px solid var(--ink);background:var(--paper);font:inherit;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:14px;cursor:pointer;color:var(--ink)}
+.roles button:last-child{border-right:0}
+.roles button:hover{background:var(--paper-2)}
+.roles button[aria-pressed="true"]{background:var(--blue);color:#FFFFFF}
+.rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-left:2px solid var(--ink)}
+.row{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:16px;padding:22px 24px;min-height:96px;text-decoration:none;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transition:background .15s ease,color .15s ease}
+.row .n{font-weight:700;font-size:14px;color:var(--blue)}
+.row .t{display:block;font-size:22px;font-weight:700;letter-spacing:-0.01em;line-height:1.2}
+.row .d{display:block;color:var(--muted);font-size:15px;margin-top:4px}
+.row .arr{font-size:28px;font-weight:700}
+.row:hover{background:var(--ink);color:#FFFFFF}
+.row:hover .n{color:#FFFFFF}
+.row:hover .d{color:#D0D3D8}
+
+/* институты — таблица */
+.inst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-left:2px solid var(--ink)}
+.inst a{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:170px;padding:22px;text-decoration:none;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);overflow:hidden;transition:color .2s ease}
+.inst a::before{content:"";position:absolute;inset:0;background:var(--blue);transform:translateY(101%);transition:transform .3s var(--ease);z-index:-1}
+.inst a{z-index:0}
+.inst a:hover{color:#FFFFFF}
+.inst a:hover::before{transform:none}
+.inst b{font-size:30px;font-weight:700;letter-spacing:-0.02em;line-height:1}
+.inst span{font-size:15px;font-weight:500}
+
+/* поступление — синяя полоса на всю ширину */
+.bluebg{background:var(--blue);color:#FFFFFF;position:relative;overflow:hidden}
+.adm{padding:80px 0;position:relative}
+.adm-deco{position:absolute;right:-80px;top:-60px;width:520px;height:520px;pointer-events:none}
+.adm h2{font-size:clamp(44px,6.5vw,96px)}
+.adm .note{margin-top:16px;font-size:14px;color:#E1E8F4;max-width:520px}
+.steps{list-style:none;padding:0;margin:48px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid #FFFFFF;position:relative}
+.steps li{padding:24px 24px 0 0;border-right:1px solid rgba(255,255,255,.35)}
+.steps li+li{padding-left:24px}
+.steps li:last-child{border-right:0}
+.steps .k{font-size:14px;font-weight:700;letter-spacing:.1em}
+.steps .date{display:block;font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-0.02em;margin-top:12px;line-height:1.05}
+.steps .what{display:block;margin-top:8px;color:#E1E8F4}
+.adm-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px;position:relative}
+
+/* новости */
+.news{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);border-left:2px solid var(--ink)}
+.nc{display:flex;flex-direction:column;text-decoration:none;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.nc .body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.nc .meta{display:flex;gap:10px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.nc .cat{background:var(--ink);color:#FFFFFF;padding:4px 8px}
+.nc .ttl{font-size:21px;font-weight:700;line-height:1.25;letter-spacing:-0.01em}
+.nc.big .ttl{font-size:28px}
+.nc:hover .ttl{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.ev{border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);display:flex;flex-direction:column}
+.ev-h{padding:16px 22px;background:var(--ink);color:#FFFFFF}
+.ev a{display:flex;gap:16px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--ink);text-decoration:none;flex:1}
+.ev a:last-child{border-bottom:0}
+.ev a:hover{background:var(--paper-2)}
+.ev-d{min-width:64px;text-align:center;border:2px solid var(--ink);padding:6px 4px}
+.ev-d b{display:block;font-size:24px;font-weight:700;line-height:1}
+.ev-d span{display:block;font-size:12px;font-weight:700;text-transform:uppercase;margin-top:2px}
+.ev-t{font-weight:700}
+.ev .muted{font-size:14px}
+.muted{color:var(--muted)}
+
+/* «фото» — плоские конструктивистские композиции вместо серых заглушек */
+.comp{position:relative;overflow:hidden;min-height:220px;border-bottom:2px solid var(--ink);background:var(--paper-2)}
+.comp svg{position:absolute;inset:0;width:100%;height:100%}
+.comp .lbl{position:absolute;left:12px;bottom:12px;background:var(--paper);border:2px solid var(--ink);padding:3px 8px;font-size:12px;font-weight:600}
+.nc:hover .comp .sh{transform:rotate(-4deg) scale(1.04)}
+.comp .sh{transition:transform .5s var(--ease);transform-box:fill-box;transform-origin:center}
+
+/* история — чёрный блок */
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);text-decoration:none;border:2px solid var(--ink)}
+.story .comp{min-height:420px;border-bottom:0;border-right:2px solid var(--ink)}
+.story-tx{padding:56px 48px;display:flex;flex-direction:column;justify-content:center;gap:20px}
+.story h2{font-size:clamp(30px,3.2vw,46px);font-weight:700;letter-spacing:-0.02em;line-height:1.05}
+.story p{color:#D0D3D8;font-size:18px}
+.story .go{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:14px}
+
+/* жизнь */
+.life{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:190px;border-left:2px solid var(--ink)}
+.life a{position:relative;display:block;text-decoration:none;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);overflow:hidden}
+.life .comp{position:absolute;inset:0;min-height:0;border:0}
+.life .w2{grid-column:span 2;grid-row:span 2}
+.life .w2h{grid-column:span 2}
+.life b{position:absolute;left:18px;top:14px;z-index:1;font-size:clamp(24px,2.6vw,40px);font-weight:700;text-transform:uppercase;letter-spacing:-0.02em;line-height:1;background:var(--paper);padding:4px 8px;border:2px solid var(--ink)}
+.life a:hover .sh{transform:rotate(-4deg) scale(1.05)}
+
+/* ===== Подвал ===== */
+.ft{margin-top:120px}
+.ft-top{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.2fr;gap:32px;padding:56px 0 40px}
+.ft-col{display:flex;flex-direction:column;gap:10px;font-size:15px}
+.ft-col a{text-decoration:none;color:#FFFFFF}
+.ft-col a:hover{text-decoration:underline}
+.ft-h{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9EA3AB;margin-bottom:6px}
+.ft-big{font-size:clamp(80px,19vw,300px);line-height:.8;padding-top:24px;border-top:1px solid #3A3D42;overflow:hidden;white-space:nowrap}
+.ft-copy{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px 0 28px;color:#9EA3AB;font-size:14px}
+
+/* ===== Доступность ===== */
+.skip{position:absolute;left:16px;top:-60px;z-index:50;background:var(--blue);color:#FFFFFF;padding:12px 18px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+.a11y-cb{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+#a11y:checked ~ main{zoom:1.2}
+#a11y:checked ~ main .out,#a11y:checked ~ footer .out{color:inherit;-webkit-text-stroke:0}
+#a11y:checked ~ main .muted,#a11y:checked ~ main .row .d{color:inherit !important}
+#a11y:checked ~ main a{text-decoration:underline}
+#a11y:checked ~ header .a11y-lbl{background:var(--ink);color:#FFFFFF}
+#a11y:focus-visible ~ header .a11y-lbl{outline:3px solid var(--blue);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
+
+/* ===== Планшет и телефон ===== */
+@media (max-width:1200px){.nav{display:none}.mnav{display:block}}
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:minmax(0,1fr);min-height:0}.hero-r{border-left:0;border-top:2px solid var(--line);min-height:300px}
+  .hero-l{padding-right:0}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(2){border-right:0}.stat:nth-child(3){padding-left:0}.stat:nth-child(n+3){border-top:1px solid #3A3D42}
+  .inst{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .news{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.news .ev{grid-column:span 2}
+  .story{grid-template-columns:minmax(0,1fr)}.story .comp{border-right:0;border-bottom:2px solid var(--ink);min-height:260px}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}.steps li:nth-child(2){border-right:0}.steps li:nth-child(3){padding-left:0}
+  .ft-top{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .adm-deco{opacity:.35}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .brand{padding-right:12px;font-size:20px}.tools{gap:2px}.tools .btn{display:none}
+  .hero-l{padding:36px 0 32px}.hero-lead{font-size:17px}
+  .search-box input{font-size:16px;min-height:54px;padding:0 12px}.search-box .btn{padding:0 14px}
+  .out{-webkit-text-stroke-width:1.5px}
+  .stat{padding:24px 12px 24px 0}.stat+.stat{padding-left:12px}.stat:nth-child(3){padding-left:0}
+  .sec{padding-top:64px}
+  .roles button{flex-basis:50%;border-bottom:2px solid var(--ink)}.roles button:nth-child(2n){border-right:0}
+  .rows,.news{grid-template-columns:minmax(0,1fr)}.news .ev{grid-column:auto}
+  .row{grid-template-columns:40px 1fr auto;padding:18px 16px;min-height:0}.row .t{font-size:19px}
+  .inst a{min-height:130px;padding:16px}.inst b{font-size:24px}
+  .adm{padding:56px 0}.steps{grid-template-columns:minmax(0,1fr)}.steps li{padding:20px 0 20px !important;border-right:0;border-bottom:1px solid rgba(255,255,255,.35)}
+  .story-tx{padding:28px 20px}
+  .life{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
+  .ft-top{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+</head>
+<body>
+<template id="dc-tpl">
+<div><input type="checkbox" id="a11y" class="a11y-cb"><a href="#main" class="skip">Перейти к содержимому</a>
+<header class="hd"><div class="wrap hd-in">
+<a class="brand" href="Main.v3.dc.html" aria-label="УрФУ, на главную"><svg width="40" height="40" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" fill="#1D4E9E"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span>УрФУ</span></a>
+<nav class="nav" aria-label="Главное меню"><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></nav>
+<div class="tools">
+<label for="a11y" class="ico a11y-lbl" title="Версия для слабовидящих"><span class="sr">Версия для слабовидящих</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></label>
+<a class="ico" href="Search.dc.html" aria-label="Поиск"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+<div class="lang" role="group" aria-label="Язык сайта"><span aria-current="true">RU</span><a href="MainEn.dc.html" lang="en" aria-label="English version">EN</a></div>
+<a class="btn" href="Schedule.dc.html">Личный кабинет</a>
+<details class="mnav"><summary class="ico" aria-label="Меню"><svg class="i-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg><svg class="i-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"></path></svg></summary>
+<nav class="mnav-panel" aria-label="Главное меню"><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a><a href="Schedule.dc.html">Личный кабинет</a></nav></details>
+</div>
+</div></header>
+
+<main id="main" tabindex="-1" style="outline:none">
+<section class="hero"><div class="wrap hero-grid">
+<div class="hero-l">
+<div>
+<div class="label rv" style="color:var(--blue)">Уральский федеральный университет · с 1920 года</div>
+<h1 class="disp rv rv2" style="margin-top:20px">Найди <span class="out">своё</span><br>место <span class="bl">в&nbsp;УрФУ</span></h1>
+</div>
+<div class="rv rv3">
+<p class="hero-lead">Программы, люди, события и сервисы университета — в одном поиске.</p>
+<div class="search" style="margin-top:24px">
+<div class="search-box">
+<label for="q" class="sr">Поиск по сайту</label>
+<input id="q" autocomplete="off" placeholder="Например: искусственный интеллект" value="{{q}}" onChange="{{onQ}}">
+<a class="btn" href="Search.dc.html">Найти <span class="arr" aria-hidden="true">→</span></a>
+</div>
+<sc-if value="{{open}}">
+<div class="sug" role="listbox" aria-label="Подсказки">
+<sc-for list="{{sug}}" as="g">
+<a href="{{g.href}}" role="option"><span style="font-weight:600">{{g.t}}</span><span class="muted" style="font-size:12px;white-space:nowrap;text-transform:uppercase;letter-spacing:.06em;font-weight:700">{{g.kind}}</span></a>
+</sc-for>
+<sc-if value="{{none}}"><div class="muted" style="padding:14px 18px">Ничего не нашлось — попробуйте другое слово</div></sc-if>
+<a href="Search.dc.html" style="font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.06em">Все результаты поиска <span class="arr">→</span></a>
+</div>
+</sc-if>
+</div>
+<div class="often"><span>Часто ищут:</span><a href="Schedule.dc.html">Расписание</a><a href="Catalog.dc.html">Проходные баллы</a><a href="Dorms.dc.html">Общежития</a><a href="Contacts.dc.html">Карта кампуса</a></div>
+</div>
+</div>
+<div class="hero-r" aria-hidden="true">
+<svg viewBox="0 0 400 560" preserveAspectRatio="xMidYMid slice">
+<circle class="d" cx="270" cy="150" r="118" fill="#1D4E9E"></circle>
+<rect class="d" x="-60" y="300" width="560" height="54" fill="#FF5A1F" transform="rotate(-24 200 327)" style="animation-delay:.25s"></rect>
+<g fill="#111214">
+<rect class="c" x="40" y="168" width="300" height="20"></rect>
+<rect class="c" x="52" y="196" width="276" height="8" style="animation-delay:.04s"></rect>
+<rect class="c" x="66" y="212" width="22" height="210" style="animation-delay:.08s"></rect>
+<rect class="c" x="116" y="212" width="22" height="210" style="animation-delay:.12s"></rect>
+<rect class="c" x="166" y="212" width="22" height="210" style="animation-delay:.16s"></rect>
+<rect class="c" x="216" y="212" width="22" height="210" style="animation-delay:.2s"></rect>
+<rect class="c" x="266" y="212" width="22" height="210" style="animation-delay:.24s"></rect>
+<rect class="c" x="40" y="428" width="300" height="14" style="animation-delay:.28s"></rect>
+<rect class="c" x="28" y="448" width="324" height="14" style="animation-delay:.32s"></rect>
+<rect class="c" x="16" y="468" width="348" height="14" style="animation-delay:.36s"></rect>
+</g>
+<text x="24" y="70" font-family="IBM Plex Sans" font-weight="700" font-size="56" fill="none" stroke="#111214" stroke-width="1.5" letter-spacing="-2">1920</text>
+</svg>
+<span class="tag label">Главный корпус · ул. Мира, 19</span>
+</div>
+</div></section>
+
+<section class="inv"><div class="wrap stats">
+<div class="stat"><b class="num">1920</b><span>год основания</span></div>
+<div class="stat"><b class="num">400+</b><span>образовательных программ</span></div>
+<div class="stat"><b class="num">164</b><span>научные лаборатории</span></div>
+<div class="stat"><b class="num">100+</b><span>стран, откуда приезжают студенты</span></div>
+</div></section>
+
+<section class="wrap sec">
+<div class="sec-h"><div><span class="label">Быстрый старт</span><h2 class="disp">Кто <span class="out">вы?</span></h2></div><p class="muted" style="max-width:360px">Выберите роль — и на главной останется только нужное вам.</p></div>
+<div class="roles" role="group" aria-label="Выберите роль">
+<sc-for list="{{roles}}" as="r"><button type="button" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}">{{r.label}}</button></sc-for>
+</div>
+<div class="rows">
+<sc-for list="{{links}}" as="l">
+<a class="row" href="{{l.href}}"><span class="n num">{{l.n}}</span><span><span class="t">{{l.t}}</span><span class="d">{{l.d}}</span></span><span class="arr" aria-hidden="true">→</span></a>
+</sc-for>
+</div>
+</section>
+
+<section class="wrap sec">
+<div class="sec-h"><div><span class="label">Структура</span><h2 class="disp"><span class="out">Инсти</span>туты</h2></div><a class="more" href="Institute.dc.html">Все подразделения <span class="arr">→</span></a></div>
+<div class="inst">
+<a href="Institute.dc.html"><b>ИРИТ-РтФ</b><span>Радиоэлектроника и IT</span></a>
+<a href="Institute.dc.html"><b>ИЕНиМ</b><span>Естественные науки и математика</span></a>
+<a href="Institute.dc.html"><b>ИНМиТ</b><span>Новые материалы и технологии</span></a>
+<a href="Institute.dc.html"><b>УралЭНИН</b><span>Энергетика</span></a>
+<a href="Institute.dc.html"><b>ИСА</b><span>Строительство и архитектура</span></a>
+<a href="Institute.dc.html"><b>УГИ</b><span>Гуманитарные науки</span></a>
+<a href="Institute.dc.html"><b>ИнЭУ</b><span>Экономика и управление</span></a>
+<a href="Institute.dc.html"><b>ФТИ</b><span>Физика и технологии</span></a>
+</div>
+</section>
+
+<section class="bluebg" style="margin-top:96px"><div class="wrap adm">
+<svg class="adm-deco" viewBox="0 0 520 520" aria-hidden="true"><circle cx="300" cy="240" r="200" fill="none" stroke="#FFFFFF" stroke-width="2"></circle><circle cx="300" cy="240" r="120" fill="#111214"></circle><rect x="0" y="300" width="560" height="40" fill="#FF5A1F" transform="rotate(-24 260 320)"></rect></svg>
+<span class="label">Приёмная кампания 2027</span>
+<h2 class="disp" style="margin-top:16px">Поступление<br><span class="out">за 5 шагов</span></h2>
+<p class="note">Даты по правилам приёма 2026 года — на 2027 год уточняются.</p>
+<ol class="steps">
+<li><span class="k">01</span><span class="date num">20 июня</span><span class="what">Старт приёма документов</span></li>
+<li><span class="k">02</span><span class="date num">25 июля</span><span class="what">Конец приёма на бюджет</span></li>
+<li><span class="k">03</span><span class="date num">20 августа</span><span class="what">Конец приёма на договор</span></li>
+<li><span class="k">04</span><span class="date num">1 сентября</span><span class="what">Начало учёбы</span></li>
+</ol>
+<div class="adm-cta"><a class="btn white" href="Catalog.dc.html">Подобрать программу <span class="arr">→</span></a><a class="btn" href="Admission.dc.html" style="border-color:#FFFFFF">Все шаги</a></div>
+</div></section>
+
+<section class="wrap sec">
+<div class="sec-h"><div><span class="label">Что происходит</span><h2 class="disp">Ново<span class="out">сти</span></h2></div><div style="display:flex;gap:24px;flex-wrap:wrap"><a class="more" href="News.dc.html">Все новости <span class="arr">→</span></a><a class="more" href="Events.dc.html">Календарь <span class="arr">→</span></a></div></div>
+<div class="news">
+<a class="nc big" href="Article.dc.html">
+<div class="comp" style="min-height:300px"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="300" fill="#1D4E9E"></rect><circle class="sh" cx="290" cy="120" r="90" fill="#FFFFFF"></circle><rect class="sh" x="-40" y="190" width="520" height="34" fill="#111214" transform="rotate(-18 200 207)"></rect><rect x="40" y="40" width="70" height="70" fill="#FF5A1F"></rect></svg><span class="lbl">[фото: приёмная кампания]</span></div>
+<div class="body"><div class="meta"><span class="cat">Поступающим</span><span class="num">Июль 2026</span></div><div class="ttl">Почти 50 тысяч заявлений на бюджет: итоги приёма-2026</div></div></a>
+<a class="nc" href="Article.dc.html">
+<div class="comp"><svg viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="220" fill="#F2F2EE"></rect><rect class="sh" x="150" y="0" width="150" height="220" fill="#111214"></rect><circle class="sh" cx="150" cy="110" r="60" fill="#1D4E9E"></circle><rect x="30" y="160" width="90" height="16" fill="#FF5A1F"></rect></svg><span class="lbl">[фото: университет]</span></div>
+<div class="body"><div class="meta"><span class="cat">Университет</span><span class="num">2026</span></div><div class="ttl">УрФУ вошёл в пилотный проект новой системы высшего образования</div></div></a>
+<a class="nc" href="Article.dc.html">
+<div class="comp"><svg viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="220" fill="#111214"></rect><circle class="sh" cx="90" cy="120" r="70" fill="none" stroke="#FFFFFF" stroke-width="10"></circle><rect class="sh" x="120" y="30" width="34" height="170" fill="#1D4E9E" transform="rotate(30 137 115)"></rect><circle cx="240" cy="60" r="22" fill="#FF5A1F"></circle></svg><span class="lbl">[фото: лаборатория]</span></div>
+<div class="body"><div class="meta"><span class="cat">Наука</span><span class="num">2026</span></div><div class="ttl">Учёные УрФУ и УрО РАН объяснили одну из загадочных причин мужского бесплодия</div></div></a>
+<div class="ev">
+<div class="ev-h label">Ближайшие события</div>
+<a href="Events.dc.html"><div class="ev-d"><b>[дд]</b><span>[мес]</span></div><div><div class="ev-t">День открытых дверей</div><div class="muted">Главный корпус, ул. Мира, 19</div></div></a>
+<a href="Events.dc.html"><div class="ev-d"><b>[дд]</b><span>[мес]</span></div><div><div class="ev-t">Открытая лекция</div><div class="muted">[место]</div></div></a>
+<a href="Events.dc.html"><div class="ev-d"><b>[дд]</b><span>[мес]</span></div><div><div class="ev-t">Ярмарка вакансий</div><div class="muted">[место]</div></div></a>
+</div>
+</div>
+</section>
+
+<section class="wrap sec">
+<a class="story inv" href="Article.dc.html">
+<div class="comp"><svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="420" fill="#1D4E9E"></rect><circle class="sh" cx="200" cy="200" r="130" fill="none" stroke="#FFFFFF" stroke-width="2"></circle><circle class="sh" cx="200" cy="200" r="70" fill="#111214"></circle><rect class="sh" x="-40" y="250" width="480" height="40" fill="#FF5A1F" transform="rotate(-24 200 270)"></rect><g stroke="#FFFFFF" stroke-width="2"><path d="M40 60h80M40 72h56M40 84h68"></path></g></svg><span class="lbl" style="color:var(--ink)">[фото лаборатории]</span></div>
+<div class="story-tx"><span class="label" style="color:#9DB8E6">Образование</span><h2>Около 500 преподавателей освоили нейросети для создания учебных курсов</h2><p>ИИ в университете не заменяет преподавателя, а помогает ему готовить курсы быстрее.</p><span class="go">Читать историю <span class="arr">→</span></span></div>
+</a>
+</section>
+
+<section class="wrap sec">
+<div class="sec-h"><div><span class="label">Кампус</span><h2 class="disp">Жизнь <span class="out">в УрФУ</span></h2></div><a class="more" href="Life.dc.html">Клубы, спорт, события <span class="arr">→</span></a></div>
+<div class="life">
+<a class="w2" href="Life.dc.html"><div class="comp"><svg viewBox="0 0 400 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="380" fill="#F2F2EE"></rect><rect class="sh" x="200" y="0" width="200" height="380" fill="#1D4E9E"></rect><circle class="sh" cx="200" cy="220" r="110" fill="#111214"></circle><rect x="60" y="300" width="120" height="20" fill="#FF5A1F"></rect></svg><span class="lbl">[фото кампуса]</span></div><b>Кампус</b></a>
+<a class="w2h" href="Life.dc.html"><div class="comp"><svg viewBox="0 0 400 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="190" fill="#111214"></rect><circle class="sh" cx="320" cy="100" r="70" fill="#FF5A1F"></circle><rect class="sh" x="-20" y="120" width="440" height="24" fill="#FFFFFF" transform="rotate(-8 200 132)"></rect></svg><span class="lbl">[фото: спорт]</span></div><b>Спорт</b></a>
+<a href="Life.dc.html"><div class="comp"><svg viewBox="0 0 200 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="190" fill="#1D4E9E"></rect><rect class="sh" x="70" y="60" width="90" height="90" fill="#FFFFFF" transform="rotate(15 115 105)"></rect></svg><span class="lbl">[фото]</span></div><b>Клубы</b></a>
+<a href="Life.dc.html"><div class="comp"><svg viewBox="0 0 200 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="190" fill="#F2F2EE"></rect><circle class="sh" cx="130" cy="110" r="56" fill="#1D4E9E"></circle><rect x="20" y="150" width="160" height="12" fill="#111214"></rect></svg><span class="lbl">[фото]</span></div><b>События</b></a>
+</div>
+</section>
+</main>
+
+<footer class="ft inv"><div class="wrap">
+<div class="ft-top">
+<div class="ft-col"><div class="ft-h">Уральский федеральный университет</div><p>Екатеринбург, ул. Мира, 19</p><a href="Contacts.dc.html">Контакты и карта <span class="arr">→</span></a></div>
+<div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
+<div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dc.html">Расписание</a><a href="Schedule.dc.html">Личный кабинет</a><a href="Search.dc.html">Поиск по сайту</a></div>
+<div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dc.html">Сведения об образовательной организации</a><a href="NotFound.dc.html">Противодействие коррупции</a><a href="NotFound.dc.html">Доступная среда</a><a href="MainEn.dc.html" lang="en">English</a></div>
+</div>
+<div class="ft-big disp" aria-hidden="true"><span class="out">Ур</span>ФУ</div>
+<div class="ft-copy"><span>© УрФУ, 1920–2026</span><span>Прототип редизайна</span></div>
+</div></footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<script type="text/x-dc" id="dc-logic">
+class Component extends DCLogic {
+renderVals() {
+const ALL_PROGS = [
+{name:'Программная инженерия', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'259', budget:'100', price:'390 000 ₽'},
+{name:'Алгоритмы искусственного интеллекта', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'246', budget:'105', price:'300 000 ₽'},
+{name:'Прикладной искусственный интеллект', inst:'[институт]', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[]},
+{name:'Интеллектуальные системы в гуманитарной сфере', inst:'[институт]', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[]},
+{name:'Информационная безопасность', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]]},
+{name:'Информатика и вычислительная техника', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]]},
+{name:'Прикладная информатика', inst:'[институт]', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[]},
+{name:'Инфокоммуникационные технологии и системы связи', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], budget:'66', price:'от 275 000 ₽'},
+{name:'Радиотехника', inst:'ИРИТ-РтФ', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Прикладная математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]]},
+{name:'Математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]]},
+{name:'Физика', inst:'[институт]', area:'Естественные науки', k:'nat', exams:'физика, математика, русский', req:["phys", "math", "rus"], ch:[]},
+{name:'Химия', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'химия, математика, русский', req:["chem", "math", "rus"], ch:[]},
+{name:'Биология', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'биология, химия или математика, русский', req:["bio", "rus"], ch:[["chem", "math"]]},
+{name:'Металлургия', inst:'ИНМиТ', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]]},
+{name:'Материаловедение и технологии материалов', inst:'ИНМиТ', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]]},
+{name:'Электроэнергетика и электротехника', inst:'УралЭНИН', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Теплоэнергетика и теплотехника', inst:'УралЭНИН', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Строительство', inst:'ИСА', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]]},
+{name:'Архитектура', inst:'ИСА', area:'Инженерия', k:'eng', exams:'творческое испытание, математика, русский', req:["math", "rus"], ch:[]},
+{name:'Ядерная энергетика и теплофизика', inst:'ФТИ', area:'Инженерия', k:'eng', exams:'математика, физика, русский', req:["math", "phys", "rus"], ch:[]},
+{name:'История', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'история, обществознание, русский', req:["hist", "soc", "rus"], ch:[]},
+{name:'Журналистика', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'творческое испытание, литература, русский', req:["lit", "rus"], ch:[]},
+{name:'Филология', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'литература, иностранный язык, русский', req:["lit", "lang", "rus"], ch:[]},
+{name:'Лингвистика', inst:'[институт]', area:'Гуманитарные', k:'hum', exams:'иностранный язык, обществознание, русский', req:["lang", "soc", "rus"], ch:[]},
+{name:'Психология', inst:'[институт]', area:'Гуманитарные', k:'hum', exams:'биология или математика, обществознание, русский', req:["soc", "rus"], ch:[["bio", "math"]]},
+{name:'Международные отношения', inst:'[институт]', area:'Гуманитарные', k:'hum', exams:'история, иностранный язык, русский', req:["hist", "lang", "rus"], ch:[]},
+{name:'Экономика', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, обществознание, русский', req:["math", "soc", "rus"], ch:[]},
+{name:'Менеджмент', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, обществознание, русский', req:["math", "soc", "rus"], ch:[]},
+{name:'Бизнес-информатика', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, информатика или обществознание, русский', req:["math", "rus"], ch:[["inf", "soc"]]}
+];
+const stems = q => q.toLowerCase().split(/[^a-zа-яё0-9]+/).filter(w => w.length >= 3).map(w => w.slice(0, Math.min(5, w.length)));
+const matches = (text, q) => { const st = stems(q); if (!st.length) return true; const t = text.toLowerCase(); return st.some(x => t.includes(x)); };
+
+const q = (this.state && this.state.q) || '';
+const st = stems(q);
+const QUICK = [
+{t:'Расписание', kind:'Сервис', href:'Schedule.dc.html', key:'расписание пары занятия'},
+{t:'Как поступить', kind:'Раздел', href:'Admission.dc.html', key:'поступление поступить приём документы абитуриент'},
+{t:'Проходные баллы', kind:'Раздел', href:'Catalog.dc.html', key:'проходные баллы бюджет егэ'},
+{t:'Общежития', kind:'Раздел', href:'Dorms.dc.html', key:'общежитие жильё заселение'},
+{t:'Контакты и карта кампуса', kind:'Раздел', href:'Contacts.dc.html', key:'контакты карта адрес телефон приёмная комиссия'},
+{t:'Клубы и спорт', kind:'Раздел', href:'Life.dc.html', key:'клубы спорт секции творчество'},
+{t:'Календарь событий', kind:'Раздел', href:'Events.dc.html', key:'события день открытых дверей мероприятия'}
+];
+const hit = t => st.filter(x => t.toLowerCase().includes(x)).length;
+const sug = st.length ? ALL_PROGS.map(p => ({t:p.name, kind:'Программа', href:'Program.dc.html', h:hit(p.name)*2}))
+  .concat(QUICK.map(k => ({t:k.t, kind:k.kind, href:k.href, h:hit(k.t + ' ' + k.key)})))
+  .filter(x => x.h > 0).sort((a, b) => b.h - a.h).slice(0, 6) : [];
+const role = (this.state && this.state.role) || 'abit';
+const sets = {
+abit: [
+{t:'Каталог программ', d:'400+ программ с фильтром по ЕГЭ и баллам', href:'Catalog.dc.html'},
+{t:'Как поступить', d:'5 шагов от выбора до зачисления', href:'Admission.dc.html'},
+{t:'Проходные баллы', d:'Баллы и бюджетные места прошлых лет', href:'Catalog.dc.html'},
+{t:'Общежития', d:'Адреса, цены и как получить место', href:'Dorms.dc.html'},
+{t:'Дни открытых дверей', d:'Ближайшие встречи с институтами', href:'Events.dc.html'},
+{t:'Задать вопрос', d:'Контакты приёмной комиссии', href:'Contacts.dc.html'}],
+student: [
+{t:'Расписание', d:'Пары на сегодня и на неделю', href:'Schedule.dc.html'},
+{t:'Личный кабинет', d:'Оценки, справки, стипендия', href:'Schedule.dc.html'},
+{t:'События', d:'Лекции, конкурсы, ярмарки вакансий', href:'Events.dc.html'},
+{t:'Найти преподавателя', d:'Кафедра, почта, часы консультаций', href:'Person.dc.html'},
+{t:'Общежития', d:'Заселение и правила', href:'Dorms.dc.html'},
+{t:'Карта кампуса', d:'Корпуса и аудитории', href:'Contacts.dc.html'}],
+staff: [
+{t:'Новости', d:'Что происходит в университете', href:'News.dc.html'},
+{t:'Найти коллегу', d:'Поиск по сотрудникам', href:'Search.dc.html'},
+{t:'Институты', d:'Структура и подразделения', href:'Institute.dc.html'},
+{t:'Мероприятия', d:'Календарь университета', href:'Events.dc.html'},
+{t:'Контакты служб', d:'Телефоны и адреса', href:'Contacts.dc.html'},
+{t:'Сервисы', d:'Почта, документы, ЛК сотрудника', href:'Schedule.dc.html'}],
+intl: [
+{t:'Programs in English', d:'Bachelor and Master programs', href:'Catalog.dc.html'},
+{t:'How to apply', d:'Steps, documents and deadlines', href:'Admission.dc.html'},
+{t:'Dormitories', d:'Housing for international students', href:'Dorms.dc.html'},
+{t:'Campus map', d:'Buildings and contacts', href:'Contacts.dc.html'},
+{t:'Events', d:'Adaptation and student life', href:'Events.dc.html'},
+{t:'Contact us', d:'International office', href:'Contacts.dc.html'}]
+};
+const list = [['abit','Абитуриент'],['student','Студент'],['staff','Сотрудник'],['intl','International']];
+return {
+q, onQ: (e) => this.setState({ q: e.target.value }), open: q.trim().length >= 2, sug, none: q.trim().length >= 2 && sug.length === 0,
+roles: list.map(([k, label]) => ({ label, pressed: k === role ? 'true' : 'false', pick: () => this.setState({ role: k }) })),
+links: sets[role].map((l, i) => Object.assign({ n: '0' + (i + 1) }, l))
+};
+}
+}
+
+</script>
+<script src="dc-lite.js"></script>
+<script>/* анимация появления — только при первой загрузке, не при каждом клике */setTimeout(function(){document.documentElement.classList.add("ready")},1500);
+/* мобильное меню закрывается клавишей Esc */document.addEventListener("keydown",function(e){if(e.key==="Escape"){var m=document.querySelector(".mnav[open]");if(m){m.open=false;m.querySelector("summary").focus();}}});</script>
+</body>
+</html>
