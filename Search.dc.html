@@ -95,7 +95,8 @@ const matches = (text, q) => { const st = stems(q); if (!st.length) return true;
 
 const s = this.state || {};
 const tab = s.tab || 'Все';
-const q = s.q === undefined ? 'искусственный интеллект' : s.q;
+const urlQ = new URLSearchParams(location.search).get('q');
+const q = s.q === undefined ? (urlQ !== null ? urlQ : 'искусственный интеллект') : s.q;
 const other = [
 {kind:'Люди', t:'[ФИО преподавателя]', d:'[Должность], кафедра [название]', href:'Person.dc.html', key:'преподаватель кафедра программная инженерия искусственный интеллект'},
 {kind:'Новости', t:'Около 500 преподавателей освоили нейросети для создания учебных курсов', d:'2026 · Образование', href:'Article.dc.html', key:'искусственный интеллект нейросети ии преподаватели курсы новости'},

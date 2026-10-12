@@ -9,7 +9,7 @@
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <style>
-.nc{display:flex;flex-direction:column;gap:10px;min-height:220px;padding:24px;box-shadow:inset 0 4px 0 var(--c);text-decoration:none;color:inherit}
+a.nc{display:flex;flex-direction:column;gap:10px;min-height:220px;padding:24px;border-top:4px solid var(--c)}
 .nc .tag{align-self:flex-start}
 .nc-t{font-weight:600;font-size:19px;line-height:1.35}
 .nc-d{font-size:14px}
@@ -50,6 +50,7 @@
 <a class="{{n.cls}}" href="Article.dc.html"><span class="tag">{{n.tag}}</span><div class="nc-t">{{n.t}}</div><div class="muted nc-d">{{n.d}}</div><span class="nc-more" aria-hidden="true">Читать →</span></a>
 </sc-for>
 </div>
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}"><p class="muted" style="margin-top:8px">В этой рубрике пока нет новостей. <a href="Events.dc.html">Посмотрите календарь событий</a>.</p></sc-if>
 <nav aria-label="Страницы" style="display:flex;gap:8px;justify-content:center;margin-top:40px">
 <a class="chip on" href="News.dc.html">1</a><a class="chip" href="News.dc.html">2</a><a class="chip" href="News.dc.html">3</a><a class="chip" href="News.dc.html">Дальше →</a>
 </nav>
@@ -73,12 +74,11 @@ const pool = [
 {tag:'Поступающим', t:'УрФУ вошёл в пилотный проект новой системы высшего образования', d:'2026 · urfu.ru'},
 {tag:'Партнёрство', t:'Четыре компании пришли на партнёрскую пятницу в УрФУ', d:'2026 · urfu.ru'},
 {tag:'Наука', t:'В Екатеринбурге открылся V Международный форум по когнитивным нейронаукам', d:'2026 · АиФ-Урал'},
-{tag:'Поступающим', t:'Приём на платные места: внутренние испытания до 15 августа, ЕГЭ до 20 августа', d:'Июль 2026 · ОТВ'},
-{tag:'Студентам', t:'[Новость для студентов — возьмите свежую с urfu.ru]', d:'[дата]'}
+{tag:'Поступающим', t:'Приём на платные места: внутренние испытания до 15 августа, ЕГЭ до 20 августа', d:'Июль 2026 · ОТВ'}
 ];
 const C = {'Наука':'a2','Образование':'a3','Поступающим':'a1','Партнёрство':'a4','Студентам':'a1'};
 const items = pool.filter(x => tag === 'Все' || x.tag === tag).map(x => Object.assign({}, x, { cls: 'card nc nc-' + C[x.tag] }));
-return { tags: names.map(l => ({ label: l, on: l === tag, off: l !== tag, pick: () => this.setState({ tag: l }) })), items };
+return { empty: items.length === 0, tags: names.map(l => ({ label: l, on: l === tag, off: l !== tag, pick: () => this.setState({ tag: l }) })), items };
 }
 }
 </script>

@@ -8,6 +8,11 @@
 <link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
+<style>
+.calc{margin-top:12px;border-radius:8px;padding:12px 14px;background:rgba(255,255,255,.08);border-left:4px solid var(--c,#FFFFFF);display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--on-dark-muted)}
+.calc b{color:#FFFFFF;font-size:16px}
+.calc-ok{--c:#5FD3B3}.calc-mid{--c:#F2B36B}.calc-warn{--c:#F08C8C}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -75,8 +80,8 @@
 </div>
 </div>
 <aside class="side" style="display:flex;flex-direction:column;gap:16px">
-<div class="card" style="background:var(--ink);color:#FFFFFF;border-color:var(--ink)"><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:20px">Хватит ли баллов?</div><p style="color:var(--on-dark-muted);margin-top:8px">Сравните свою сумму с проходным баллом прошлых лет.</p><div class="field" style="margin-top:16px"><label for="my" style="color:#FFFFFF">Моя сумма баллов</label><input id="my" class="input" placeholder="Например, 245"></div><a class="btn" href="Catalog.dc.html" style="margin-top:12px;width:100%;background:#FFFFFF;color:var(--ink)">Проверить</a></div>
-<div class="card"><div style="font-weight:600">Приёмная комиссия</div><p class="muted" style="margin-top:6px">priem@urfu.ru<br>Екатеринбург, ул. Мира, 19</p><a href="Contacts.dc.html" style="display:inline-block;margin-top:8px">Все контакты</a></div>
+<div class="card" style="background:var(--ink);color:#FFFFFF;border-color:var(--ink)"><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:20px">Хватит ли баллов?</div><p style="color:var(--on-dark-muted);margin-top:8px">Сравните свою сумму с проходным баллом прошлых лет.</p><div class="field" style="margin-top:16px"><label for="my" style="color:#FFFFFF">Моя сумма баллов</label><input id="my" class="input" inputmode="numeric" placeholder="Например, 245" value="{{my}}" onChange="{{onMy}}"></div><div aria-live="polite"><sc-if value="{{has}}" hint-placeholder-val="{{false}}"><div class="{{resCls}}"><b>{{resT}}</b><span>{{resD}}</span></div></sc-if></div><a class="btn" href="Catalog.dc.html" style="margin-top:12px;width:100%;background:#FFFFFF;color:var(--ink)">Подобрать похожие программы</a></div>
+<div class="card"><div style="font-weight:600">Приёмная комиссия</div><p style="margin-top:6px"><a href="tel:+73433754474">+7 (343) 375-44-74</a></p><p class="muted">Екатеринбург, ул. Мира, 19, каб. ГУК-100</p><a href="Contacts.dc.html" style="display:inline-block;margin-top:8px">Все контакты</a></div>
 <div class="card"><div style="font-weight:600">Ближайший день открытых дверей</div><p class="muted" style="margin-top:6px">[дата], ИРИТ-РтФ</p><a href="Events.dc.html" style="display:inline-block;margin-top:8px">Записаться</a></div>
 </aside>
 </div>
@@ -92,7 +97,18 @@
 <script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {
-return {};
+const my = (this.state && this.state.my) || '';
+const v = parseInt(my, 10);
+const last = 259, lo = 244;
+let has = false, resT = '', resD = '', resCls = 'calc';
+if (my.trim() !== '') {
+has = true;
+if (isNaN(v) || v < 0 || v > 310) { resT = 'Введите сумму от 0 до 310'; resD = 'Три ЕГЭ — до 300 баллов, плюс до 10 за достижения.'; resCls = 'calc calc-warn'; }
+else if (v >= last) { resT = 'Хватает'; resD = 'Ваша сумма не ниже проходного балла 2025 года (' + last + ').'; resCls = 'calc calc-ok'; }
+else if (v >= lo) { resT = 'На границе'; resD = 'За три года проходной был от ' + lo + ' до ' + last + '. До балла 2025 не хватает ' + (last - v) + '.'; resCls = 'calc calc-mid'; }
+else { resT = 'Пока не хватает ' + (last - v) + ' баллов'; resD = 'Посмотрите похожие программы с проходным ниже.'; resCls = 'calc calc-warn'; }
+}
+return { my, has, resT, resD, resCls, onMy: (e) => this.setState({ my: e.target.value }) };
 }
 }
 </script>

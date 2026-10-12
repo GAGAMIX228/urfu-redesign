@@ -39,7 +39,7 @@
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
 <label for="q" class="sr">Search the site</label>
 <input id="q" autocomplete="off" placeholder="For example: software engineering" value="{{q}}" onChange="{{onQ}}">
-<a class="btn" href="Search.dc.html">Search</a>
+<a class="btn" href="{{qHref}}">Search</a>
 </div>
 <sc-if value="{{open}}">
 <div class="sug" role="listbox" aria-label="Suggestions">
@@ -47,7 +47,7 @@
 <a href="{{g.href}}" role="option"><span style="font-weight:500">{{g.t}}</span><span class="muted" style="font-size:13px;white-space:nowrap">{{g.kind}}</span></a>
 </sc-for>
 <sc-if value="{{none}}"><div class="muted" style="padding:14px 18px">Nothing found — try another word</div></sc-if>
-<a href="Search.dc.html" style="background:var(--bg-soft-2);font-weight:600;color:var(--blue)">All search results <span class="arrow">→</span></a>
+<a href="{{qHref}}" style="background:var(--bg-soft-2);font-weight:600;color:var(--blue)">All search results <span class="arrow">→</span></a>
 </div>
 </sc-if>
 </div>
@@ -214,7 +214,8 @@ intl: [
 {t:'International office', d:'Contact us', href:'Contacts.dc.html'}]
 };
 const list = [['abit','Applicant'],['student','Student'],['staff','Staff'],['intl','International']];
-return {
+const qHref = 'Search.dc.html' + (q.trim() ? '?q=' + encodeURIComponent(q.trim()) : '');
+return { qHref,
 q, onQ: (e) => this.setState({ q: e.target.value }), open: q.trim().length >= 2, sug, none: q.trim().length >= 2 && sug.length === 0,
 roles: list.map(([k, label]) => ({ label, pressed: k === role ? 'true' : 'false', pick: () => this.setState({ role: k }) })),
 links: sets[role].map((l, i) => Object.assign({ n: '0' + (i + 1) }, l))

@@ -8,6 +8,11 @@
 <link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
+<style>
+.pc{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 28px;align-items:center}
+.pc-s{display:grid;grid-template-columns:80px 64px 128px;gap:24px;align-items:start}.pc-s .muted{white-space:nowrap}.pc-s > div > div:last-child{white-space:nowrap}.pc-cmp{margin-top:14px}
+@media (max-width:1100px){.pc{grid-template-columns:1fr}.pc-s{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 16px}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -29,7 +34,7 @@
 </div></section><div class="wrap">
 <div class="row" style="margin-top:40px;align-items:flex-start">
 <aside class="side" style="flex:1 1 280px;max-width:320px;display:flex;flex-direction:column;gap:24px">
-<div class="field"><label for="cq">Название программы</label><input id="cq" class="input" placeholder="Например, искусственный интеллект" value="{{q}}" onChange="{{onQ}}"></div>
+<div class="field"><label for="cq">Название программы</label><input id="cq" class="input" placeholder="Например, дизайн" value="{{q}}" onChange="{{onQ}}"></div>
 <div><div style="font-weight:600;margin-bottom:10px">Уровень</div>
 <div style="display:flex;gap:8px;flex-wrap:wrap">
 <sc-for list="{{levels}}" as="v" hint-placeholder-count="3">
@@ -66,22 +71,23 @@
 <sc-if value="{{notBach}}" hint-placeholder-val="{{false}}"><div class="card" style="margin-top:16px;text-align:center;padding:40px"><div style="font-weight:600;font-size:18px">В прототипе показан бакалавриат</div><p class="muted" style="margin-top:8px">Специалитет и магистратура открываются тем же каталогом — с другими фильтрами.</p><button class="btn2" onClick="{{reset}}" style="margin-top:16px">Вернуться к бакалавриату</button></div></sc-if>
 <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
 <sc-for list="{{progs}}" as="p" hint-placeholder-count="5">
-<div class="card" style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center">
-<div style="flex:1 1 320px"><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="tag">{{p.area}}</span><span class="tag" style="background:#FFFFFF;border:1px solid var(--line)">{{p.inst}}</span></div>
+<div class="card pc">
+<div><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="tag">{{p.area}}</span><span class="tag" style="background:#FFFFFF;border:1px solid var(--line)">{{p.inst}}</span></div>
 <a href="Program.dc.html" style="display:block;font-weight:600;font-size:20px;margin-top:12px;color:var(--ink);text-decoration:none">{{p.name}}</a>
 <div class="muted" style="font-size:14px;margin-top:6px">ЕГЭ: {{p.exams}}</div>
 <sc-if value="{{p.ok}}" hint-placeholder-val="{{false}}"><span class="tag" style="margin-top:10px;background:var(--blue-soft);color:var(--blue-dark)">Ваших баллов хватает</span></sc-if>
 <sc-if value="{{p.short}}" hint-placeholder-val="{{false}}"><span class="tag" style="margin-top:10px;background:var(--bg-soft);color:#7A3B14">Не хватает {{p.gap}} баллов</span></sc-if>
-<sc-if value="{{p.nodata}}" hint-placeholder-val="{{false}}"><span class="tag" style="margin-top:10px">Проходной балл уточняется</span></sc-if></div>
-<div style="display:flex;gap:28px;flex-wrap:wrap">
-<div><div class="muted" style="font-size:13px">Проходной 2025</div><div style="font-weight:600;font-size:18px">{{p.score}}</div></div>
-<div><div class="muted" style="font-size:13px">Бюджетных мест</div><div style="font-weight:600;font-size:18px">{{p.budget}}</div></div>
-<div><div class="muted" style="font-size:13px">Стоимость в год</div><div style="font-weight:600;font-size:18px">{{p.price}}</div></div>
-<div>
+<sc-if value="{{p.nodata}}" hint-placeholder-val="{{false}}"><span class="tag" style="margin-top:10px">Проходной балл уточняется</span></sc-if>
+<div class="pc-cmp">
 <sc-if value="{{p.inCmp}}" hint-placeholder-val="{{false}}"><button class="chip on" onClick="{{p.toggle}}" aria-pressed="true">✓ В сравнении</button></sc-if>
 <sc-if value="{{p.canAdd}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{p.toggle}}" aria-pressed="false">+ Сравнить</button></sc-if>
 <sc-if value="{{p.blocked}}" hint-placeholder-val="{{false}}"><span class="muted" style="font-size:13px">Можно сравнить до 3</span></sc-if>
-</div>
+</div></div>
+<div class="pc-s">
+<div><div class="muted" style="font-size:13px">Балл 2025</div><div style="font-weight:600;font-size:18px">{{p.score}}</div></div>
+<div><div class="muted" style="font-size:13px">Бюджет</div><div style="font-weight:600;font-size:18px">{{p.budget}}</div></div>
+<div><div class="muted" style="font-size:13px">Цена в год</div><div style="font-weight:600;font-size:18px">{{p.price}}</div></div>
+
 </div>
 </sc-for>
 </div>
