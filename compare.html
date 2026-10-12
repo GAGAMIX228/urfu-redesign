@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Было / стало — главная УрФУ</title>
+<style>
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-SemiBold.ttf') format('truetype');font-weight:600}
+:root{--blue:#1D4E9E;--ink:#0E1B2B;--soft:#EEF1F4;--line:#C5CCD4;--muted:#56606B}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;display:flex;flex-direction:column;background:var(--soft);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:15px}
+.bar{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;padding:12px 20px;background:#FFFFFF;border-bottom:1px solid var(--line)}
+.bar h1{font-size:18px;margin:0;font-weight:600}
+.grp{display:inline-flex;gap:4px;padding:4px;background:var(--soft);border-radius:8px}
+.grp button{min-height:40px;padding:0 16px;border:0;border-radius:6px;background:transparent;font:inherit;color:var(--muted);cursor:pointer}
+.grp button[aria-pressed="true"]{background:#FFFFFF;color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(14,27,43,.15)}
+label.sync{display:inline-flex;gap:8px;align-items:center;cursor:pointer;min-height:40px}
+label.sync input{width:18px;height:18px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.panes{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px;min-height:0}
+.panes.one{grid-template-columns:1fr}
+.pane{display:flex;flex-direction:column;min-height:0;min-width:0}
+.pane[hidden]{display:none}
+.pane-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:600}
+.pane-h a{font-weight:400;color:var(--blue)}
+.badge{display:inline-block;padding:2px 10px;border-radius:4px;color:#FFFFFF;font-size:13px;margin-right:8px}
+.old .badge{background:var(--muted)}.new .badge{background:var(--blue)}
+.stage{flex:1;position:relative;overflow:hidden;background:#FFFFFF;border:1px solid var(--line);border-radius:8px;min-height:0}
+.stage iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;background:#FFFFFF}
+.phone .stage{background:transparent;border:0}
+.phone .stage iframe{border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(14,27,43,.12)}
+</style>
+</head>
+<body>
+<div class="bar">
+<h1>Главная: было / стало</h1>
+<div class="grp" role="group" aria-label="Устройство">
+<button type="button" data-dev="desk" aria-pressed="true">Компьютер</button>
+<button type="button" data-dev="phone" aria-pressed="false">Телефон</button>
+</div>
+<div class="grp" role="group" aria-label="Что показать">
+<button type="button" data-show="both" aria-pressed="true">Рядом</button>
+<button type="button" data-show="old" aria-pressed="false">Только старая</button>
+<button type="button" data-show="new" aria-pressed="false">Только новая</button>
+</div>
+<label class="sync"><input type="checkbox" id="sync" checked> Прокручивать вместе</label>
+</div>
+<div class="panes" id="panes">
+<section class="pane old"><div class="pane-h"><span><span class="badge">Было</span>Main.dc.html</span><a href="Main.dc.html" target="_blank">Открыть отдельно</a></div><div class="stage"><iframe id="fOld" src="Main.dc.html" title="Старая главная"></iframe></div></section>
+<section class="pane new"><div class="pane-h"><span><span class="badge">Стало</span>Main.v2.dc.html</span><a href="Main.v2.dc.html" target="_blank">Открыть отдельно</a></div><div class="stage"><iframe id="fNew" src="Main.v2.dc.html" title="Новая главная"></iframe></div></section>
+</div>
+<script>
+(function(){
+  var dev='desk', show='both';
+  var frames=[document.getElementById('fOld'),document.getElementById('fNew')];
+  var panes=document.getElementById('panes');
+  var W={desk:1366,phone:390};
+
+  /* уменьшаем «окно» сайта, чтобы оно целиком влезло в половину экрана */
+  function fit(){
+    frames.forEach(function(f){
+      var st=f.parentNode, w=W[dev];
+      var s=Math.min(1,st.clientWidth/w);
+      f.style.width=w+'px';
+      f.style.height=(st.clientHeight/s)+'px';
+      f.style.transform='scale('+s+')';
+      f.style.left=dev==='phone'?Math.max(0,(st.clientWidth-w*s)/2)+'px':'0';
+    });
+  }
+  function press(attr,val){
+    document.querySelectorAll('['+attr+']').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute(attr)===val));});
+  }
+  document.querySelectorAll('[data-dev]').forEach(function(b){b.addEventListener('click',function(){dev=b.dataset.dev;press('data-dev',dev);panes.classList.toggle('phone',dev==='phone');fit();});});
+  document.querySelectorAll('[data-show]').forEach(function(b){b.addEventListener('click',function(){
+    show=b.dataset.show;press('data-show',show);
+    document.querySelector('.pane.old').hidden=show==='new';
+    document.querySelector('.pane.new').hidden=show==='old';
+    panes.classList.toggle('one',show!=='both');fit();
+  });});
+  window.addEventListener('resize',fit);
+
+  /* общая прокрутка: по доле страницы, потому что страницы разной длины */
+  var lock=false;
+  function follow(src,dst){
+    if(lock||!document.getElementById('sync').checked) return;
+    var a=src.contentDocument&&src.contentDocument.documentElement, b=dst.contentDocument&&dst.contentDocument.documentElement;
+    if(!a||!b) return;
+    var p=a.scrollTop/Math.max(1,a.scrollHeight-a.clientHeight);
+    lock=true; dst.contentWindow.scrollTo(0,p*(b.scrollHeight-b.clientHeight));
+    setTimeout(function(){lock=false;},60);
+  }
+  function hook(src,dst){
+    function attach(){
+      var w=src.contentWindow;
+      if(!w||w.__synced||!src.contentDocument||src.contentDocument.readyState==='loading') return;
+      w.__synced=true;
+      w.addEventListener('scroll',function(){follow(src,dst);});
+    }
+    src.addEventListener('load',attach);
+    attach();
+  }
+  window.__follow=follow;
+  hook(frames[0],frames[1]); hook(frames[1],frames[0]);
+  fit();
+})();
+</script>
+</body>
+</html>
