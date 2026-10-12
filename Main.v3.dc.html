@@ -12,11 +12,16 @@
 
 /* ===== Цвета: чёрный, белый, синий УрФУ и один «сигнальный» для фигур ===== */
 :root{
-  --ink:#111214; --paper:#FFFFFF; --paper-2:#F2F2EE;
+  --ink:#0E1B2B; --paper:#FFFFFF; --paper-2:#EEF1F4;
   --blue:#1D4E9E; --blue-dark:#163B78;
-  --signal:#FF5A1F;      /* только для фигур, не для текста */
-  --muted:#4A4F57;
-  --line:#111214;
+  --signal:#A3521F;      /* только для фигур, не для текста */
+  --muted:#4A5563;
+  --line:var(--ink);
+  --dark-line:#2A3A4F;   /* линии на тёмном фоне */
+  --odm:#C9D1DA;         /* текст на тёмном фоне */
+  --odl:#8E9AAB;         /* подписи на тёмном фоне */
+  --obm:#E1E8F4;         /* второстепенный текст на синем */
+  --lbl:#9DB8E6;         /* метка на тёмном */
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box}
@@ -47,6 +52,29 @@ h1,h2,h3,p{margin:0}
 .btn.white:hover{box-shadow:3px 3px 0 var(--ink)}
 .arr{display:inline-block;transition:transform .2s var(--ease)}
 a:hover .arr{transform:translateX(6px)}
+
+/* ===== Палитры (переключатель внизу слева) ===== */
+/* «Малахит»: уральский камень + золото */
+[data-theme="malachite"]{
+  --ink:#0F2421; --paper-2:#EAF1EE; --blue:#0B6E5A; --blue-dark:#085746; --signal:#C08A2E;
+  --muted:#45524E; --dark-line:#2A403B; --odm:#C8D6D1; --odl:#8FA39C; --obm:#E3F0EB; --lbl:#8FD3C0;
+}
+/* «Сталь и песок»: графит, стальной синий, терракота, тёплый фон */
+[data-theme="steel"]{
+  --ink:#1E2226; --paper:#FAF8F4; --paper-2:#ECE6DA; --blue:#2B4C7E; --blue-dark:#203A61; --signal:#B5532A;
+  --muted:#4F4A44; --dark-line:#3A3F45; --odm:#D2CCC2; --odl:#9A948B; --obm:#E2E8F1; --lbl:#A9BEDC;
+}
+/* «Контраст»: прежний вариант v3 — чёрный и оранжевый */
+[data-theme="contrast"]{
+  --ink:#111214; --paper-2:#F2F2EE; --signal:#FF5A1F;
+  --muted:#4A4F57; --dark-line:#3A3D42; --odm:#D0D3D8; --odl:#9EA3AB; --lbl:#9DB8E6;
+}
+/* фигуры в картинках берут цвета палитры */
+svg [fill="#1D4E9E"]{fill:var(--blue)}
+svg [fill="#FF5A1F"]{fill:var(--signal)}
+svg [fill="#111214"]{fill:var(--ink)}
+svg [fill="#F2F2EE"]{fill:var(--paper-2)}
+svg [stroke="#111214"]{stroke:var(--ink)}
 
 /* ===== Шапка ===== */
 .hd{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:2px solid var(--line)}
@@ -89,7 +117,7 @@ a:hover .arr{transform:translateX(6px)}
 .sug a{display:flex;justify-content:space-between;gap:16px;padding:12px 18px;text-decoration:none;border-bottom:1px solid var(--ink);align-items:center}
 .sug a:last-child{border-bottom:0}
 .sug a:hover{background:var(--ink);color:#FFFFFF}
-.sug a:hover .muted{color:#D0D3D8}
+.sug a:hover .muted{color:var(--odm)}
 .often{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:20px;font-size:14px;font-weight:600}
 .often a{padding:6px 12px;border:2px solid var(--ink);text-decoration:none;text-transform:uppercase;font-size:12px;letter-spacing:.06em;font-weight:700}
 .often a:hover{background:var(--ink);color:#FFFFFF}
@@ -109,12 +137,12 @@ html:not(.ready) .hero-r .d{animation:spin .9s var(--ease) both;transform-box:fi
 /* ===== Полоса с цифрами ===== */
 .inv{background:var(--ink);color:#FFFFFF}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
-.stat{padding:36px 24px 36px 0;border-right:1px solid #3A3D42}
+.stat{padding:36px 24px 36px 0;border-right:1px solid var(--dark-line)}
 .stat+.stat{padding-left:28px}
 .stat:last-child{border-right:0}
 .stat b{display:block;font-size:clamp(44px,5vw,72px);font-weight:700;letter-spacing:-0.03em;line-height:1}
 .stat:nth-child(even) b{color:transparent;-webkit-text-stroke:2px #FFFFFF}
-.stat span{display:block;margin-top:10px;color:#D0D3D8;font-size:15px;max-width:220px}
+.stat span{display:block;margin-top:10px;color:var(--odm);font-size:15px;max-width:220px}
 
 /* ===== Секции ===== */
 .sec{padding:96px 0 0}
@@ -138,7 +166,7 @@ html:not(.ready) .hero-r .d{animation:spin .9s var(--ease) both;transform-box:fi
 .row .arr{font-size:28px;font-weight:700}
 .row:hover{background:var(--ink);color:#FFFFFF}
 .row:hover .n{color:#FFFFFF}
-.row:hover .d{color:#D0D3D8}
+.row:hover .d{color:var(--odm)}
 
 /* институты — таблица */
 .inst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-left:2px solid var(--ink)}
@@ -155,14 +183,14 @@ html:not(.ready) .hero-r .d{animation:spin .9s var(--ease) both;transform-box:fi
 .adm{padding:80px 0;position:relative}
 .adm-deco{position:absolute;right:-80px;top:-60px;width:520px;height:520px;pointer-events:none}
 .adm h2{font-size:clamp(44px,6.5vw,96px)}
-.adm .note{margin-top:16px;font-size:14px;color:#E1E8F4;max-width:520px}
+.adm .note{margin-top:16px;font-size:14px;color:var(--obm);max-width:520px}
 .steps{list-style:none;padding:0;margin:48px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid #FFFFFF;position:relative}
 .steps li{padding:24px 24px 0 0;border-right:1px solid rgba(255,255,255,.35)}
 .steps li+li{padding-left:24px}
 .steps li:last-child{border-right:0}
 .steps .k{font-size:14px;font-weight:700;letter-spacing:.1em}
 .steps .date{display:block;font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-0.02em;margin-top:12px;line-height:1.05}
-.steps .what{display:block;margin-top:8px;color:#E1E8F4}
+.steps .what{display:block;margin-top:8px;color:var(--obm)}
 .adm-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px;position:relative}
 
 /* новости */
@@ -198,7 +226,7 @@ html:not(.ready) .hero-r .d{animation:spin .9s var(--ease) both;transform-box:fi
 .story .comp{min-height:420px;border-bottom:0;border-right:2px solid var(--ink)}
 .story-tx{padding:56px 48px;display:flex;flex-direction:column;justify-content:center;gap:20px}
 .story h2{font-size:clamp(30px,3.2vw,46px);font-weight:700;letter-spacing:-0.02em;line-height:1.05}
-.story p{color:#D0D3D8;font-size:18px}
+.story p{color:var(--odm);font-size:18px}
 .story .go{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:14px}
 
 /* жизнь */
@@ -216,9 +244,9 @@ html:not(.ready) .hero-r .d{animation:spin .9s var(--ease) both;transform-box:fi
 .ft-col{display:flex;flex-direction:column;gap:10px;font-size:15px}
 .ft-col a{text-decoration:none;color:#FFFFFF}
 .ft-col a:hover{text-decoration:underline}
-.ft-h{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9EA3AB;margin-bottom:6px}
-.ft-big{font-size:clamp(80px,19vw,300px);line-height:.8;padding-top:24px;border-top:1px solid #3A3D42;overflow:hidden;white-space:nowrap}
-.ft-copy{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px 0 28px;color:#9EA3AB;font-size:14px}
+.ft-h{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--odl);margin-bottom:6px}
+.ft-big{font-size:clamp(80px,19vw,300px);line-height:.8;padding-top:24px;border-top:1px solid var(--dark-line);overflow:hidden;white-space:nowrap}
+.ft-copy{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px 0 28px;color:var(--odl);font-size:14px}
 
 /* ===== Доступность ===== */
 .skip{position:absolute;left:16px;top:-60px;z-index:50;background:var(--blue);color:#FFFFFF;padding:12px 18px;font-weight:700;text-decoration:none}
@@ -237,7 +265,7 @@ html:not(.ready) .hero-r .d{animation:spin .9s var(--ease) both;transform-box:fi
 @media (max-width:1000px){
   .hero-grid{grid-template-columns:minmax(0,1fr);min-height:0}.hero-r{border-left:0;border-top:2px solid var(--line);min-height:300px}
   .hero-l{padding-right:0}
-  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(2){border-right:0}.stat:nth-child(3){padding-left:0}.stat:nth-child(n+3){border-top:1px solid #3A3D42}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(2){border-right:0}.stat:nth-child(3){padding-left:0}.stat:nth-child(n+3){border-top:1px solid var(--dark-line)}
   .inst{grid-template-columns:repeat(2,minmax(0,1fr))}
   .news{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.news .ev{grid-column:span 2}
   .story{grid-template-columns:minmax(0,1fr)}.story .comp{border-right:0;border-bottom:2px solid var(--ink);min-height:260px}
@@ -262,6 +290,15 @@ html:not(.ready) .hero-r .d{animation:spin .9s var(--ease) both;transform-box:fi
   .life{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
   .ft-top{grid-template-columns:minmax(0,1fr)}
 }
+/* переключатель палитр — только для прототипа */
+.themer{position:fixed;left:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:4px;flex-wrap:wrap;max-width:calc(100vw - 32px);padding:6px;background:#FFFFFF;border:2px solid #0E1B2B;box-shadow:4px 4px 0 #0E1B2B;font-size:14px;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#0E1B2B}
+.themer span{padding:0 8px;font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.08em}
+.themer button{min-height:40px;padding:0 12px;border:0;background:transparent;font:inherit;color:#0E1B2B;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.themer button:hover{background:#EEF1F4}
+.themer button[aria-pressed="true"]{background:#0E1B2B;color:#FFFFFF}
+.themer i{display:inline-flex}.themer i b{width:9px;height:14px}
+.embed .themer{display:none}
+@media (max-width:640px){.themer{left:8px;right:8px;bottom:8px;max-width:none}.themer span{display:none}.themer button{padding:0 8px;font-size:13px}}
 </style>
 </head>
 <body>
@@ -401,7 +438,7 @@ html:not(.ready) .hero-r .d{animation:spin .9s var(--ease) both;transform-box:fi
 <section class="wrap sec">
 <a class="story inv" href="Article.dc.html">
 <div class="comp"><svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="420" fill="#1D4E9E"></rect><circle class="sh" cx="200" cy="200" r="130" fill="none" stroke="#FFFFFF" stroke-width="2"></circle><circle class="sh" cx="200" cy="200" r="70" fill="#111214"></circle><rect class="sh" x="-40" y="250" width="480" height="40" fill="#FF5A1F" transform="rotate(-24 200 270)"></rect><g stroke="#FFFFFF" stroke-width="2"><path d="M40 60h80M40 72h56M40 84h68"></path></g></svg><span class="lbl" style="color:var(--ink)">[фото лаборатории]</span></div>
-<div class="story-tx"><span class="label" style="color:#9DB8E6">Образование</span><h2>Около 500 преподавателей освоили нейросети для создания учебных курсов</h2><p>ИИ в университете не заменяет преподавателя, а помогает ему готовить курсы быстрее.</p><span class="go">Читать историю <span class="arr">→</span></span></div>
+<div class="story-tx"><span class="label" style="color:var(--lbl)">Образование</span><h2>Около 500 преподавателей освоили нейросети для создания учебных курсов</h2><p>ИИ в университете не заменяет преподавателя, а помогает ему готовить курсы быстрее.</p><span class="go">Читать историю <span class="arr">→</span></span></div>
 </a>
 </section>
 
@@ -429,6 +466,27 @@ html:not(.ready) .hero-r .d{animation:spin .9s var(--ease) both;transform-box:fi
 </div>
 </template>
 <div id="dc-root"></div>
+<div class="themer" role="group" aria-label="Палитра прототипа"><span>Палитра:</span>
+<button type="button" data-t="urfu"><i aria-hidden="true"><b style="background:#0E1B2B"></b><b style="background:#1D4E9E"></b><b style="background:#A3521F"></b></i>Синий УрФУ</button>
+<button type="button" data-t="malachite"><i aria-hidden="true"><b style="background:#0F2421"></b><b style="background:#0B6E5A"></b><b style="background:#C08A2E"></b></i>Малахит</button>
+<button type="button" data-t="steel"><i aria-hidden="true"><b style="background:#1E2226"></b><b style="background:#2B4C7E"></b><b style="background:#B5532A"></b><b style="background:#ECE6DA"></b></i>Сталь и песок</button>
+<button type="button" data-t="contrast"><i aria-hidden="true"><b style="background:#111214"></b><b style="background:#1D4E9E"></b><b style="background:#FF5A1F"></b></i>Контраст (было)</button>
+</div>
+<script>
+/* палитра: из адреса (?theme=...) или из прошлого выбора */
+(function(){
+  var q=new URLSearchParams(location.search), root=document.documentElement, t=q.get('theme');
+  if(q.get('embed')) root.classList.add('embed');
+  if(!t){try{t=localStorage.getItem('urfu-v3-theme');}catch(e){}}
+  function set(v){
+    if(!v||v==='urfu'){root.removeAttribute('data-theme');v='urfu';}else root.setAttribute('data-theme',v);
+    document.querySelectorAll('.themer [data-t]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.t===v));});
+    try{localStorage.setItem('urfu-v3-theme',v);}catch(e){}
+  }
+  document.querySelectorAll('.themer [data-t]').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.t);});});
+  set(t);
+})();
+</script>
 <script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {
