@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Эксперименты с дизайном прототипа УрФУ: движение, тёмная тема, палитры, смена фото, живой знак.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
+<title>Эксперименты — прототип УрФУ</title>
+<style>
+.xp{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:24px}
+.xp article{border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;background:#FFFFFF;display:flex;flex-direction:column;gap:10px;box-shadow:inset 0 4px 0 var(--c)}
+.xp article:nth-child(4n+1){--c:var(--a1)}.xp article:nth-child(4n+2){--c:var(--a2)}.xp article:nth-child(4n+3){--c:var(--a3)}.xp article:nth-child(4n+4){--c:var(--a4)}
+.xp h2{font-size:22px}
+.xp ul{margin:0;padding-left:20px;color:var(--muted);font-size:15px;line-height:1.6}
+.xp .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+.how{margin-top:12px;font-size:15px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main id="main" class="wrap" style="padding-top:48px;padding-bottom:80px">
+<a href="index.html">← Все экраны</a>
+<h1 style="font-size:44px;margin-top:16px">Эксперименты</h1>
+<p class="how" style="max-width:760px">Каждый эксперимент — отдельные копии страниц, основной сайт не меняется. Посмотрите и скажите по каждому: «берём», «убрать» или «переделать». То, что возьмём, перенесу на все страницы, а копии удалю.</p>
+<div class="xp">
+<article>
+<h2>1. Движение</h2>
+<ul><li>блоки появляются при прокрутке, лесенкой</li><li>цифры на первом экране набегают</li><li>фото медленно приближается</li><li>полоса прочтения сверху</li><li>мягкая смена ролей</li></ul>
+<div class="links"><a class="btn" href="Main.motion.dc.html">Главная</a><a class="btn2" href="Catalog.motion.dc.html">Каталог</a></div>
+</article>
+<article>
+<h2>2. Тёмная тема</h2>
+<ul><li>кнопка с луной в шапке (на телефоне — в меню)</li><li>выбор запоминается и работает на всех страницах</li><li>контраст проверен на всех страницах</li></ul>
+<div class="links"><a class="btn" href="Main.dark.dc.html">Открыть и нажать луну</a></div>
+</article>
+<article>
+<h2>3. Палитра</h2>
+<ul><li>три варианта рядом: «Сейчас», «Ярче», «Спокойнее»</li><li>меняются только 4 самоцвета и свечение</li><li>все цвета проходят WCAG AA</li></ul>
+<div class="links"><a class="btn" href="palettes.html">Сравнить рядом</a></div>
+</article>
+<article>
+<h2>4. Смена фото на первом экране</h2>
+<ul><li>4 снимка кампуса, раз в 7 секунд</li><li>подпись к каждому, точки, пауза</li><li>не листается само, если человек выключил анимации</li></ul>
+<div class="links"><a class="btn" href="Main.slides.dc.html">Главная</a></div>
+</article>
+<article>
+<h2>5. Живой знак «У»</h2>
+<ul><li>знак «наливается» при загрузке</li><li>цвета перетекают; повтор при наведении на логотип</li><li>большой знак на «Концепции» переливается постоянно</li></ul>
+<div class="links"><a class="btn" href="Concept.logo.dc.html">Концепция</a><a class="btn2" href="Main.logo.dc.html">Главная</a></div>
+</article>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,4 @@
+/* ЭКСПЕРИМЕНТ «Живой знак»: при загрузке знак в шапке «наливается» сверху вниз */
+html:not(.ready) .hd .brand svg,html:not(.ready) .hero svg[viewBox="0 0 35 62"]{animation:ll-pour .9s cubic-bezier(.2,.7,.2,1) .15s both}
+@keyframes ll-pour{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@media (prefers-reduced-motion:reduce){html:not(.ready) .hd .brand svg,html:not(.ready) .hero svg[viewBox="0 0 35 62"]{animation:none}}
