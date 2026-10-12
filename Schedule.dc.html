@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Расписание — УрФУ</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <style>
 /* макет телефона: по центру на компьютере, на весь экран на телефоне */
@@ -85,7 +87,7 @@ body{padding:0;background:var(--bg)}
 </div>
 <div class="phone" style="background:#F6F7F9;display:flex;flex-direction:column;font-family:'IBM Plex Sans',sans-serif;color:var(--ink)">
 <div class="phone-top" style="color:#FFFFFF;padding:20px 20px 16px">
-<div style="display:flex;justify-content:space-between;align-items:center"><a href="MainMobile.dc.html" aria-label="На главную" style="display:flex"><svg width="18" height="32" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9A7AD6"></stop><stop offset=".5" stop-color="#5B8BDB"></stop><stop offset="1" stop-color="#3CCFA6"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemS)"></path></svg></a><span style="font-size:14px;color:var(--on-dark-muted)">Группа [номер]</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><a href="MainMobile.dc.html" aria-label="На главную" style="display:flex;padding:6px 12px 6px 0;margin:-6px 0"><svg width="18" height="32" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9A7AD6"></stop><stop offset=".5" stop-color="#5B8BDB"></stop><stop offset="1" stop-color="#3CCFA6"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemS)"></path></svg></a><span style="font-size:14px;color:var(--on-dark-muted)">Группа [номер]</span></div>
 <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:24px;margin-top:16px">Расписание</div>
 <div style="display:flex;gap:6px;margin-top:16px">
 <sc-for list="{{days}}" as="d" hint-placeholder-count="6">

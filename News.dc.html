@@ -5,7 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Новости — УрФУ</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
+<style>
+.nc{display:flex;flex-direction:column;gap:10px;min-height:220px;padding:24px;box-shadow:inset 0 4px 0 var(--c);text-decoration:none;color:inherit}
+.nc .tag{align-self:flex-start}
+.nc-t{font-weight:600;font-size:19px;line-height:1.35}
+.nc-d{font-size:14px}
+.nc-more{margin-top:auto;color:var(--blue);font-weight:600;font-size:15px}
+.nc:hover .nc-t{text-decoration:underline}
+.nc-a1{--c:var(--a1)}.nc-a2{--c:var(--a2)}.nc-a3{--c:var(--a3)}.nc-a4{--c:var(--a4)}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -31,12 +42,12 @@
 </sc-for>
 </div>
 <a href="Article.dc.html" class="card g2" style="margin-top:32px;padding:0;overflow:hidden;gap:0">
-<div class="ph art t1 photo" style="--img:url('photos/shkolniki.jpg');min-height:340px;border-radius:0;position:relative;overflow:hidden"><span class="lbl">Фото: urfu.ru</span></div>
+<div class="ph art t1 photo" style="--img:url('photos/shkolniki.webp');min-height:340px;border-radius:0;position:relative;overflow:hidden"><span class="lbl">Фото: urfu.ru</span></div>
 <div style="padding:40px;display:flex;flex-direction:column;justify-content:center;gap:14px"><span class="tag" style="align-self:flex-start">Главное</span><h2>Почти 50 тысяч заявлений на бюджет: УрФУ подвёл итоги приёма-2026</h2><p class="muted">Заявлений стало на 7,5 тысячи больше, чем годом раньше, а целевых — на 40% больше, чем выделено мест.</p><span class="muted" style="font-size:14px">Июль 2026 · по данным ОТВ</span></div>
 </a>
 <div class="g3" style="margin-top:24px">
 <sc-for list="{{items}}" as="n" hint-placeholder-count="6">
-<a class="card" href="Article.dc.html" style="padding:0;overflow:hidden"><div class="ph art t2" style="height:190px;border-radius:0;position:relative;overflow:hidden"><span class="lbl">[фото]</span></div><div style="padding:20px"><span class="tag">{{n.tag}}</span><div style="font-weight:600;font-size:18px;margin-top:10px">{{n.t}}</div><div class="muted" style="font-size:14px;margin-top:8px">{{n.d}}</div></div></a>
+<a class="{{n.cls}}" href="Article.dc.html"><span class="tag">{{n.tag}}</span><div class="nc-t">{{n.t}}</div><div class="muted nc-d">{{n.d}}</div><span class="nc-more" aria-hidden="true">Читать →</span></a>
 </sc-for>
 </div>
 <nav aria-label="Страницы" style="display:flex;gap:8px;justify-content:center;margin-top:40px">
@@ -65,7 +76,8 @@ const pool = [
 {tag:'Поступающим', t:'Приём на платные места: внутренние испытания до 15 августа, ЕГЭ до 20 августа', d:'Июль 2026 · ОТВ'},
 {tag:'Студентам', t:'[Новость для студентов — возьмите свежую с urfu.ru]', d:'[дата]'}
 ];
-const items = pool.filter(x => tag === 'Все' || x.tag === tag);
+const C = {'Наука':'a2','Образование':'a3','Поступающим':'a1','Партнёрство':'a4','Студентам':'a1'};
+const items = pool.filter(x => tag === 'Все' || x.tag === tag).map(x => Object.assign({}, x, { cls: 'card nc nc-' + C[x.tag] }));
 return { tags: names.map(l => ({ label: l, on: l === tag, off: l !== tag, pick: () => this.setState({ tag: l }) })), items };
 }
 }
