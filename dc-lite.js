@@ -68,7 +68,7 @@
         }
         if (val.indexOf('{{') === -1) continue;
         const k = exact(val);
-        if (k && name === 'checked') { el.removeAttribute('checked'); el.checked = !!get(scopes, k); continue; }
+        if (k && (name === 'checked' || name === 'disabled')) { el.removeAttribute(name); el[name] = !!get(scopes, k); continue; }
         if (k && name === 'value') { const v = get(scopes, k); el.setAttribute('value', v == null ? '' : v); el.value = v == null ? '' : v; continue; }
         el.setAttribute(name, interp(val, scopes));
       }

@@ -8,6 +8,32 @@
 <link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
+<style>
+.evl{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.evc{display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:16px 28px;align-items:center}
+.evd{text-align:center;padding:12px;border-radius:6px;background:var(--bg-soft)}
+.evd b{display:block;font-weight:600;font-size:28px;color:var(--copper);white-space:nowrap}
+.evd span{font-size:14px}
+.evt{font-weight:600;font-size:20px;margin-top:10px}
+.evn{font-size:15px;margin-top:6px}
+.eva{display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:900px){.evc{grid-template-columns:76px minmax(0,1fr);padding:18px;gap:14px 16px}.eva{grid-column:1 / -1}.evd{padding:8px 4px}.evd b{font-size:22px}.evt{font-size:18px}}
+.mlist{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column}
+.mlist li{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.mlist b{min-width:132px;color:var(--copper);white-space:nowrap}
+.mbar{display:flex;align-items:center;gap:16px;margin-top:28px}
+.mbar .mt{font-size:24px;min-width:200px;text-align:center}
+.mbar button[disabled]{opacity:.4;cursor:default}
+.mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:16px}
+.mwd{font-size:13px;color:var(--muted);text-align:center;padding:4px 0}
+.mc{min-height:104px;border:1px solid var(--line);border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:4px;background:#FFFFFF;min-width:0}
+.mc-e{border-color:transparent;background:transparent}
+.mn{font-weight:600;font-size:14px}
+.mc-on{background:var(--blue-soft);border-color:var(--blue)}
+.mc-today .mn{color:#FFFFFF;background:var(--copper);border-radius:999px;align-self:flex-start;padding:0 8px}
+.mev{font-size:12px;line-height:1.3;color:var(--ink);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+@media (max-width:700px){.mc{min-height:48px;padding:6px 4px;align-items:center}.mev{display:none}.mc-on::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue)}.mbar .mt{min-width:0;flex:1;font-size:20px}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -25,7 +51,7 @@
 </div></header><main id="main" tabindex="-1" style="outline:none"><section class="phead"><div class="wrap">
 <div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="Events.dc.html">Жизнь в УрФУ</a> / Календарь событий</div>
 <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap"><h1 class="big" style="font-size:48px">Календарь событий</h1>
-<div style="display:flex;gap:8px"><button class="chip on">Список</button><button class="chip">Месяц</button></div></div>
+<div style="display:flex;gap:8px" role="group" aria-label="Вид"><button class="{{vList}}" onClick="{{toList}}" aria-pressed="{{isList}}">Список</button><button class="{{vMonth}}" onClick="{{toMonth}}" aria-pressed="{{isMonth}}">Месяц</button></div></div>
 </div></section><div class="wrap">
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:28px">
 <sc-for list="{{kinds}}" as="k" hint-placeholder-count="6">
@@ -33,15 +59,33 @@
 <sc-if value="{{k.off}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{k.pick}}">{{k.label}}</button></sc-if>
 </sc-for>
 </div>
-<div style="display:flex;flex-direction:column;gap:12px;margin-top:28px">
+<sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
+<div class="evl">
 <sc-for list="{{evs}}" as="e" hint-placeholder-count="6">
-<div class="card" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
-<div style="min-width:104px;text-align:center;padding:12px;border-radius:6px;background:var(--bg-soft)"><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:28px;color:var(--copper);white-space:nowrap">{{e.d}}</div><div class="muted" style="font-size:14px">{{e.m}}</div></div>
-<div style="flex:1 1 320px"><span class="tag">{{e.kind}}</span><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:20px;margin-top:10px">{{e.t}}</div><div class="muted" style="font-size:15px;margin-top:6px">{{e.note}}</div></div>
-<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn2" href="Events.dc.html">В мой календарь</a><a class="btn" href="Events.dc.html">Записаться</a></div>
+<div class="card evc">
+<div class="evd"><b>{{e.d}}</b><span class="muted">{{e.m}}</span></div>
+<div class="evb"><span class="tag">{{e.kind}}</span><div class="evt">{{e.t}}</div><div class="muted evn">{{e.note}}</div></div>
+<div class="eva"><a class="btn2" href="{{e.ics}}" download="{{e.file}}">В мой календарь</a><a class="btn" href="Events.dc.html">Записаться</a></div>
 </div>
 </sc-for>
 </div>
+</sc-if>
+<sc-if value="{{isMonth}}" hint-placeholder-val="{{false}}">
+<div class="mbar"><button class="chip" onClick="{{prevM}}" aria-label="Предыдущий месяц" disabled="{{noPrev}}">←</button><h2 class="mt" aria-live="polite">{{mTitle}}</h2><button class="chip" onClick="{{nextM}}" aria-label="Следующий месяц" disabled="{{noNext}}">→</button></div>
+<div class="mgrid" role="table" aria-label="{{mTitle}}">
+<sc-for list="{{wd}}" as="w" hint-placeholder-count="7"><div class="mwd" role="columnheader">{{w}}</div></sc-for>
+<sc-for list="{{cells}}" as="c" hint-placeholder-count="35">
+<div class="{{c.cls}}" role="cell"><span class="mn">{{c.n}}</span>
+<sc-for list="{{c.evs}}" as="x" hint-placeholder-count="1"><span class="mev">{{x}}</span></sc-for>
+</div>
+</sc-for>
+</div>
+<h3 style="margin-top:28px">В этом месяце</h3>
+<ul class="mlist">
+<sc-for list="{{mEvs}}" as="x" hint-placeholder-count="3"><li><b>{{x.d}} {{x.m}}</b><span>{{x.t}}</span></li></sc-for>
+</ul>
+<sc-if value="{{mNone}}" hint-placeholder-val="{{false}}"><p class="muted" style="margin-top:8px">В этом месяце событий нет — переключите месяц стрелкой.</p></sc-if>
+</sc-if>
 </div>
 </main><footer class="ft"><div class="wrap"><div class="ft-grid">
 <div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p><p style="margin-top:12px">Контакт-центр, бесплатно по России:<br><a href="tel:88001005044" style="color:#FFFFFF;font-weight:600;font-size:18px">8-800-100-50-44</a><br><a href="mailto:contact@urfu.ru">contact@urfu.ru</a></p></div>
@@ -71,8 +115,46 @@ const all = [
 {d:'12–14', m:'ноября', t:'Российские регионы в фокусе перемен', kind:'Наука', note:'Международная конференция · ИнЭУ УрФУ'},
 {d:'19', m:'января', t:'Изумруд.Студент', kind:'Олимпиады', note:'Олимпиада УрФУ · успей подать заявку'}
 ];
-const evs = all.filter(e => k === 'Все' || e.kind === k);
-return { kinds: kinds.map(l => ({ label: l, on: l === k, off: l !== k, pick: () => this.setState({ k: l }) })), evs };
+const st = this.state || {};
+const view = st.view || 'list';
+const MI = {'октября':[2026,9],'ноября':[2026,10],'января':[2027,0]};
+const pad = n => String(n).padStart(2, '0');
+const span = e => { const [a, b] = e.d.split('–').map(Number); const [y, mo] = MI[e.m]; return { y, mo, a, b: b || a }; };
+const ics = e => {
+  const p = span(e);
+  const d1 = '' + p.y + pad(p.mo + 1) + pad(p.a);
+  const end = new Date(p.y, p.mo, p.b + 1);
+  const d2 = '' + end.getFullYear() + pad(end.getMonth() + 1) + pad(end.getDate());
+  const txt = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//UrFU prototype//RU','BEGIN:VEVENT','UID:' + d1 + '-' + e.t.length + '@urfu-prototype','DTSTAMP:20261012T000000Z','DTSTART;VALUE=DATE:' + d1,'DTEND;VALUE=DATE:' + d2,'SUMMARY:' + e.t,'DESCRIPTION:' + e.note,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(txt);
+};
+const evs = all.filter(e => k === 'Все' || e.kind === k).map((e, i) => Object.assign({}, e, { ics: ics(e), file: 'urfu-event-' + (i + 1) + '.ics' }));
+const months = [[2026, 9], [2026, 10], [2026, 11], [2027, 0]];
+const NAMES = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+const NOW = new Date();
+const cur = months.findIndex(([y, m]) => y === NOW.getFullYear() && m === NOW.getMonth());
+const mi = st.mi !== undefined ? st.mi : Math.max(0, cur);
+const [Y, M] = months[mi];
+const first = (new Date(Y, M, 1).getDay() + 6) % 7;
+const days = new Date(Y, M + 1, 0).getDate();
+const cells = [];
+for (let i = 0; i < first; i++) cells.push({ n: '', cls: 'mc mc-e', evs: [] });
+for (let d = 1; d <= days; d++) {
+  const here = evs.filter(e => { const p = span(e); return p.y === Y && p.mo === M && d >= p.a && d <= p.b; }).map(e => e.t);
+  const today = Y === NOW.getFullYear() && M === NOW.getMonth() && d === NOW.getDate();
+  cells.push({ n: d, cls: 'mc' + (here.length ? ' mc-on' : '') + (today ? ' mc-today' : ''), evs: here });
+}
+while (cells.length % 7) cells.push({ n: '', cls: 'mc mc-e', evs: [] });
+const mEvs = evs.filter(e => { const p = span(e); return p.y === Y && p.mo === M; });
+return {
+  kinds: kinds.map(l => ({ label: l, on: l === k, off: l !== k, pick: () => this.setState({ k: l }) })), evs,
+  isList: view === 'list', isMonth: view === 'month',
+  vList: view === 'list' ? 'chip on' : 'chip', vMonth: view === 'month' ? 'chip on' : 'chip',
+  toList: () => this.setState({ view: 'list' }), toMonth: () => this.setState({ view: 'month' }),
+  mTitle: NAMES[M] + ' ' + Y, mEvs, mNone: mEvs.length === 0, wd: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'], cells,
+  noPrev: mi === 0, noNext: mi === months.length - 1,
+  prevM: () => this.setState({ mi: Math.max(0, mi - 1) }), nextM: () => this.setState({ mi: Math.min(months.length - 1, mi + 1) })
+};
 }
 }
 
