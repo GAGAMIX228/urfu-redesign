@@ -13,7 +13,6 @@ html,body{height:100%}
 body{margin:0;display:flex;flex-direction:column;background:var(--soft);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:15px}
 .bar{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;padding:12px 20px;background:#FFFFFF;border-bottom:1px solid var(--line)}
 .bar h1{font-size:18px;margin:0;font-weight:600}
-.grp[hidden]{display:none}
 .grp{display:inline-flex;gap:4px;padding:4px;background:var(--soft);border-radius:8px}
 .grp button{min-height:40px;padding:0 16px;border:0;border-radius:6px;background:transparent;font:inherit;color:var(--muted);cursor:pointer}
 .grp button[aria-pressed="true"]{background:#FFFFFF;color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(14,27,43,.15)}
@@ -46,17 +45,7 @@ label.sync input{width:18px;height:18px}
 <button type="button" data-show="old" aria-pressed="false">Только старая</button>
 <button type="button" data-show="new" aria-pressed="false">Только новая</button>
 </div>
-<div class="grp" role="group" aria-label="Версия новой главной">
-<button type="button" data-ver="v3" aria-pressed="true">v3 · конструктивизм</button>
-<button type="button" data-ver="v2" aria-pressed="false">v2 · палитры</button>
-</div>
-<div class="grp" role="group" aria-label="Палитра v3" id="themeGrp3">
-<button type="button" data-theme3="urfu" aria-pressed="true">Синий УрФУ</button>
-<button type="button" data-theme3="malachite" aria-pressed="false">Малахит</button>
-<button type="button" data-theme3="steel" aria-pressed="false">Сталь и песок</button>
-<button type="button" data-theme3="contrast" aria-pressed="false">Контраст</button>
-</div>
-<div class="grp" role="group" aria-label="Палитра v2" id="themeGrp" hidden>
+<div class="grp" role="group" aria-label="Палитра новой главной">
 <button type="button" data-theme="strict" aria-pressed="true">Строгая</button>
 <button type="button" data-theme="gems" aria-pressed="false">Самоцветы</button>
 <button type="button" data-theme="warm" aria-pressed="false">Тёплая</button>
@@ -66,7 +55,7 @@ label.sync input{width:18px;height:18px}
 </div>
 <div class="panes" id="panes">
 <section class="pane old"><div class="pane-h"><span><span class="badge">Было</span>Main.dc.html</span><a href="Main.dc.html" target="_blank">Открыть отдельно</a></div><div class="stage"><iframe id="fOld" src="Main.dc.html" title="Старая главная"></iframe></div></section>
-<section class="pane new"><div class="pane-h"><span><span class="badge">Стало</span><span id="newName">Main.v3.dc.html</span></span><a id="openNew" href="Main.v3.dc.html?theme=urfu" target="_blank">Открыть отдельно</a></div><div class="stage"><iframe id="fNew" src="Main.v3.dc.html?embed=1&amp;theme=urfu" title="Новая главная"></iframe></div></section>
+<section class="pane new"><div class="pane-h"><span><span class="badge">Стало</span>Main.v2.dc.html</span><a id="openNew" href="Main.v2.dc.html?theme=strict" target="_blank">Открыть отдельно</a></div><div class="stage"><iframe id="fNew" src="Main.v2.dc.html?embed=1&amp;theme=strict" title="Новая главная"></iframe></div></section>
 </div>
 <script>
 (function(){
@@ -97,23 +86,10 @@ label.sync input{width:18px;height:18px}
     panes.classList.toggle('one',show!=='both');fit();
   });});
   /* палитра новой главной: перезагружаем её с нужной палитрой в адресе */
-  var ver='v3', theme='strict', theme3='urfu';
-  function loadNew(){
-    var page='Main.'+ver+'.dc.html', q='?theme='+(ver==='v2'?theme:theme3);
-    frames[1].src=page+q+'&embed=1';
-    document.getElementById('themeGrp3').hidden=ver!=='v3';
-    document.getElementById('openNew').href=page+q;
-    document.getElementById('newName').textContent=page;
-    document.getElementById('themeGrp').hidden=ver!=='v2';
-  }
   document.querySelectorAll('[data-theme]').forEach(function(b){b.addEventListener('click',function(){
-    theme=b.dataset.theme; press('data-theme',theme); loadNew();
-  });});
-  document.querySelectorAll('[data-theme3]').forEach(function(b){b.addEventListener('click',function(){
-    theme3=b.dataset.theme3; press('data-theme3',theme3); loadNew();
-  });});
-  document.querySelectorAll('[data-ver]').forEach(function(b){b.addEventListener('click',function(){
-    ver=b.dataset.ver; press('data-ver',ver); loadNew();
+    var t=b.dataset.theme; press('data-theme',t);
+    frames[1].src='Main.v2.dc.html?embed=1&theme='+t;
+    document.getElementById('openNew').href='Main.v2.dc.html?theme='+t;
   });});
   window.addEventListener('resize',fit);
 
