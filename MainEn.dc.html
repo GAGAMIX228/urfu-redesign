@@ -1,158 +1,183 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UrFU — Home</title>
-<style>
-@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
-@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Medium.ttf') format('truetype');font-weight:500;font-display:swap}
-@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
-@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
-</style>
-
-
-<style>
-body{margin:0;background:#FFFFFF;color:#0E1B2B;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.5}
-a{color:#1D4E9E}a:hover{color:#163B78}
-*{box-sizing:border-box}
-.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
-.hd{border-bottom:1px solid #E1E5EA;background:rgba(255,255,255,0.94);position:sticky;top:0;z-index:20;backdrop-filter:blur(8px)}
-.hd-in{display:flex;align-items:center;gap:24px;min-height:72px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0E1B2B;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:20px}
-.brand:hover{color:#0E1B2B}
-.nav{display:flex;gap:2px;flex-wrap:wrap;flex:1}
-.nav a{color:#0E1B2B;text-decoration:none;padding:10px 12px;border-radius:8px;font-weight:500;min-height:44px;display:inline-flex;align-items:center}
-.nav a:hover{background:#EEF1F4;color:#0E1B2B}
-.nav a.on{color:#1D4E9E;background:#E8EEF7}
-.tools{display:flex;gap:8px;align-items:center}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:6px;background:#1D4E9E;color:#FFFFFF;text-decoration:none;border:0;font:inherit;font-weight:600;cursor:pointer}
-.btn:hover{background:#163B78;color:#FFFFFF}
-.btn2{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:6px;background:#FFFFFF;color:#0E1B2B;text-decoration:none;border:1px solid #C5CCD4;font:inherit;font-weight:600;cursor:pointer}
-.btn2:hover{border-color:#1D4E9E;color:#1D4E9E}
-.ico{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;color:#0E1B2B;text-decoration:none}
-.ico:hover{background:#EEF1F4;color:#0E1B2B}
-h1,h2,h3{font-family:'IBM Plex Sans',sans-serif;font-weight:600;line-height:1.15;margin:0;letter-spacing:-0.015em}
-.hero-art{position:absolute;right:32px;bottom:0;width:520px;height:340px;pointer-events:none}
-@media (max-width:1100px){.hero-art{display:none}}
-h2{font-size:32px}h3{font-size:20px}
-p{margin:0}
-.crumbs{font-size:14px;color:#56606B;padding:24px 0 12px}.crumbs a{color:#56606B}
-.sec{padding:64px 0 0}
-.card{border:1px solid #E1E5EA;border-radius:8px;padding:24px;background:#FFFFFF}
-a.card{display:block;text-decoration:none;color:#0E1B2B}
-a.card{transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
-a.card:hover{border-color:#1D4E9E;color:#0E1B2B;transform:translateY(-3px);box-shadow:0 10px 24px rgba(14,27,43,0.08)}
-.btn,.btn2,.chip,.nav a{transition:background .15s ease,color .15s ease,border-color .15s ease}
-:focus-visible{outline:3px solid #1D4E9E;outline-offset:2px;border-radius:4px}
-h1,h2,h3{text-wrap:balance}
-.num{font-variant-numeric:tabular-nums}
-.tag{display:inline-block;padding:4px 10px;border-radius:4px;background:#EEF1F4;font-size:13px;font-weight:500;color:#0E1B2B}
-.chip{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:4px;border:1px solid #C5CCD4;background:#FFFFFF;font:inherit;font-size:15px;font-weight:500;color:#0E1B2B;cursor:pointer;text-decoration:none}
-.chip.on{background:#0E1B2B;color:#FFFFFF;border-color:#0E1B2B}
-.muted{color:#56606B}
-.ph{background:#DDE3E9;border-radius:8px;display:flex;align-items:flex-end;padding:16px;color:#3E4853;font-size:13px;font-weight:500}
-.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.row{display:flex;gap:32px;flex-wrap:wrap}
-.main{flex:999 1 560px;min-width:0}
-.side{flex:1 1 300px}
-.field{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500}
-.input{min-height:48px;border-radius:6px;border:1px solid #C5CCD4;padding:0 16px;font:inherit;font-size:16px;background:#FFFFFF;color:#0E1B2B}
-.sr{position:absolute;left:-9999px}
-details{border-bottom:1px solid #E1E5EA;padding:18px 0}
-summary{cursor:pointer;font-weight:600;font-size:18px}
-.ft{background:#0E1B2B;color:#C9D1DA;margin-top:96px;padding:56px 0 40px;font-size:15px}
-.ft a{color:#FFFFFF;text-decoration:none}.ft a:hover{text-decoration:underline}
-.ft-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
-.ft-col{display:flex;flex-direction:column;gap:10px}
-.ft-h{color:#FFFFFF;font-weight:600;margin-bottom:4px}
-.skip{position:absolute;left:16px;top:-60px;z-index:50;background:#1D4E9E;color:#FFFFFF;padding:12px 18px;border-radius:4px;font-weight:600;text-decoration:none}
-.skip:focus{top:12px;color:#FFFFFF}
-.a11y-cb{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
-#a11y:checked ~ main{zoom:1.22}
-#a11y:checked ~ main .muted,#a11y:checked ~ main .crumbs,#a11y:checked ~ main .crumbs a{color:#0E1B2B !important}
-#a11y:checked ~ main .ph{filter:grayscale(1)}
-#a11y:checked ~ main a{text-decoration:underline}
-#a11y:checked ~ header .a11y-lbl{background:#0E1B2B;color:#FFFFFF}
-#a11y:focus-visible ~ header .a11y-lbl{outline:3px solid #1D4E9E;outline-offset:2px}
-.sug{position:absolute;left:0;right:0;top:calc(100% + 6px);background:#FFFFFF;color:#0E1B2B;border-radius:8px;box-shadow:0 16px 40px rgba(14,27,43,0.28);overflow:hidden;z-index:30;text-align:left}
-.sug a{display:flex;justify-content:space-between;gap:16px;padding:12px 18px;text-decoration:none;color:#0E1B2B;border-bottom:1px solid #EEF1F4;align-items:center}
-.sug a:hover{background:#E8EEF7;color:#0E1B2B}
-@media (max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.ft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.wrap{padding:0 16px}.nav{order:3;flex-basis:100%;flex-wrap:nowrap;overflow-x:auto}.g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}.big{font-size:32px !important}h2{font-size:24px}}
-</style>
-
-
+<title>UrFU — Ural Federal University</title>
+<meta name="description" content="Ural Federal University: programs, admissions, research and campus life.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 <template id="dc-tpl">
-<div style="min-height:100vh;background:#FFFFFF" lang="en"><header class="hd"><div class="wrap hd-in">
-<a class="brand" href="MainEn.dc.html" aria-label="UrFU home"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="3" fill="#1D4E9E"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span>UrFU</span></a>
+<div><input type="checkbox" id="a11y" class="a11y-cb"><a href="#main" class="skip">Skip to content</a>
+<header class="hd"><div class="wrap hd-in">
+<a class="brand" href="MainEn.dc.html" aria-label="UrFU home"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemH)"></path></svg><span class="lk"><b>Ural<br>Federal<br>University</b><i>named after the first President<br>of Russia B.N. Yeltsin</i></span></a>
 <nav class="nav" aria-label="Main menu"><a href="Admission.dc.html">Admissions</a><a href="Schedule.dc.html">Study</a><a href="Article.dc.html">Research</a><a href="Life.dc.html">Campus life</a><a href="Contacts.dc.html">Partners</a><a href="Institute.dc.html">About</a></nav>
-<div class="tools"><a class="ico" href="Search.dc.html" aria-label="Search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a><div role="group" aria-label="Site language" style="display:flex;border:1px solid #C5CCD4;border-radius:6px;overflow:hidden;font-size:14px;font-weight:600"><a href="Main.dc.html" lang="ru" aria-label="Русская версия" style="min-height:42px;min-width:44px;display:flex;align-items:center;justify-content:center;color:#0E1B2B;text-decoration:none">RU</a><span aria-current="true" style="min-height:42px;min-width:44px;display:flex;align-items:center;justify-content:center;background:#0E1B2B;color:#FFFFFF">EN</span></div><a class="btn" href="Schedule.dc.html">Sign in</a></div>
-</div></header><main>
-<section style="background:#0E1B2B;color:#FFFFFF;position:relative;overflow:hidden"><svg class="hero-art" viewBox="0 0 520 340" aria-hidden="true" style="" fill="none" stroke="#FFFFFF" stroke-opacity="0.32" stroke-width="1.4"><path d="M0 40.8 H520"></path><rect x="20.8" y="49.3" width="478.4" height="30.6"></rect><rect x="37.2" y="79.9" width="35.6" height="8.5"></rect><path d="M40.6 88.4 V263.5 M69.3 88.4 V263.5 M55.0 98.6 V253.3"></path><rect x="37.2" y="263.5" width="35.6" height="8.5"></rect><rect x="105.5" y="79.9" width="35.6" height="8.5"></rect><path d="M109.0 88.4 V263.5 M137.7 88.4 V263.5 M123.3 98.6 V253.3"></path><rect x="105.5" y="263.5" width="35.6" height="8.5"></rect><rect x="173.9" y="79.9" width="35.6" height="8.5"></rect><path d="M177.3 88.4 V263.5 M206.0 88.4 V263.5 M191.7 98.6 V253.3"></path><rect x="173.9" y="263.5" width="35.6" height="8.5"></rect><rect x="242.2" y="79.9" width="35.6" height="8.5"></rect><path d="M245.6 88.4 V263.5 M274.4 88.4 V263.5 M260.0 98.6 V253.3"></path><rect x="242.2" y="263.5" width="35.6" height="8.5"></rect><rect x="310.5" y="79.9" width="35.6" height="8.5"></rect><path d="M314.0 88.4 V263.5 M342.7 88.4 V263.5 M328.3 98.6 V253.3"></path><rect x="310.5" y="263.5" width="35.6" height="8.5"></rect><rect x="378.9" y="79.9" width="35.6" height="8.5"></rect><path d="M382.3 88.4 V263.5 M411.0 88.4 V263.5 M396.7 98.6 V253.3"></path><rect x="378.9" y="263.5" width="35.6" height="8.5"></rect><rect x="447.2" y="79.9" width="35.6" height="8.5"></rect><path d="M450.7 88.4 V263.5 M479.4 88.4 V263.5 M465.0 98.6 V253.3"></path><rect x="447.2" y="263.5" width="35.6" height="8.5"></rect><rect x="14.6" y="272.0" width="490.9" height="22.1"></rect><rect x="4.2" y="294.1" width="511.7" height="22.1"></rect><rect x="-6.2" y="316.2" width="532.5" height="22.1"></rect></svg>
-<div class="wrap" style="padding-top:88px;padding-bottom:96px"><div style="max-width:760px;position:relative">
-<span class="tag" style="background:#173451;color:#FFFFFF">Ural Federal University · since 1920</span>
-<h1 class="big" style="font-size:60px;margin-top:24px;color:#FFFFFF">Find your place at UrFU</h1>
-<p style="font-size:20px;color:#C9D1DA;margin-top:20px;max-width:640px">Programs, people, events and services — all in one search.</p>
-<div style="display:flex;gap:8px;margin-top:36px;flex-wrap:wrap"><label for="qe" class="sr">Search the site</label><input id="qe" class="input" placeholder="For example: software engineering" style="flex:1 1 320px;min-height:60px;border:0;font-size:18px"><a class="btn" href="Search.dc.html" style="min-height:60px;padding:0 32px;background:#FFFFFF;color:#0E1B2B;font-size:18px">Search</a></div>
+<div class="tools" style="margin-left:auto">
+<label for="a11y" class="ico a11y-lbl" title="Low vision version"><span class="sr">Low vision version</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></label>
+<a class="ico" href="Search.dc.html" aria-label="Search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+<div class="lang" role="group" aria-label="Site language"><a href="Main.dc.html" lang="ru" aria-label="Русская версия">RU</a><span aria-current="true">EN</span></div>
+<a class="btn" href="Schedule.dc.html">Sign in</a>
+<details class="mnav"><summary class="ico" aria-label="Menu"><svg class="i-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="i-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></summary>
+<nav class="mnav-panel" aria-label="Main menu"><a href="Admission.dc.html">Admissions</a><a href="Schedule.dc.html">Study</a><a href="Article.dc.html">Research</a><a href="Life.dc.html">Campus life</a><a href="Contacts.dc.html">Partners</a><a href="Institute.dc.html">About</a><a href="Schedule.dc.html">Sign in</a></nav></details>
+</div>
+</div></header>
+
+<main id="main" tabindex="-1" style="outline:none">
+<section class="hero dark"><div class="wrap">
+<div class="hero-grid">
+<div>
+<span class="eyebrow rv">Ural Federal University · since 1920</span>
+<h1 class="rv rv2">Find your place <em>at UrFU</em></h1>
+<p class="hero-lead rv rv3">Programs, people, events and services — all in one search.</p>
+<div class="search rv rv4">
+<div class="search-box">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+<label for="q" class="sr">Search the site</label>
+<input id="q" autocomplete="off" placeholder="For example: software engineering" value="{{q}}" onChange="{{onQ}}">
+<a class="btn" href="Search.dc.html">Search</a>
+</div>
+<sc-if value="{{open}}">
+<div class="sug" role="listbox" aria-label="Suggestions">
+<sc-for list="{{sug}}" as="g">
+<a href="{{g.href}}" role="option"><span style="font-weight:500">{{g.t}}</span><span class="muted" style="font-size:13px;white-space:nowrap">{{g.kind}}</span></a>
+</sc-for>
+<sc-if value="{{none}}"><div class="muted" style="padding:14px 18px">Nothing found — try another word</div></sc-if>
+<a href="Search.dc.html" style="background:var(--bg-soft-2);font-weight:600;color:var(--blue)">All search results <span class="arrow">→</span></a>
+</div>
+</sc-if>
+</div>
+<div class="often rv rv5"><span>Popular:</span><a href="Schedule.dc.html">Timetable</a><a href="Catalog.dc.html">Passing scores</a><a href="Dorms.dc.html">Housing</a><a href="Contacts.dc.html">Campus map</a></div>
+</div>
+<div class="hero-art" aria-hidden="true">
+<svg class="colonnade" viewBox="0 0 520 360" fill="none">
+<defs><linearGradient id="colFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--hero-em)" stop-opacity=".28"></stop><stop offset="1" style="stop-color:var(--hero-em)" stop-opacity=".04"></stop></linearGradient></defs>
+<path class="ent" d="M0 40 H520"></path>
+<rect class="col" x="20" y="48" width="480" height="32"></rect>
+<rect class="col" x="38" y="80" width="34" height="200" style="animation-delay:.05s"></rect>
+<rect class="col" x="106" y="80" width="34" height="200" style="animation-delay:.1s"></rect>
+<rect class="col" x="174" y="80" width="34" height="200" style="animation-delay:.15s"></rect>
+<rect class="col" x="243" y="80" width="34" height="200" style="animation-delay:.2s"></rect>
+<rect class="col" x="312" y="80" width="34" height="200" style="animation-delay:.25s"></rect>
+<rect class="col" x="380" y="80" width="34" height="200" style="animation-delay:.3s"></rect>
+<rect class="col" x="448" y="80" width="34" height="200" style="animation-delay:.35s"></rect>
+<rect class="col" x="14" y="280" width="492" height="22" style="animation-delay:.4s"></rect>
+<rect class="col" x="4" y="302" width="512" height="22" style="animation-delay:.45s"></rect>
+<rect class="col" x="-6" y="324" width="532" height="22" style="animation-delay:.5s"></rect>
+</svg>
+</div>
+</div>
+<div class="stats">
+<div class="stat"><b class="num">1920</b><span>founded</span></div>
+<div class="stat"><b class="num">400+</b><span>degree programs</span></div>
+<div class="stat"><b class="num">164</b><span>research labs</span></div>
+<div class="stat"><b class="num">100+</b><span>countries our students come from</span></div>
+</div>
+</div></section>
+
+<section class="wrap sec">
+<div class="sec-head"><div><div class="kicker">Quick start</div><h2>Who are you?</h2></div>
+<div class="seg" role="group" aria-label="Choose your role">
+<sc-for list="{{roles}}" as="r"><button type="button" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}">{{r.label}}</button></sc-for>
 </div></div>
-</section>
-<section class="wrap sec">
-<h2>Who are you?</h2>
-<p class="muted" style="margin-top:8px">Pick a role and the home page shows only what you need.</p>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:24px">
-<sc-for list="{{roles}}" as="r" hint-placeholder-count="4">
-<sc-if value="{{r.on}}" hint-placeholder-val="{{false}}"><button class="chip on" onClick="{{r.pick}}">{{r.label}}</button></sc-if>
-<sc-if value="{{r.off}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{r.pick}}">{{r.label}}</button></sc-if>
-</sc-for>
-</div>
-<div class="g3" style="margin-top:24px">
-<sc-for list="{{links}}" as="l" hint-placeholder-count="6">
-<a class="card" href="{{l.href}}" style="min-height:150px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:19px">{{l.t}}</div><div class="muted" style="font-size:15px">{{l.d}}</div></a>
+<p class="muted">Pick a role and the home page shows only what you need.</p>
+<div class="qgrid">
+<sc-for list="{{links}}" as="l">
+<a class="q" href="{{l.href}}"><span class="n num">{{l.n}}</span><span class="t">{{l.t}}<span class="arrow" aria-hidden="true">→</span></span><span class="d">{{l.d}}</span></a>
 </sc-for>
 </div>
 </section>
+
 <section class="wrap sec">
-<div class="g4" style="border-top:1px solid #E1E5EA;border-bottom:1px solid #E1E5EA;padding:40px 0">
-<div><div class="num" style="font-family:'IBM Plex Sans',sans-serif;font-size:44px;font-weight:600;color:#1D4E9E">1920</div><div class="muted">founded</div></div>
-<div><div class="num" style="font-family:'IBM Plex Sans',sans-serif;font-size:44px;font-weight:600;color:#1D4E9E">400+</div><div class="muted">degree programs</div></div>
-<div><div class="num" style="font-family:'IBM Plex Sans',sans-serif;font-size:44px;font-weight:600;color:#1D4E9E">164</div><div class="muted">research labs</div></div>
-<div><div class="num" style="font-family:'IBM Plex Sans',sans-serif;font-size:44px;font-weight:600;color:#1D4E9E">100+</div><div class="muted">countries our students come from</div></div>
+<div class="sec-head"><div><div class="kicker" style="--k:var(--a2)">Structure</div><h2>Institutes</h2></div><a class="more" href="Institute.dc.html">All institutes and units <span class="arrow">→</span></a></div>
+<div class="inst">
+<a href="Institute.dc.html"><b>IRIT-RTF</b><span>Radio electronics and IT</span></a>
+<a href="Institute.dc.html"><b>INSM</b><span>Natural sciences and mathematics</span></a>
+<a href="Institute.dc.html"><b>INMT</b><span>New materials and technologies</span></a>
+<a href="Institute.dc.html"><b>UralENIN</b><span>Power engineering</span></a>
+<a href="Institute.dc.html"><b>ICEA</b><span>Civil engineering and architecture</span></a>
+<a href="Institute.dc.html"><b>UIH</b><span>Humanities</span></a>
+<a href="Institute.dc.html"><b>GSEM</b><span>Economics and management</span></a>
+<a href="Institute.dc.html"><b>IPT</b><span>Physics and technology</span></a>
 </div>
 </section>
+
 <section class="wrap sec">
-<div style="background:#E8EEF7;border-radius:8px;padding:48px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center">
-<div style="max-width:640px"><span class="tag" style="background:#FFFFFF">International applicants</span><h2 style="margin-top:16px">Study in Russian or in English</h2><p class="muted" style="margin-top:12px">Bachelor's and Master's programs, preparatory courses, housing on campus and help with arrival.</p></div>
-<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="Catalog.dc.html">Browse programs</a><a class="btn2" href="Admission.dc.html">How to apply</a></div>
+<div class="adm">
+<div style="position:relative;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end;z-index:1">
+<div><span class="tag">Admissions 2027</span><h2>Apply in 5 steps</h2></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="Catalog.dc.html">Find a program</a><a class="btn2" href="Admission.dc.html" style="background:#FFFFFF">All steps</a></div>
+</div>
+<p class="muted" style="font-size:14px;margin-top:12px;position:relative">Dates follow the 2026 admission rules — 2027 dates are to be confirmed.</p>
+<ol class="steps">
+<li><div class="date num">June 20</div><div class="what">Applications open</div></li>
+<li><div class="date num">July 25</div><div class="what">State-funded places: deadline</div></li>
+<li><div class="date num">August 20</div><div class="what">Paid places: deadline</div></li>
+<li class="last"><div class="date num">September 1</div><div class="what">Classes begin</div></li>
+</ol>
 </div>
 </section>
+
 <section class="wrap sec">
-<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap"><h2>News and events</h2><div style="display:flex;gap:16px"><a href="News.dc.html">All news</a><a href="Events.dc.html">Calendar</a></div></div>
-<div class="g3" style="margin-top:24px">
-<a class="card" href="Article.dc.html" style="padding:0;overflow:hidden"><div class="ph" style="height:180px;border-radius:0;position:relative;overflow:hidden"><svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%"><defs><pattern id="hatch0" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#C3CEDC" stroke-width="1"></line></pattern></defs><rect width="100%" height="100%" fill="#DCE3EC"></rect><rect width="100%" height="100%" fill="url(#hatch0)"></rect></svg><span style="position:relative;display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;color:#3E4853;padding:4px 10px;border-radius:4px;font-size:12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"></rect><circle cx="12" cy="13" r="3.5"></circle><path d="M8 6l1.5-2h5L16 6"></path></svg>Photo</span></div><div style="padding:20px"><span class="tag">Research</span><div style="font-weight:600;font-size:18px;margin-top:10px">UrFU scientists explain a puzzling cause of male infertility</div></div></a>
-<a class="card" href="Article.dc.html" style="padding:0;overflow:hidden"><div class="ph" style="height:180px;border-radius:0;position:relative;overflow:hidden"><svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%"><defs><pattern id="hatch1" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#C3CEDC" stroke-width="1"></line></pattern></defs><rect width="100%" height="100%" fill="#E3E8EF"></rect><rect width="100%" height="100%" fill="url(#hatch1)"></rect></svg><span style="position:relative;display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;color:#3E4853;padding:4px 10px;border-radius:4px;font-size:12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"></rect><circle cx="12" cy="13" r="3.5"></circle><path d="M8 6l1.5-2h5L16 6"></path></svg>Photo</span></div><div style="padding:20px"><span class="tag">Admissions</span><div style="font-weight:600;font-size:18px;margin-top:10px">Almost 50,000 applications for state-funded places in 2026</div></div></a>
-<a class="card" href="Events.dc.html" style="padding:0;overflow:hidden"><div class="ph" style="height:180px;border-radius:0;position:relative;overflow:hidden"><svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%"><defs><pattern id="hatch2" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#C3CEDC" stroke-width="1"></line></pattern></defs><rect width="100%" height="100%" fill="#D3DCE7"></rect><rect width="100%" height="100%" fill="url(#hatch2)"></rect></svg><span style="position:relative;display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;color:#3E4853;padding:4px 10px;border-radius:4px;font-size:12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"></rect><circle cx="12" cy="13" r="3.5"></circle><path d="M8 6l1.5-2h5L16 6"></path></svg>Photo</span></div><div style="padding:20px"><span class="tag">Event</span><div style="font-weight:600;font-size:18px;margin-top:10px">UrFU Open Day</div></div></a>
+<div class="sec-head"><div><div class="kicker" style="--k:var(--a3)">What's on</div><h2>News and events</h2></div><div style="display:flex;gap:20px;flex-wrap:wrap"><a class="more" href="News.dc.html">All news <span class="arrow">→</span></a><a class="more" href="Events.dc.html">Calendar <span class="arrow">→</span></a></div></div>
+<div class="news">
+<a class="ncard big" href="Article.dc.html"><div class="frame"><div class="art t1" style="min-height:300px"><span class="lbl">[photo: admissions]</span></div></div><div class="meta"><span class="cat">Admissions</span><span class="dt num">July 2026</span></div><div class="ttl">Almost 50,000 applications for state-funded places in 2026</div></a>
+<div style="display:flex;flex-direction:column;gap:28px">
+<a class="ncard c2" href="Article.dc.html"><div class="frame"><div class="art v2 t2" style="min-height:150px"><span class="lbl">[photo: university]</span></div></div><div class="meta"><span class="cat">University</span><span class="dt num">2026</span></div><div class="ttl">UrFU joins the pilot of the new higher education system</div></a>
+<a class="ncard c3" href="Article.dc.html"><div class="meta" style="margin-top:0"><span class="cat">Research</span><span class="dt num">2026</span></div><div class="ttl">UrFU scientists explain a puzzling cause of male infertility</div></a>
+</div>
+<div class="ev" aria-label="Upcoming events">
+<a href="Events.dc.html"><div class="ev-d"><b>[dd]</b><span>[mon]</span></div><div><div class="ev-t">Open Day</div><div class="muted" style="font-size:14px">Main building, 19 Mira St</div></div></a>
+<a href="Events.dc.html"><div class="ev-d"><b>[dd]</b><span>[mon]</span></div><div><div class="ev-t">Public lecture</div><div class="muted" style="font-size:14px">[venue]</div></div></a>
+<a href="Events.dc.html"><div class="ev-d"><b>[dd]</b><span>[mon]</span></div><div><div class="ev-t">Career fair</div><div class="muted" style="font-size:14px">[venue]</div></div></a>
+</div>
 </div>
 </section>
+
 <section class="wrap sec">
-<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap"><h2>Campus life</h2><a href="Life.dc.html">Clubs, sports and events</a></div>
-<div class="g4" style="margin-top:24px"><div class="ph" style="height:260px;grid-column:span 2;position:relative;overflow:hidden"><svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%"><defs><pattern id="hatch3" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#C3CEDC" stroke-width="1"></line></pattern></defs><rect width="100%" height="100%" fill="#DCE3EC"></rect><rect width="100%" height="100%" fill="url(#hatch3)"></rect></svg><span style="position:relative;display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;color:#3E4853;padding:4px 10px;border-radius:4px;font-size:12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"></rect><circle cx="12" cy="13" r="3.5"></circle><path d="M8 6l1.5-2h5L16 6"></path></svg>Campus</span></div><div class="ph" style="height:260px;position:relative;overflow:hidden"><svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%"><defs><pattern id="hatch4" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#C3CEDC" stroke-width="1"></line></pattern></defs><rect width="100%" height="100%" fill="#E3E8EF"></rect><rect width="100%" height="100%" fill="url(#hatch4)"></rect></svg><span style="position:relative;display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;color:#3E4853;padding:4px 10px;border-radius:4px;font-size:12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"></rect><circle cx="12" cy="13" r="3.5"></circle><path d="M8 6l1.5-2h5L16 6"></path></svg>Sports</span></div><div class="ph" style="height:260px;position:relative;overflow:hidden"><svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%"><defs><pattern id="hatch5" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#C3CEDC" stroke-width="1"></line></pattern></defs><rect width="100%" height="100%" fill="#D3DCE7"></rect><rect width="100%" height="100%" fill="url(#hatch5)"></rect></svg><span style="position:relative;display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;color:#3E4853;padding:4px 10px;border-radius:4px;font-size:12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"></rect><circle cx="12" cy="13" r="3.5"></circle><path d="M8 6l1.5-2h5L16 6"></path></svg>Clubs</span></div></div>
+<a class="story" href="Article.dc.html">
+<div class="art v2 t4"><span class="lbl">[lab photo]</span></div>
+<div class="story-tx"><span class="eyebrow">Education</span><h2>About 500 teachers learned to build courses with neural networks</h2><p>At UrFU, AI does not replace teachers — it helps them prepare courses faster.</p><span class="go">Read the story <span class="arrow">→</span></span></div>
+</a>
 </section>
-</main><footer class="ft" style="border-top:4px solid #1D4E9E"><div class="wrap"><div class="ft-grid">
-<div class="ft-col"><a class="brand" href="MainEn.dc.html" style="color:#FFFFFF"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="3" fill="#1D4E9E"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span>UrFU</span></a><p>Ural Federal University</p><p>19 Mira St, Yekaterinburg</p></div>
-<div class="ft-col"><div class="ft-h">Sections</div><a href="Admission.dc.html">Admissions</a><a href="Schedule.dc.html">Study</a><a href="Article.dc.html">Research</a><a href="Life.dc.html">Campus life</a><a href="Institute.dc.html">About</a></div>
-<div class="ft-col"><div class="ft-h">Services</div><a href="Schedule.dc.html">Timetable</a><a href="Schedule.dc.html">Personal account</a><a href="Search.dc.html">Search</a><a href="Contacts.dc.html">Contacts and map</a></div>
-<div class="ft-col"><div class="ft-h">Language</div><a href="Main.dc.html" lang="ru">Русская версия</a><a href="NotFound.dc.html">Accessibility</a></div>
-</div><p style="margin-top:48px;padding-top:24px;border-top:1px solid #24364B">© UrFU, 1920–2026</p></div></footer></div>
+
+<section class="wrap sec">
+<div class="sec-head"><div><div class="kicker" style="--k:var(--a4)">Campus</div><h2>Campus life</h2></div><a class="more" href="Life.dc.html">Clubs, sports and events <span class="arrow">→</span></a></div>
+<div class="bento">
+<a class="b1" href="Life.dc.html"><div class="art t1"><b>Campus</b><span class="lbl">[campus photo]</span></div></a>
+<a class="b2" href="Life.dc.html"><div class="art t2"><b>Sports</b><span class="lbl">[photo: sports]</span></div></a>
+<a href="Life.dc.html"><div class="art v3 t3"><b>Clubs</b><span class="lbl">[photo]</span></div></a>
+<a href="Life.dc.html"><div class="art v3 t4"><b>Events</b><span class="lbl">[photo]</span></div></a>
+</div>
+</section>
+</main>
+
+<footer class="ft"><div class="wrap"><div class="ft-grid">
+<div class="ft-col"><a class="brand" href="MainEn.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Ural<br>Federal<br>University</b><i>named after the first President<br>of Russia B.N. Yeltsin</i></span></a><p>Ural Federal University</p><p>19 Mira St, Yekaterinburg</p></div>
+<div class="ft-col"><div class="ft-h">Sections</div><a href="Admission.dc.html">Admissions</a><a href="Schedule.dc.html">Study</a><a href="Article.dc.html">Research</a><a href="Life.dc.html">Campus life</a><a href="Contacts.dc.html">Partners</a><a href="Institute.dc.html">About</a></div>
+<div class="ft-col"><div class="ft-h">Services</div><a href="Schedule.dc.html">Timetable</a><a href="Schedule.dc.html">Sign in</a><a href="Search.dc.html">Search the site</a><a href="Contacts.dc.html">Contacts and map</a></div>
+<div class="ft-col"><div class="ft-h">Legal information</div><a href="NotFound.dc.html">About the educational organization</a><a href="NotFound.dc.html">Anti-corruption</a><a href="NotFound.dc.html">Accessibility</a><a href="Main.dc.html" lang="ru">Русская версия</a></div>
+</div><p style="margin-top:48px;padding-top:24px;border-top:1px solid var(--ink-line)">© UrFU, 1920–2026</p></div></footer>
+</div>
 </template>
 <div id="dc-root"></div>
 <script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {
+const q = (this.state && this.state.q) || '';
+const words = q.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length >= 3);
+const QUICK = [
+{t:'Programs in English', kind:'Section', href:'Catalog.dc.html', key:'programs degree bachelor master english catalog'},
+{t:'How to apply', kind:'Section', href:'Admission.dc.html', key:'apply admission documents deadline visa'},
+{t:'Housing', kind:'Section', href:'Dorms.dc.html', key:'housing dormitory dorm accommodation'},
+{t:'Timetable', kind:'Service', href:'Schedule.dc.html', key:'timetable schedule classes'},
+{t:'Campus map', kind:'Section', href:'Contacts.dc.html', key:'campus map contacts address'},
+{t:'Clubs and sports', kind:'Section', href:'Life.dc.html', key:'clubs sports student life'},
+{t:'Events calendar', kind:'Section', href:'Events.dc.html', key:'events open day lecture calendar'}
+];
+const sug = words.length ? QUICK.map(k => ({t:k.t, kind:k.kind, href:k.href, h:words.filter(w => (k.t + ' ' + k.key).toLowerCase().includes(w)).length}))
+  .filter(x => x.h > 0).sort((a, b) => b.h - a.h).slice(0, 6) : [];
 const role = (this.state && this.state.role) || 'intl';
 const sets = {
 abit: [
@@ -186,13 +211,14 @@ intl: [
 };
 const list = [['abit','Applicant'],['student','Student'],['staff','Staff'],['intl','International']];
 return {
-roles: list.map(([k, label]) => ({ label, on: k === role, off: k !== role, pick: () => this.setState({ role: k }) })),
-links: sets[role]
+q, onQ: (e) => this.setState({ q: e.target.value }), open: q.trim().length >= 2, sug, none: q.trim().length >= 2 && sug.length === 0,
+roles: list.map(([k, label]) => ({ label, pressed: k === role ? 'true' : 'false', pick: () => this.setState({ role: k }) })),
+links: sets[role].map((l, i) => Object.assign({ n: '0' + (i + 1) }, l))
 };
 }
 }
-
 </script>
 <script src="dc-lite.js"></script>
+<script src="site.js"></script>
 </body>
 </html>

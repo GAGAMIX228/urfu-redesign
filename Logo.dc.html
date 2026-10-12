@@ -3,122 +3,94 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Логотип и фирменный стиль</title>
-<style>
-@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
-@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Medium.ttf') format('truetype');font-weight:500;font-display:swap}
-@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
-@font-face{font-family:'IBM Plex Sans';src:url('fonts/IBMPlexSans-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
-</style>
-
-
-<style>
-body{margin:0;background:#FFFFFF;color:#0E1B2B;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.5}
-a{color:#1D4E9E}a:hover{color:#163B78}
-*{box-sizing:border-box}
-.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
-.hd{border-bottom:1px solid #E1E5EA;background:rgba(255,255,255,0.94);position:sticky;top:0;z-index:20;backdrop-filter:blur(8px)}
-.hd-in{display:flex;align-items:center;gap:24px;min-height:72px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0E1B2B;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:20px}
-.brand:hover{color:#0E1B2B}
-.nav{display:flex;gap:2px;flex-wrap:wrap;flex:1}
-.nav a{color:#0E1B2B;text-decoration:none;padding:10px 12px;border-radius:8px;font-weight:500;min-height:44px;display:inline-flex;align-items:center}
-.nav a:hover{background:#EEF1F4;color:#0E1B2B}
-.nav a.on{color:#1D4E9E;background:#E8EEF7}
-.tools{display:flex;gap:8px;align-items:center}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:6px;background:#1D4E9E;color:#FFFFFF;text-decoration:none;border:0;font:inherit;font-weight:600;cursor:pointer}
-.btn:hover{background:#163B78;color:#FFFFFF}
-.btn2{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:6px;background:#FFFFFF;color:#0E1B2B;text-decoration:none;border:1px solid #C5CCD4;font:inherit;font-weight:600;cursor:pointer}
-.btn2:hover{border-color:#1D4E9E;color:#1D4E9E}
-.ico{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;color:#0E1B2B;text-decoration:none}
-.ico:hover{background:#EEF1F4;color:#0E1B2B}
-h1,h2,h3{font-family:'IBM Plex Sans',sans-serif;font-weight:600;line-height:1.15;margin:0;letter-spacing:-0.015em}
-.hero-art{position:absolute;right:32px;bottom:0;width:520px;height:340px;pointer-events:none}
-@media (max-width:1100px){.hero-art{display:none}}
-h2{font-size:32px}h3{font-size:20px}
-p{margin:0}
-.crumbs{font-size:14px;color:#56606B;padding:24px 0 12px}.crumbs a{color:#56606B}
-.sec{padding:64px 0 0}
-.card{border:1px solid #E1E5EA;border-radius:8px;padding:24px;background:#FFFFFF}
-a.card{display:block;text-decoration:none;color:#0E1B2B}
-a.card{transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
-a.card:hover{border-color:#1D4E9E;color:#0E1B2B;transform:translateY(-3px);box-shadow:0 10px 24px rgba(14,27,43,0.08)}
-.btn,.btn2,.chip,.nav a{transition:background .15s ease,color .15s ease,border-color .15s ease}
-:focus-visible{outline:3px solid #1D4E9E;outline-offset:2px;border-radius:4px}
-h1,h2,h3{text-wrap:balance}
-.num{font-variant-numeric:tabular-nums}
-.tag{display:inline-block;padding:4px 10px;border-radius:4px;background:#EEF1F4;font-size:13px;font-weight:500;color:#0E1B2B}
-.chip{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:4px;border:1px solid #C5CCD4;background:#FFFFFF;font:inherit;font-size:15px;font-weight:500;color:#0E1B2B;cursor:pointer;text-decoration:none}
-.chip.on{background:#0E1B2B;color:#FFFFFF;border-color:#0E1B2B}
-.muted{color:#56606B}
-.ph{background:#DDE3E9;border-radius:8px;display:flex;align-items:flex-end;padding:16px;color:#3E4853;font-size:13px;font-weight:500}
-.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.row{display:flex;gap:32px;flex-wrap:wrap}
-.main{flex:999 1 560px;min-width:0}
-.side{flex:1 1 300px}
-.field{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500}
-.input{min-height:48px;border-radius:6px;border:1px solid #C5CCD4;padding:0 16px;font:inherit;font-size:16px;background:#FFFFFF;color:#0E1B2B}
-.sr{position:absolute;left:-9999px}
-details{border-bottom:1px solid #E1E5EA;padding:18px 0}
-summary{cursor:pointer;font-weight:600;font-size:18px}
-.ft{background:#0E1B2B;color:#C9D1DA;margin-top:96px;padding:56px 0 40px;font-size:15px}
-.ft a{color:#FFFFFF;text-decoration:none}.ft a:hover{text-decoration:underline}
-.ft-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
-.ft-col{display:flex;flex-direction:column;gap:10px}
-.ft-h{color:#FFFFFF;font-weight:600;margin-bottom:4px}
-.skip{position:absolute;left:16px;top:-60px;z-index:50;background:#1D4E9E;color:#FFFFFF;padding:12px 18px;border-radius:4px;font-weight:600;text-decoration:none}
-.skip:focus{top:12px;color:#FFFFFF}
-.a11y-cb{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
-#a11y:checked ~ main{zoom:1.22}
-#a11y:checked ~ main .muted,#a11y:checked ~ main .crumbs,#a11y:checked ~ main .crumbs a{color:#0E1B2B !important}
-#a11y:checked ~ main .ph{filter:grayscale(1)}
-#a11y:checked ~ main a{text-decoration:underline}
-#a11y:checked ~ header .a11y-lbl{background:#0E1B2B;color:#FFFFFF}
-#a11y:focus-visible ~ header .a11y-lbl{outline:3px solid #1D4E9E;outline-offset:2px}
-.sug{position:absolute;left:0;right:0;top:calc(100% + 6px);background:#FFFFFF;color:#0E1B2B;border-radius:8px;box-shadow:0 16px 40px rgba(14,27,43,0.28);overflow:hidden;z-index:30;text-align:left}
-.sug a{display:flex;justify-content:space-between;gap:16px;padding:12px 18px;text-decoration:none;color:#0E1B2B;border-bottom:1px solid #EEF1F4;align-items:center}
-.sug a:hover{background:#E8EEF7;color:#0E1B2B}
-@media (max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.ft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.wrap{padding:0 16px}.nav{order:3;flex-basis:100%;flex-wrap:nowrap;overflow-x:auto}.g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}.big{font-size:32px !important}h2{font-size:24px}}
-</style>
-
-<style>body{background:#DCE3EC !important;display:flex;justify-content:center;align-items:flex-start;padding:32px 16px;margin:0}</style>
+<title>Логотип и фирменный стиль — УрФУ</title>
+<meta name="description" content="Знак, палитра «Самоцветы Урала», шрифт и элементы стиля сайта УрФУ.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 <template id="dc-tpl">
-<div style="width:1440px;height:900px;background:#FFFFFF;padding:64px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:32px;color:#0E1B2B;font-family:'IBM Plex Sans',sans-serif">
-<div style="grid-column:span 7;background:#1D4E9E;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:40px;padding:48px">
-<svg width="190" height="190" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="3" fill="#FFFFFF"></rect><path d="M8 10.5 H28" stroke="#1D4E9E" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#1D4E9E" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#1D4E9E" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#1D4E9E" stroke-width="2.4"></path></svg>
-<div style="display:flex;flex-direction:column;gap:10px"><div style="font-weight:700;font-size:96px;line-height:1;color:#FFFFFF;letter-spacing:-0.02em">УрФУ</div><div style="color:#D5DFEF;font-size:20px;max-width:340px">Уральский федеральный университет</div></div>
+<div><input type="checkbox" id="a11y" class="a11y-cb"><a href="#main" class="skip">Перейти к содержимому</a>
+<header class="hd"><div class="wrap hd-in">
+<a class="brand" href="Main.dc.html" aria-label="УрФУ, на главную"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemH)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a>
+<nav class="nav" aria-label="Главное меню"><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></nav>
+<div class="tools" style="margin-left:auto">
+<label for="a11y" class="ico a11y-lbl" title="Версия для слабовидящих"><span class="sr">Версия для слабовидящих</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></label>
+<a class="ico" href="Search.dc.html" aria-label="Поиск"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+<div class="lang" role="group" aria-label="Язык сайта"><span aria-current="true">RU</span><a href="MainEn.dc.html" lang="en" aria-label="English version">EN</a></div>
+<a class="btn" href="Schedule.dc.html">Личный кабинет</a>
+<details class="mnav"><summary class="ico" aria-label="Меню"><svg class="i-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="i-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></summary>
+<nav class="mnav-panel" aria-label="Главное меню"><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a><a href="Schedule.dc.html">Личный кабинет</a></nav></details>
 </div>
-<div style="grid-column:span 5;display:flex;flex-direction:column;gap:22px">
-<div style="font-weight:600;font-size:24px">Знак: колоннада главного корпуса</div>
-<p style="font-size:17px;color:#3E4853;margin:0">Четыре колонны под антаблементом — образ главного здания на Мира, 19. Прямые линии и почти острые углы: знак читается и на фавиконе 16 px, и на фасаде.</p>
-<div style="display:flex;gap:28px;align-items:flex-end;padding:24px;border:1px solid #E1E5EA;border-radius:8px">
-<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><svg width="64" height="64" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="3" fill="#1D4E9E"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span style="font-size:13px;color:#56606B">64</span></div>
-<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><svg width="32" height="32" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="3" fill="#1D4E9E"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span style="font-size:13px;color:#56606B">32</span></div>
-<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="3" fill="#1D4E9E"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span style="font-size:13px;color:#56606B">16</span></div>
-<div style="display:flex;align-items:center;gap:10px;margin-left:auto"><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="3" fill="#0E1B2B"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span style="font-weight:700;font-size:20px">УрФУ</span></div>
+</div></header>
+<main id="main" tabindex="-1" style="outline:none">
+<section class="phead"><div class="wrap">
+<div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="Concept.dc.html">Концепция</a> / Логотип и стиль</div>
+<h1 class="big" style="font-size:52px">Логотип и фирменный стиль</h1>
+<p class="muted" style="margin-top:12px;font-size:19px;max-width:760px">Знак сохраняет узнаваемую форму «У» УрФУ. Меняется только цвет: вместо розово-жёлтого перехода — уральские самоцветы.</p>
+</div></section>
+
+<section class="wrap sec" style="padding-top:48px">
+<div class="g2">
+<div class="card" style="display:flex;align-items:center;justify-content:center;gap:28px;padding:56px 32px;min-height:300px">
+<svg width="92" height="160" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemL1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemL1)"></path></svg>
+<div><div style="font-weight:600;font-size:30px;line-height:1.05;letter-spacing:-0.01em">Уральский<br>федеральный<br>университет</div><div class="muted" style="font-size:15px;margin-top:8px;line-height:1.3">имени первого Президента<br>России Б.Н.Ельцина</div></div>
 </div>
-<div style="display:flex;gap:10px;flex-wrap:wrap">
-<span style="padding:8px 14px;border-radius:4px;background:#1D4E9E;color:#FFFFFF;font-size:14px;font-weight:600">ИРИТ-РтФ</span>
-<span style="padding:8px 14px;border-radius:4px;background:#163B78;color:#FFFFFF;font-size:14px;font-weight:600">УГИ</span>
-<span style="padding:8px 14px;border-radius:4px;background:#0E1B2B;color:#FFFFFF;font-size:14px;font-weight:600">ИЕНиМ</span>
-<span style="padding:8px 14px;border-radius:4px;background:#A3521F;color:#FFFFFF;font-size:14px;font-weight:600">ИНМиТ</span>
+<div class="card" style="display:flex;align-items:center;justify-content:center;gap:28px;padding:56px 32px;min-height:300px;background:var(--ink);border-color:var(--ink);color:#FFFFFF">
+<svg width="92" height="160" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemL2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9A7AD6"></stop><stop offset=".5" stop-color="#5B8BDB"></stop><stop offset="1" stop-color="#3CCFA6"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemL2)"></path></svg>
+<div><div style="font-weight:600;font-size:30px;line-height:1.05;letter-spacing:-0.01em">Уральский<br>федеральный<br>университет</div><div style="font-size:15px;margin-top:8px;line-height:1.3;color:var(--on-dark-muted)">имени первого Президента<br>России Б.Н.Ельцина</div></div>
 </div>
-<p style="font-size:14px;color:#56606B;margin:0">Институты: общий знак, свой цвет подписи.</p>
 </div>
-<div style="grid-column:span 7;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px">
-<div style="display:flex;flex-direction:column;gap:6px"><div style="height:110px;border-radius:4px;background:#1D4E9E;"></div><b style="font-size:15px">Уральский синий</b><span style="font-size:13px;color:#56606B">#1D4E9E</span></div><div style="display:flex;flex-direction:column;gap:6px"><div style="height:110px;border-radius:4px;background:#163B78;"></div><b style="font-size:15px">Глубокий синий</b><span style="font-size:13px;color:#56606B">#163B78</span></div><div style="display:flex;flex-direction:column;gap:6px"><div style="height:110px;border-radius:4px;background:#0E1B2B;"></div><b style="font-size:15px">Ночь</b><span style="font-size:13px;color:#56606B">#0E1B2B</span></div><div style="display:flex;flex-direction:column;gap:6px"><div style="height:110px;border-radius:4px;background:#A3521F;"></div><b style="font-size:15px">Медь · акцент</b><span style="font-size:13px;color:#56606B">#A3521F</span></div><div style="display:flex;flex-direction:column;gap:6px"><div style="height:110px;border-radius:4px;background:#EEF1F4;border:1px solid #E1E5EA"></div><b style="font-size:15px">Туман</b><span style="font-size:13px;color:#56606B">#EEF1F4</span></div>
+<div class="row" style="margin-top:24px;align-items:stretch">
+<div class="card main">
+<h3>Знак</h3>
+<p class="muted" style="margin-top:10px">Форма — фирменная «У»: засечка сверху, широкая диагональ и хвост, уходящий влево. Цвет перетекает сверху вниз: аметист → сапфир → малахит. На тёмном фоне используются более светлые оттенки тех же камней.</p>
+<div style="display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap;margin-top:24px">
+<div style="text-align:center"><img src="favicon.svg" width="64" height="64" alt=""><div class="muted num" style="font-size:13px">64 px</div></div>
+<div style="text-align:center"><img src="favicon.svg" width="32" height="32" alt=""><div class="muted num" style="font-size:13px">32 px</div></div>
+<div style="text-align:center"><img src="favicon.svg" width="16" height="16" alt=""><div class="muted num" style="font-size:13px">16 px · вкладка</div></div>
 </div>
-<div style="grid-column:span 5;display:flex;flex-direction:column;gap:10px;padding:24px;border:1px solid #E1E5EA;border-radius:8px">
-<div style="font-weight:700;font-size:38px;line-height:1.1;letter-spacing:-0.02em">IBM Plex Sans</div>
-<div style="font-size:14px;color:#56606B">Один шрифт для всего · 400, 500, 600, 700 · кириллица и латиница</div>
-<div style="font-size:20px;margin-top:6px">Найдите своё место в УрФУ · Find your place at UrFU</div>
-<div style="font-size:14px;color:#56606B">Текст от 16 px, заголовки 600–700</div>
 </div>
+<div class="card side">
+<h3>Шрифт</h3>
+<div style="font-weight:700;font-size:40px;line-height:1.1;letter-spacing:-0.02em;margin-top:12px">IBM Plex Sans</div>
+<p class="muted" style="margin-top:8px">Один шрифт для всего · 400, 500, 600, 700 · кириллица и латиница. Лежит в папке сайта — открывается без внешних сервисов.</p>
+<div style="font-size:20px;margin-top:12px">Найдите своё место в УрФУ · Find your place at UrFU</div>
+</div>
+</div>
+</section>
+
+<section class="wrap sec">
+<div class="sec-head"><div><div class="kicker">Палитра</div><h2>Основа и самоцветы</h2></div></div>
+<p class="muted" style="max-width:760px">Основа отвечает за строгость и читаемость, самоцветы — за разнообразие разделов. Для каждого цвета указан контраст белого текста на нём: норма WCAG AA — от 4,5.</p>
+<div class="g4" style="margin-top:24px">
+<div class="card" style="padding:0;overflow:hidden"><div style="height:110px;background:var(--blue);display:flex;align-items:flex-end;padding:12px;color:#FFFFFF;font-weight:600">Аа</div><div style="padding:14px 16px"><b>Сапфир · основной</b><div class="muted num" style="font-size:14px">#1D4E9E · 7,97 : 1</div></div></div>
+<div class="card" style="padding:0;overflow:hidden"><div style="height:110px;background:var(--ink);display:flex;align-items:flex-end;padding:12px;color:#FFFFFF;font-weight:600">Аа</div><div style="padding:14px 16px"><b>Ночь · тёмный фон</b><div class="muted num" style="font-size:14px">#0E1B2B · 17,4 : 1</div></div></div>
+<div class="card" style="padding:0;overflow:hidden"><div style="height:110px;background:var(--copper);display:flex;align-items:flex-end;padding:12px;color:#FFFFFF;font-weight:600">Аа</div><div style="padding:14px 16px"><b>Медь · только даты</b><div class="muted num" style="font-size:14px">#A3521F · 5,55 : 1</div></div></div>
+<div class="card" style="padding:0;overflow:hidden"><div style="height:110px;background:var(--bg-soft);display:flex;align-items:flex-end;padding:12px;color:var(--ink);font-weight:600">Аа</div><div style="padding:14px 16px"><b>Туман · светлый фон</b><div class="muted num" style="font-size:14px">#EEF1F4 · тёмный текст 15,3 : 1</div></div></div>
+<div class="card" style="padding:0;overflow:hidden"><div style="height:110px;background:var(--a1);display:flex;align-items:flex-end;padding:12px;color:#FFFFFF;font-weight:600">Аа</div><div style="padding:14px 16px"><b>Малахит</b><div class="muted num" style="font-size:14px">#0B7A63 · 5,28 : 1</div></div></div>
+<div class="card" style="padding:0;overflow:hidden"><div style="height:110px;background:var(--a2);display:flex;align-items:flex-end;padding:12px;color:#FFFFFF;font-weight:600">Аа</div><div style="padding:14px 16px"><b>Аметист</b><div class="muted num" style="font-size:14px">#6A4C9C · 6,72 : 1</div></div></div>
+<div class="card" style="padding:0;overflow:hidden"><div style="height:110px;background:var(--a3);display:flex;align-items:flex-end;padding:12px;color:#FFFFFF;font-weight:600">Аа</div><div style="padding:14px 16px"><b>Сапфир</b><div class="muted num" style="font-size:14px">#1D4E9E · 7,97 : 1</div></div></div>
+<div class="card" style="padding:0;overflow:hidden"><div style="height:110px;background:var(--a4);display:flex;align-items:flex-end;padding:12px;color:#FFFFFF;font-weight:600">Аа</div><div style="padding:14px 16px"><b>Яшма</b><div class="muted num" style="font-size:14px">#A63A3A · 6,39 : 1</div></div></div>
+</div>
+</section>
+
+<section class="wrap sec">
+<div class="sec-head"><div><div class="kicker" style="--k:var(--a4)">Элементы</div><h2>Как стиль живёт на страницах</h2></div></div>
+<div class="g3">
+<div class="card"><h3>Полоса самоцветов</h3><p class="muted" style="margin-top:8px">Четыре цвета подряд — подпись стиля под шапкой страницы и над подвалом.</p><div style="height:6px;margin-top:20px;border-radius:3px;background:linear-gradient(90deg,var(--a1) 0 25%,var(--a2) 25% 50%,var(--a3) 50% 75%,var(--a4) 75%)"></div></div>
+<div class="card"><h3>Места для фото</h3><p class="muted" style="margin-top:8px">Пока нет фотографий, вместо серых квадратов — цветные плашки с подписью, какое фото здесь нужно.</p><div class="ph art t2" style="height:110px;margin-top:16px"><span class="lbl">[фото кампуса]</span></div></div>
+<div class="card"><h3>Кнопки и фильтры</h3><p class="muted" style="margin-top:8px">Основная кнопка — сапфир, второстепенная — с рамкой, выбранный фильтр — тёмный.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px"><span class="btn">Подобрать</span><span class="btn2">Все шаги</span><span class="chip on">Наука</span><span class="chip">Спорт</span></div></div>
+</div>
+</section>
+</main>
+
+<footer class="ft"><div class="wrap"><div class="ft-grid">
+<div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p></div>
+<div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
+<div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dc.html">Расписание</a><a href="Schedule.dc.html">Личный кабинет</a><a href="Search.dc.html">Поиск по сайту</a><a href="Contacts.dc.html">Контакты и карта</a></div>
+<div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dc.html">Сведения об образовательной организации</a><a href="NotFound.dc.html">Противодействие коррупции</a><a href="NotFound.dc.html">Доступная среда</a><a href="MainEn.dc.html" lang="en">English</a></div>
+</div><p style="margin-top:48px;padding-top:24px;border-top:1px solid var(--ink-line)">© УрФУ, 1920–2026</p></div></footer>
 </div>
 </template>
 <div id="dc-root"></div>
@@ -130,5 +102,6 @@ return {};
 }
 </script>
 <script src="dc-lite.js"></script>
+<script src="site.js"></script>
 </body>
 </html>
