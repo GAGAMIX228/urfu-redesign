@@ -149,7 +149,7 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 .qgrid>.q:nth-child(4n+1){--c:var(--a1)}.qgrid>.q:nth-child(4n+2){--c:var(--a2)}.qgrid>.q:nth-child(4n+3){--c:var(--a3)}.qgrid>.q:nth-child(4n+4){--c:var(--a4)}
 .q:hover{background:color-mix(in srgb,var(--c) 9%,#FFFFFF)}
 .q:hover .n{background:var(--c);color:#FFFFFF !important}
-.q .n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:var(--r);background:color-mix(in srgb,var(--c) 12%,#FFFFFF);color:var(--c) !important;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.04em}
+.q .n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:var(--r);background:color-mix(in srgb,var(--c) 9%,#FFFFFF);color:var(--c) !important;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.04em}
 .q .t{font-size:20px;font-weight:600;letter-spacing:-0.01em;margin-top:auto;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
 .q .t .arrow{color:var(--c)}
 .q .d{color:var(--muted);font-size:15px}
