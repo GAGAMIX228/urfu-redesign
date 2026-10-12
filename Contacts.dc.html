@@ -9,11 +9,11 @@
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <style>
-.cmap{position:relative;height:420px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.cmap{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg-soft)}
+.cleg{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.cleg li{display:flex;gap:12px;align-items:flex-start;line-height:1.5}
+.cn{flex:0 0 32px;height:32px;border-radius:50%;color:#FFFFFF;font-weight:700;display:flex;align-items:center;justify-content:center}
 .cmap svg{display:block}
-.cpin{position:absolute;background:#FFFFFF;border-radius:8px;padding:10px 14px;box-shadow:0 6px 20px rgba(14,27,43,.12);display:flex;flex-direction:column;font-size:14px}
-.cpin span{color:var(--muted)}
-@media (max-width:600px){.cmap{height:300px}}
 </style>
 </head>
 <body>
@@ -35,8 +35,8 @@
 </div></section><div class="wrap">
 <div class="row" style="margin-top:32px;align-items:flex-start">
 <div class="main">
-<div class="cmap" role="img" aria-label="Схема: главный корпус на улице Мира, 19 и ИРИТ-РтФ на улице Мира, 32">
-<svg viewBox="0 0 640 360" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<div class="cmap" role="img" aria-label="Схема: 1 — главный учебный корпус, улица Мира, 19; 2 — ИРИТ-РтФ, улица Мира, 32">
+<svg viewBox="0 0 640 360" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
 <rect width="640" height="360" fill="var(--bg-soft)"></rect>
 <g fill="#FFFFFF" stroke="var(--line)"><rect x="40" y="30" width="200" height="120" rx="10"></rect><rect x="40" y="200" width="200" height="130" rx="10"></rect><rect x="400" y="30" width="200" height="130" rx="10"></rect><rect x="400" y="210" width="200" height="120" rx="10"></rect></g>
 <rect x="282" y="0" width="76" height="360" fill="#FFFFFF"></rect>
@@ -44,13 +44,12 @@
 <text x="320" y="186" transform="rotate(-90 320 186)" text-anchor="middle" font-size="15" font-weight="600" fill="var(--muted)" font-family="IBM Plex Sans, sans-serif" dy="-10">ул. Мира</text>
 <rect x="70" y="232" width="140" height="70" rx="6" fill="var(--a3)" opacity=".14"></rect>
 <rect x="430" y="62" width="140" height="70" rx="6" fill="var(--a1)" opacity=".16"></rect>
-<circle cx="140" cy="267" r="13" fill="var(--a3)" stroke="#FFFFFF" stroke-width="4"></circle>
-<circle cx="500" cy="97" r="13" fill="var(--a1)" stroke="#FFFFFF" stroke-width="4"></circle>
+<circle cx="140" cy="267" r="22" fill="var(--a3)" stroke="#FFFFFF" stroke-width="5"></circle><text x="140" y="275" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF" font-family="IBM Plex Sans, sans-serif">1</text>
+<circle cx="500" cy="97" r="22" fill="var(--a1)" stroke="#FFFFFF" stroke-width="5"></circle><text x="500" y="105" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF" font-family="IBM Plex Sans, sans-serif">2</text>
 </svg>
-<div class="cpin" style="left:4%;bottom:6%"><b>Главный учебный корпус</b><span>ул. Мира, 19</span></div>
-<div class="cpin" style="right:4%;top:6%"><b>ИРИТ-РтФ</b><span>ул. Мира, 32</span></div>
 </div>
-<p class="muted" style="font-size:14px;margin-top:8px">Схема без масштаба. Адреса других корпусов, общежитий и спорткомплекса — [адреса]. Точный маршрут: <a href="https://yandex.ru/maps/?text=%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B8%D1%80%D0%B0%2C%2019" rel="noopener">Мира, 19</a> · <a href="https://yandex.ru/maps/?text=%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B8%D1%80%D0%B0%2C%2032" rel="noopener">Мира, 32</a> (откроются Яндекс Карты)</p>
+<ol class="cleg"><li><span class="cn" style="background:var(--a3)">1</span><span><b>Главный учебный корпус</b><br>ул. Мира, 19 · <a href="https://yandex.ru/maps/?text=%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B8%D1%80%D0%B0%2C%2019" rel="noopener">маршрут</a></span></li><li><span class="cn" style="background:var(--a1)">2</span><span><b>ИРИТ-РтФ</b><br>ул. Мира, 32 · <a href="https://yandex.ru/maps/?text=%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B8%D1%80%D0%B0%2C%2032" rel="noopener">маршрут</a></span></li></ol>
+<p class="muted" style="font-size:14px;margin-top:8px">Схема без масштаба. Адреса других корпусов, общежитий и спорткомплекса — [адреса].</p>
 <div class="card" style="margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between;align-items:center;background:var(--ink);color:#FFFFFF;border-color:var(--ink)">
 <div><div style="color:var(--on-dark-muted);font-size:14px">Контакт-центр · звонок по России бесплатный</div><a href="tel:88001005044" style="display:block;color:#FFFFFF;font-size:32px;font-weight:600;text-decoration:none;margin-top:4px" class="num">8-800-100-50-44</a></div>
 <div style="font-size:15px;line-height:1.7"><div>В Екатеринбурге: <a href="tel:+73433754444" style="color:#FFFFFF">+7 (343) 375-44-44</a></div><div style="color:var(--on-dark-muted)">пн–пт 8:30–19:00, сб 10:00–16:00</div><a href="mailto:contact@urfu.ru" style="color:#FFFFFF">contact@urfu.ru</a></div>
