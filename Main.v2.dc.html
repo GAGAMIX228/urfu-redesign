@@ -78,7 +78,7 @@ a:hover .arrow{transform:translateX(4px)}
 /* ===== Шапка ===== */
 .hd{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
 .hd-in{display:flex;align-items:center;gap:16px;min-height:72px}
-.brand{display:flex;flex:none;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-weight:600;font-size:20px;letter-spacing:-0.01em}
+.brand{display:flex;flex:none;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:600;font-size:20px;letter-spacing:-0.01em}
 .brand:hover{color:var(--text)}
 .brand small{display:block;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);line-height:1.2}
 .nav{display:flex;gap:2px;flex:1}
@@ -311,7 +311,7 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 <template id="dc-tpl">
 <div><input type="checkbox" id="a11y" class="a11y-cb"><a href="#main" class="skip">Перейти к содержимому</a>
 <header class="hd"><div class="wrap hd-in">
-<a class="brand" href="Main.v2.dc.html" aria-label="УрФУ, на главную"><svg width="40" height="40" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="4" style="fill:var(--blue)"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span>УрФУ<small>Уральский федеральный</small></span></a>
+<a class="brand" href="Main.v2.dc.html" aria-label="УрФУ, на главную"><svg class="mark" width="36" height="44" viewBox="0 0 40 48" aria-hidden="true"><polygon points="4,3 13,3 20.5,21.5" fill="#E07A7A"></polygon><polygon points="4,3 20.5,21.5 16.8,28" fill="#A63A3A"></polygon><polygon points="27,3 36,3 30.6,16.5" fill="#5CC9AA"></polygon><polygon points="27,3 30.6,16.5 22,16" fill="#0B7A63"></polygon><polygon points="22,16 30.6,16.5 24.8,31.5" fill="#4F7FD0"></polygon><polygon points="22,16 24.8,31.5 16.8,28" fill="#1D4E9E"></polygon><polygon points="16.8,28 24.8,31.5 12.5,46" fill="#9B7FD0"></polygon><polygon points="16.8,28 12.5,46 6.5,42.5" fill="#6A4C9C"></polygon></svg><span>УрФУ<small>Уральский федеральный</small></span></a>
 <nav class="nav" aria-label="Главное меню"><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></nav>
 <div class="tools" style="margin-left:auto">
 <label for="a11y" class="ico a11y-lbl" title="Версия для слабовидящих"><span class="sr">Версия для слабовидящих</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></label>
@@ -453,7 +453,7 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 </main>
 
 <footer class="ft"><div class="wrap"><div class="ft-grid">
-<div class="ft-col"><a class="brand" href="Main.v2.dc.html"><svg width="40" height="40" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="4" style="fill:var(--blue)"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span>УрФУ<small>Уральский федеральный</small></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p></div>
+<div class="ft-col"><a class="brand" href="Main.v2.dc.html"><svg class="mark" width="36" height="44" viewBox="0 0 40 48" aria-hidden="true"><polygon points="4,3 13,3 20.5,21.5" fill="#E07A7A"></polygon><polygon points="4,3 20.5,21.5 16.8,28" fill="#A63A3A"></polygon><polygon points="27,3 36,3 30.6,16.5" fill="#5CC9AA"></polygon><polygon points="27,3 30.6,16.5 22,16" fill="#0B7A63"></polygon><polygon points="22,16 30.6,16.5 24.8,31.5" fill="#4F7FD0"></polygon><polygon points="22,16 24.8,31.5 16.8,28" fill="#1D4E9E"></polygon><polygon points="16.8,28 24.8,31.5 12.5,46" fill="#9B7FD0"></polygon><polygon points="16.8,28 12.5,46 6.5,42.5" fill="#6A4C9C"></polygon></svg><span>УрФУ<small>Уральский федеральный</small></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p></div>
 <div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
 <div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dc.html">Расписание</a><a href="Schedule.dc.html">Личный кабинет</a><a href="Search.dc.html">Поиск по сайту</a><a href="Contacts.dc.html">Контакты и карта</a></div>
 <div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dc.html">Сведения об образовательной организации</a><a href="NotFound.dc.html">Противодействие коррупции</a><a href="NotFound.dc.html">Доступная среда</a><a href="MainEn.dc.html" lang="en">English</a></div>
@@ -472,11 +472,12 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 (function(){
   var q=new URLSearchParams(location.search), root=document.documentElement, t=q.get('theme');
   if(q.get('embed')) root.classList.add('embed');
-  if(!t){try{t=localStorage.getItem('urfu-theme');}catch(e){}}
+  if(!t){try{t=localStorage.getItem('urfu-theme2');}catch(e){}}
+  if(!t) t='gems';
   function set(v){
     if(!v||v==='strict'){root.removeAttribute('data-theme');v='strict';}else root.setAttribute('data-theme',v);
     document.querySelectorAll('.themer [data-t]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.t===v));});
-    try{localStorage.setItem('urfu-theme',v);}catch(e){}
+    try{localStorage.setItem('urfu-theme2',v);}catch(e){}
   }
   document.querySelectorAll('.themer [data-t]').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.t);});});
   set(t);
