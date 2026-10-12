@@ -22,10 +22,38 @@
   --shadow:0 1px 2px rgba(14,27,43,.06),0 8px 24px rgba(14,27,43,.06);
   --shadow-up:0 2px 4px rgba(14,27,43,.06),0 18px 40px rgba(14,27,43,.12);
   --ease:cubic-bezier(.2,.7,.2,1);
+  /* акцентные цвета: a1–a4 — для текста на светлом, a1l–a4l — светлые, для тёмного фона */
+  --a1:#1D4E9E; --a2:#1D4E9E; --a3:#1D4E9E; --a4:#1D4E9E;
+  --a1l:#A9C2EA; --a2l:#A9C2EA; --a3l:#A9C2EA; --a4l:#A9C2EA;
+  --hero-1:rgba(29,78,158,.55); --hero-2:rgba(23,52,81,.9); --hero-3:transparent; --hero-em:#A9C2EA;
+  --page:#FFFFFF;
+}
+/* ===== Палитры (переключатель внизу страницы) ===== */
+/* «Самоцветы Урала»: малахит, аметист, сапфир, яшма */
+[data-theme="gems"]{
+  --a1:#0B7A63; --a2:#6A4C9C; --a3:#1D4E9E; --a4:#A63A3A;
+  --a1l:#7FD8C1; --a2l:#C7B5EE; --a3l:#A9C2EA; --a4l:#F2A7A7;
+  --hero-1:rgba(11,122,99,.5); --hero-2:rgba(106,76,156,.5); --hero-3:rgba(29,78,158,.45); --hero-em:#7FD8C1;
+}
+/* «Тёплый академ»: бордо, охра, олива, бумажный фон */
+[data-theme="warm"]{
+  --blue:#8C2F39; --blue-dark:#6E232C; --blue-soft:#F5E6E7; --blue-line:#E3C3C7;
+  --ink:#1F1418; --ink-2:#3A1F27; --ink-line:#4A3540;
+  --bg-soft:#F1EBE2; --bg-soft-2:#F7F2EB; --line:#E6DED3; --line-strong:#CFC4B6; --page:#FBF8F3;
+  --a1:#8C2F39; --a2:#8A5A12; --a3:#4E6130; --a4:#1D4E9E;
+  --a1l:#F2B8BE; --a2l:#F0C987; --a3l:#C9D9A3; --a4l:#A9C2EA;
+  --hero-1:rgba(140,47,57,.6); --hero-2:rgba(138,90,18,.35); --hero-3:rgba(78,97,48,.3); --hero-em:#F0C987;
+}
+/* «Яркий кампус»: синий, коралл, бирюза, фиолет */
+[data-theme="campus"]{
+  --ink:#0B1530; --ink-2:#14234D; --ink-line:#24345E;
+  --a1:#1D4E9E; --a2:#C2410C; --a3:#0E7490; --a4:#6D28D9;
+  --a1l:#A9C2EA; --a2l:#FDBA8C; --a3l:#67E8F9; --a4l:#C4B5FD;
+  --hero-1:rgba(37,99,235,.6); --hero-2:rgba(109,40,217,.5); --hero-3:rgba(14,116,144,.55); --hero-em:#67E8F9;
 }
 
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--page);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:var(--blue)}a:hover{color:var(--blue-dark)}
 h1,h2,h3{font-weight:600;line-height:1.1;margin:0;letter-spacing:-0.02em;text-wrap:balance}
 p{margin:0}
@@ -76,8 +104,9 @@ a:hover .arrow{transform:translateX(4px)}
 /* ===== Первый экран ===== */
 .hero{position:relative;overflow:hidden;color:var(--on-dark);
   background:
-    radial-gradient(900px 520px at 82% 18%,rgba(29,78,158,.55),transparent 65%),
-    radial-gradient(600px 400px at 0% 100%,rgba(23,52,81,.9),transparent 70%),
+    radial-gradient(900px 520px at 82% 18%,var(--hero-1),transparent 65%),
+    radial-gradient(700px 460px at 0% 100%,var(--hero-2),transparent 70%),
+    radial-gradient(500px 360px at 55% 110%,var(--hero-3),transparent 70%),
     var(--ink)}
 .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
   background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
@@ -86,14 +115,14 @@ a:hover .arrow{transform:translateX(4px)}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--on-dark-muted)}
 .eyebrow::before{content:"";width:28px;height:2px;background:var(--on-dark-muted)}
 .hero h1{font-size:68px;margin-top:22px;letter-spacing:-0.03em;line-height:1.02}
-.hero h1 em{font-style:normal;color:#A9C2EA}
+.hero h1 em{font-style:normal;color:var(--hero-em)}
 .hero-lead{font-size:20px;color:var(--on-dark-muted);margin-top:22px;max-width:560px}
 .search{position:relative;margin-top:36px;max-width:640px}
 .search-box{display:flex;align-items:center;gap:4px;background:#FFFFFF;border-radius:var(--r-lg);padding:6px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
 .search-box svg{flex:none;margin-left:12px;color:var(--muted)}
 .search-box input{flex:1;min-width:0;min-height:52px;border:0;padding:0 10px;font:inherit;font-size:18px;color:var(--text);background:transparent}
 .search-box input:focus{outline:none}
-.search-box:focus-within{box-shadow:0 0 0 3px #A9C2EA,0 20px 50px rgba(0,0,0,.35)}
+.search-box:focus-within{box-shadow:0 0 0 3px var(--hero-em),0 20px 50px rgba(0,0,0,.35)}
 .search-box .btn{min-height:52px;padding:0 26px;font-size:17px}
 .sug{position:absolute;left:0;right:0;top:calc(100% + 8px);background:#FFFFFF;color:var(--text);border-radius:var(--r-lg);box-shadow:var(--shadow-up);overflow:hidden;z-index:30}
 .sug a{display:flex;justify-content:space-between;gap:16px;padding:12px 18px;text-decoration:none;color:var(--text);border-bottom:1px solid var(--bg-soft);align-items:center}
@@ -103,13 +132,15 @@ a:hover .arrow{transform:translateX(4px)}
 .often a:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5);color:#FFFFFF}
 
 .colonnade{width:100%;height:auto;display:block}
-.colonnade .col{transform-box:fill-box;fill:url(#colFill);stroke:#A9C2EA;stroke-width:1.2}
-.colonnade .ent{fill:none;stroke:#A9C2EA;stroke-width:1.2}
+.colonnade .col{transform-box:fill-box;fill:url(#colFill);stroke:var(--hero-em);stroke-width:1.2}
+.colonnade .ent{fill:none;stroke:var(--hero-em);stroke-width:1.2}
 
 .stats{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.14)}
 .stat{padding:28px 24px 36px 0}
 .stat+.stat{padding-left:24px;border-left:1px solid rgba(255,255,255,.14)}
 .stat b{display:block;font-size:44px;font-weight:600;letter-spacing:-0.02em;line-height:1}
+.stat::before{content:"";display:block;width:28px;height:3px;border-radius:2px;background:var(--sa,var(--a1l));margin-bottom:18px}
+.stat:nth-child(2){--sa:var(--a2l)}.stat:nth-child(3){--sa:var(--a3l)}.stat:nth-child(4){--sa:var(--a4l)}
 .stat span{display:block;margin-top:8px;color:var(--on-dark-muted);font-size:15px}
 
 /* плавное появление — только при первой загрузке страницы */
@@ -126,7 +157,7 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 .sec{padding-top:96px}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
 .sec-head h2{font-size:40px}
-.kicker{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.kicker{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--k,var(--blue));margin-bottom:12px}
 .more{font-weight:600;text-decoration:none;display:inline-flex;gap:6px;align-items:center;min-height:44px}
 
 /* выбор роли — переключатель */
@@ -138,20 +169,26 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 .qgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:24px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
 .q{position:relative;display:flex;flex-direction:column;gap:10px;min-height:168px;padding:24px;background:#FFFFFF;text-decoration:none;color:var(--text);transition:background .2s ease}
 .q:hover{background:var(--blue-soft);color:var(--text)}
-.q .n{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.04em}
+.qgrid>.q:nth-child(4n+1){--c:var(--a1)}.qgrid>.q:nth-child(4n+2){--c:var(--a2)}.qgrid>.q:nth-child(4n+3){--c:var(--a3)}.qgrid>.q:nth-child(4n+4){--c:var(--a4)}
+.q:hover{background:color-mix(in srgb,var(--c) 9%,#FFFFFF)}
+.q:hover .n{background:var(--c);color:#FFFFFF !important}
+.q .n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:var(--r);background:color-mix(in srgb,var(--c) 12%,#FFFFFF);color:var(--c) !important;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.04em}
 .q .t{font-size:20px;font-weight:600;letter-spacing:-0.01em;margin-top:auto;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
-.q .t .arrow{color:var(--blue)}
+.q .t .arrow{color:var(--c)}
 .q .d{color:var(--muted);font-size:15px}
 
 /* институты */
 .inst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .inst a{display:flex;flex-direction:column;gap:6px;padding:20px;border:1px solid var(--line);border-radius:var(--r-lg);text-decoration:none;color:var(--text);background:#FFFFFF;transition:border-color .2s ease,box-shadow .2s ease,transform .2s var(--ease)}
 .inst a:hover{border-color:var(--blue);box-shadow:var(--shadow);transform:translateY(-2px);color:var(--text)}
-.inst b{font-size:19px;color:var(--blue);font-weight:700;letter-spacing:-0.01em}
+.inst a:nth-child(4n+1){--c:var(--a1)}.inst a:nth-child(4n+2){--c:var(--a2)}.inst a:nth-child(4n+3){--c:var(--a3)}.inst a:nth-child(4n+4){--c:var(--a4)}
+.inst a{box-shadow:inset 0 3px 0 var(--c)}
+.inst a:hover{border-color:var(--c) !important;box-shadow:inset 0 3px 0 var(--c),var(--shadow) !important}
+.inst b{font-size:19px;color:var(--c);font-weight:700;letter-spacing:-0.01em}
 .inst span{color:var(--muted);font-size:14px}
 
 /* поступление */
-.adm{position:relative;overflow:hidden;background:var(--blue-soft);border-radius:var(--r-lg);padding:56px}
+.adm{position:relative;overflow:hidden;background:color-mix(in srgb,var(--a1) 9%,#FFFFFF);border-radius:var(--r-lg);padding:56px}
 .adm::after{content:"";position:absolute;right:-60px;top:-60px;width:320px;height:320px;border-radius:50%;border:1px solid var(--blue-line);box-shadow:0 0 0 40px rgba(255,255,255,.25),0 0 0 80px rgba(255,255,255,.15);pointer-events:none}
 .adm .tag{display:inline-block;padding:4px 10px;border-radius:var(--r-sm);background:#FFFFFF;font-size:13px;font-weight:600}
 .adm h2{font-size:40px;margin-top:16px}
@@ -159,6 +196,7 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 .steps::before{content:"";position:absolute;left:8px;right:8px;top:7px;height:2px;background:var(--blue-line)}
 .steps li{position:relative;padding-top:32px}
 .steps li::before{content:"";position:absolute;left:0;top:0;width:16px;height:16px;border-radius:50%;background:#FFFFFF;border:3px solid var(--blue)}
+.steps li:first-child::before{border-color:var(--a1)}.steps li:nth-child(2)::before{border-color:var(--a2)}.steps li:nth-child(3)::before{border-color:var(--a3)}
 .steps li.last::before{border-color:var(--copper);background:var(--copper)}
 .steps .date{font-size:22px;font-weight:600;color:var(--copper);letter-spacing:-0.01em}
 .steps .what{color:var(--muted);margin-top:4px}
@@ -170,9 +208,10 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 .ncard .art{transition:transform .5s var(--ease)}
 .ncard .frame{overflow:hidden;border-radius:var(--r-lg)}
 .ncard:hover .art{transform:scale(1.03)}
-.ncard:hover .ttl{color:var(--blue)}
+.ncard:hover .ttl{color:var(--c,var(--a1))}
+.ncard.c2{--c:var(--a2)}.ncard.c3{--c:var(--a3)}
 .ncard .meta{display:flex;gap:10px;align-items:center;margin-top:16px;font-size:13px;font-weight:600}
-.ncard .meta .cat{color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
+.ncard .meta .cat{color:var(--c,var(--a1));text-transform:uppercase;letter-spacing:.06em}
 .ncard .meta .dt{color:var(--copper)}
 .ncard .ttl{font-size:20px;font-weight:600;line-height:1.3;margin-top:8px;transition:color .15s ease;letter-spacing:-0.01em}
 .ncard.big .ttl{font-size:26px}
@@ -188,9 +227,10 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 .art{position:relative;display:flex;align-items:flex-end;padding:16px;min-height:200px;color:#FFFFFF;
   background:
     repeating-linear-gradient(90deg,transparent 0 34px,rgba(255,255,255,.07) 34px 46px,transparent 46px 64px),
-    linear-gradient(160deg,#2A63BF 0%,var(--blue) 45%,var(--ink-2) 100%)}
-.art.v2{background:repeating-linear-gradient(90deg,transparent 0 34px,rgba(255,255,255,.06) 34px 46px,transparent 46px 64px),linear-gradient(200deg,#355A86 0%,var(--ink-2) 55%,var(--ink) 100%)}
-.art.v3{background:repeating-linear-gradient(90deg,transparent 0 34px,rgba(14,27,43,.05) 34px 46px,transparent 46px 64px),linear-gradient(160deg,#DCE6F4 0%,#C3D3EA 100%);color:var(--text)}
+    linear-gradient(160deg,color-mix(in srgb,var(--g) 75%,#FFFFFF) 0%,var(--g) 45%,var(--ink-2) 100%)}
+.art{--g:var(--blue)}.art.t1{--g:var(--a1)}.art.t2{--g:var(--a2)}.art.t3{--g:var(--a3)}.art.t4{--g:var(--a4)}
+.art.v2{background:repeating-linear-gradient(90deg,transparent 0 34px,rgba(255,255,255,.06) 34px 46px,transparent 46px 64px),linear-gradient(200deg,color-mix(in srgb,var(--g) 70%,var(--ink-2)) 0%,var(--ink-2) 55%,var(--ink) 100%)}
+.art.v3{background:repeating-linear-gradient(90deg,transparent 0 34px,rgba(14,27,43,.05) 34px 46px,transparent 46px 64px),linear-gradient(160deg,color-mix(in srgb,var(--g) 12%,#FFFFFF) 0%,color-mix(in srgb,var(--g) 26%,#FFFFFF) 100%);color:var(--text)}
 .art::before{content:"";position:absolute;left:0;right:0;top:22%;height:10px;border-top:2px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.12)}
 .art.v3::before{border-color:rgba(14,27,43,.1)}
 .art .lbl{position:relative;display:inline-flex;align-items:center;gap:6px;background:rgba(14,27,43,.55);backdrop-filter:blur(6px);padding:5px 10px;border-radius:var(--r-sm);font-size:12px;font-weight:500}
@@ -215,7 +255,8 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 .bento .art b{position:absolute;left:20px;top:18px;font-size:22px;font-weight:600;letter-spacing:-0.01em}
 
 /* ===== Подвал ===== */
-.ft{background:var(--ink);color:var(--on-dark-muted);margin-top:120px;padding:64px 0 40px;font-size:15px;border-top:4px solid var(--blue)}
+.ft{position:relative;background:var(--ink);color:var(--on-dark-muted);margin-top:120px;padding:68px 0 40px;font-size:15px}
+.ft::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--a1) 0 25%,var(--a2) 25% 50%,var(--a3) 50% 75%,var(--a4) 75%)}
 .ft a{color:#FFFFFF;text-decoration:none}.ft a:hover{text-decoration:underline}
 .ft-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:32px}
 .ft-col{display:flex;flex-direction:column;gap:10px}
@@ -254,13 +295,23 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
   .bento{grid-template-columns:1fr 1fr;grid-auto-rows:130px}.bento .b1{grid-column:span 2}
   .ft-grid{grid-template-columns:minmax(0,1fr)}
 }
+/* переключатель палитр — только для прототипа */
+.themer{position:fixed;left:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:4px;flex-wrap:wrap;max-width:calc(100vw - 32px);padding:6px;background:#FFFFFF;border:1px solid #C5CCD4;border-radius:10px;box-shadow:0 10px 30px rgba(14,27,43,.2);font-size:14px}
+.themer span{padding:0 8px;font-weight:600;color:#0E1B2B}
+.themer button{min-height:40px;padding:0 12px;border:0;border-radius:6px;background:transparent;font:inherit;color:#3E4853;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.themer button:hover{background:#EEF1F4}
+.themer button[aria-pressed="true"]{background:#0E1B2B;color:#FFFFFF}
+.themer i{display:inline-flex}.themer i b{width:9px;height:14px}
+.themer i b:first-child{border-radius:3px 0 0 3px}.themer i b:last-child{border-radius:0 3px 3px 0}
+.embed .themer{display:none}
+@media (max-width:640px){.themer{left:8px;right:8px;bottom:8px;max-width:none}.themer span{display:none}.themer button{padding:0 8px;font-size:13px}}
 </style>
 </head>
 <body>
 <template id="dc-tpl">
 <div><input type="checkbox" id="a11y" class="a11y-cb"><a href="#main" class="skip">Перейти к содержимому</a>
 <header class="hd"><div class="wrap hd-in">
-<a class="brand" href="Main.v2.dc.html" aria-label="УрФУ, на главную"><svg width="40" height="40" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="4" fill="#1D4E9E"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span>УрФУ<small>Уральский федеральный</small></span></a>
+<a class="brand" href="Main.v2.dc.html" aria-label="УрФУ, на главную"><svg width="40" height="40" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="4" style="fill:var(--blue)"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span>УрФУ<small>Уральский федеральный</small></span></a>
 <nav class="nav" aria-label="Главное меню"><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></nav>
 <div class="tools" style="margin-left:auto">
 <label for="a11y" class="ico a11y-lbl" title="Версия для слабовидящих"><span class="sr">Версия для слабовидящих</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></label>
@@ -300,7 +351,7 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 </div>
 <div class="hero-art" aria-hidden="true">
 <svg class="colonnade" viewBox="0 0 520 360" fill="none">
-<defs><linearGradient id="colFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9C2EA" stop-opacity=".28"></stop><stop offset="1" stop-color="#A9C2EA" stop-opacity=".04"></stop></linearGradient></defs>
+<defs><linearGradient id="colFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--hero-em)" stop-opacity=".28"></stop><stop offset="1" style="stop-color:var(--hero-em)" stop-opacity=".04"></stop></linearGradient></defs>
 <path class="ent" d="M0 40 H520"></path>
 <rect class="col" x="20" y="48" width="480" height="32"></rect>
 <rect class="col" x="38" y="80" width="34" height="200" style="animation-delay:.05s"></rect>
@@ -338,7 +389,7 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 </section>
 
 <section class="wrap sec">
-<div class="sec-head"><div><div class="kicker">Структура</div><h2>Институты</h2></div><a class="more" href="Institute.dc.html">Все институты и подразделения <span class="arrow">→</span></a></div>
+<div class="sec-head"><div><div class="kicker" style="--k:var(--a2)">Структура</div><h2>Институты</h2></div><a class="more" href="Institute.dc.html">Все институты и подразделения <span class="arrow">→</span></a></div>
 <div class="inst">
 <a href="Institute.dc.html"><b>ИРИТ-РтФ</b><span>Радиоэлектроника и IT</span></a>
 <a href="Institute.dc.html"><b>ИЕНиМ</b><span>Естественные науки и математика</span></a>
@@ -368,12 +419,12 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 </section>
 
 <section class="wrap sec">
-<div class="sec-head"><div><div class="kicker">Что происходит</div><h2>Новости и события</h2></div><div style="display:flex;gap:20px;flex-wrap:wrap"><a class="more" href="News.dc.html">Все новости <span class="arrow">→</span></a><a class="more" href="Events.dc.html">Календарь <span class="arrow">→</span></a></div></div>
+<div class="sec-head"><div><div class="kicker" style="--k:var(--a3)">Что происходит</div><h2>Новости и события</h2></div><div style="display:flex;gap:20px;flex-wrap:wrap"><a class="more" href="News.dc.html">Все новости <span class="arrow">→</span></a><a class="more" href="Events.dc.html">Календарь <span class="arrow">→</span></a></div></div>
 <div class="news">
-<a class="ncard big" href="Article.dc.html"><div class="frame"><div class="art" style="min-height:300px"><span class="lbl">[фото: приёмная кампания]</span></div></div><div class="meta"><span class="cat">Поступающим</span><span class="dt num">Июль 2026</span></div><div class="ttl">Почти 50 тысяч заявлений на бюджет: итоги приёма-2026</div></a>
+<a class="ncard big" href="Article.dc.html"><div class="frame"><div class="art t1" style="min-height:300px"><span class="lbl">[фото: приёмная кампания]</span></div></div><div class="meta"><span class="cat">Поступающим</span><span class="dt num">Июль 2026</span></div><div class="ttl">Почти 50 тысяч заявлений на бюджет: итоги приёма-2026</div></a>
 <div style="display:flex;flex-direction:column;gap:28px">
-<a class="ncard" href="Article.dc.html"><div class="frame"><div class="art v2" style="min-height:150px"><span class="lbl">[фото: университет]</span></div></div><div class="meta"><span class="cat">Университет</span><span class="dt num">2026</span></div><div class="ttl">УрФУ вошёл в пилотный проект новой системы высшего образования</div></a>
-<a class="ncard" href="Article.dc.html"><div class="meta" style="margin-top:0"><span class="cat">Наука</span><span class="dt num">2026</span></div><div class="ttl">Учёные УрФУ и УрО РАН объяснили одну из загадочных причин мужского бесплодия</div></a>
+<a class="ncard c2" href="Article.dc.html"><div class="frame"><div class="art v2 t2" style="min-height:150px"><span class="lbl">[фото: университет]</span></div></div><div class="meta"><span class="cat">Университет</span><span class="dt num">2026</span></div><div class="ttl">УрФУ вошёл в пилотный проект новой системы высшего образования</div></a>
+<a class="ncard c3" href="Article.dc.html"><div class="meta" style="margin-top:0"><span class="cat">Наука</span><span class="dt num">2026</span></div><div class="ttl">Учёные УрФУ и УрО РАН объяснили одну из загадочных причин мужского бесплодия</div></a>
 </div>
 <div class="ev" aria-label="Ближайшие события">
 <a href="Events.dc.html"><div class="ev-d"><b>[дд]</b><span>[мес]</span></div><div><div class="ev-t">День открытых дверей</div><div class="muted" style="font-size:14px">Главный корпус, ул. Мира, 19</div></div></a>
@@ -385,24 +436,24 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 
 <section class="wrap sec">
 <a class="story" href="Article.dc.html">
-<div class="art v2"><span class="lbl">[фото лаборатории]</span></div>
+<div class="art v2 t4"><span class="lbl">[фото лаборатории]</span></div>
 <div class="story-tx"><span class="eyebrow">Образование</span><h2>Около 500 преподавателей освоили нейросети для создания учебных курсов</h2><p>ИИ в университете не заменяет преподавателя, а помогает ему готовить курсы быстрее.</p><span class="go">Читать историю <span class="arrow">→</span></span></div>
 </a>
 </section>
 
 <section class="wrap sec">
-<div class="sec-head"><div><div class="kicker">Кампус</div><h2>Жизнь в УрФУ</h2></div><a class="more" href="Life.dc.html">Клубы, спорт и события <span class="arrow">→</span></a></div>
+<div class="sec-head"><div><div class="kicker" style="--k:var(--a4)">Кампус</div><h2>Жизнь в УрФУ</h2></div><a class="more" href="Life.dc.html">Клубы, спорт и события <span class="arrow">→</span></a></div>
 <div class="bento">
-<a class="b1" href="Life.dc.html"><div class="art"><b>Кампус</b><span class="lbl">[фото кампуса]</span></div></a>
-<a class="b2" href="Life.dc.html"><div class="art v2"><b>Спорт</b><span class="lbl">[фото: спорт]</span></div></a>
-<a href="Life.dc.html"><div class="art v3"><b>Студклубы</b><span class="lbl">[фото]</span></div></a>
-<a href="Life.dc.html"><div class="art v3"><b>События</b><span class="lbl">[фото]</span></div></a>
+<a class="b1" href="Life.dc.html"><div class="art t1"><b>Кампус</b><span class="lbl">[фото кампуса]</span></div></a>
+<a class="b2" href="Life.dc.html"><div class="art t2"><b>Спорт</b><span class="lbl">[фото: спорт]</span></div></a>
+<a href="Life.dc.html"><div class="art v3 t3"><b>Студклубы</b><span class="lbl">[фото]</span></div></a>
+<a href="Life.dc.html"><div class="art v3 t4"><b>События</b><span class="lbl">[фото]</span></div></a>
 </div>
 </section>
 </main>
 
 <footer class="ft"><div class="wrap"><div class="ft-grid">
-<div class="ft-col"><a class="brand" href="Main.v2.dc.html"><svg width="40" height="40" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="4" fill="#1D4E9E"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span>УрФУ<small>Уральский федеральный</small></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p></div>
+<div class="ft-col"><a class="brand" href="Main.v2.dc.html"><svg width="40" height="40" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="4" style="fill:var(--blue)"></rect><path d="M8 10.5 H28" stroke="#FFFFFF" stroke-width="2.4"></path><path d="M9.5 13.8 H26.5" stroke="#FFFFFF" stroke-width="1.4"></path><path d="M11.5 16.5 V25 M16 16.5 V25 M20.5 16.5 V25 M25 16.5 V25" stroke="#FFFFFF" stroke-width="2.2"></path><path d="M8 27.8 H28" stroke="#FFFFFF" stroke-width="2.4"></path></svg><span>УрФУ<small>Уральский федеральный</small></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p></div>
 <div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
 <div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dc.html">Расписание</a><a href="Schedule.dc.html">Личный кабинет</a><a href="Search.dc.html">Поиск по сайту</a><a href="Contacts.dc.html">Контакты и карта</a></div>
 <div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dc.html">Сведения об образовательной организации</a><a href="NotFound.dc.html">Противодействие коррупции</a><a href="NotFound.dc.html">Доступная среда</a><a href="MainEn.dc.html" lang="en">English</a></div>
@@ -410,6 +461,27 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 </div>
 </template>
 <div id="dc-root"></div>
+<div class="themer" role="group" aria-label="Палитра прототипа"><span>Палитра:</span>
+<button type="button" data-t="strict"><i aria-hidden="true"><b style="background:#1D4E9E"></b><b style="background:#0E1B2B"></b><b style="background:#A3521F"></b></i>Строгая</button>
+<button type="button" data-t="gems"><i aria-hidden="true"><b style="background:#0B7A63"></b><b style="background:#6A4C9C"></b><b style="background:#1D4E9E"></b><b style="background:#A63A3A"></b></i>Самоцветы</button>
+<button type="button" data-t="warm"><i aria-hidden="true"><b style="background:#8C2F39"></b><b style="background:#8A5A12"></b><b style="background:#4E6130"></b><b style="background:#1D4E9E"></b></i>Тёплая</button>
+<button type="button" data-t="campus"><i aria-hidden="true"><b style="background:#1D4E9E"></b><b style="background:#C2410C"></b><b style="background:#0E7490"></b><b style="background:#6D28D9"></b></i>Яркая</button>
+</div>
+<script>
+/* палитра: из адреса (?theme=...) или из прошлого выбора */
+(function(){
+  var q=new URLSearchParams(location.search), root=document.documentElement, t=q.get('theme');
+  if(q.get('embed')) root.classList.add('embed');
+  if(!t){try{t=localStorage.getItem('urfu-theme');}catch(e){}}
+  function set(v){
+    if(!v||v==='strict'){root.removeAttribute('data-theme');v='strict';}else root.setAttribute('data-theme',v);
+    document.querySelectorAll('.themer [data-t]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.t===v));});
+    try{localStorage.setItem('urfu-theme',v);}catch(e){}
+  }
+  document.querySelectorAll('.themer [data-t]').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.t);});});
+  set(t);
+})();
+</script>
 <script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {

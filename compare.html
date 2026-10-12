@@ -45,11 +45,17 @@ label.sync input{width:18px;height:18px}
 <button type="button" data-show="old" aria-pressed="false">Только старая</button>
 <button type="button" data-show="new" aria-pressed="false">Только новая</button>
 </div>
+<div class="grp" role="group" aria-label="Палитра новой главной">
+<button type="button" data-theme="strict" aria-pressed="true">Строгая</button>
+<button type="button" data-theme="gems" aria-pressed="false">Самоцветы</button>
+<button type="button" data-theme="warm" aria-pressed="false">Тёплая</button>
+<button type="button" data-theme="campus" aria-pressed="false">Яркая</button>
+</div>
 <label class="sync"><input type="checkbox" id="sync" checked> Прокручивать вместе</label>
 </div>
 <div class="panes" id="panes">
 <section class="pane old"><div class="pane-h"><span><span class="badge">Было</span>Main.dc.html</span><a href="Main.dc.html" target="_blank">Открыть отдельно</a></div><div class="stage"><iframe id="fOld" src="Main.dc.html" title="Старая главная"></iframe></div></section>
-<section class="pane new"><div class="pane-h"><span><span class="badge">Стало</span>Main.v2.dc.html</span><a href="Main.v2.dc.html" target="_blank">Открыть отдельно</a></div><div class="stage"><iframe id="fNew" src="Main.v2.dc.html" title="Новая главная"></iframe></div></section>
+<section class="pane new"><div class="pane-h"><span><span class="badge">Стало</span>Main.v2.dc.html</span><a id="openNew" href="Main.v2.dc.html?theme=strict" target="_blank">Открыть отдельно</a></div><div class="stage"><iframe id="fNew" src="Main.v2.dc.html?embed=1&amp;theme=strict" title="Новая главная"></iframe></div></section>
 </div>
 <script>
 (function(){
@@ -78,6 +84,12 @@ label.sync input{width:18px;height:18px}
     document.querySelector('.pane.old').hidden=show==='new';
     document.querySelector('.pane.new').hidden=show==='old';
     panes.classList.toggle('one',show!=='both');fit();
+  });});
+  /* палитра новой главной: перезагружаем её с нужной палитрой в адресе */
+  document.querySelectorAll('[data-theme]').forEach(function(b){b.addEventListener('click',function(){
+    var t=b.dataset.theme; press('data-theme',t);
+    frames[1].src='Main.v2.dc.html?embed=1&theme='+t;
+    document.getElementById('openNew').href='Main.v2.dc.html?theme='+t;
   });});
   window.addEventListener('resize',fit);
 
