@@ -6,6 +6,13 @@
 <title>Контакты и карта — УрФУ</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="site.css">
+<style>
+.cmap{position:relative;height:420px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.cmap svg{display:block}
+.cpin{position:absolute;background:#FFFFFF;border-radius:8px;padding:10px 14px;box-shadow:0 6px 20px rgba(14,27,43,.12);display:flex;flex-direction:column;font-size:14px}
+.cpin span{color:var(--muted)}
+@media (max-width:600px){.cmap{height:300px}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -26,35 +33,45 @@
 </div></section><div class="wrap">
 <div class="row" style="margin-top:32px;align-items:flex-start">
 <div class="main">
-<div style="position:relative;height:560px;border-radius:8px;background:#E7ECE9;overflow:hidden" aria-label="Схема кампуса">
-<div style="position:absolute;left:0;right:0;top:46%;height:22px;background:#FFFFFF"></div>
-<div style="position:absolute;top:0;bottom:0;left:38%;width:22px;background:#FFFFFF"></div>
-<div style="position:absolute;left:62%;top:0;bottom:0;width:14px;background:#FFFFFF"></div>
-<div style="position:absolute;left:41%;top:40%;display:flex;align-items:center;gap:8px"><span style="width:20px;height:20px;border-radius:50%;background:var(--copper);border:3px solid #FFFFFF"></span><span style="background:#FFFFFF;padding:6px 10px;border-radius:8px;font-weight:600;font-size:14px">Главный корпус, Мира, 19</span></div>
-<div style="position:absolute;left:12%;top:20%;display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:50%;background:var(--blue);border:3px solid #FFFFFF"></span><span style="background:#FFFFFF;padding:6px 10px;border-radius:8px;font-size:14px">[Корпус]</span></div>
-<div style="position:absolute;left:66%;top:22%;display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:50%;background:var(--blue);border:3px solid #FFFFFF"></span><span style="background:#FFFFFF;padding:6px 10px;border-radius:8px;font-size:14px">[Корпус]</span></div>
-<div style="position:absolute;left:18%;top:68%;display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:50%;background:var(--ink);border:3px solid #FFFFFF"></span><span style="background:#FFFFFF;padding:6px 10px;border-radius:8px;font-size:14px">[Общежитие]</span></div>
-<div style="position:absolute;left:68%;top:70%;display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:50%;background:var(--ink);border:3px solid #FFFFFF"></span><span style="background:#FFFFFF;padding:6px 10px;border-radius:8px;font-size:14px">[Спорткомплекс]</span></div>
-<div style="position:absolute;left:16px;bottom:16px;background:#FFFFFF;border-radius:6px;padding:12px 16px;font-size:13px;display:flex;gap:16px;flex-wrap:wrap">
-<span style="display:flex;gap:6px;align-items:center"><span style="width:12px;height:12px;border-radius:50%;background:var(--copper)"></span>Главный корпус</span>
-<span style="display:flex;gap:6px;align-items:center"><span style="width:12px;height:12px;border-radius:50%;background:var(--blue)"></span>Учебные корпуса</span>
-<span style="display:flex;gap:6px;align-items:center"><span style="width:12px;height:12px;border-radius:50%;background:var(--ink)"></span>Общежития и спорт</span>
+<div class="cmap" role="img" aria-label="Схема: главный корпус на улице Мира, 19 и ИРИТ-РтФ на улице Мира, 32">
+<svg viewBox="0 0 640 360" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="640" height="360" fill="var(--bg-soft)"></rect>
+<g fill="#FFFFFF" stroke="var(--line)"><rect x="40" y="30" width="200" height="120" rx="10"></rect><rect x="40" y="200" width="200" height="130" rx="10"></rect><rect x="400" y="30" width="200" height="130" rx="10"></rect><rect x="400" y="210" width="200" height="120" rx="10"></rect></g>
+<rect x="282" y="0" width="76" height="360" fill="#FFFFFF"></rect>
+<line x1="320" y1="0" x2="320" y2="360" stroke="var(--line-strong)" stroke-width="2" stroke-dasharray="14 12"></line>
+<text x="320" y="186" transform="rotate(-90 320 186)" text-anchor="middle" font-size="15" font-weight="600" fill="var(--muted)" font-family="IBM Plex Sans, sans-serif" dy="-10">ул. Мира</text>
+<rect x="70" y="232" width="140" height="70" rx="6" fill="var(--a3)" opacity=".14"></rect>
+<rect x="430" y="62" width="140" height="70" rx="6" fill="var(--a1)" opacity=".16"></rect>
+<circle cx="140" cy="267" r="13" fill="var(--a3)" stroke="#FFFFFF" stroke-width="4"></circle>
+<circle cx="500" cy="97" r="13" fill="var(--a1)" stroke="#FFFFFF" stroke-width="4"></circle>
+</svg>
+<div class="cpin" style="left:4%;bottom:6%"><b>Главный учебный корпус</b><span>ул. Мира, 19</span></div>
+<div class="cpin" style="right:4%;top:6%"><b>ИРИТ-РтФ</b><span>ул. Мира, 32</span></div>
 </div>
+<p class="muted" style="font-size:14px;margin-top:8px">Схема без масштаба. Адреса других корпусов, общежитий и спорткомплекса — [адреса]. Точный маршрут: <a href="https://yandex.ru/maps/?text=%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B8%D1%80%D0%B0%2C%2019" rel="noopener">Мира, 19</a> · <a href="https://yandex.ru/maps/?text=%D0%95%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B8%D1%80%D0%B0%2C%2032" rel="noopener">Мира, 32</a> (откроются Яндекс Карты)</p>
+<div class="card" style="margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between;align-items:center;background:var(--ink);color:#FFFFFF;border-color:var(--ink)">
+<div><div style="color:var(--on-dark-muted);font-size:14px">Контакт-центр · звонок по России бесплатный</div><a href="tel:88001005044" style="display:block;color:#FFFFFF;font-size:32px;font-weight:600;text-decoration:none;margin-top:4px" class="num">8-800-100-50-44</a></div>
+<div style="font-size:15px;line-height:1.7"><div>В Екатеринбурге: <a href="tel:+73433754444" style="color:#FFFFFF">+7 (343) 375-44-44</a></div><div style="color:var(--on-dark-muted)">пн–пт 8:30–19:00, сб 10:00–16:00</div><a href="mailto:contact@urfu.ru" style="color:#FFFFFF">contact@urfu.ru</a></div>
 </div>
-<p class="muted" style="font-size:14px;margin-top:8px">Схема-заглушка: в рабочей версии — интерактивная карта с корпусами.</p>
+<h2 style="margin-top:48px;font-size:28px">Юридический адрес</h2>
+<p style="margin-top:8px;font-size:17px">Главный учебный корпус УрФУ: 620062, Свердловская область, г. Екатеринбург, ул. Мира, д. 19</p>
 </div>
 <aside class="side" style="display:flex;flex-direction:column;gap:16px">
-<div class="field"><label for="dep">Найти подразделение или аудиторию</label><input id="dep" class="input" placeholder="Например, приёмная комиссия"></div>
-<div class="card"><div style="font-weight:600">Приёмная комиссия</div><p class="muted" style="margin-top:4px">priem@urfu.ru<br>Екатеринбург, ул. Мира, 19</p></div>
-<div class="card"><div style="font-weight:600">Справочная университета</div><p class="muted" style="margin-top:4px">[телефон]<br>ул. Мира, 19</p></div>
-<div class="card"><div style="font-weight:600">Пресс-служба</div><p class="muted" style="margin-top:4px">[телефон] · [e-mail]</p></div>
-<div class="card"><div style="font-weight:600">Международная служба</div><p class="muted" style="margin-top:4px">[телефон] · [e-mail]</p></div>
-<div class="card" style="background:var(--ink);color:#FFFFFF;border-color:var(--ink)"><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:18px">Партнёрам и бизнесу</div><p style="color:var(--on-dark-muted);margin-top:8px">Исследования на заказ, стажировки, совместные программы.</p><a class="btn" href="Contacts.dc.html" style="margin-top:12px;background:#FFFFFF;color:var(--ink)">Оставить заявку</a></div>
+<div class="field"><label for="dep">Найти службу</label><input id="dep" class="input" placeholder="Например, приёмная комиссия" value="{{q}}" onChange="{{onQ}}"></div>
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="6">
+<div class="card"><div style="font-weight:600">{{c.t}}</div>
+<sc-for list="{{c.rows}}" as="r" hint-placeholder-count="2">
+<sc-if value="{{r.link}}" hint-placeholder-val="{{true}}"><a href="{{r.href}}" style="display:block;margin-top:4px">{{r.txt}}</a></sc-if>
+<sc-if value="{{r.plain}}" hint-placeholder-val="{{false}}"><div class="muted" style="margin-top:4px">{{r.txt}}</div></sc-if>
+</sc-for>
+</div>
+</sc-for>
+<sc-if value="{{none}}" hint-placeholder-val="{{false}}"><p class="muted">Ничего не нашлось. Позвоните в контакт-центр: 8-800-100-50-44.</p></sc-if>
 </aside>
 </div>
 </div>
 </main><footer class="ft"><div class="wrap"><div class="ft-grid">
-<div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p></div>
+<div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p><p style="margin-top:12px">Контакт-центр, бесплатно по России:<br><a href="tel:88001005044" style="color:#FFFFFF;font-weight:600;font-size:18px">8-800-100-50-44</a><br><a href="mailto:contact@urfu.ru">contact@urfu.ru</a></p></div>
 <div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
 <div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dc.html">Расписание</a><a href="Schedule.dc.html">Личный кабинет</a><a href="Search.dc.html">Поиск по сайту</a><a href="Contacts.dc.html">Контакты и карта</a></div>
 <div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dc.html">Сведения об образовательной организации</a><a href="NotFound.dc.html">Противодействие коррупции</a><a href="NotFound.dc.html">Доступная среда</a><a href="MainEn.dc.html" lang="en">English</a></div>
@@ -64,7 +81,22 @@
 <script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {
-return {};
+const q = ((this.state && this.state.q) || '').trim().toLowerCase();
+const T = (n) => ({ txt: n, href: 'tel:' + n.replace(/[^0-9+]/g, ''), link: true, plain: false });
+const M = (e) => ({ txt: e, href: 'mailto:' + e, link: true, plain: false });
+const P = (t) => ({ txt: t, href: '', link: false, plain: true });
+const all = [
+{ t: 'Приёмная комиссия', key: 'поступление абитуриент приём документы', rows: [T('+7 (343) 375-44-74'), P('620062, Екатеринбург, ул. Мира, 19, каб. ГУК-100')] },
+{ t: 'Пресс-служба', key: 'сми журналисты новости', rows: [T('+7 (343) 375-97-33'), M('news@urfu.ru')] },
+{ t: 'Департамент по связям с общественностью', key: 'пресса сми общественность', rows: [T('+7 (343) 389-94-07'), T('+7 (343) 374-40-93')] },
+{ t: 'Техподдержка', key: 'личный кабинет пароль почта сайт помощь', rows: [T('+7 (343) 227-20-70'), M('support@urfu.ru')] },
+{ t: 'Реклама и партнёрство', key: 'партнёрам бизнес реклама сотрудничество', rows: [T('+7 (343) 375-93-53'), M('partner@urfu.ru')] },
+{ t: 'Корреспонденция ректору', key: 'ректор письмо обращение', rows: [M('rector@urfu.ru')] },
+{ t: 'Редакция портала', key: 'сайт ошибка опечатка', rows: [M('site@urfu.ru')] },
+{ t: 'ИРИТ-РтФ, дирекция', key: 'институт радиоэлектроники информационных технологий ртф ирит', rows: [T('+7 (343) 375-97-00'), M('rtf@urfu.ru'), P('ул. Мира, 32')] }
+];
+const cards = all.filter(c => !q || (c.t + ' ' + c.key).toLowerCase().includes(q));
+return { q, cards, none: cards.length === 0, onQ: (e) => this.setState({ q: e.target.value }) };
 }
 }
 </script>

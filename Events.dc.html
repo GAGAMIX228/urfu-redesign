@@ -34,15 +34,15 @@
 <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px">
 <sc-for list="{{evs}}" as="e" hint-placeholder-count="6">
 <div class="card" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
-<div style="min-width:88px;text-align:center;padding:12px;border-radius:6px;background:var(--bg-soft)"><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:28px;color:var(--copper)">[дд]</div><div class="muted" style="font-size:14px">[месяц]</div></div>
-<div style="flex:1 1 320px"><span class="tag">{{e.kind}}</span><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:20px;margin-top:10px">{{e.t}}</div><div class="muted" style="font-size:15px;margin-top:6px">[время] · {{e.place}}</div></div>
+<div style="min-width:104px;text-align:center;padding:12px;border-radius:6px;background:var(--bg-soft)"><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:28px;color:var(--copper);white-space:nowrap">{{e.d}}</div><div class="muted" style="font-size:14px">{{e.m}}</div></div>
+<div style="flex:1 1 320px"><span class="tag">{{e.kind}}</span><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:20px;margin-top:10px">{{e.t}}</div><div class="muted" style="font-size:15px;margin-top:6px">{{e.note}}</div></div>
 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn2" href="Events.dc.html">В мой календарь</a><a class="btn" href="Events.dc.html">Записаться</a></div>
 </div>
 </sc-for>
 </div>
 </div>
 </main><footer class="ft"><div class="wrap"><div class="ft-grid">
-<div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p></div>
+<div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p><p style="margin-top:12px">Контакт-центр, бесплатно по России:<br><a href="tel:88001005044" style="color:#FFFFFF;font-weight:600;font-size:18px">8-800-100-50-44</a><br><a href="mailto:contact@urfu.ru">contact@urfu.ru</a></p></div>
 <div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
 <div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dc.html">Расписание</a><a href="Schedule.dc.html">Личный кабинет</a><a href="Search.dc.html">Поиск по сайту</a><a href="Contacts.dc.html">Контакты и карта</a></div>
 <div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dc.html">Сведения об образовательной организации</a><a href="NotFound.dc.html">Противодействие коррупции</a><a href="NotFound.dc.html">Доступная среда</a><a href="MainEn.dc.html" lang="en">English</a></div>
@@ -53,15 +53,21 @@
 class Component extends DCLogic {
 renderVals() {
 const k = (this.state && this.state.k) || 'Все';
-const kinds = ['Все','Поступающим','Наука','Карьера','Спорт','Культура'];
+const kinds = ['Все','Олимпиады','Конкурсы','Наука','Обучение','Культура'];
+// события с urfu.ru, октябрь 2026
 const all = [
-{t:'День открытых дверей УрФУ', kind:'Поступающим', place:'Главный корпус, ул. Мира, 19'},
-{t:'День открытых дверей ИРИТ-РтФ', kind:'Поступающим', place:'[корпус]'},
-{t:'Открытая лекция: [тема]', kind:'Наука', place:'[аудитория]'},
-{t:'Ярмарка вакансий', kind:'Карьера', place:'[корпус]'},
-{t:'Межинститутский турнир по волейболу', kind:'Спорт', place:'[спорткомплекс]'},
-{t:'Концерт студенческих коллективов', kind:'Культура', place:'[площадка]'},
-{t:'Научная конференция: [название]', kind:'Наука', place:'[корпус]'}
+{d:'12', m:'октября', t:'Открытый конкурс инженерных решений', kind:'Конкурсы', note:'Регистрация идёт до 12 октября'},
+{d:'13–22', m:'октября', t:'Статистический диктант', kind:'Конкурсы', note:'Успей принять участие'},
+{d:'24', m:'октября', t:'Школа экскурсоводов', kind:'Обучение', note:'Новый набор на программу дополнительного образования'},
+{d:'25', m:'октября', t:'Твой ход', kind:'Конкурсы', note:'Всероссийский студенческий проект'},
+{d:'29', m:'октября', t:'Кейс-чемпионат «Лига твоего имени»', kind:'Конкурсы', note:'Успей подать заявку'},
+{d:'31', m:'октября', t:'Кейс-чемпионат в Уральском федеральном', kind:'Конкурсы', note:'[описание]'},
+{d:'31', m:'октября', t:'Во имя героев', kind:'Конкурсы', note:'Проходит приём заявок'},
+{d:'1', m:'ноября', t:'Премия губернатора для молодых учёных', kind:'Наука', note:'Проходит приём заявок'},
+{d:'3–12', m:'ноября', t:'Большой этнографический диктант', kind:'Культура', note:'[описание]'},
+{d:'10', m:'ноября', t:'Я — профессионал', kind:'Олимпиады', note:'Успей подать заявку'},
+{d:'12–14', m:'ноября', t:'Российские регионы в фокусе перемен', kind:'Наука', note:'Международная конференция · ИнЭУ УрФУ'},
+{d:'19', m:'января', t:'Изумруд.Студент', kind:'Олимпиады', note:'Олимпиада УрФУ · успей подать заявку'}
 ];
 const evs = all.filter(e => k === 'Все' || e.kind === k);
 return { kinds: kinds.map(l => ({ label: l, on: l === k, off: l !== k, pick: () => this.setState({ k: l }) })), evs };
