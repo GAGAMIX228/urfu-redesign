@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Каталог программ УрФУ: подбор по предметам ЕГЭ и баллам, сравнение до трёх программ.">
+<title>[Эксперимент: палитра] Каталог программ — УрФУ</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="palettes.css">
+<script>(function(){var p=new URLSearchParams(location.search).get("p");if(p==="vivid"||p==="calm")document.documentElement.setAttribute("data-pal",p);})();</script>
+<style>
+.pc{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 28px;align-items:center}
+.pc-s{display:grid;grid-template-columns:80px 64px 128px;gap:24px;align-items:start}.pc-s .muted{white-space:nowrap}.pc-s > div > div:last-child{white-space:nowrap}.pc-cmp{margin-top:14px}
+@media (max-width:1100px){.pc{grid-template-columns:1fr}.pc-s{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 16px}}
+</style>
+</head>
+<body>
+<template id="dc-tpl">
+<div><a href="#main" class="skip">Перейти к содержимому</a><input type="checkbox" id="a11y" class="a11y-cb"><header class="hd"><div class="wrap hd-in">
+<a class="brand" href="Main.dc.html" aria-label="УрФУ, на главную"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemH)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a>
+<nav class="nav" aria-label="Главное меню"><a href="Admission.dc.html" aria-current="page">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></nav>
+<div class="tools" style="margin-left:auto">
+<label for="a11y" class="ico a11y-lbl" title="Версия для слабовидящих"><span class="sr">Версия для слабовидящих</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></label>
+<a class="ico" href="Search.dc.html" aria-label="Поиск"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+<div class="lang" role="group" aria-label="Язык сайта"><span aria-current="true">RU</span><a href="MainEn.dc.html" lang="en" aria-label="English version">EN</a></div>
+<a class="btn" href="Schedule.dc.html">Личный кабинет</a>
+<details class="mnav"><summary class="ico" aria-label="Меню"><svg class="i-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="i-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></summary>
+<nav class="mnav-panel" aria-label="Главное меню"><a href="Admission.dc.html" aria-current="page">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a><a href="Schedule.dc.html">Личный кабинет</a></nav></details>
+</div>
+</div></header><main id="main" tabindex="-1" style="outline:none"><section class="phead"><div class="wrap">
+<div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="Admission.dc.html">Поступить</a> / Каталог программ</div>
+<h1 class="big" style="font-size:48px">Каталог программ</h1>
+<p class="muted" style="margin-top:12px;font-size:18px">Отметьте свои предметы ЕГЭ и баллы — покажем, куда вы можете поступить.</p>
+</div></section><div class="wrap">
+<div class="row" style="margin-top:40px;align-items:flex-start">
+<aside class="side" style="flex:1 1 280px;max-width:320px;display:flex;flex-direction:column;gap:24px">
+<div class="field"><label for="cq">Название программы</label><input id="cq" class="input" placeholder="Например, дизайн" value="{{q}}" onChange="{{onQ}}"></div>
+<div><div style="font-weight:600;margin-bottom:10px">Уровень</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<sc-for list="{{levels}}" as="v" hint-placeholder-count="3">
+<sc-if value="{{v.on}}" hint-placeholder-val="{{false}}"><button class="chip on" onClick="{{v.pick}}">{{v.label}}</button></sc-if>
+<sc-if value="{{v.off}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{v.pick}}">{{v.label}}</button></sc-if>
+</sc-for>
+</div></div>
+<fieldset style="border:0;padding:0;margin:0"><legend style="font-weight:600;margin-bottom:10px;padding:0">Мои предметы ЕГЭ</legend>
+<div style="display:flex;flex-direction:column;gap:4px">
+<sc-for list="{{subjects}}" as="sj" hint-placeholder-count="10">
+<label for="{{sj.id}}" style="display:flex;gap:10px;align-items:center;min-height:36px;cursor:pointer"><input id="{{sj.id}}" type="checkbox" checked="{{sj.on}}" onChange="{{sj.toggle}}" style="width:20px;height:20px;accent-color:var(--blue)">{{sj.label}}</label>
+</sc-for>
+</div></fieldset>
+<div class="field"><label for="sc">Моя сумма баллов</label><input id="sc" class="input" inputmode="numeric" placeholder="Например, 240" value="{{my}}" onChange="{{onMy}}"><span class="muted" style="font-weight:400;font-size:13px">Сравним с проходным баллом 2025 года</span></div>
+<button class="btn2" onClick="{{reset}}">Сбросить фильтры</button>
+</aside>
+<div class="main">
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<sc-for list="{{areas}}" as="a" hint-placeholder-count="6">
+<sc-if value="{{a.on}}" hint-placeholder-val="{{false}}"><button class="chip on" onClick="{{a.pick}}">{{a.label}}</button></sc-if>
+<sc-if value="{{a.off}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{a.pick}}">{{a.label}}</button></sc-if>
+</sc-for>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;flex-wrap:wrap;gap:8px"><b aria-live="polite">Найдено: {{count}}</b><span class="muted" style="font-size:14px">Сначала — где хватает баллов</span></div>
+<sc-if value="{{showCmp}}" hint-placeholder-val="{{false}}">
+<div role="dialog" aria-modal="true" aria-label="Сравнение программ" style="position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(14,27,43,0.55);z-index:60;display:flex;align-items:center;justify-content:center;padding:24px">
+<div class="card" style="padding:0;overflow:auto;border-color:var(--blue);width:100%;max-width:1040px;max-height:90vh">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:var(--blue-soft)"><b style="font-size:18px">Сравнение программ</b><button class="btn2" data-close onClick="{{hideCmp}}" style="min-height:40px">Закрыть</button></div>
+<div style="overflow-x:auto">
+<div style="display:grid;grid-template-columns:{{cmpGrid}};min-width:640px;font-size:15px"><div style="padding:14px 20px"></div><sc-for list="{{cmpCols}}" as="c" hint-placeholder-count="2"><div style="padding:14px 20px"><a href="Program.dc.html" style="color:var(--ink);text-decoration:none;font-weight:600">{{c.name}}</a><div><button onClick="{{c.remove}}" style="border:0;background:none;padding:6px 0 0;color:var(--copper);font:inherit;font-size:13px;cursor:pointer">Убрать</button></div></div></sc-for><div style="padding:12px 20px;border-top:1px solid var(--line);color:var(--muted)">Проходной 2025</div><sc-for list="{{cmpCols}}" as="c" hint-placeholder-count="2"><div style="padding:12px 20px;border-top:1px solid var(--line)"><b>{{c.score}}</b></div></sc-for><div style="padding:12px 20px;border-top:1px solid var(--line);color:var(--muted)">Бюджетных мест</div><sc-for list="{{cmpCols}}" as="c" hint-placeholder-count="2"><div style="padding:12px 20px;border-top:1px solid var(--line)"><b>{{c.budget}}</b></div></sc-for><div style="padding:12px 20px;border-top:1px solid var(--line);color:var(--muted)">Стоимость в год</div><sc-for list="{{cmpCols}}" as="c" hint-placeholder-count="2"><div style="padding:12px 20px;border-top:1px solid var(--line)"><b>{{c.price}}</b></div></sc-for><div style="padding:12px 20px;border-top:1px solid var(--line);color:var(--muted)">Экзамены ЕГЭ</div><sc-for list="{{cmpCols}}" as="c" hint-placeholder-count="2"><div style="padding:12px 20px;border-top:1px solid var(--line)">{{c.exams}}</div></sc-for><div style="padding:12px 20px;border-top:1px solid var(--line);color:var(--muted)">Институт</div><sc-for list="{{cmpCols}}" as="c" hint-placeholder-count="2"><div style="padding:12px 20px;border-top:1px solid var(--line)">{{c.inst}}</div></sc-for><div style="padding:12px 20px;border-top:1px solid var(--line);color:var(--muted)">Область</div><sc-for list="{{cmpCols}}" as="c" hint-placeholder-count="2"><div style="padding:12px 20px;border-top:1px solid var(--line)">{{c.area}}</div></sc-for><div style="padding:12px 20px;border-top:1px solid var(--line);color:var(--muted)">Мои баллы</div><sc-for list="{{cmpCols}}" as="c" hint-placeholder-count="2"><div style="padding:12px 20px;border-top:1px solid var(--line)">{{c.verdict}}</div></sc-for></div></div></div></div>
+</sc-if>
+<sc-if value="{{hasTipMore}}" hint-placeholder-val="{{false}}"><p class="muted" style="font-size:14px;margin-top:8px">{{tip}}</p></sc-if>
+<sc-if value="{{emptyBach}}" hint-placeholder-val="{{false}}"><div class="card" style="margin-top:16px;text-align:center;padding:40px"><div style="font-weight:600;font-size:18px">С этими предметами программ не нашлось</div><sc-if value="{{hasTip}}" hint-placeholder-val="{{false}}"><p style="margin-top:8px;color:var(--blue);font-weight:600">{{tip}}</p></sc-if><p class="muted" style="margin-top:8px">Отметьте ещё один предмет, смените область или сбросьте фильтры.</p><button class="btn2" onClick="{{reset}}" style="margin-top:16px">Сбросить фильтры</button></div></sc-if>
+<sc-if value="{{notBach}}" hint-placeholder-val="{{false}}"><div class="card" style="margin-top:16px;text-align:center;padding:40px"><div style="font-weight:600;font-size:18px">В прототипе показан бакалавриат</div><p class="muted" style="margin-top:8px">Специалитет и магистратура открываются тем же каталогом — с другими фильтрами.</p><button class="btn2" onClick="{{reset}}" style="margin-top:16px">Вернуться к бакалавриату</button></div></sc-if>
+<div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
+<sc-for list="{{progs}}" as="p" hint-placeholder-count="5">
+<div class="card pc">
+<div><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="tag">{{p.area}}</span><span class="tag" style="background:#FFFFFF;border:1px solid var(--line)">{{p.inst}}</span></div>
+<a href="Program.dc.html" style="display:block;font-weight:600;font-size:20px;margin-top:12px;color:var(--ink);text-decoration:none">{{p.name}}</a>
+<div class="muted" style="font-size:14px;margin-top:6px">ЕГЭ: {{p.exams}}</div>
+<sc-if value="{{p.ok}}" hint-placeholder-val="{{false}}"><span class="tag" style="margin-top:10px;background:var(--blue-soft);color:var(--blue-dark)">Ваших баллов хватает</span></sc-if>
+<sc-if value="{{p.short}}" hint-placeholder-val="{{false}}"><span class="tag" style="margin-top:10px;background:var(--bg-soft);color:#7A3B14">Не хватает {{p.gap}} баллов</span></sc-if>
+<sc-if value="{{p.nodata}}" hint-placeholder-val="{{false}}"><span class="tag" style="margin-top:10px">Проходной балл уточняется</span></sc-if>
+<div class="pc-cmp">
+<sc-if value="{{p.inCmp}}" hint-placeholder-val="{{false}}"><button class="chip on" onClick="{{p.toggle}}" aria-pressed="true">✓ В сравнении</button></sc-if>
+<sc-if value="{{p.canAdd}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{p.toggle}}" aria-pressed="false">+ Сравнить</button></sc-if>
+<sc-if value="{{p.blocked}}" hint-placeholder-val="{{false}}"><span class="muted" style="font-size:13px">Можно сравнить до 3</span></sc-if>
+</div></div>
+<div class="pc-s">
+<div><div class="muted" style="font-size:13px">Балл 2025</div><div style="font-weight:600;font-size:18px">{{p.score}}</div></div>
+<div><div class="muted" style="font-size:13px">Бюджет</div><div style="font-weight:600;font-size:18px">{{p.budget}}</div></div>
+<div><div class="muted" style="font-size:13px">Цена в год</div><div style="font-weight:600;font-size:18px">{{p.price}}</div></div>
+
+</div>
+</sc-for>
+</div>
+<sc-if value="{{hasCmp}}" hint-placeholder-val="{{false}}">
+<div style="position:sticky;bottom:16px;margin-top:20px;background:var(--ink);color:#FFFFFF;border-radius:8px;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 12px 32px rgba(14,27,43,0.3)">
+<span>Выбрано для сравнения: <b>{{cmpCount}} из 3</b></span>
+<div style="display:flex;gap:8px"><button onClick="{{clearCmp}}" style="min-height:44px;padding:0 16px;border-radius:6px;border:1px solid #3A4E66;background:transparent;color:#FFFFFF;font:inherit;cursor:pointer">Очистить</button><button class="btn" onClick="{{openCmp}}" style="background:#FFFFFF;color:var(--ink)">Сравнить</button></div>
+</div>
+</sc-if>
+
+</div>
+</div>
+</div>
+</main><footer class="ft"><div class="wrap"><div class="ft-grid">
+<div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого Президента<br>России Б.Н.Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p><p style="margin-top:12px">Контакт-центр, бесплатно по России:<br><a href="tel:88001005044" style="color:#FFFFFF;font-weight:600;font-size:18px">8-800-100-50-44</a><br><a href="mailto:contact@urfu.ru">contact@urfu.ru</a></p></div>
+<div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступить</a><a href="Schedule.dc.html">Учиться</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
+<div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dc.html">Расписание</a><a href="Schedule.dc.html">Личный кабинет</a><a href="Search.dc.html">Поиск по сайту</a><a href="Contacts.dc.html">Контакты и карта</a></div>
+<div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dc.html">Сведения об образовательной организации</a><a href="NotFound.dc.html">Противодействие коррупции</a><a href="NotFound.dc.html">Доступная среда</a><a href="MainEn.dc.html" lang="en">English</a></div>
+</div><p style="margin-top:48px;padding-top:24px;border-top:1px solid var(--ink-line)">© УрФУ, 1920–2026</p></div></footer></div>
+</template>
+<div id="dc-root"></div>
+<script type="text/x-dc" id="dc-logic">
+class Component extends DCLogic {
+renderVals() {
+const ALL_PROGS = [
+{name:'Программная инженерия', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'259', budget:'100', price:'390 000 ₽'},
+{name:'Алгоритмы искусственного интеллекта', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'246', budget:'105', price:'300 000 ₽'},
+{name:'Прикладной искусственный интеллект', inst:'[институт]', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[]},
+{name:'Интеллектуальные системы в гуманитарной сфере', inst:'[институт]', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[]},
+{name:'Информационная безопасность', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]]},
+{name:'Информатика и вычислительная техника', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]]},
+{name:'Прикладная информатика', inst:'[институт]', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[]},
+{name:'Инфокоммуникационные технологии и системы связи', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], budget:'66', price:'от 275 000 ₽'},
+{name:'Радиотехника', inst:'ИРИТ-РтФ', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Прикладная математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]]},
+{name:'Математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]]},
+{name:'Физика', inst:'[институт]', area:'Естественные науки', k:'nat', exams:'физика, математика, русский', req:["phys", "math", "rus"], ch:[]},
+{name:'Химия', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'химия, математика, русский', req:["chem", "math", "rus"], ch:[]},
+{name:'Биология', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'биология, химия или математика, русский', req:["bio", "rus"], ch:[["chem", "math"]]},
+{name:'Металлургия', inst:'ИНМиТ', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]]},
+{name:'Материаловедение и технологии материалов', inst:'ИНМиТ', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]]},
+{name:'Электроэнергетика и электротехника', inst:'УралЭНИН', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Теплоэнергетика и теплотехника', inst:'УралЭНИН', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Строительство', inst:'ИСА', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]]},
+{name:'Архитектура', inst:'ИСА', area:'Инженерия', k:'eng', exams:'творческое испытание, математика, русский', req:["math", "rus"], ch:[]},
+{name:'Ядерная энергетика и теплофизика', inst:'ФТИ', area:'Инженерия', k:'eng', exams:'математика, физика, русский', req:["math", "phys", "rus"], ch:[]},
+{name:'История', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'история, обществознание, русский', req:["hist", "soc", "rus"], ch:[]},
+{name:'Журналистика', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'творческое испытание, литература, русский', req:["lit", "rus"], ch:[]},
+{name:'Филология', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'литература, иностранный язык, русский', req:["lit", "lang", "rus"], ch:[]},
+{name:'Лингвистика', inst:'[институт]', area:'Гуманитарные', k:'hum', exams:'иностранный язык, обществознание, русский', req:["lang", "soc", "rus"], ch:[]},
+{name:'Психология', inst:'[институт]', area:'Гуманитарные', k:'hum', exams:'биология или математика, обществознание, русский', req:["soc", "rus"], ch:[["bio", "math"]]},
+{name:'Международные отношения', inst:'[институт]', area:'Гуманитарные', k:'hum', exams:'история, иностранный язык, русский', req:["hist", "lang", "rus"], ch:[]},
+{name:'Экономика', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, обществознание, русский', req:["math", "soc", "rus"], ch:[]},
+{name:'Менеджмент', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, обществознание, русский', req:["math", "soc", "rus"], ch:[]},
+{name:'Бизнес-информатика', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, информатика или обществознание, русский', req:["math", "rus"], ch:[["inf", "soc"]]}
+];
+const stems = q => q.toLowerCase().split(/[^a-zа-яё0-9]+/).filter(w => w.length >= 3).map(w => w.slice(0, Math.min(5, w.length)));
+const matches = (text, q) => { const st = stems(q); if (!st.length) return true; const t = text.toLowerCase(); return st.some(x => t.includes(x)); };
+
+const s = this.state || {};
+const area = s.area || 'all';
+const level = s.level || 'bach';
+const q = s.q || '';
+const my = s.my || '';
+const sel = s.sel || { rus: true, math: true, inf: true };
+const cmp = s.cmp || [];
+const full = cmp.length >= 3;
+const togg = (name) => { const has = cmp.includes(name); const next = has ? cmp.filter(x => x !== name) : (full ? cmp : cmp.concat(name)); this.setState({ cmp: next, show: next.length ? s.show : false }); };
+const SUBJ = [['rus','Русский язык'],['math','Математика'],['inf','Информатика'],['phys','Физика'],['chem','Химия'],['bio','Биология'],['soc','Обществознание'],['hist','История'],['lit','Литература'],['lang','Иностранный язык']];
+const NAME = {}; SUBJ.forEach(([k, n]) => { NAME[k] = n; });
+const ACC = {math:'математику', inf:'информатику', phys:'физику', chem:'химию', bio:'биологию', soc:'обществознание', hist:'историю', lit:'литературу', lang:'иностранный язык', rus:'русский язык'};
+const missing = p => { const m = p.req.filter(r => !sel[r]); p.ch.forEach(g => { if (!g.some(x => sel[x])) m.push(g[0]); }); return m; };
+const areas = [['all','Все'],['it','IT'],['eng','Инженерия'],['nat','Естественные науки'],['hum','Гуманитарные'],['eco','Экономика']];
+const levels = [['bach','Бакалавриат'],['spec','Специалитет'],['mag','Магистратура']];
+const st = stems(q);
+const myN = parseInt(my, 10);
+const hasMy = !isNaN(myN) && myN > 0;
+const base = ALL_PROGS
+ .filter(p => area === 'all' || p.k === area)
+ .map(p => ({ score: '[балл]', budget: '[число]', price: '[₽]', ...p, hit: st.filter(x => p.name.toLowerCase().includes(x)).length }))
+ .filter(p => !st.length || p.hit > 0);
+const eligible = level === 'bach' ? base.filter(p => missing(p).length === 0) : [];
+const tally = {};
+if (level === 'bach') base.forEach(p => { const m = missing(p); if (m.length === 1) tally[m[0]] = (tally[m[0]] || 0) + 1; });
+let tip = '';
+const best = Object.keys(tally).sort((a, b) => tally[b] - tally[a])[0];
+if (best) { const c = tally[best]; tip = 'Добавьте ' + ACC[best] + ' — откроется ещё ' + c + ' ' + (c % 10 === 1 && c % 100 !== 11 ? 'программа' : (c % 10 >= 2 && c % 10 <= 4 && (c % 100 < 12 || c % 100 > 14)) ? 'программы' : 'программ') + '.'; }
+const progs = eligible.map(p => {
+ const sc = parseInt(p.score, 10);
+ const known = !isNaN(sc);
+ const ok = hasMy && known && myN >= sc;
+ const short = hasMy && known && myN < sc;
+ return { ...p, ok, short, nodata: hasMy && !known, gap: known ? sc - myN : 0, rank: ok ? 0 : (hasMy && !known ? 1 : 2), inCmp: cmp.includes(p.name), canAdd: !cmp.includes(p.name) && !full, blocked: !cmp.includes(p.name) && full, toggle: () => togg(p.name) };
+}).sort((a, b) => (hasMy ? a.rank - b.rank : 0) || b.hit - a.hit);
+const n = progs.length, m10 = n % 10, m100 = n % 100;
+const word = (m10 === 1 && m100 !== 11) ? 'программа' : (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) ? 'программы' : 'программ';
+const cmpCols = cmp.map(name => {
+ const p = { score: '[балл]', budget: '[число]', price: '[₽]', ...ALL_PROGS.find(x => x.name === name) };
+ const sc = parseInt(p.score, 10);
+ const verdict = !hasMy ? 'Введите сумму баллов' : (isNaN(sc) ? 'Проходной уточняется' : (myN >= sc ? 'Хватает' : 'Не хватает ' + (sc - myN)));
+ return { ...p, verdict, remove: () => togg(name) };
+});
+return {
+cmpGrid: '180px repeat(' + Math.max(1, cmp.length) + ', minmax(180px, 1fr))', cmpCols, hasCmp: cmp.length > 0, cmpCount: cmp.length, showCmp: !!s.show && cmp.length > 0,
+openCmp: () => this.setState({ show: true }), hideCmp: () => this.setState({ show: false }), clearCmp: () => this.setState({ cmp: [], show: false }),
+areas: areas.map(([k,label]) => ({label, on:k===area, off:k!==area, pick:() => this.setState({area:k})})),
+levels: levels.map(([k,label]) => ({label, on:k===level, off:k!==level, pick:() => this.setState({level:k})})),
+subjects: SUBJ.map(([k, label]) => ({ k, label, id: 'subj-' + k, on: !!sel[k], toggle: () => this.setState({ sel: { ...sel, [k]: !sel[k] } }) })),
+progs,
+count: n + ' ' + word,
+empty: n === 0,
+notBach: level !== 'bach',
+emptyBach: n === 0 && level === 'bach',
+tip, hasTip: n === 0 && level === 'bach' && !!tip, hasTipMore: n > 0 && !!tip,
+q, my,
+onQ: (e) => this.setState({ q: e.target.value }),
+onMy: (e) => this.setState({ my: e.target.value.replace(/[^0-9]/g, '').slice(0, 3) }),
+reset: () => this.setState({ q: '', area: 'all', sel: { rus: true, math: true, inf: true }, my: '', level: 'bach' })
+};
+}
+}
+</script>
+<script src="dc-lite.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
