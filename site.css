@@ -365,3 +365,8 @@ table{border-collapse:collapse}
 .crumbs a{display:inline-block;padding:4px 0}
 a[href^="tel:"],a[href^="mailto:"]{display:inline-block;padding:3px 0}
 .card > a:not(.btn):not(.btn2):not(.card),.card div > a:not(.btn):not(.btn2):not(.card){display:inline-block;padding:3px 0}
+
+/* шапка: одинаковые промежутки «логотип — меню» и «меню — кнопки» */
+.hd-in{justify-content:space-between}
+.hd-in .nav{flex:none}
+.hd-in .tools{margin-left:0 !important}
