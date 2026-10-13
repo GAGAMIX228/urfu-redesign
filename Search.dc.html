@@ -47,7 +47,7 @@
 </a>
 </sc-for>
 </div>
-<sc-if value="{{empty}}" hint-placeholder-val="{{false}}"><div class="card" style="margin-top:12px;max-width:960px;text-align:center;padding:40px"><div style="font-weight:600;font-size:18px">По этому запросу ничего нет</div><p class="muted" style="margin-top:8px">Проверьте написание или попробуйте более общее слово.</p></div></sc-if>
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}"><div class="card" style="margin-top:12px;max-width:960px;text-align:center;padding:40px"><div style="font-weight:600;font-size:18px">По этому запросу ничего нет</div><p class="muted" style="margin-top:8px">Проверьте написание или попробуйте более общее слово. Часто ищут:</p><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px"><a class="chip" href="Quiz.dc.html">Подбор программы</a><a class="chip" href="Catalog.dc.html">Проходные баллы</a><a class="chip" href="Schedule.dc.html">Расписание</a><a class="chip" href="Dorms.dc.html">Общежития</a><a class="chip" href="Contacts.dc.html">Контакты</a></div></div></sc-if>
 <div class="card" style="margin-top:32px;max-width:960px;background:var(--bg-soft);border-color:var(--bg-soft)"><b>Не нашли?</b> <span class="muted">Попробуйте другое слово или</span> <a href="Contacts.dc.html">спросите справочную</a>.</div>
 </div>
 </main><footer class="ft"><div class="wrap"><div class="ft-grid">
@@ -106,17 +106,27 @@ const other = [
 {kind:'Новости', t:'Почти 50 тысяч заявлений на бюджет: итоги приёма-2026', d:'Июль 2026 · Поступающим', href:'Article.dc.html', key:'поступление абитуриент приём заявления бюджет программная инженерия'},
 {kind:'События', t:'Изумруд.Студент — олимпиада УрФУ', d:'19 января · Олимпиады', href:'Events.dc.html', key:'изумруд олимпиада поступление студент магистратура'},
 {kind:'События', t:'Открытый конкурс инженерных решений', d:'12 октября · Конкурсы', href:'Events.dc.html', key:'конкурс инженерных решений программирование электроника инженерия'},
+{kind:'Разделы', t:'Расписание занятий', d:'Раздел · пары на неделю', href:'Schedule.dc.html', key:'расписание пары занятия неделя группа'},
+{kind:'Разделы', t:'Общежития', d:'Раздел · как получить место', href:'Dorms.dc.html', key:'общежитие заселение жильё студгородок'},
+{kind:'Разделы', t:'Как поступить', d:'Раздел · 5 шагов, даты, документы', href:'Admission.dc.html', key:'поступление абитуриент документы приём даты'},
+{kind:'Разделы', t:'Каталог программ и проходные баллы', d:'Раздел · фильтр по ЕГЭ и баллам', href:'Catalog.dc.html', key:'каталог программы проходные баллы бюджет стоимость егэ'},
+{kind:'Разделы', t:'Контакты и карта', d:'Раздел · службы, телефоны, адреса', href:'Contacts.dc.html', key:'контакты телефон адрес карта приёмная комиссия почта'},
+{kind:'Разделы', t:'Личный кабинет', d:'Сервис · оценки, справки, стипендия', href:'Schedule.dc.html', key:'личный кабинет стипендия оценки справки зачётка'},
+{kind:'Разделы', t:'Клубы и спорт', d:'Раздел · секции, творчество, волонтёрство', href:'Life.dc.html', key:'клубы спорт секции творчество волонтёрство плавания'},
+{kind:'Разделы', t:'Институт радиоэлектроники и IT (ИРИТ-РтФ)', d:'Институт · программы, кафедры, контакты', href:'Institute.dc.html', key:'институт ирит ртф кафедры дирекция'},
 {kind:'Программы', t:'Подбор программы за 3 вопроса', d:'Сервис · интересы, ЕГЭ и баллы', href:'Quiz.dc.html', key:'подбор подобрать программу куда поступить тест выбрать направление специальность'},
 {kind:'Документы', t:'Правила приёма УрФУ', d:'PDF', href:'Admission.dc.html', key:'правила приём поступление документы'},
 {kind:'Документы', t:'Учебный план: Программная инженерия', d:'PDF', href:'Program.dc.html', key:'учебный план программная инженерия'}
 ];
-const st = stems(q);
-const hit = t => st.filter(x => t.toLowerCase().includes(x)).length;
+const CORPUS = ALL_PROGS.map(p => p.name + ' ' + p.exams).join(' ') + ' ' + other.map(o => o.t + ' ' + o.key).join(' ');
+const st = window.SmartSearch ? SmartSearch.terms(q, CORPUS) : stems(q);
+const nrm = t => window.SmartSearch ? SmartSearch.norm(t) : t.toLowerCase();
+const hit = t => st.filter(x => nrm(t).includes(x)).length;
 const progRes = ALL_PROGS.map(p => ({kind:'Программы', t:p.name, d:'Бакалавриат · ' + p.inst + ' · ЕГЭ: ' + p.exams, href:'Program.dc.html', h: hit(p.name) * 2}));
 const otherRes = other.map(o => ({kind:o.kind, t:o.t, d:o.d, href:o.href, h: hit(o.t + ' ' + o.key)}));
 const all = progRes.concat(otherRes).filter(r => st.length ? r.h > 0 : true).sort((a, b) => b.h - a.h);
 const res = all.filter(r => tab === 'Все' || r.kind === tab);
-const tabs = ['Все','Программы','Люди','Новости','События','Документы'];
+const tabs = ['Все','Разделы','Программы','Люди','Новости','События','Документы'];
 const cnt = k => all.filter(r => k === 'Все' || r.kind === k).length;
 return {
 tabs: tabs.map(l => ({ label: l + ' · ' + cnt(l), on: l === tab, off: l !== tab, pick: () => this.setState({ tab: l }) })),
@@ -126,6 +136,7 @@ onQ: (e) => this.setState({ q: e.target.value, tab: 'Все' })
 }
 }
 </script>
+<script src="smart-search.js"></script>
 <script src="dc-lite.js"></script>
 <script src="site.js"></script>
 <script src="logo-live.js"></script>

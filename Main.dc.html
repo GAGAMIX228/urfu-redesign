@@ -47,7 +47,7 @@
 <sc-for list="{{sug}}" as="g">
 <a href="{{g.href}}" role="option"><span style="font-weight:500">{{g.t}}</span><span class="muted" style="font-size:13px;white-space:nowrap">{{g.kind}}</span></a>
 </sc-for>
-<sc-if value="{{none}}"><div class="muted" style="padding:14px 18px">Ничего не нашлось — попробуйте другое слово</div></sc-if>
+<sc-if value="{{none}}"><div class="muted" style="padding:14px 18px">Ничего не нашлось. Попробуйте: <a href="Quiz.dc.html">подбор программы</a>, <a href="Schedule.dc.html">расписание</a>, <a href="Dorms.dc.html">общежития</a></div></sc-if>
 <a href="{{qHref}}" style="background:var(--bg-soft-2);font-weight:600;color:var(--blue)">Все результаты поиска <span class="arrow">→</span></a>
 </div>
 </sc-if>
@@ -206,7 +206,6 @@ const stems = q => q.toLowerCase().split(/[^a-zа-яё0-9]+/).filter(w => w.leng
 const matches = (text, q) => { const st = stems(q); if (!st.length) return true; const t = text.toLowerCase(); return st.some(x => t.includes(x)); };
 
 const q = (this.state && this.state.q) || '';
-const st = stems(q);
 const QUICK = [
 {t:'Расписание', kind:'Сервис', href:'Schedule.dc.html', key:'расписание пары занятия'},
 {t:'Как поступить', kind:'Раздел', href:'Admission.dc.html', key:'поступление поступить приём документы абитуриент'},
@@ -215,9 +214,14 @@ const QUICK = [
 {t:'Общежития', kind:'Раздел', href:'Dorms.dc.html', key:'общежитие жильё заселение'},
 {t:'Контакты и карта кампуса', kind:'Раздел', href:'Contacts.dc.html', key:'контакты карта адрес телефон приёмная комиссия'},
 {t:'Клубы и спорт', kind:'Раздел', href:'Life.dc.html', key:'клубы спорт секции творчество'},
+{t:'Личный кабинет', kind:'Сервис', href:'Schedule.dc.html', key:'личный кабинет стипендия оценки справки зачётка'},
 {t:'Календарь событий', kind:'Раздел', href:'Events.dc.html', key:'события день открытых дверей мероприятия'}
 ];
-const hit = t => st.filter(x => t.toLowerCase().includes(x)).length;
+const QUICK_TEXT = QUICK.map(k => k.t + ' ' + k.key).join(' ');
+const CORPUS = ALL_PROGS.map(p => p.name).join(' ') + ' ' + QUICK_TEXT;
+const st = window.SmartSearch ? SmartSearch.terms(q, CORPUS) : stems(q);
+const nrm = t => window.SmartSearch ? SmartSearch.norm(t) : t.toLowerCase();
+const hit = t => st.filter(x => nrm(t).includes(x)).length;
 const sug = st.length ? ALL_PROGS.map(p => ({t:p.name, kind:'Программа', href:'Program.dc.html', h:hit(p.name)*2}))
   .concat(QUICK.map(k => ({t:k.t, kind:k.kind, href:k.href, h:hit(k.t + ' ' + k.key)})))
   .filter(x => x.h > 0).sort((a, b) => b.h - a.h).slice(0, 6) : [];
@@ -264,6 +268,7 @@ links: sets[role].map((l, i) => Object.assign({ n: '0' + (i + 1) }, l))
 }
 
 </script>
+<script src="smart-search.js"></script>
 <script src="dc-lite.js"></script>
 <script src="site.js"></script>
 <script src="logo-live.js"></script>
