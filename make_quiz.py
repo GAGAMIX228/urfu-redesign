@@ -14,7 +14,9 @@ tail = logic[logic.index('</script>') + len('</script>'):]
 head = re.sub(r'<title>[^<]*</title>', '<title>Подбор программы за 3 вопроса — УрФУ</title>', head)
 head = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="Подбор программы УрФУ за 3 вопроса: интересы, предметы ЕГЭ и баллы — список программ, куда вы проходите.">', head)
 head = head.replace(' aria-current="page"', '')
-head = head.replace('<a href="Admission.dc.html">Поступить</a>', '<a href="Admission.dc.html" aria-current="page">Поступить</a>')
+head = head.replace('<a href="Admission.dc.html">Поступление</a>', '<a href="Admission.dc.html" aria-current="page">Поступление</a>')
+head = head.replace('href="CatalogEn.dc.html" lang="en"', 'href="MainEn.dc.html" lang="en"')
+foot = foot.replace('href="CatalogEn.dc.html" lang="en"', 'href="MainEn.dc.html" lang="en"')
 
 CSS = """<style>
 .qz > *{max-width:880px}
@@ -46,7 +48,7 @@ CSS = """<style>
 head = head.replace('</head>', CSS + '</head>', 1)
 
 MAIN = """<main id="main" tabindex="-1" style="outline:none"><section class="phead"><div class="wrap">
-<div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="Admission.dc.html">Поступить</a> / Подбор программы</div>
+<div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="Admission.dc.html">Поступление</a> / Подбор программы</div>
 <h1 class="big" style="font-size:48px">Подбор программы за 3 вопроса</h1>
 <p class="muted" style="margin-top:12px;font-size:19px;max-width:720px">Ответьте на три вопроса — покажем программы, куда можно поступить с вашими ЕГЭ.</p>
 </div></section>
