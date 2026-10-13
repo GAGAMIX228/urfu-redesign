@@ -378,3 +378,15 @@ a[href^="tel:"],a[href^="mailto:"]{display:inline-block;padding:3px 0}
 .to-top:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 @media (max-width:600px){.to-top{right:16px;bottom:16px;width:44px;height:44px}}
 @media (prefers-reduced-motion:reduce){.to-top{transition:none}}
+
+/* самые маленькие телефоны (до 360 px): шапка компактнее, чтобы всё помещалось */
+@media (max-width:360px){
+  .wrap{padding:0 12px}
+  .hd .lk b{font-size:12px}
+  .hd .brand{gap:6px}
+  .tools .ico{width:36px}
+  .tools{gap:0}
+  .lang>*{min-width:32px}
+  .side{flex-basis:100%;min-width:0}
+  .card,summary,h1,h2,h3{overflow-wrap:anywhere}
+}
