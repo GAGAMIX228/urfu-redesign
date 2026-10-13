@@ -57,7 +57,7 @@ a:hover .arrow{transform:translateX(4px)}
 .brand:hover{color:var(--text)}
 .lk{display:flex;flex-direction:column}
 .lk b{font-size:15px;font-weight:600;line-height:1.02;letter-spacing:-0.005em}
-.lk i{font-style:normal;font-size:12px;font-weight:500;line-height:1.2;color:var(--muted);margin-top:3px;letter-spacing:0}
+.lk i{font-style:normal;font-size:11px;font-weight:500;line-height:1.18;color:var(--muted);margin-top:3px;letter-spacing:0}
 .nav{display:flex;gap:2px;flex:1}
 .nav a{position:relative;white-space:nowrap;color:var(--text);text-decoration:none;padding:10px 10px;border-radius:var(--r);font-weight:500;min-height:44px;display:inline-flex;align-items:center;transition:color .15s ease}
 .nav a::after{content:"";position:absolute;left:10px;right:10px;bottom:6px;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .2s var(--ease)}
