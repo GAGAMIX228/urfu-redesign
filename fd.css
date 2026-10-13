@@ -1,0 +1,129 @@
+/* ЭКСПЕРИМЕНТ «Уральский камень» — главная по навыку frontend-design.
+   Один яркий приём: «огранённые» плитки ролей цвета уральских самоцветов со срезанным углом, как грань камня и знак «У».
+   Заголовки — PT Sans Narrow (ParaType, шрифт для общественных надписей), текст — IBM Plex Sans. */
+@font-face{font-family:'PT Sans Narrow';src:url('fonts/PTSansNarrow-Bold-cyr.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'PT Sans Narrow';src:url('fonts/PTSansNarrow-Bold-lat.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+.fd{
+  --granite:#1C2329;      /* текст, подвал */
+  --limestone:#EEF1F0;    /* фон спокойных разделов */
+  --slate:#5A646C;        /* второстепенный текст, 5.9:1 на белом */
+  --malachite:#0B7A63;    /* абитуриент */
+  --amethyst:#6A4C9C;     /* студент */
+  --sapphire:#1D4E9E;     /* сотрудник и все действия */
+  --jasper:#A63A3A;       /* international */
+  --cut:22px;             /* срез угла «грани» */
+  --narrow:'PT Sans Narrow','IBM Plex Sans',system-ui,sans-serif;
+}
+.fd main{color:var(--granite)}
+.fd main h1,.fd main h2,.fd main h3{font-family:var(--narrow);font-weight:700;letter-spacing:0;color:var(--granite)}
+.fd .fd-sec{padding:88px 0}
+.fd .fd-sec.soft{background:var(--limestone)}
+.fd .fd-h2{font-size:clamp(34px,4vw,48px);line-height:1.02;max-width:18ch}
+.fd .fd-lead{color:var(--slate);font-size:18px;line-height:1.55;max-width:60ch;margin-top:14px}
+.fd .fd-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 32px;flex-wrap:wrap;margin-bottom:36px}
+.fd .fd-more{font-weight:600;color:var(--sapphire);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;padding:8px 0}
+.fd .fd-more:hover{text-decoration-thickness:2px}
+
+/* ── первый экран: вопрос + поиск слева, четыре самоцвета справа ── */
+.fd .fd-hero{padding:56px 0 72px;background:#FFFFFF}
+.fd .fd-hero-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
+.fd .fd-hero h1{font-size:clamp(56px,7.2vw,104px);line-height:.92;max-width:8ch;margin-top:8px}
+.fd .fd-hero .fd-lead{font-size:19px;margin-top:22px;max-width:34ch}
+.fd .fd-search{position:relative;margin-top:32px;max-width:520px}
+.fd .fd-search .search-box{border:2px solid var(--granite);border-radius:6px;box-shadow:none;background:#FFFFFF}
+.fd .fd-search .search-box:focus-within{border-color:var(--sapphire);box-shadow:0 0 0 3px color-mix(in srgb,var(--sapphire) 25%,transparent)}
+.fd .fd-search .search-box svg{color:var(--granite)}
+.fd .fd-often{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:15px;color:var(--slate)}
+.fd .fd-often a{color:var(--granite);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-strong);padding:6px 0}
+.fd .fd-often a:hover{text-decoration-color:currentColor}
+
+.fd .fd-gems{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fd .fd-gem{--g:var(--malachite);position:relative;background:var(--g);color:#FFFFFF;padding:26px 26px 22px;min-height:248px;display:flex;flex-direction:column;
+  clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%);
+  animation:fd-cut .7s cubic-bezier(.2,.7,.2,1) both}
+.fd .fd-gem[data-role="student"]{--g:var(--amethyst);animation-delay:.08s}
+.fd .fd-gem[data-role="staff"]{--g:var(--sapphire);animation-delay:.16s}
+.fd .fd-gem[data-role="intl"]{--g:var(--jasper);animation-delay:.24s}
+/* светлая «грань» на срезе — блик камня */
+.fd .fd-gem::after{content:"";position:absolute;top:0;right:0;width:var(--cut);height:var(--cut);background:linear-gradient(225deg,transparent 50%,rgba(255,255,255,.28) 50%)}
+@keyframes fd-cut{from{clip-path:polygon(0 0,0 0,0 0,0 100%,0 100%)}to{clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%)}}
+.fd .fd-gem h2{color:#FFFFFF;font-size:34px;line-height:1}
+.fd .fd-gem ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:2px}
+.fd .fd-gem li a{display:block;color:#FFFFFF;text-decoration:none;padding:7px 0;font-size:16px;font-weight:500;line-height:1.3;border-bottom:1px solid rgba(255,255,255,.22)}
+.fd .fd-gem li a:hover{border-bottom-color:#FFFFFF}
+.fd .fd-gem li a span{display:block;font-size:13px;font-weight:400;opacity:.86;margin-top:2px}
+.fd .fd-gem .fd-toggle{margin-top:auto;align-self:flex-start;padding:12px 0 0;min-height:44px;background:none;border:0;color:#FFFFFF;font:inherit;font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.fd .fd-gem :focus-visible{outline:3px solid #FFFFFF;outline-offset:2px}
+
+/* ── фото главного корпуса: широкая полоса со срезанным углом ── */
+.fd .fd-photo{height:clamp(220px,34vw,440px);background:var(--granite) url('photos/glavnyj-korpus-leto.webp') center 38%/cover no-repeat;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 48px),calc(100% - 48px) 100%,0 100%)}
+
+/* ── поступление: отсчёт и четыре даты ── */
+.fd .fd-adm{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:end}
+.fd .fd-days{font-family:var(--narrow);font-weight:700;font-size:clamp(88px,11vw,152px);line-height:.85;color:var(--malachite)}
+.fd .fd-days-l{font-size:20px;font-weight:600;margin-top:12px;max-width:22ch}
+.fd .fd-note{color:var(--slate);font-size:14px;margin-top:10px;max-width:46ch}
+.fd .fd-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:3px solid var(--granite)}
+.fd .fd-steps li{padding:16px 16px 0 0;position:relative}
+.fd .fd-steps li::before{content:"";position:absolute;top:-9px;left:0;width:15px;height:15px;background:#FFFFFF;border:3px solid var(--granite);transform:rotate(45deg)}
+.fd .fd-steps b{display:block;font-family:var(--narrow);font-size:28px;line-height:1.1;margin-top:8px}
+.fd .fd-steps span{display:block;color:var(--slate);font-size:15px;margin-top:4px}
+.fd .fd-adm-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px}
+.fd .fd-adm-cta .btn,.fd .fd-adm-cta .btn2{white-space:normal;text-align:center;padding-top:8px;padding-bottom:8px}
+
+/* ── новости и события: списки, не карточки ── */
+.fd .fd-two{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px}
+.fd .fd-list{list-style:none;margin:0;padding:0}
+.fd .fd-list li{border-top:1px solid var(--line-strong)}
+.fd .fd-list li:last-child{border-bottom:1px solid var(--line-strong)}
+.fd .fd-news a{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;padding:20px 0;color:var(--granite);text-decoration:none}
+.fd .fd-news a:hover .fd-t{text-decoration:underline;text-underline-offset:4px}
+.fd .fd-news small{color:var(--slate);font-size:14px;padding-top:4px}
+.fd .fd-t{font-family:var(--narrow);font-weight:700;font-size:26px;line-height:1.1}
+.fd .fd-ev a{display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:baseline;padding:18px 0;color:var(--granite);text-decoration:none}
+.fd .fd-ev a:hover .fd-ev-t{text-decoration:underline;text-underline-offset:3px}
+.fd .fd-ev b{font-family:var(--narrow);font-size:30px;line-height:1;color:var(--sapphire)}
+.fd .fd-ev b small{display:block;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;color:var(--slate);margin-top:4px}
+.fd .fd-ev-t{font-weight:600;font-size:17px;line-height:1.35}
+.fd .fd-ev-d{color:var(--slate);font-size:14px;margin-top:2px}
+.fd .fd-col-h{font-size:clamp(34px,4vw,48px);line-height:1.02}
+
+/* ── институты: аббревиатуры как вывески ── */
+.fd .fd-inst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px}
+.fd .fd-inst a{display:block;padding:22px 0 24px;border-top:1px solid var(--line-strong);color:var(--granite);text-decoration:none}
+.fd .fd-inst b{display:block;font-family:var(--narrow);font-size:clamp(34px,3.4vw,46px);line-height:1}
+.fd .fd-inst span{display:block;color:var(--slate);font-size:15px;margin-top:8px}
+.fd .fd-inst a:hover b{color:var(--sapphire)}
+
+/* ── жизнь в УрФУ ── */
+.fd .fd-life{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.fd .fd-life a{color:var(--granite);text-decoration:none}
+.fd .fd-life .ph{aspect-ratio:4/5;background:var(--limestone) center/cover no-repeat}
+.fd .fd-life b{display:block;font-family:var(--narrow);font-size:24px;margin-top:12px}
+.fd .fd-life span{display:block;color:var(--slate);font-size:15px;margin-top:2px}
+.fd .fd-life a:hover b{text-decoration:underline;text-underline-offset:4px}
+
+@media (max-width:1100px){
+  .fd .fd-hero-in,.fd .fd-adm,.fd .fd-two{grid-template-columns:minmax(0,1fr);gap:40px}
+  .fd .fd-hero h1{max-width:12ch}
+  .fd .fd-inst,.fd .fd-life{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .fd .fd-sec{padding:60px 0}
+  .fd .fd-hero{padding:32px 0 48px}
+  .fd .fd-gems{grid-template-columns:1fr}
+  .fd .fd-gem{min-height:0}
+  .fd .fd-steps{grid-template-columns:1fr;border-top:0;border-left:3px solid var(--granite);margin-left:7px;padding-left:22px;row-gap:18px}
+  .fd .fd-steps li{padding:0}
+  .fd .fd-steps li::before{top:9px;left:-33px}
+  .fd .fd-steps b{margin-top:0}
+  .fd .fd-gem li a span{display:none}
+  .fd .fd-news a{grid-template-columns:1fr;gap:4px}
+  .fd .fd-photo{clip-path:polygon(0 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%)}
+}
+@media (max-width:380px){.fd .fd-inst,.fd .fd-life{grid-template-columns:1fr}.fd .fd-search .btn{padding:0 14px}.fd .fd-search .search-box{gap:8px;padding-left:12px}.fd .fd-search input{min-width:0}}
+@media (prefers-reduced-motion:reduce){.fd .fd-gem{animation:none}}
+/* режим для слабовидящих: крупнее, без срезов */
+#a11y:checked ~ main .fd-gem{clip-path:none;animation:none}

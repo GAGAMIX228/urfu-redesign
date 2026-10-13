@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Эксперимент: Уральский камень] УрФУ — Уральский федеральный университет</title>
+<meta name="description" content="Уральский федеральный университет: программы, поступление, наука, жизнь кампуса.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/PTSansNarrow-Bold-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="logo-live.css">
+<link rel="stylesheet" href="fd.css">
+<link rel="preload" href="photos/glavnyj-korpus-leto.webp" as="image">
+</head>
+<body>
+<template id="dc-tpl">
+<div class="fd"><a href="#main" class="skip">Перейти к содержимому</a><input type="checkbox" id="a11y" class="a11y-cb">
+<header class="hd"><div class="wrap hd-in">
+<a class="brand" href="Main.dc.html" aria-label="УрФУ, на главную"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemH)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого<br>Президента России<br>Б.Н. Ельцина</i></span></a>
+<nav class="nav" aria-label="Главное меню"><a href="Admission.dc.html">Поступление</a><a href="Schedule.dc.html">Обучение</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></nav>
+<div class="tools" style="margin-left:auto">
+<label for="a11y" class="ico a11y-lbl" title="Версия для слабовидящих"><span class="sr">Версия для слабовидящих</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></label>
+<a class="ico" href="Search.dc.html" aria-label="Поиск"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+<div class="lang" role="group" aria-label="Язык сайта"><span aria-current="true">RU</span><a href="MainEn.dc.html" lang="en" aria-label="English version">EN</a></div>
+<a class="btn" href="Login.dc.html">Личный кабинет</a>
+<details class="mnav"><summary class="ico" aria-label="Меню"><svg class="i-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="i-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></summary>
+<nav class="mnav-panel" aria-label="Главное меню"><a href="Admission.dc.html">Поступление</a><a href="Schedule.dc.html">Обучение</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a><a href="Login.dc.html">Личный кабинет</a></nav></details>
+</div>
+</div></header>
+
+<main id="main" tabindex="-1" style="outline:none">
+<section class="fd-hero"><div class="wrap fd-hero-in">
+<div>
+<h1>Что вам нужно в УрФУ?</h1>
+<p class="fd-lead">Программы, расписание, общежития, люди и события — найдём за пару секунд.</p>
+<div class="search fd-search">
+<div class="search-box">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+<label for="q" class="sr">Поиск по сайту</label>
+<input id="q" autocomplete="off" placeholder="Например: общежитие или ИИ" value="{{q}}" onChange="{{onQ}}">
+<a class="btn" href="{{qHref}}">Найти</a>
+</div>
+<sc-if value="{{open}}">
+<div class="sug" role="listbox" aria-label="Подсказки">
+<sc-for list="{{sug}}" as="g">
+<a href="{{g.href}}" role="option"><span style="font-weight:500">{{g.t}}</span><span class="muted" style="font-size:13px;white-space:nowrap">{{g.kind}}</span></a>
+</sc-for>
+<sc-if value="{{none}}"><div class="muted" style="padding:14px 18px">Ничего не нашлось. Попробуйте <a href="Quiz.dc.html">подбор программы</a>, <a href="Schedule.dc.html">расписание</a> или <a href="Dorms.dc.html">общежития</a>.</div></sc-if>
+<a href="{{qHref}}" style="background:var(--bg-soft-2);font-weight:600;color:var(--blue)">Все результаты поиска</a>
+</div>
+</sc-if>
+</div>
+<p class="fd-often">Часто ищут: <a href="Schedule.dc.html">расписание</a><a href="Catalog.dc.html">проходные баллы</a><a href="Dorms.dc.html">общежития</a><a href="Contacts.dc.html">карту кампуса</a></p>
+</div>
+<div class="fd-gems">
+<sc-for list="{{gems}}" as="g" hint-placeholder-count="4">
+<section class="fd-gem" data-role="{{g.key}}" lang="{{g.lang}}" aria-labelledby="{{g.hid}}">
+<h2 id="{{g.hid}}">{{g.me}}</h2>
+<ul><sc-for list="{{g.links}}" as="l" hint-placeholder-count="3"><li><a href="{{l.href}}">{{l.t}}<span>{{l.d}}</span></a></li></sc-for></ul>
+<button type="button" class="fd-toggle" id="{{g.bid}}" aria-expanded="{{g.exp}}" onClick="{{g.toggle}}">{{g.more}}</button>
+</section>
+</sc-for>
+</div>
+</div></section>
+
+<div class="fd-photo" role="img" aria-label="Главный учебный корпус УрФУ на улице Мира, 19"></div>
+
+<section class="fd-sec soft" aria-labelledby="adm-h"><div class="wrap fd-adm">
+<div>
+<h2 id="adm-h" class="sr">Поступление</h2>
+<div class="fd-days">{{days}}</div>
+<p class="fd-days-l">{{daysWord}} до начала приёма документов</p>
+<p class="fd-note">Считаем до 20 июня — так по правилам приёма 2026 года. Даты на 2027 год объявят весной.</p>
+</div>
+<div>
+<ol class="fd-steps">
+<li><b>20 июня</b><span>Приём документов открыт</span></li>
+<li><b>25 июля</b><span>Последний день для бюджета по ЕГЭ</span></li>
+<li><b>20 августа</b><span>Последний день для платного</span></li>
+<li><b>1 сентября</b><span>Первая пара</span></li>
+</ol>
+<div class="fd-adm-cta"><a class="btn" href="Quiz.dc.html">Подобрать программу за 3 вопроса</a><a class="btn2" href="Admission.dc.html" style="background:#FFFFFF">Как поступить</a></div>
+</div>
+</div></section>
+
+<section class="fd-sec"><div class="wrap fd-two">
+<div>
+<div class="fd-head"><h2 class="fd-col-h">Новости</h2><a class="fd-more" href="News.dc.html">Все новости</a></div>
+<ul class="fd-list fd-news">
+<li><a href="Article.dc.html"><small>Июль 2026</small><span class="fd-t">Почти 50 тысяч заявлений на бюджет: итоги приёма-2026</span></a></li>
+<li><a href="Article.dc.html"><small>2026</small><span class="fd-t">УрФУ вошёл в пилотный проект новой системы высшего образования</span></a></li>
+<li><a href="Article.dc.html"><small>2026</small><span class="fd-t">Около 500 преподавателей освоили нейросети для создания учебных курсов</span></a></li>
+<li><a href="Article.dc.html"><small>2026</small><span class="fd-t">Учёные УрФУ и УрО РАН объяснили одну из загадочных причин мужского бесплодия</span></a></li>
+</ul>
+</div>
+<div>
+<div class="fd-head"><h2 class="fd-col-h">События</h2><a class="fd-more" href="Events.dc.html">Календарь</a></div>
+<ul class="fd-list fd-ev">
+<li><a href="Events.dc.html"><b>13–22<small>октября</small></b><div><div class="fd-ev-t">Статистический диктант</div><div class="fd-ev-d">Онлайн, можно успеть</div></div></a></li>
+<li><a href="Events.dc.html"><b>24<small>октября</small></b><div><div class="fd-ev-t">Школа экскурсоводов</div><div class="fd-ev-d">Набор на программу допобразования</div></div></a></li>
+<li><a href="Events.dc.html"><b>29<small>октября</small></b><div><div class="fd-ev-t">Кейс-чемпионат «Лига твоего имени»</div><div class="fd-ev-d">Приём заявок</div></div></a></li>
+<li><a href="Events.dc.html"><b>3–12<small>ноября</small></b><div><div class="fd-ev-t">Большой этнографический диктант</div><div class="fd-ev-d">Онлайн на сайте акции</div></div></a></li>
+</ul>
+</div>
+</div></section>
+
+<section class="fd-sec soft"><div class="wrap">
+<div class="fd-head"><div><h2 class="fd-h2">Институты</h2><p class="fd-lead">Восемь институтов — от радиотехники до гуманитарных наук.</p></div><a class="fd-more" href="Institute.dc.html">Все подразделения</a></div>
+<div class="fd-inst">
+<a href="Institute.dc.html"><b>ИРИТ-РтФ</b><span>Радиоэлектроника и IT</span></a>
+<a href="Institute.dc.html"><b>ИЕНиМ</b><span>Естественные науки и математика</span></a>
+<a href="Institute.dc.html"><b>ИНМиТ</b><span>Новые материалы и технологии</span></a>
+<a href="Institute.dc.html"><b>УралЭНИН</b><span>Энергетика</span></a>
+<a href="Institute.dc.html"><b>ИСА</b><span>Строительство и архитектура</span></a>
+<a href="Institute.dc.html"><b>УГИ</b><span>Гуманитарные науки</span></a>
+<a href="Institute.dc.html"><b>ИнЭУ</b><span>Экономика и управление</span></a>
+<a href="Institute.dc.html"><b>ФТИ</b><span>Физика и технологии</span></a>
+</div>
+</div></section>
+
+<section class="fd-sec"><div class="wrap">
+<div class="fd-head"><h2 class="fd-h2">Жизнь в УрФУ</h2><a class="fd-more" href="Life.dc.html">Клубы, спорт и события</a></div>
+<div class="fd-life">
+<a href="Life.dc.html"><div class="ph" style="background-image:url('photos/kampus-leto.webp')"></div><b>Кампус</b><span>Втузгородок и улица Мира</span></a>
+<a href="Life.dc.html"><div class="ph" style="background-image:url('photos/bassejn.webp')"></div><b>Спорт</b><span>Бассейн, залы, секции</span></a>
+<a href="Life.dc.html"><div class="ph" style="background-image:url('photos/tochka-kipeniya.webp')"></div><b>Студклубы</b><span>Наука, IT, творчество</span></a>
+<a href="Life.dc.html"><div class="ph" style="background-image:url('photos/volontery-2026.webp')"></div><b>Волонтёрство</b><span>Проекты и события</span></a>
+</div>
+</div></section>
+</main></main>
+
+<footer class="ft"><div class="wrap"><div class="ft-grid">
+<div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemF)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого<br>Президента России<br>Б.Н. Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p><p style="margin-top:12px">Контакт-центр, бесплатно по России:<br><a href="tel:88001005044" style="color:#FFFFFF;font-weight:600;font-size:18px">8-800-100-50-44</a><br><a href="mailto:contact@urfu.ru">contact@urfu.ru</a></p></div>
+<div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступление</a><a href="Schedule.dc.html">Обучение</a><a href="Article.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
+<div class="ft-col"><div class="ft-h">Сервисы</div><a href="Schedule.dc.html">Расписание</a><a href="Login.dc.html">Личный кабинет</a><a href="Search.dc.html">Поиск по сайту</a><a href="Contacts.dc.html">Контакты и карта</a></div>
+<div class="ft-col"><div class="ft-h">Обязательная информация</div><a href="NotFound.dc.html">Сведения об образовательной организации</a><a href="NotFound.dc.html">Противодействие коррупции</a><a href="NotFound.dc.html">Доступная среда</a><a href="MainEn.dc.html" lang="en">English</a></div>
+</div><p style="margin-top:48px;padding-top:24px;border-top:1px solid var(--ink-line)">© УрФУ, 1920–2026</p></div></footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<script type="text/x-dc" id="dc-logic">
+class Component extends DCLogic {
+renderVals() {
+const ALL_PROGS = [
+{name:'Программная инженерия', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'259', budget:'100', price:'390 000 ₽'},
+{name:'Алгоритмы искусственного интеллекта', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'246', budget:'105', price:'300 000 ₽'},
+{name:'Прикладной искусственный интеллект', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[], score:'255'},
+{name:'Интеллектуальные системы в гуманитарной сфере', inst:'УГИ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[]},
+{name:'Информационная безопасность', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]]},
+{name:'Информатика и вычислительная техника', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'251'},
+{name:'Прикладная информатика', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[], score:'258'},
+{name:'Инфокоммуникационные технологии и системы связи', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], budget:'66', price:'от 275 000 ₽'},
+{name:'Радиотехника', inst:'ИРИТ-РтФ', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Прикладная математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'247'},
+{name:'Математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'233'},
+{name:'Физика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'физика, математика, русский', req:["phys", "math", "rus"], ch:[], score:'221'},
+{name:'Химия', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'химия, математика, русский', req:["chem", "math", "rus"], ch:[], score:'234'},
+{name:'Биология', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'биология, химия или математика, русский', req:["bio", "rus"], ch:[["chem", "math"]], score:'235'},
+{name:'Металлургия', inst:'ИНМиТ', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]]},
+{name:'Материаловедение и технологии материалов', inst:'ИНМиТ', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]]},
+{name:'Электроэнергетика и электротехника', inst:'УралЭНИН', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Теплоэнергетика и теплотехника', inst:'УралЭНИН', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Строительство', inst:'ИСА', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]], score:'234'},
+{name:'Архитектура', inst:'ИСА', area:'Инженерия', k:'eng', exams:'творческое испытание, математика, русский', req:["math", "rus"], ch:[]},
+{name:'Ядерная энергетика и теплофизика', inst:'ФТИ', area:'Инженерия', k:'eng', exams:'математика, физика, русский', req:["math", "phys", "rus"], ch:[]},
+{name:'История', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'история, обществознание, русский', req:["hist", "soc", "rus"], ch:[]},
+{name:'Журналистика', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'творческое испытание, литература, русский', req:["lit", "rus"], ch:[]},
+{name:'Филология', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'литература, иностранный язык, русский', req:["lit", "lang", "rus"], ch:[]},
+{name:'Лингвистика', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'иностранный язык, обществознание, русский', req:["lang", "soc", "rus"], ch:[]},
+{name:'Психология', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'биология или математика, обществознание, русский', req:["soc", "rus"], ch:[["bio", "math"]]},
+{name:'Международные отношения', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'история, иностранный язык, русский', req:["hist", "lang", "rus"], ch:[]},
+{name:'Экономика', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, обществознание, русский', req:["math", "soc", "rus"], ch:[]},
+{name:'Менеджмент', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, обществознание, русский', req:["math", "soc", "rus"], ch:[]},
+{name:'Бизнес-информатика', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, информатика или обществознание, русский', req:["math", "rus"], ch:[["inf", "soc"]]}
+];
+const stems = q => q.toLowerCase().split(/[^a-zа-яё0-9]+/).filter(w => w.length >= 3).map(w => w.slice(0, Math.min(5, w.length)));
+const matches = (text, q) => { const st = stems(q); if (!st.length) return true; const t = text.toLowerCase(); return st.some(x => t.includes(x)); };
+
+const q = (this.state && this.state.q) || '';
+const QUICK = [
+{t:'Расписание', kind:'Сервис', href:'Schedule.dc.html', key:'расписание пары занятия'},
+{t:'Как поступить', kind:'Раздел', href:'Admission.dc.html', key:'поступление поступить приём документы абитуриент'},
+{t:'Проходные баллы', kind:'Раздел', href:'Catalog.dc.html', key:'проходные баллы бюджет егэ'},
+{t:'Подбор программы за 3 вопроса', kind:'Сервис', href:'Quiz.dc.html', key:'подбор подобрать программу куда поступить тест выбрать направление специальность'},
+{t:'Общежития', kind:'Раздел', href:'Dorms.dc.html', key:'общежитие жильё заселение'},
+{t:'Контакты и карта кампуса', kind:'Раздел', href:'Contacts.dc.html', key:'контакты карта адрес телефон приёмная комиссия'},
+{t:'Клубы и спорт', kind:'Раздел', href:'Life.dc.html', key:'клубы спорт секции творчество'},
+{t:'Личный кабинет', kind:'Сервис', href:'Login.dc.html', key:'личный кабинет стипендия оценки справки зачётка'},
+{t:'Календарь событий', kind:'Раздел', href:'Events.dc.html', key:'события день открытых дверей мероприятия'}
+];
+const QUICK_TEXT = QUICK.map(k => k.t + ' ' + k.key).join(' ');
+const CORPUS = ALL_PROGS.map(p => p.name).join(' ') + ' ' + QUICK_TEXT;
+const st = window.SmartSearch ? SmartSearch.terms(q, CORPUS) : stems(q);
+const nrm = t => window.SmartSearch ? SmartSearch.norm(t) : t.toLowerCase();
+const hit = t => st.filter(x => nrm(t).includes(x)).length;
+const sug = st.length ? ALL_PROGS.map(p => ({t:p.name, kind:'Программа', href:'Program.dc.html', h:hit(p.name)*2}))
+  .concat(QUICK.map(k => ({t:k.t, kind:k.kind, href:k.href, h:hit(k.t + ' ' + k.key)})))
+  .filter(x => x.h > 0).sort((a, b) => b.h - a.h).slice(0, 6) : [];
+const role = (this.state && this.state.role) || 'abit';
+const sets = {
+abit: [
+{t:'Каталог программ', d:'400+ программ с фильтром по ЕГЭ и баллам', href:'Catalog.dc.html'},
+{t:'Как поступить', d:'5 шагов от выбора до зачисления', href:'Admission.dc.html'},
+{t:'Подбор программы', d:'3 вопроса — и список, куда вы проходите', href:'Quiz.dc.html'},
+{t:'Общежития', d:'Адреса, цены и как получить место', href:'Dorms.dc.html'},
+{t:'Дни открытых дверей', d:'Ближайшие встречи с институтами', href:'Events.dc.html'},
+{t:'Задать вопрос', d:'Контакты приёмной комиссии', href:'Contacts.dc.html'}],
+student: [
+{t:'Расписание', d:'Пары на сегодня и на неделю', href:'Schedule.dc.html'},
+{t:'Личный кабинет', d:'Оценки, справки, стипендия', href:'Login.dc.html'},
+{t:'События', d:'Лекции, конкурсы, ярмарки вакансий', href:'Events.dc.html'},
+{t:'Найти преподавателя', d:'Кафедра, почта, часы консультаций', href:'Person.dc.html'},
+{t:'Общежития', d:'Заселение и правила', href:'Dorms.dc.html'},
+{t:'Карта кампуса', d:'Корпуса и аудитории', href:'Contacts.dc.html'}],
+staff: [
+{t:'Новости', d:'Что происходит в университете', href:'News.dc.html'},
+{t:'Найти коллегу', d:'Поиск по сотрудникам', href:'Search.dc.html'},
+{t:'Институты', d:'Структура и подразделения', href:'Institute.dc.html'},
+{t:'Мероприятия', d:'Календарь университета', href:'Events.dc.html'},
+{t:'Контакты служб', d:'Телефоны и адреса', href:'Contacts.dc.html'},
+{t:'Сервисы', d:'Почта, документы, ЛК сотрудника', href:'Login.dc.html?role=staff'}],
+intl: [
+{t:'Programme catalogue', d:'In English: filters, exams and pass marks', href:'CatalogEn.dc.html'},
+{t:'How to apply', d:'Steps, documents and deadlines', href:'AdmissionEn.dc.html'},
+{t:'Dormitories', d:'Housing for international students', href:'Dorms.dc.html'},
+{t:'Campus map', d:'Buildings and contacts', href:'Contacts.dc.html'},
+{t:'Events', d:'Adaptation and student life', href:'Events.dc.html'},
+{t:'Contact us', d:'International office', href:'Contacts.dc.html'}]
+};
+const list = [['abit','Абитуриент'],['student','Студент'],['staff','Сотрудник'],['intl','International']];
+const ME = {abit:'Я поступаю', student:'Я учусь', staff:'Я работаю в УрФУ', intl:'International students'};
+const openG = (this.state && this.state.openG) || {};
+const gems = list.map(([k]) => {
+  const all = sets[k], ex = !!openG[k];
+  return { key: k, me: ME[k], lang: k === 'intl' ? 'en' : 'ru', hid: 'gem-' + k, bid: 'gem-b-' + k,
+    links: ex ? all : all.slice(0, 3), exp: String(ex),
+    more: ex ? (k === 'intl' ? 'Show less' : 'Свернуть') : (k === 'intl' ? 'Show 3 more' : 'Ещё ' + (all.length - 3)),
+    toggle: () => this.setState({ openG: { ...openG, [k]: !ex } }) };
+});
+const NOW = new Date(); const Y0 = NOW.getFullYear();
+let target = new Date(Y0, 5, 20); if (NOW > new Date(Y0, 7, 20)) target = new Date(Y0 + 1, 5, 20);
+const days = Math.max(0, Math.ceil((target - new Date(Y0, NOW.getMonth(), NOW.getDate())) / 864e5));
+const dw = (days % 10 === 1 && days % 100 !== 11) ? 'день остался' : (days % 10 >= 2 && days % 10 <= 4 && (days % 100 < 12 || days % 100 > 14)) ? 'дня осталось' : 'дней осталось';
+const qHref = 'Search.dc.html' + (q.trim() ? '?q=' + encodeURIComponent(q.trim()) : '');
+return { qHref, gems, days, daysWord: dw.charAt(0).toUpperCase() + dw.slice(1),
+q, onQ: (e) => this.setState({ q: e.target.value }), open: q.trim().length >= 2, sug, none: q.trim().length >= 2 && sug.length === 0,
+roleKey: role, qLang: role === 'intl' ? 'en' : 'ru',
+roles: list.map(([k, label]) => ({ label, pressed: k === role ? 'true' : 'false', pick: () => this.setState({ role: k }) })),
+links: sets[role].map((l, i) => Object.assign({ n: '0' + (i + 1) }, l))
+};
+}
+}
+
+</script>
+<script src="smart-search.js"></script>
+<script src="dc-lite.js"></script>
+<script src="site.js"></script>
+<script src="logo-live.js"></script>
+</body>
+</html>
