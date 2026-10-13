@@ -8,10 +8,12 @@
 <link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="dark.css">
+<script src="theme.js"></script>
 <title>Эксперименты — прототип УрФУ</title>
 <style>
 .xp{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:24px}
-.xp article{border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;background:#FFFFFF;display:flex;flex-direction:column;gap:10px;box-shadow:inset 0 4px 0 var(--c)}
+.xp article{border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;background:var(--bg);display:flex;flex-direction:column;gap:10px;box-shadow:inset 0 4px 0 var(--c)}
 .xp article:nth-child(4n+1){--c:var(--a1)}.xp article:nth-child(4n+2){--c:var(--a2)}.xp article:nth-child(4n+3){--c:var(--a3)}.xp article:nth-child(4n+4){--c:var(--a4)}
 .xp h2{font-size:22px}
 .xp ul{margin:0;padding-left:20px;color:var(--muted);font-size:15px;line-height:1.6}
@@ -31,9 +33,9 @@
 <div class="links"><a class="btn" href="Main.motion.dc.html">Главная</a><a class="btn2" href="Catalog.motion.dc.html">Каталог</a></div>
 </article>
 <article>
-<h2>2. Тёмная тема</h2>
-<ul><li>кнопка с луной в шапке (на телефоне — в меню)</li><li>выбор запоминается и работает на всех страницах</li><li>контраст проверен на всех страницах</li></ul>
-<div class="links"><a class="btn" href="Main.dark.dc.html">Открыть и нажать луну</a></div>
+<h2>2. Тёмная тема — взята на сайт ✓</h2>
+<ul><li>кнопка с луной в шапке рядом с «глазом» (на телефоне — в меню)</li><li>выбор запоминается и работает на всех страницах</li></ul>
+<div class="links"><a class="btn" href="Main.dc.html">Открыть и нажать луну</a></div>
 </article>
 <article>
 <h2>3. Палитра</h2>

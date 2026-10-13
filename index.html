@@ -9,6 +9,8 @@
 <link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="dark.css">
+<script src="theme.js"></script>
 <style>
 .ix-hero .hero-grid{grid-template-columns:minmax(0,1fr);padding:72px 0 64px}
 .ix-brand{display:flex;align-items:center;gap:12px;color:#FFFFFF}
@@ -16,7 +18,7 @@
 .ix main{padding-bottom:72px}
 .ix h2{font-size:26px;margin:48px 0 16px}
 .ix-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.ix-grid a{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 20px;text-decoration:none;color:var(--text);background:#FFFFFF;box-shadow:inset 0 3px 0 var(--c,var(--a1));transition:transform .2s var(--ease),box-shadow .2s ease,border-color .2s ease}
+.ix-grid a{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 20px;text-decoration:none;color:var(--text);background:var(--bg);box-shadow:inset 0 3px 0 var(--c,var(--a1));transition:transform .2s var(--ease),box-shadow .2s ease,border-color .2s ease}
 .ix-grid a:nth-child(4n+2){--c:var(--a2)}.ix-grid a:nth-child(4n+3){--c:var(--a3)}.ix-grid a:nth-child(4n+4){--c:var(--a4)}
 .ix-grid a:hover{transform:translateY(-2px);border-color:var(--c,var(--a1));box-shadow:inset 0 3px 0 var(--c,var(--a1)),var(--shadow)}
 .ix-grid b{font-size:17px}.ix-grid span{font-size:14px;color:var(--muted)}
