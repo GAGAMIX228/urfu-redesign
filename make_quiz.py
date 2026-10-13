@@ -2,7 +2,7 @@
 import os
 import re
 
-os.chdir(r'C:\Users\Admin\urfu-redesign')
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 s = open('Catalog.dc.html', encoding='utf-8').read()
 head = s[:s.index('<main')]
 foot = s[s.index('</main>'):s.index('<script type="text/x-dc" id="dc-logic">')]
@@ -11,8 +11,10 @@ i = logic.index('const ALL_PROGS = [')
 progs = logic[i:logic.index('];', i) + 2]
 subj = re.search(r"const SUBJ = .*?;\n", logic).group(0)
 tail = logic[logic.index('</script>') + len('</script>'):]
-head = re.sub(r'<title>[^<]*</title>', '<title>[Эксперимент] Подбор программы — УрФУ</title>', head)
+head = re.sub(r'<title>[^<]*</title>', '<title>Подбор программы за 3 вопроса — УрФУ</title>', head)
+head = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="Подбор программы УрФУ за 3 вопроса: интересы, предметы ЕГЭ и баллы — список программ, куда вы проходите.">', head)
 head = head.replace(' aria-current="page"', '')
+head = head.replace('<a href="Admission.dc.html">Поступить</a>', '<a href="Admission.dc.html" aria-current="page">Поступить</a>')
 
 CSS = """<style>
 .qz > *{max-width:880px}

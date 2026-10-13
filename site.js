@@ -27,3 +27,18 @@ document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target&&e.
 })();
 /* На странице 404 стоит <base>, из-за него ссылки вида #main уводили бы на стартовую — обрабатываем их вручную */
 document.addEventListener("click",function(e){if(!document.querySelector("base"))return;var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var id=a.getAttribute("href").slice(1),t=id&&document.getElementById(id);if(!t)return;e.preventDefault();t.scrollIntoView();if(t.focus)t.focus();history.replaceState(null,"",location.pathname+location.search+"#"+id);});
+/* Кнопка «Наверх»: появляется после двух экранов прокрутки */
+(function(){
+  var b=document.createElement("button");
+  b.type="button";b.className="to-top";b.setAttribute("aria-label","Наверх");b.title="Наверх";
+  b.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>';
+  b.addEventListener("click",function(){
+    var r=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({top:0,behavior:r?"auto":"smooth"});
+    var m=document.getElementById("main");if(m)m.focus({preventScroll:true});
+  });
+  function upd(){b.classList.toggle("on",window.scrollY>window.innerHeight*1.5);}
+  window.addEventListener("scroll",upd,{passive:true});
+  if(document.body)document.body.appendChild(b);else document.addEventListener("DOMContentLoaded",function(){document.body.appendChild(b);});
+  upd();
+})();
