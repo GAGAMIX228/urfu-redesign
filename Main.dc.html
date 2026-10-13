@@ -9,6 +9,7 @@
 <link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="logo-live.css">
 <link rel="preload" href="photos/glavnyj-korpus-leto.webp" as="image">
 </head>
 <body>
@@ -82,11 +83,11 @@
 
 <section class="wrap sec">
 <div class="sec-head"><div><div class="kicker">Быстрый старт</div><h2>Кто вы?</h2></div>
-<div class="seg" role="group" aria-label="Выберите роль">
+<div class="seg" data-role="{{roleKey}}" role="group" aria-label="Выберите роль">
 <sc-for list="{{roles}}" as="r"><button type="button" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}">{{r.label}}</button></sc-for>
 </div></div>
 <p class="muted">Выберите роль — и на главной останется только нужное вам.</p>
-<div class="qgrid">
+<div class="qgrid" data-role="{{roleKey}}">
 <sc-for list="{{links}}" as="l">
 <a class="q" href="{{l.href}}"><span class="n num">{{l.n}}</span><span class="t">{{l.t}}<span class="arrow" aria-hidden="true">→</span></span><span class="d">{{l.d}}</span></a>
 </sc-for>
@@ -254,6 +255,7 @@ const list = [['abit','Абитуриент'],['student','Студент'],['sta
 const qHref = 'Search.dc.html' + (q.trim() ? '?q=' + encodeURIComponent(q.trim()) : '');
 return { qHref,
 q, onQ: (e) => this.setState({ q: e.target.value }), open: q.trim().length >= 2, sug, none: q.trim().length >= 2 && sug.length === 0,
+roleKey: role,
 roles: list.map(([k, label]) => ({ label, pressed: k === role ? 'true' : 'false', pick: () => this.setState({ role: k }) })),
 links: sets[role].map((l, i) => Object.assign({ n: '0' + (i + 1) }, l))
 };
@@ -263,5 +265,6 @@ links: sets[role].map((l, i) => Object.assign({ n: '0' + (i + 1) }, l))
 </script>
 <script src="dc-lite.js"></script>
 <script src="site.js"></script>
+<script src="logo-live.js"></script>
 </body>
 </html>

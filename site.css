@@ -142,11 +142,15 @@ html:not(.ready) .colonnade .col{animation:build .7s var(--ease) both}
 .seg button{min-height:44px;padding:0 20px;border:0;border-radius:var(--r);background:transparent;font:inherit;font-weight:500;font-size:15px;color:var(--muted);cursor:pointer;transition:background .15s ease,color .15s ease}
 .seg button:hover{color:var(--text)}
 .seg button[aria-pressed="true"]{background:#FFFFFF;color:var(--text);font-weight:600;box-shadow:0 1px 2px rgba(14,27,43,.12),0 2px 8px rgba(14,27,43,.06)}
+/* цвет по роли: у каждой роли свой самоцвет — карточки быстрых ссылок и подчёркивание вкладки */
+[data-role="abit"]{--qc:var(--a1)}[data-role="student"]{--qc:var(--a2)}[data-role="staff"]{--qc:var(--a3)}[data-role="intl"]{--qc:var(--a4)}
+.seg[data-role] button[aria-pressed="true"]{box-shadow:inset 0 -3px 0 var(--qc),0 1px 2px rgba(14,27,43,.12),0 2px 8px rgba(14,27,43,.06)}
 
 .qgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:24px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
 .q{position:relative;display:flex;flex-direction:column;gap:10px;min-height:168px;padding:24px;background:#FFFFFF;text-decoration:none;color:var(--text);transition:background .2s ease}
 .q:hover{background:var(--blue-soft);color:var(--text)}
 .qgrid>.q:nth-child(4n+1){--c:var(--a1)}.qgrid>.q:nth-child(4n+2){--c:var(--a2)}.qgrid>.q:nth-child(4n+3){--c:var(--a3)}.qgrid>.q:nth-child(4n+4){--c:var(--a4)}
+.qgrid[data-role]>.q{--c:var(--qc)}
 .q:hover{background:color-mix(in srgb,var(--c) 9%,#FFFFFF)}
 .q:hover .n{background:var(--c);color:#FFFFFF !important}
 .q .n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:var(--r);background:color-mix(in srgb,var(--c) 9%,#FFFFFF);color:var(--c) !important;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.04em}
