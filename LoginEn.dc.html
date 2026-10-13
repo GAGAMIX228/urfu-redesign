@@ -99,7 +99,7 @@
 <button type="submit" class="btn lg-submit" id="r-go">Create account</button>
 </form></sc-if>
 
-<sc-if value="{{isRegNo}}" hint-placeholder-val="{{false}}"><div class="lg-note"><p>Students and staff do not need to register: the university issues their login and password [check where and when].</p><button type="button" class="btn2" id="r-back" style="margin-top:12px" onClick="{{toIn}}">Go to sign in</button></div></sc-if>
+<sc-if value="{{isRegNo}}" hint-placeholder-val="{{false}}"><div class="lg-note"><p>Students and staff do not need to register: the university creates the account after enrolment or hiring. One login works for all UrFU services.</p><button type="button" class="btn2" id="r-back" style="margin-top:12px" onClick="{{toIn}}">Go to sign in</button></div></sc-if>
 
 <sc-if value="{{hasMsg}}" hint-placeholder-val="{{false}}"><div class="lg-msg" id="lg-msg" tabindex="-1" role="status"><p>{{msg}}</p><sc-if value="{{hasEx}}" hint-placeholder-val="{{true}}"><a href="Schedule.dc.html">See what the timetable looks like →</a></sc-if></div></sc-if>
 </div>

@@ -53,7 +53,7 @@
 <label for="{{sj.id}}" style="display:flex;gap:10px;align-items:center;min-height:36px;cursor:pointer"><input id="{{sj.id}}" type="checkbox" checked="{{sj.on}}" onChange="{{sj.toggle}}" style="width:20px;height:20px;accent-color:var(--blue)">{{sj.label}}</label>
 </sc-for>
 </div></fieldset>
-<div class="field"><label for="sc">My total score</label><input id="sc" class="input" inputmode="numeric" placeholder="e.g. 240" value="{{my}}" onChange="{{onMy}}"><span class="muted" style="font-weight:400;font-size:13px">Compared with the 2025 pass mark</span></div>
+<div class="field"><label for="sc">My total score</label><input id="sc" class="input" inputmode="numeric" placeholder="e.g. 240" value="{{my}}" onChange="{{onMy}}"><span class="muted" style="font-weight:400;font-size:13px">Compared with the 2025 pass mark. “—” means no data yet</span></div>
 <button class="btn2" onClick="{{reset}}">Reset filters</button>
 </aside>
 <div class="main">
@@ -120,31 +120,31 @@ renderVals() {
 const ALL_PROGS = [
 {name:'Software Engineering', inst:'IRIT-RTF', area:'IT', k:'it', exams:'mathematics, computer science or physics, Russian', req:["math", "rus"], ch:[["inf", "phys"]], score:'259', budget:'100', price:'390,000 ₽'},
 {name:'Artificial Intelligence Algorithms', inst:'IRIT-RTF', area:'IT', k:'it', exams:'mathematics, computer science or physics, Russian', req:["math", "rus"], ch:[["inf", "phys"]], score:'246', budget:'105', price:'300,000 ₽'},
-{name:'Applied Artificial Intelligence', inst:'[institute]', area:'IT', k:'it', exams:'mathematics, computer science, Russian', req:["math", "inf", "rus"], ch:[]},
-{name:'Intelligent Systems in the Humanities', inst:'[institute]', area:'IT', k:'it', exams:'mathematics, computer science, Russian', req:["math", "inf", "rus"], ch:[]},
+{name:'Applied Artificial Intelligence', inst:'IRIT-RTF', area:'IT', k:'it', exams:'mathematics, computer science, Russian', req:["math", "inf", "rus"], ch:[], score:'255'},
+{name:'Intelligent Systems in the Humanities', inst:'UIH', area:'IT', k:'it', exams:'mathematics, computer science, Russian', req:["math", "inf", "rus"], ch:[]},
 {name:'Information Security', inst:'IRIT-RTF', area:'IT', k:'it', exams:'mathematics, computer science or physics, Russian', req:["math", "rus"], ch:[["inf", "phys"]]},
-{name:'Computer Science and Engineering', inst:'IRIT-RTF', area:'IT', k:'it', exams:'mathematics, computer science or physics, Russian', req:["math", "rus"], ch:[["inf", "phys"]]},
-{name:'Applied Computer Science', inst:'[institute]', area:'IT', k:'it', exams:'mathematics, computer science, Russian', req:["math", "inf", "rus"], ch:[]},
+{name:'Computer Science and Engineering', inst:'IRIT-RTF', area:'IT', k:'it', exams:'mathematics, computer science or physics, Russian', req:["math", "rus"], ch:[["inf", "phys"]], score:'251'},
+{name:'Applied Computer Science', inst:'IRIT-RTF', area:'IT', k:'it', exams:'mathematics, computer science, Russian', req:["math", "inf", "rus"], ch:[], score:'258'},
 {name:'Infocommunication Technologies and Communication Systems', inst:'IRIT-RTF', area:'IT', k:'it', exams:'mathematics, physics or computer science, Russian', req:["math", "rus"], ch:[["phys", "inf"]], budget:'66', price:'from 275,000 ₽'},
 {name:'Radio Engineering', inst:'IRIT-RTF', area:'Engineering', k:'eng', exams:'mathematics, physics or computer science, Russian', req:["math", "rus"], ch:[["phys", "inf"]]},
-{name:'Applied Mathematics', inst:'INSM', area:'Natural sciences', k:'nat', exams:'mathematics, computer science or physics, Russian', req:["math", "rus"], ch:[["inf", "phys"]]},
-{name:'Mathematics', inst:'INSM', area:'Natural sciences', k:'nat', exams:'mathematics, computer science or physics, Russian', req:["math", "rus"], ch:[["inf", "phys"]]},
-{name:'Physics', inst:'[institute]', area:'Natural sciences', k:'nat', exams:'physics, mathematics, Russian', req:["phys", "math", "rus"], ch:[]},
-{name:'Chemistry', inst:'INSM', area:'Natural sciences', k:'nat', exams:'chemistry, mathematics, Russian', req:["chem", "math", "rus"], ch:[]},
-{name:'Biology', inst:'INSM', area:'Natural sciences', k:'nat', exams:'biology, chemistry or mathematics, Russian', req:["bio", "rus"], ch:[["chem", "math"]]},
+{name:'Applied Mathematics', inst:'INSM', area:'Natural sciences', k:'nat', exams:'mathematics, computer science or physics, Russian', req:["math", "rus"], ch:[["inf", "phys"]], score:'247'},
+{name:'Mathematics', inst:'INSM', area:'Natural sciences', k:'nat', exams:'mathematics, computer science or physics, Russian', req:["math", "rus"], ch:[["inf", "phys"]], score:'233'},
+{name:'Physics', inst:'INSM', area:'Natural sciences', k:'nat', exams:'physics, mathematics, Russian', req:["phys", "math", "rus"], ch:[], score:'221'},
+{name:'Chemistry', inst:'INSM', area:'Natural sciences', k:'nat', exams:'chemistry, mathematics, Russian', req:["chem", "math", "rus"], ch:[], score:'234'},
+{name:'Biology', inst:'INSM', area:'Natural sciences', k:'nat', exams:'biology, chemistry or mathematics, Russian', req:["bio", "rus"], ch:[["chem", "math"]], score:'235'},
 {name:'Metallurgy', inst:'INMT', area:'Engineering', k:'eng', exams:'mathematics, physics or chemistry, Russian', req:["math", "rus"], ch:[["phys", "chem"]]},
 {name:'Materials Science and Technology', inst:'INMT', area:'Engineering', k:'eng', exams:'mathematics, physics or chemistry, Russian', req:["math", "rus"], ch:[["phys", "chem"]]},
 {name:'Electric Power and Electrical Engineering', inst:'UralENIN', area:'Engineering', k:'eng', exams:'mathematics, physics or computer science, Russian', req:["math", "rus"], ch:[["phys", "inf"]]},
 {name:'Heat Power Engineering', inst:'UralENIN', area:'Engineering', k:'eng', exams:'mathematics, physics or computer science, Russian', req:["math", "rus"], ch:[["phys", "inf"]]},
-{name:'Civil Engineering', inst:'ICEA', area:'Engineering', k:'eng', exams:'mathematics, physics or chemistry, Russian', req:["math", "rus"], ch:[["phys", "chem"]]},
+{name:'Civil Engineering', inst:'ICEA', area:'Engineering', k:'eng', exams:'mathematics, physics or chemistry, Russian', req:["math", "rus"], ch:[["phys", "chem"]], score:'234'},
 {name:'Architecture', inst:'ICEA', area:'Engineering', k:'eng', exams:'creative test, mathematics, Russian', req:["math", "rus"], ch:[]},
 {name:'Nuclear Power and Thermal Physics', inst:'IPT', area:'Engineering', k:'eng', exams:'mathematics, physics, Russian', req:["math", "phys", "rus"], ch:[]},
 {name:'History', inst:'UIH', area:'Humanities', k:'hum', exams:'history, social studies, Russian', req:["hist", "soc", "rus"], ch:[]},
 {name:'Journalism', inst:'UIH', area:'Humanities', k:'hum', exams:'creative test, literature, Russian', req:["lit", "rus"], ch:[]},
 {name:'Philology', inst:'UIH', area:'Humanities', k:'hum', exams:'literature, foreign language, Russian', req:["lit", "lang", "rus"], ch:[]},
-{name:'Linguistics', inst:'[institute]', area:'Humanities', k:'hum', exams:'foreign language, social studies, Russian', req:["lang", "soc", "rus"], ch:[]},
-{name:'Psychology', inst:'[institute]', area:'Humanities', k:'hum', exams:'biology or mathematics, social studies, Russian', req:["soc", "rus"], ch:[["bio", "math"]]},
-{name:'International Relations', inst:'[institute]', area:'Humanities', k:'hum', exams:'history, foreign language, Russian', req:["hist", "lang", "rus"], ch:[]},
+{name:'Linguistics', inst:'UIH', area:'Humanities', k:'hum', exams:'foreign language, social studies, Russian', req:["lang", "soc", "rus"], ch:[]},
+{name:'Psychology', inst:'UIH', area:'Humanities', k:'hum', exams:'biology or mathematics, social studies, Russian', req:["soc", "rus"], ch:[["bio", "math"]]},
+{name:'International Relations', inst:'UIH', area:'Humanities', k:'hum', exams:'history, foreign language, Russian', req:["hist", "lang", "rus"], ch:[]},
 {name:'Economics', inst:'GSEM', area:'Economics', k:'eco', exams:'mathematics, social studies, Russian', req:["math", "soc", "rus"], ch:[]},
 {name:'Management', inst:'GSEM', area:'Economics', k:'eco', exams:'mathematics, social studies, Russian', req:["math", "soc", "rus"], ch:[]},
 {name:'Business Informatics', inst:'GSEM', area:'Economics', k:'eco', exams:'mathematics, computer science or social studies, Russian', req:["math", "rus"], ch:[["inf", "soc"]]}
@@ -172,7 +172,7 @@ const myN = parseInt(my, 10);
 const hasMy = !isNaN(myN) && myN > 0;
 const base = ALL_PROGS
  .filter(p => area === 'all' || p.k === area)
- .map(p => ({ score: '[score]', budget: '[number]', price: '[₽]', ...p, hit: st.filter(x => p.name.toLowerCase().includes(x)).length }))
+ .map(p => ({ score: '—', budget: '—', price: '—', ...p, hit: st.filter(x => p.name.toLowerCase().includes(x)).length }))
  .filter(p => !st.length || p.hit > 0);
 const eligible = level === 'bach' ? base.filter(p => missing(p).length === 0) : [];
 const tally = {};
@@ -190,7 +190,7 @@ const progs = eligible.map(p => {
 const n = progs.length, m10 = n % 10, m100 = n % 100;
 const word = n === 1 ? 'programme' : 'programmes';
 const cmpCols = cmp.map(name => {
- const p = { score: '[score]', budget: '[number]', price: '[₽]', ...ALL_PROGS.find(x => x.name === name) };
+ const p = { score: '—', budget: '—', price: '—', ...ALL_PROGS.find(x => x.name === name) };
  const sc = parseInt(p.score, 10);
  const verdict = !hasMy ? 'Enter your score' : (isNaN(sc) ? 'Pass mark TBC' : (myN >= sc ? 'Enough' : (sc - myN) + ' points short'));
  return { ...p, verdict, remove: () => togg(name) };

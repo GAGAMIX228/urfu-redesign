@@ -60,7 +60,7 @@ body{padding:0;background:var(--bg)}
 <div class="wrap" style="padding-bottom:56px">
 <div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="Schedule.dc.html">Обучение</a> / Расписание</div>
 <h1 class="big" style="font-size:48px;margin-top:16px;color:#FFFFFF">Расписание</h1>
-<p style="color:var(--on-dark-muted);font-size:18px;margin-top:12px">Группа [номер] · неделя [дд.мм — дд.мм] · [чётная/нечётная]</p>
+<p style="color:var(--on-dark-muted);font-size:18px;margin-top:12px">Группа [номер] · неделя {{wkRange}} · {{wkNo}}</p>
 </div>
 </section>
 <div class="wrap" style="padding-bottom:72px">
@@ -121,8 +121,17 @@ body{padding:0;background:var(--bg)}
 <script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {
-const d = (this.state && this.state.d) || 0;
-const days = [['Пн','[дд]'],['Вт','[дд]'],['Ср','[дд]'],['Чт','[дд]'],['Пт','[дд]'],['Сб','[дд]']];
+// текущая учебная неделя: в воскресенье показываем следующую
+const now = new Date(); const wd = (now.getDay() + 6) % 7;
+const mon = new Date(now.getFullYear(), now.getMonth(), now.getDate() - wd + (wd === 6 ? 7 : 0));
+const todayIdx = wd === 6 ? 0 : wd;
+const dt = k => new Date(mon.getFullYear(), mon.getMonth(), mon.getDate() + k);
+const dm = x => String(x.getDate()).padStart(2, '0') + '.' + String(x.getMonth() + 1).padStart(2, '0');
+const d = (this.state && this.state.d !== undefined) ? this.state.d : todayIdx;
+const days = ['Пн','Вт','Ср','Чт','Пт','Сб'].map((w, k) => [w, String(dt(k).getDate())]);
+const semStart = new Date(now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1, 8, 1);
+const semMon = new Date(semStart.getFullYear(), 8, 1 - (semStart.getDay() + 6) % 7);
+const wkNo = Math.floor((mon - semMon) / 6048e5) + 1;
 const T = [['08:30','10:00'],['10:15','11:45'],['12:00','13:30'],['14:15','15:45'],['16:00','17:30']];
 const plan = [
 [[0,'Математический анализ','Лекция'],[1,'Программирование','Практика'],[2,'Английский язык','Практика']],
@@ -136,10 +145,11 @@ const full = ['Понедельник','Вторник','Среда','Четве
 const KC = {'Лекция':'k-lec','Практика':'k-pr','Лабораторная':'k-lab','Семинар':'k-sem'};
 const week = days.map(([w, n], k) => {
 const ps = plan[k].map(([i, t, kind]) => ({ from: T[i][0], to: T[i][1], t, kind, cls: 'wp ' + KC[kind] }));
-return { w, n, full: full[k], cls: 'wday' + (k === 0 ? ' today' : ''), pairs: ps, empty: ps.length === 0 };
+return { w, n, full: full[k], cls: 'wday' + (k === todayIdx ? ' today' : ''), pairs: ps, empty: ps.length === 0 };
 });
 const pairs = plan[d].map(([i, t, kind]) => ({ from: T[i][0], to: T[i][1], t, kind }));
 return {
+wkRange: dm(mon) + ' — ' + dm(dt(5)), wkNo: (wkNo >= 1 && wkNo <= 22 && now.getMonth() >= 8) ? wkNo + '-я неделя семестра' : 'текущая неделя',
 days: days.map(([w, n], k) => ({ w, n, on: k === d, off: k !== d, pick: () => this.setState({ d: k }) })),
 pairs,
 week,
