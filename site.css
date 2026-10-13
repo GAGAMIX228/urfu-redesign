@@ -390,3 +390,6 @@ a[href^="tel:"],a[href^="mailto:"]{display:inline-block;padding:3px 0}
   .side{flex-basis:100%;min-width:0}
   .card,summary,h1,h2,h3{overflow-wrap:anywhere}
 }
+
+/* кнопка «Наверх» висит и над светлым, и над тёмным фоном: белое кольцо + синяя рамка видны на обоих */
+.to-top:focus-visible{outline:3px solid var(--blue);outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF,0 8px 24px rgba(14,27,43,.25)}

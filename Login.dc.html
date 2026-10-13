@@ -130,7 +130,7 @@ if (!this.state) {
 }
 const s = this.state, err = s.err || {};
 const canReg = s.role === 'abit' || s.role === 'partner';
-const focusLater = id => setTimeout(() => { const n = document.getElementById(id); if (n) n.focus(); }, 30);
+const focusLater = id => { const n = document.getElementById(id); if (n) n.focus(); };
 const set = (k, v) => this.setState({ [k]: v, err: { ...err, [k]: '' } });
 const done = text => { this.setState({ err: {}, msg: text }); focusLater('lg-msg'); };
 const fail = (e, order) => { this.setState({ err: e, msg: '' }); const first = order.find(([k]) => e[k]); if (first) focusLater(first[1]); };

@@ -35,6 +35,7 @@
 .mc-today .mn{color:#FFFFFF;background:var(--copper);border-radius:999px;align-self:flex-start;padding:0 8px}
 .mev{font-size:12px;line-height:1.3;color:var(--ink);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 @media (max-width:700px){.mc{min-height:48px;padding:6px 4px;align-items:center}.mev{display:none}.mc-on::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue)}.mbar .mt{min-width:0;flex:1;font-size:20px}}
+.ev-past{margin-top:28px}.ev-past > summary{display:inline-flex;align-items:center;min-height:44px;cursor:pointer;font-weight:600;color:var(--muted)}.ev-past > summary:hover{color:var(--text)}.ev-past .evl{margin-top:12px}.ev-old .evd b{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -63,7 +64,7 @@
 </div>
 <sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
 <div class="evl">
-<sc-for list="{{evs}}" as="e" hint-placeholder-count="6">
+<sc-for list="{{evsUp}}" as="e" hint-placeholder-count="6">
 <div class="card evc">
 <div class="evd"><b>{{e.d}}</b><span class="muted">{{e.m}}</span></div>
 <div class="evb"><span class="tag">{{e.kind}}</span><div class="evt">{{e.t}}</div><div class="muted evn">{{e.note}}</div></div>
@@ -71,6 +72,16 @@
 </div>
 </sc-for>
 </div>
+<sc-if value="{{noUp}}" hint-placeholder-val="{{false}}"><p class="muted" style="margin-top:8px">Ближайших событий в этой категории нет. Загляните во «Все» или в прошедшие.</p></sc-if>
+<sc-if value="{{hasPast}}" hint-placeholder-val="{{false}}"><details class="ev-past"><summary>Прошедшие события · {{nPast}}</summary>
+<div class="evl">
+<sc-for list="{{evsPast}}" as="e" hint-placeholder-count="1">
+<div class="card evc ev-old">
+<div class="evd"><b>{{e.d}}</b><span class="muted">{{e.m}}</span></div>
+<div class="evb"><span class="tag">{{e.kind}} · завершено</span><div class="evt">{{e.t}}</div><div class="muted evn">{{e.note}}</div></div>
+</div>
+</sc-for>
+</div></details></sc-if>
 </sc-if>
 <sc-if value="{{isMonth}}" hint-placeholder-val="{{false}}">
 <div class="mbar"><button class="chip" onClick="{{prevM}}" aria-label="Предыдущий месяц" disabled="{{noPrev}}">←</button><h2 class="mt" aria-live="polite">{{mTitle}}</h2><button class="chip" onClick="{{nextM}}" aria-label="Следующий месяц" disabled="{{noNext}}">→</button></div>
@@ -147,9 +158,12 @@ for (let d = 1; d <= days; d++) {
   cells.push({ n: d, cls: 'mc' + (here.length ? ' mc-on' : '') + (today ? ' mc-today' : ''), evs: here });
 }
 while (cells.length % 7) cells.push({ n: '', cls: 'mc mc-e', evs: [] });
+const today0 = new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate());
+const isPast = e => { const p = span(e); return new Date(p.y, p.mo, p.b) < today0; };
+const evsUp = evs.filter(e => !isPast(e)), evsPast = evs.filter(isPast).reverse();
 const mEvs = evs.filter(e => { const p = span(e); return p.y === Y && p.mo === M; });
 return {
-  kinds: kinds.map(l => ({ label: l, on: l === k, off: l !== k, pick: () => this.setState({ k: l }) })), evs,
+  kinds: kinds.map(l => ({ label: l, on: l === k, off: l !== k, pick: () => this.setState({ k: l }) })), evs, evsUp, evsPast, hasPast: evsPast.length > 0, nPast: evsPast.length, noUp: evsUp.length === 0,
   isList: view === 'list', isMonth: view === 'month',
   vList: view === 'list' ? 'chip on' : 'chip', vMonth: view === 'month' ? 'chip on' : 'chip',
   toList: () => this.setState({ view: 'list' }), toMonth: () => this.setState({ view: 'month' }),

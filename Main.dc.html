@@ -87,7 +87,7 @@
 <sc-for list="{{roles}}" as="r"><button type="button" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}">{{r.label}}</button></sc-for>
 </div></div>
 <p class="muted">Выберите роль — и на главной останется только нужное вам.</p>
-<div class="qgrid" data-role="{{roleKey}}">
+<div class="qgrid" data-role="{{roleKey}}" lang="{{qLang}}">
 <sc-for list="{{links}}" as="l">
 <a class="q" href="{{l.href}}"><span class="n num">{{l.n}}</span><span class="t">{{l.t}}<span class="arrow" aria-hidden="true">→</span></span><span class="d">{{l.d}}</span></a>
 </sc-for>
@@ -249,8 +249,8 @@ staff: [
 {t:'Контакты служб', d:'Телефоны и адреса', href:'Contacts.dc.html'},
 {t:'Сервисы', d:'Почта, документы, ЛК сотрудника', href:'Login.dc.html?role=staff'}],
 intl: [
-{t:'Programs in English', d:'Bachelor and Master programs', href:'Catalog.dc.html'},
-{t:'How to apply', d:'Steps, documents and deadlines', href:'Admission.dc.html'},
+{t:'Programme catalogue', d:'In English: filters, exams and pass marks', href:'CatalogEn.dc.html'},
+{t:'How to apply', d:'Steps, documents and deadlines', href:'AdmissionEn.dc.html'},
 {t:'Dormitories', d:'Housing for international students', href:'Dorms.dc.html'},
 {t:'Campus map', d:'Buildings and contacts', href:'Contacts.dc.html'},
 {t:'Events', d:'Adaptation and student life', href:'Events.dc.html'},
@@ -260,7 +260,7 @@ const list = [['abit','Абитуриент'],['student','Студент'],['sta
 const qHref = 'Search.dc.html' + (q.trim() ? '?q=' + encodeURIComponent(q.trim()) : '');
 return { qHref,
 q, onQ: (e) => this.setState({ q: e.target.value }), open: q.trim().length >= 2, sug, none: q.trim().length >= 2 && sug.length === 0,
-roleKey: role,
+roleKey: role, qLang: role === 'intl' ? 'en' : 'ru',
 roles: list.map(([k, label]) => ({ label, pressed: k === role ? 'true' : 'false', pick: () => this.setState({ role: k }) })),
 links: sets[role].map((l, i) => Object.assign({ n: '0' + (i + 1) }, l))
 };
