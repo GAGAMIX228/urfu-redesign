@@ -365,6 +365,3 @@ table{border-collapse:collapse}
 .crumbs a{display:inline-block;padding:4px 0}
 a[href^="tel:"],a[href^="mailto:"]{display:inline-block;padding:3px 0}
 .card > a:not(.btn):not(.btn2):not(.card),.card div > a:not(.btn):not(.btn2):not(.card){display:inline-block;padding:3px 0}
-
-/* шапка шире содержимого: на больших экранах логотип у левого края, кнопки у правого */
-@media (min-width:1440px){.hd .wrap.hd-in{max-width:none;padding-left:40px;padding-right:40px}}
