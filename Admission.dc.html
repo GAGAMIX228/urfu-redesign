@@ -10,6 +10,18 @@
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="logo-live.css">
+<style>
+.countdown{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:32px;padding:24px 28px;border-radius:var(--r-lg);background:var(--ink);color:#FFFFFF;background-image:radial-gradient(420px 220px at 100% 0%,var(--hero-1),transparent 70%),radial-gradient(360px 220px at 0% 100%,var(--hero-2),transparent 70%)}
+.cd-n{font-size:56px;font-weight:700;line-height:1;color:var(--hero-em);min-width:96px}
+.countdown > div:nth-child(2){flex:1 1 280px}
+.cd-t{font-size:22px;font-weight:600}
+.cd-d{color:var(--on-dark-muted);margin-top:4px;font-size:15px}
+.countdown .btn{background:#FFFFFF;color:var(--ink)}
+.countdown .btn:hover{background:var(--blue-soft);color:var(--ink)}
+.plan-bar{height:8px;border-radius:999px;background:var(--bg-soft);overflow:hidden}
+.plan-bar span{display:block;height:100%;background:var(--a1);border-radius:999px;transition:width .3s ease}
+@media (max-width:600px){.cd-n{font-size:44px;min-width:0}.countdown{padding:20px}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -29,6 +41,7 @@
 <h1 class="big" style="font-size:52px">Как поступить в УрФУ</h1>
 <p class="muted" style="margin-top:12px;font-size:19px;max-width:720px">Пять шагов от выбора программы до заселения. Нажмите на шаг, чтобы увидеть подробности.</p>
 </div></section><div class="wrap">
+<div class="countdown" aria-live="polite"><div class="cd-n num">{{cdNum}}</div><div><div class="cd-t">{{cdTitle}}</div><div class="cd-d">{{cdNote}}</div></div><a class="btn" href="Quiz.dc.html">Подобрать программу</a></div>
 <ol style="list-style:none;padding:0;margin:40px 0 0;display:flex;flex-wrap:wrap;gap:12px">
 <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
 <li style="flex:1 1 180px">
@@ -60,12 +73,10 @@
 </div>
 </div>
 <aside id="docs" class="side card" style="display:flex;flex-direction:column;gap:14px">
-<h3>Чек-лист документов</h3>
-<label style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" style="width:20px;height:20px;accent-color:var(--blue);margin-top:2px">Паспорт</label>
-<label style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" style="width:20px;height:20px;accent-color:var(--blue);margin-top:2px">Аттестат или диплом</label>
-<label style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" style="width:20px;height:20px;accent-color:var(--blue);margin-top:2px">СНИЛС</label>
-<label style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" style="width:20px;height:20px;accent-color:var(--blue);margin-top:2px">Документы об индивидуальных достижениях</label>
-<label style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" style="width:20px;height:20px;accent-color:var(--blue);margin-top:2px">Документы на особые права, если есть</label>
+<h3>Мой план: документы</h3>
+<div class="plan-bar" role="progressbar" aria-label="Документы готовы" aria-valuemin="0" aria-valuemax="{{docTotal}}" aria-valuenow="{{docDone}}"><span style="width:{{docPct}}%"></span></div>
+<p class="muted" style="font-size:14px;margin-top:-6px">Готово {{docDone}} из {{docTotal}} · отметки сохраняются в этом браузере</p>
+<sc-for list="{{docs}}" as="d" hint-placeholder-count="5"><label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer"><input type="checkbox" checked="{{d.on}}" onChange="{{d.toggle}}" style="width:20px;height:20px;accent-color:var(--blue);margin-top:2px;flex:none">{{d.t}}</label></sc-for>
 <a class="btn2" href="Contacts.dc.html" style="margin-top:8px">Задать вопрос комиссии</a>
 </aside>
 </div>
@@ -82,6 +93,19 @@
 class Component extends DCLogic {
 renderVals() {
 const i = (this.state && this.state.i) || 0;
+/* чек-лист документов: запоминается в браузере */
+const DOCS = ['Паспорт', 'Аттестат или диплом', 'СНИЛС', 'Документы об индивидуальных достижениях', 'Документы на особые права, если есть'];
+let saved = this.state && this.state.docs;
+if (!saved) { try { saved = JSON.parse(localStorage.getItem('urfu-docs') || '[]'); } catch (e) { saved = []; } }
+const setDocs = v => { try { localStorage.setItem('urfu-docs', JSON.stringify(v)); } catch (e) {} this.setState({ docs: v }); };
+const docs = DOCS.map((t, k) => ({ t, on: saved.includes(k), toggle: () => setDocs(saved.includes(k) ? saved.filter(x => x !== k) : saved.concat(k)) }));
+const docDone = docs.filter(d => d.on).length;
+/* отсчёт до начала приёма: 20 июня по правилам 2026 года */
+const now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+let start = new Date(today.getFullYear(), 5, 20); if (today > new Date(today.getFullYear(), 7, 20)) start = new Date(today.getFullYear() + 1, 5, 20);
+const days = Math.round((start - today) / 86400000);
+const dw = n => (n % 10 === 1 && n % 100 !== 11) ? 'день' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'дня' : 'дней';
+const going = days <= 0;
 const data = [
 {t:'Выберите программы', d:'Ответьте на 3 вопроса — покажем программы, куда вы проходите по своим ЕГЭ и баллам. Или откройте каталог и сравните программы между собой.', cta:'Подобрать за 3 вопроса', href:'Quiz.dc.html'},
 {t:'Подайте документы', d:'Заявление подаётся онлайн через Госуслуги или личный кабинет абитуриента. Проверьте чек-лист документов справа.', cta:'Чек-лист документов', href:'#docs'},
@@ -91,7 +115,10 @@ const data = [
 ];
 const steps = data.map((s, k) => ({ n: k + 1, t: s.t, on: k === i, off: k !== i, pick: () => this.setState({ i: k }) }));
 const c = data[i];
-return { steps, cur: { n: i + 1, t: c.t, d: c.d, cta: c.cta, href: c.href }, next: () => this.setState({ i: (i + 1) % 5 }) };
+return { docs, docDone, docTotal: DOCS.length, docPct: Math.round(docDone / DOCS.length * 100),
+cdNum: going ? '✓' : String(days), cdTitle: going ? 'Приём документов идёт' : dw(days) + ' до начала приёма документов',
+cdNote: going ? 'Подайте заявление через Госуслуги или личный кабинет абитуриента.' : '20 июня ' + start.getFullYear() + ' — по правилам приёма 2026 года; точная дата появится весной.',
+steps, cur: { n: i + 1, t: c.t, d: c.d, cta: c.cta, href: c.href }, next: () => this.setState({ i: (i + 1) % 5 }) };
 }
 }
 
