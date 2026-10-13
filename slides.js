@@ -1,14 +1,21 @@
-/* ЭКСПЕРИМЕНТ «Смена фото на первом экране»: 4 снимка кампуса, плавная смена раз в 7 секунд,
+/* Смена фото на первом экране главной: 4 снимка кампуса, плавная смена раз в 7 секунд,
    точки для выбора, кнопка паузы (правило доступности: движение дольше 5 секунд должно останавливаться).
    Движок перерисовывает страницу при наборе в поиске — слайды восстанавливаются на том же снимке. */
 (function () {
-  var SLIDES = [
+  var EN = document.documentElement.lang === 'en';
+  var SLIDES = EN ? [
+    { img: 'photos/glavnyj-korpus-leto.webp', t: 'Main academic building', d: '19 Mira St' },
+    { img: 'photos/kampus-sverhu.webp', t: 'Campus from above', d: 'Vtuzgorodok' },
+    { img: 'photos/irit-zdanie.webp', t: 'Institute of Radioelectronics and IT', d: '32 Mira St' },
+    { img: 'photos/kampus-leto.webp', t: 'Campus in summer', d: 'square in front of the main building' }
+  ] : [
     { img: 'photos/glavnyj-korpus-leto.webp', t: 'Главный учебный корпус', d: 'ул. Мира, 19' },
     { img: 'photos/kampus-sverhu.webp', t: 'Кампус с высоты', d: 'Втузгородок' },
     { img: 'photos/irit-zdanie.webp', t: 'Институт радиоэлектроники и IT', d: 'ул. Мира, 32' },
     { img: 'photos/kampus-leto.webp', t: 'Кампус летом', d: 'площадь перед главным корпусом' }
   ];
-  var CREDIT = 'Фото: В. Бухаров, CC BY-SA 4.0';
+  var L = EN ? { group: 'Hero photos', photo: 'Photo ', play: 'Resume photo slideshow', stop: 'Pause photo slideshow' }
+             : { group: 'Фото первого экрана', photo: 'Фото ', play: 'Продолжить смену фото', stop: 'Остановить смену фото' };
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cur = 0, paused = reduce, timer = null;
   document.documentElement.classList.add('hs-on');
@@ -29,19 +36,19 @@
       box.appendChild(d);
     });
     hero.insertBefore(box, hero.firstChild);
-    var credit = hero.querySelector('.hero-credit');
+    var stats = hero.querySelector('.stats');
     var ctl = document.createElement('div');
     ctl.className = 'hs-ctl';
-    ctl.innerHTML = '<div class="hs-cap" aria-live="polite"></div><div class="hs-dots" role="group" aria-label="Фото первого экрана"></div><button type="button" class="hs-pause"></button>';
+    ctl.innerHTML = '<div class="hs-cap" aria-live="polite"></div><div class="hs-dots" role="group" aria-label="' + L.group + '"></div><button type="button" class="hs-pause"></button>';
     var dots = ctl.querySelector('.hs-dots');
     SLIDES.forEach(function (s, i) {
       var b = document.createElement('button'); b.type = 'button';
-      b.setAttribute('aria-label', 'Фото ' + (i + 1) + ': ' + s.t);
+      b.setAttribute('aria-label', L.photo + (i + 1) + ': ' + s.t);
       b.addEventListener('click', function () { show(i, true); });
       dots.appendChild(b);
     });
     ctl.querySelector('.hs-pause').addEventListener('click', function () { paused = !paused; paint(); schedule(); });
-    if (credit) credit.parentNode.insertBefore(ctl, credit); else hero.appendChild(ctl);
+    if (stats) stats.parentNode.insertBefore(ctl, stats); else hero.appendChild(ctl);
     paint();
   }
   function paint() {
@@ -49,9 +56,9 @@
     hero.querySelectorAll('.hs-s').forEach(function (s, i) { s.classList.toggle('on', i === cur); s.classList.toggle('zoom', i === cur && !paused); });
     hero.querySelectorAll('.hs-dots button').forEach(function (b, i) { b.setAttribute('aria-current', String(i === cur)); });
     var cap = hero.querySelector('.hs-cap');
-    if (cap) cap.innerHTML = '<b>' + SLIDES[cur].t + '</b>' + SLIDES[cur].d + ' · ' + CREDIT;
+    if (cap) cap.innerHTML = '<b>' + SLIDES[cur].t + '</b>' + SLIDES[cur].d;
     var p = hero.querySelector('.hs-pause');
-    if (p) { p.innerHTML = paused ? PLAY : PAUSE; p.setAttribute('aria-label', paused ? 'Продолжить смену фото' : 'Остановить смену фото'); }
+    if (p) { p.innerHTML = paused ? PLAY : PAUSE; p.setAttribute('aria-label', paused ? L.play : L.stop); }
   }
   function show(i, byUser) { cur = (i + SLIDES.length) % SLIDES.length; paint(); if (byUser) schedule(); }
   function schedule() { clearInterval(timer); if (!paused) timer = setInterval(function () { show(cur + 1); }, 7000); }

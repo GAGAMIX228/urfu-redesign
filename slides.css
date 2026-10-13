@@ -1,4 +1,4 @@
-/* ЭКСПЕРИМЕНТ «Смена фото на первом экране» */
+/* Смена фото на первом экране главной */
 html.hs-on .hero.photo{background:var(--ink)}
 .hs{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hs-s{position:absolute;inset:-2%;background-size:cover;background-position:center 40%;background-repeat:no-repeat;opacity:0;transition:opacity 1.4s ease}
@@ -20,5 +20,4 @@ html.hs-on .hero.photo > *:not(.hs){position:relative;z-index:2}
 .hs-dots button[aria-current="true"]::before{background:#FFFFFF;transform:scale(1.3)}
 .hs-pause{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(14,27,43,.4);color:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .hs-pause:hover{background:rgba(255,255,255,.15)}
-html.hs-on .hero-credit{display:none}
 @media (prefers-reduced-motion:reduce){.hs-s{transition:none}.hs-s.on.zoom{animation:none}}
