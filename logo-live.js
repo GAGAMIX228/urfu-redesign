@@ -24,26 +24,32 @@
     }
     requestAnimationFrame(step);
   }
-  function loop(svg) {
+  /* вариант знака в шапке выбирается в адресе: ?m=a — постоянный перелив, ?m=b — «искра» раз в 12 с, ?m=c (или ничего) — при загрузке и наведении */
+  var MODE = (new URLSearchParams(location.search).get('m') || 'c').toLowerCase();
+  function loop(svg, amp, period) {
     var g = svg.querySelector('linearGradient'); if (!g || g.dataset.loop) return;
     g.dataset.loop = '1';
     var t0 = null;
     function step(t) {
       if (!g.isConnected) return;
       if (t0 === null) t0 = t;
-      /* медленное покачивание: ±50° за 8 секунд */
-      setAngle(g, 90 + 50 * Math.sin((t - t0) / 8000 * 2 * Math.PI));
+      /* пока идёт перелив по кругу — ждём, потом продолжаем покачивание с того же положения, без скачка */
+      if (running.get(g)) t0 = t; else setAngle(g, 90 + (amp || 50) * Math.sin((t - t0) / (period || 8000) * 2 * Math.PI));
       requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }
   function hook() {
-    document.querySelectorAll('.phead svg[viewBox="0 0 35 62"]:not(.mark), .hero svg[viewBox="0 0 35 62"]:not(.mark)').forEach(loop);
+    document.querySelectorAll('.phead svg[viewBox="0 0 35 62"]:not(.mark), .hero svg[viewBox="0 0 35 62"]:not(.mark)').forEach(function (s) { loop(s); });
+    /* вариант А: знак в шапке переливается постоянно, чуть сильнее, чем большой — он маленький */
+    if (MODE === 'a') { var h = document.querySelector('.hd .brand svg'); if (h) loop(h, 75, 6000); }
   }
   function start() {
     var head = document.querySelector('.hd .brand svg');
     if (head) setTimeout(function () { swirl(head, 1800); }, 500);
     hook();
+    /* вариант Б: короткая «искра» раз в 12 секунд */
+    if (MODE === 'b') setInterval(function () { if (document.hidden) return; var h = document.querySelector('.hd .brand svg'); if (h) swirl(h, 1300); }, 12000);
     document.addEventListener('mouseover', function (e) {
       var b = e.target.closest && e.target.closest('.brand'); if (!b) return;
       var s = b.querySelector('svg'); if (s) swirl(s, 1400);
