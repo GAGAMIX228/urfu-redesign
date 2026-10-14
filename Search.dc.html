@@ -102,7 +102,6 @@ const tab = s.tab || 'Все';
 const urlQ = new URLSearchParams(location.search).get('q');
 const q = s.q === undefined ? (urlQ !== null ? urlQ : 'искусственный интеллект') : s.q;
 const other = [
-{kind:'Люди', t:'Иванов Иван Иванович (пример)', d:'Доцент, кафедра информационных технологий и систем управления', href:'Person.dc.html', key:'преподаватель кафедра программная инженерия искусственный интеллект'},
 {kind:'Новости', t:'Около 500 преподавателей освоили нейросети для создания учебных курсов', d:'2026 · Образование', href:'Article.dc.html', key:'искусственный интеллект нейросети ии преподаватели курсы новости'},
 {kind:'Новости', t:'Почти 50 тысяч заявлений на бюджет: итоги приёма-2026', d:'Июль 2026 · Поступающим', href:'Article.dc.html', key:'поступление абитуриент приём заявления бюджет программная инженерия'},
 {kind:'События', t:'Изумруд.Студент — олимпиада УрФУ', d:'19 января · Олимпиады', href:'Events.dc.html', key:'изумруд олимпиада поступление студент магистратура'},
@@ -127,7 +126,7 @@ const progRes = ALL_PROGS.map(p => ({kind:'Программы', t:p.name, d:'Б�
 const otherRes = other.map(o => ({kind:o.kind, t:o.t, d:o.d, href:o.href, h: hit(o.t + ' ' + o.key)}));
 const all = progRes.concat(otherRes).filter(r => st.length ? r.h > 0 : true).sort((a, b) => b.h - a.h);
 const res = all.filter(r => tab === 'Все' || r.kind === tab);
-const tabs = ['Все','Разделы','Программы','Люди','Новости','События','Документы'];
+const tabs = ['Все','Разделы','Программы','Новости','События','Документы'];
 const cnt = k => all.filter(r => k === 'Все' || r.kind === k).length;
 return {
 tabs: tabs.map(l => ({ label: l + ' · ' + cnt(l), on: l === tab, off: l !== tab, pick: () => this.setState({ tab: l }) })),
