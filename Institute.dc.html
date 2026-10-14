@@ -141,7 +141,7 @@ const plural = n => n % 10 === 1 && n % 100 !== 11 ? 'программа' : (n %
 const all = Object.keys(INST).map(k => { const c = ALL_PROGS.filter(p => p.inst === k).length; return { short: k, full: INST[k][0], lead: INST[k][1], href: 'Institute.dc.html?i=' + encodeURIComponent(k), cnt: c + ' ' + plural(c) + ' бакалавриата' }; });
 const progs = ALL_PROGS.filter(p => p.inst === key).map(p => ({ score: '—', budget: '—', price: '—', sy: '2025', ...p })).map(p => ({
   name: p.name, href: 'Program.dc.html?p=' + encodeURIComponent(p.name),
-  info: [!isNaN(parseInt(p.score, 10)) ? 'Проходной балл ' + p.sy + ': ' + p.score : '', p.budget !== '—' ? 'Бюджетных мест: ' + p.budget : '', p.price !== '—' ? p.price + ' в год' : ''].filter(Boolean).join(' · ') || 'Данные уточняются' }));
+  info: [!isNaN(parseInt(p.score, 10)) ? 'Проходной балл ' + p.sy + ': ' + p.score : '', p.budget !== '—' ? 'Бюджетных мест: ' + p.budget : '', p.price !== '—' ? p.price + ' в год' : ''].filter(Boolean).join(' · ') }));
 return { isAll, isOne: !isAll, all, short: key, full: INST[key][0], lead: INST[key][1], isIrit: key === 'ИРИТ-РтФ', notIrit: key !== 'ИРИТ-РтФ', progs, noProgs: progs.length === 0 };
 }
 }

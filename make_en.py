@@ -60,7 +60,7 @@ CATALOG = [
     ('С этими предметами программ не нашлось', 'No programmes match these subjects'),
     ('В прототипе показан бакалавриат', "The prototype shows Bachelor's programmes"),
     ('Вернуться к бакалавриату', "Back to Bachelor's"),
-    ('Сравним с проходным баллом 2025 года. «—» — данных пока нет', 'Compared with the 2025 pass mark. “—” means no data yet'),
+    ('Сравним с проходным баллом 2025 года', 'Compared with the 2025 pass mark'),
     ('Сравним с проходным баллом 2025 года', 'Compared with the 2025 pass mark'),
     ('Сначала — где хватает баллов', 'Where your score is enough comes first'),
     ('Проходной балл уточняется', 'Pass mark to be confirmed'),

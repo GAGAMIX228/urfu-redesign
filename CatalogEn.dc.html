@@ -55,7 +55,7 @@
 <label for="{{sj.id}}" style="display:flex;gap:10px;align-items:center;min-height:36px;cursor:pointer"><input id="{{sj.id}}" type="checkbox" checked="{{sj.on}}" onChange="{{sj.toggle}}" style="width:20px;height:20px;accent-color:var(--blue)">{{sj.label}}</label>
 </sc-for>
 </div></fieldset>
-<div class="field"><label for="sc">My total score</label><input autocomplete="off" id="sc" name="sc" class="input" inputmode="numeric" placeholder="e.g. 240…" value="{{my}}" onChange="{{onMy}}"><span class="muted" style="font-weight:400;font-size:13px">Compared with the 2025 pass mark. “—” means no data yet</span></div>
+<div class="field"><label for="sc">My total score</label><input autocomplete="off" id="sc" name="sc" class="input" inputmode="numeric" placeholder="e.g. 240…" value="{{my}}" onChange="{{onMy}}"><span class="muted" style="font-weight:400;font-size:13px">Compared with the 2025 pass mark</span></div>
 <button class="btn2" onClick="{{reset}}">Reset filters</button>
 </aside>
 <div class="main">
@@ -91,9 +91,9 @@
 <sc-if value="{{p.blocked}}" hint-placeholder-val="{{false}}"><span class="muted" style="font-size:13px">Compare up to 3</span></sc-if>
 </div></div>
 <div class="pc-s">
-<div><div class="muted" style="font-size:13px">Pass mark {{p.sy}}</div><div style="font-weight:600;font-size:18px">{{p.score}}</div></div>
-<div><div class="muted" style="font-size:13px">State-funded places</div><div style="font-weight:600;font-size:18px">{{p.budget}}</div></div>
-<div><div class="muted" style="font-size:13px">Per year</div><div style="font-weight:600;font-size:18px">{{p.price}}</div></div>
+<sc-if value="{{p.hasS}}" hint-placeholder-val="{{true}}"><div><div class="muted" style="font-size:13px">Pass mark {{p.sy}}</div><div style="font-weight:600;font-size:18px">{{p.score}}</div></div></sc-if>
+<sc-if value="{{p.hasB}}" hint-placeholder-val="{{true}}"><div><div class="muted" style="font-size:13px">State-funded places</div><div style="font-weight:600;font-size:18px">{{p.budget}}</div></div></sc-if>
+<sc-if value="{{p.hasP}}" hint-placeholder-val="{{true}}"><div><div class="muted" style="font-size:13px">Per year</div><div style="font-weight:600;font-size:18px">{{p.price}}</div></div></sc-if>
 
 </div>
 </sc-for>
@@ -188,7 +188,7 @@ const progs = eligible.map(p => {
  const known = !isNaN(sc);
  const ok = hasMy && known && myN >= sc;
  const short = hasMy && known && myN < sc;
- return { ...p, instL: (IL[p.inst] || [p.inst])[0], instFull: (IL[p.inst] || [p.inst, p.inst])[1], href: 'Program.dc.html?p=' + encodeURIComponent(p.name), ok, short, nodata: hasMy && !known, gap: known ? sc - myN : 0, rank: ok ? 0 : (hasMy && !known ? 1 : 2), inCmp: cmp.includes(p.name), canAdd: !cmp.includes(p.name) && !full, blocked: !cmp.includes(p.name) && full, toggle: () => togg(p.name) };
+ return { ...p, hasS: known, hasB: p.budget !== '—', hasP: p.price !== '—', instL: (IL[p.inst] || [p.inst])[0], instFull: (IL[p.inst] || [p.inst, p.inst])[1], href: 'Program.dc.html?p=' + encodeURIComponent(p.name), ok, short, nodata: hasMy && !known, gap: known ? sc - myN : 0, rank: ok ? 0 : (hasMy && !known ? 1 : 2), inCmp: cmp.includes(p.name), canAdd: !cmp.includes(p.name) && !full, blocked: !cmp.includes(p.name) && full, toggle: () => togg(p.name) };
 }).sort((a, b) => (hasMy ? a.rank - b.rank : 0) || b.hit - a.hit);
 const n = progs.length, m10 = n % 10, m100 = n % 100;
 const word = n === 1 ? 'programme' : 'programmes';
