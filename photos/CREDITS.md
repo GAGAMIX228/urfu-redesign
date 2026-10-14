@@ -21,3 +21,7 @@
 | shkolniki.webp | urfu.ru |
 | studenty.webp | urfu.ru |
 | volontery-2026.webp | urfu.ru |
+| ugi-zdanie.webp | В. Бухаров, CC BY-SA 4.0 (Викисклад: Ural State University (September 2022) - 1) |
+| inmt-zdanie.webp | В. Мазур, CC BY-SA 4.0 (Викисклад: УрФУ. Корпус ХТИ и ИНМиТ 2019 01) |
+| fti-zdanie.webp | В. Бухаров, CC BY-SA 4.0 (Викисклад: Institute of Physics and Technology of the Ural Federal University (January 2023) - 1) |
+| uralenin-zdanie.webp | Skyboy103, CC BY-SA 3.0 (Викисклад: Здание УралЭНИН УрФУ) |

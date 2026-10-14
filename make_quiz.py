@@ -111,7 +111,7 @@ const fit = pool.filter(p => missing(p).length === 0).map(p => {
   let verdict = 'Проходной балл уточняется', cls = 'qz-card v-none', rank = 1;
   if (known && hasMy && myN >= sc) { verdict = 'Баллов хватает: проходной ' + sc; cls = 'qz-card v-ok'; rank = 0; }
   else if (known && hasMy) { verdict = 'Не хватает ' + (sc - myN) + ': проходной ' + sc; cls = 'qz-card v-short'; rank = 2; }
-  else if (known) { verdict = 'Проходной 2025: ' + sc; cls = 'qz-card v-ok'; rank = 1; }
+  else if (known) { verdict = 'Проходной ' + (p.sy || '2025') + ': ' + sc; cls = 'qz-card v-ok'; rank = 1; }
   return { ...p, verdict, cls, rank, area: LBL[p.k] || p.area };
 }).sort((a, b) => a.rank - b.rank);
 const near = pool.filter(p => missing(p).length === 1).slice(0, 4).map(p => ({ name: p.name, need: NAME[missing(p)[0]] }));

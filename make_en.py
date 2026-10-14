@@ -75,7 +75,7 @@ CATALOG = [
     ('Введите сумму баллов', 'Enter your score'),
     ('Проходной уточняется', 'Pass mark TBC'),
     ('Бюджетных мест', 'State-funded places'), ('Стоимость в год', 'Tuition per year'), ('Проходной 2025', 'Pass mark 2025'),
-    ('Экзамены ЕГЭ', 'EGE exams'), ('Цена в год', 'Per year'), ('Балл 2025', 'Score 2025'), ('Бюджет', 'Funded'),
+    ('Экзамены ЕГЭ', 'EGE exams'), ('Цена в год', 'Per year'), ('Проходной балл {{p.sy}}', 'Pass mark {{p.sy}}'), ('Проходной балл 2025', 'Pass mark 2025'), ('Бюджетных мест', 'State-funded places'), ('Бюджет', 'Funded'),
     ('✓ В сравнении', '✓ Comparing'), ('+ Сравнить', '+ Compare'), ('Сравнить', 'Compare'),
     ('Мои баллы', 'My score'), ('Очистить', 'Clear'), ('Закрыть', 'Close'), ('Убрать', 'Remove'),
     ('Институт', 'Institute'), ('Область', 'Field'), ('Уровень', 'Level'), ('Найдено:', 'Found:'),

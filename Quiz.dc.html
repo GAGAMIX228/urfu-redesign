@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="logo-live.css">
 <style>
 .pc{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 28px;align-items:center}
-.pc-s{display:grid;grid-template-columns:80px 64px 128px;gap:24px;align-items:start}.pc-s .muted{white-space:nowrap}.pc-s > div > div:last-child{white-space:nowrap}.pc-cmp{margin-top:14px}
+.pc-s{display:grid;grid-template-columns:96px 84px 128px;gap:24px;align-items:start}.pc-s .muted{white-space:normal;line-height:1.3;min-height:2.6em}.pc-s > div > div:last-child{white-space:nowrap}.pc-cmp{margin-top:14px}
 @media (max-width:480px){.pc-s > div > div:last-child{white-space:normal}}
 @media (max-width:360px){.pc-s{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:1100px){.pc{grid-template-columns:1fr}.pc-s{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 16px}}
@@ -113,13 +113,13 @@ renderVals() {
 const ALL_PROGS = [
 {name:'Программная инженерия', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'259', budget:'100', price:'390 000 ₽'},
 {name:'Алгоритмы искусственного интеллекта', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'246', budget:'105', price:'300 000 ₽'},
-{name:'Прикладной искусственный интеллект', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[], score:'255'},
-{name:'Интеллектуальные системы в гуманитарной сфере', inst:'УГИ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[]},
-{name:'Информационная безопасность', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]]},
+{name:'Прикладной искусственный интеллект', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[], score:'255', budget:'105', price:'300 000 ₽'},
+{name:'Интеллектуальные системы в гуманитарной сфере', inst:'УГИ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[], budget:'15', price:'246 000 ₽'},
+{name:'Информационная безопасность', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], budget:'135', price:'390 000 ₽', score:'239', sy:'2024'},
 {name:'Информатика и вычислительная техника', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'251'},
 {name:'Прикладная информатика', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[], score:'258'},
-{name:'Инфокоммуникационные технологии и системы связи', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], budget:'66', price:'от 275 000 ₽'},
-{name:'Радиотехника', inst:'ИРИТ-РтФ', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Инфокоммуникационные технологии и системы связи', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], budget:'66', price:'от 275 000 ₽', score:'217', sy:'2024'},
+{name:'Радиотехника', inst:'ИРИТ-РтФ', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], score:'184', sy:'2024'},
 {name:'Прикладная математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'247'},
 {name:'Математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'233'},
 {name:'Физика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'физика, математика, русский', req:["phys", "math", "rus"], ch:[], score:'221'},
@@ -137,7 +137,7 @@ const ALL_PROGS = [
 {name:'Филология', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'литература, иностранный язык, русский', req:["lit", "lang", "rus"], ch:[]},
 {name:'Лингвистика', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'иностранный язык, обществознание, русский', req:["lang", "soc", "rus"], ch:[]},
 {name:'Психология', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'биология или математика, обществознание, русский', req:["soc", "rus"], ch:[["bio", "math"]]},
-{name:'Международные отношения', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'история, иностранный язык, русский', req:["hist", "lang", "rus"], ch:[]},
+{name:'Международные отношения', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'история, иностранный язык, русский', req:["hist", "lang", "rus"], ch:[], budget:'15', price:'390 000 ₽'},
 {name:'Экономика', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, обществознание, русский', req:["math", "soc", "rus"], ch:[]},
 {name:'Менеджмент', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, обществознание, русский', req:["math", "soc", "rus"], ch:[]},
 {name:'Бизнес-информатика', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, информатика или обществознание, русский', req:["math", "rus"], ch:[["inf", "soc"]]}
@@ -161,7 +161,7 @@ const fit = pool.filter(p => missing(p).length === 0).map(p => {
   let verdict = 'Проходной балл уточняется', cls = 'qz-card v-none', rank = 1;
   if (known && hasMy && myN >= sc) { verdict = 'Баллов хватает: проходной ' + sc; cls = 'qz-card v-ok'; rank = 0; }
   else if (known && hasMy) { verdict = 'Не хватает ' + (sc - myN) + ': проходной ' + sc; cls = 'qz-card v-short'; rank = 2; }
-  else if (known) { verdict = 'Проходной 2025: ' + sc; cls = 'qz-card v-ok'; rank = 1; }
+  else if (known) { verdict = 'Проходной ' + (p.sy || '2025') + ': ' + sc; cls = 'qz-card v-ok'; rank = 1; }
   return { ...p, verdict, cls, rank, area: LBL[p.k] || p.area };
 }).sort((a, b) => a.rank - b.rank);
 const near = pool.filter(p => missing(p).length === 1).slice(0, 4).map(p => ({ name: p.name, need: NAME[missing(p)[0]] }));

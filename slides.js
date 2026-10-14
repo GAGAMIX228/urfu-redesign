@@ -1,25 +1,28 @@
-/* Смена фото на первом экране главной: 4 снимка кампуса, плавная смена раз в 7 секунд,
+/* Смена фото на главной: главный корпус и здания институтов, плавная смена раз в 7 секунд,
    точки для выбора, кнопка паузы (правило доступности: движение дольше 5 секунд должно останавливаться).
    Движок перерисовывает страницу при наборе в поиске — слайды восстанавливаются на том же снимке. */
 (function () {
   var EN = document.documentElement.lang === 'en';
   var SLIDES = EN ? [
-    { img: 'photos/glavnyj-korpus-leto.webp', t: 'Main academic building', d: '19 Mira St' },
-    { img: 'photos/kampus-sverhu.webp', t: 'Campus from above', d: 'Vtuzgorodok' },
-    { img: 'photos/irit-zdanie.webp', t: 'Institute of Radioelectronics and IT', d: '32 Mira St' },
-    { img: 'photos/kampus-leto.webp', t: 'Campus in summer', d: 'square in front of the main building' }
+    { img: 'photos/glavnyj-korpus-leto.webp', t: 'Main academic building' },
+    { img: 'photos/irit-zdanie.webp', t: 'Institute of Radioelectronics and IT' },
+    { img: 'photos/ugi-zdanie.webp', t: 'Ural Institute of Humanities' },
+    { img: 'photos/inmt-zdanie.webp', t: 'Institute of New Materials and Technologies' },
+    { img: 'photos/uralenin-zdanie.webp', t: 'Ural Power Engineering Institute' },
+    { img: 'photos/fti-zdanie.webp', t: 'Institute of Physics and Technology' }
   ] : [
-    { img: 'photos/glavnyj-korpus-leto.webp', t: 'Главный учебный корпус', d: 'ул. Мира, 19' },
-    { img: 'photos/kampus-sverhu.webp', t: 'Кампус с высоты', d: 'Втузгородок' },
-    { img: 'photos/irit-zdanie.webp', t: 'Институт радиоэлектроники и IT', d: 'ул. Мира, 32' },
-    { img: 'photos/kampus-leto.webp', t: 'Кампус летом', d: 'площадь перед главным корпусом' }
+    { img: 'photos/glavnyj-korpus-leto.webp', t: 'Главный учебный корпус' },
+    { img: 'photos/irit-zdanie.webp', t: 'Институт радиоэлектроники и IT' },
+    { img: 'photos/ugi-zdanie.webp', t: 'Уральский гуманитарный институт' },
+    { img: 'photos/inmt-zdanie.webp', t: 'Институт новых материалов и технологий' },
+    { img: 'photos/uralenin-zdanie.webp', t: 'Уральский энергетический институт' },
+    { img: 'photos/fti-zdanie.webp', t: 'Физико-технологический институт' }
   ];
   var L = EN ? { group: 'Hero photos', photo: 'Photo ', play: 'Resume photo slideshow', stop: 'Pause photo slideshow' }
              : { group: 'Фото первого экрана', photo: 'Фото ', play: 'Продолжить смену фото', stop: 'Остановить смену фото' };
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cur = 0, paused = reduce, timer = null;
   document.documentElement.classList.add('hs-on');
-  SLIDES.forEach(function (s) { var i = new Image(); i.src = s.img; }); /* заранее загрузить */
 
   var PAUSE = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>';
   var PLAY = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"></path></svg>';
@@ -32,7 +35,6 @@
     SLIDES.forEach(function (s, i) {
       var d = document.createElement('div');
       d.className = 'hs-s' + (i === cur ? ' on' : '');
-      d.style.backgroundImage = "url('" + s.img + "')";
       box.appendChild(d);
     });
     hero.insertBefore(box, hero.firstChild);
@@ -56,7 +58,9 @@
     hero.querySelectorAll('.hs-s').forEach(function (s, i) { s.classList.toggle('on', i === cur); s.classList.toggle('zoom', i === cur && !paused); });
     hero.querySelectorAll('.hs-dots button').forEach(function (b, i) { b.setAttribute('aria-current', String(i === cur)); });
     var cap = hero.querySelector('.hs-cap');
-    if (cap) cap.innerHTML = '<b>' + SLIDES[cur].t + '</b>' + SLIDES[cur].d;
+    if (cap) cap.innerHTML = '<b>' + SLIDES[cur].t + '</b>';
+    /* фото грузятся по одному: текущее и следующее, остальные — когда до них дойдёт очередь */
+    [cur, (cur + 1) % SLIDES.length].forEach(function (k) { var el = hero.querySelectorAll('.hs-s')[k]; if (el && !el.style.backgroundImage) el.style.backgroundImage = "url('" + SLIDES[k].img + "')"; });
     var p = hero.querySelector('.hs-pause');
     if (p) { p.innerHTML = paused ? PLAY : PAUSE; p.setAttribute('aria-label', paused ? L.play : L.stop); }
   }
