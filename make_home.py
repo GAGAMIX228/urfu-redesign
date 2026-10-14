@@ -15,7 +15,7 @@ T = {
   none='Ничего не нашлось. Попробуйте <a href="Quiz.dc.html">подбор программы</a>, <a href="Schedule.dc.html">расписание</a> или <a href="Dorms.dc.html">общежития</a>.',
   all_res='Все результаты поиска',
   often='Часто ищут: <a href="Schedule.dc.html">расписание</a><a href="Catalog.dc.html">проходные баллы</a><a href="Dorms.dc.html">общежития</a><a href="Contacts.dc.html">карту кампуса</a>',
-  photo='Фото кампуса', adm_h='Поступление',
+  photo='Главный учебный корпус УрФУ', adm_h='Поступление',
   note='Считаем до 20 июня — так по правилам приёма 2026 года. Даты на 2027 год объявят весной.',
   steps=[('20 июня', 'Приём документов открыт'), ('25 июля', 'Последний день для бюджета по ЕГЭ'), ('20 августа', 'Последний день для платного'), ('1 сентября', 'Первая пара')],
   cta1=('Quiz.dc.html', 'Подобрать программу за 3 вопроса'), cta2=('Admission.dc.html', 'Как поступить'),
@@ -43,7 +43,7 @@ T = {
   none='Nothing found. Try the <a href="CatalogEn.dc.html">programme catalogue</a>, <a href="Schedule.dc.html">timetable</a> or <a href="Dorms.dc.html">housing</a>.',
   all_res='All search results',
   often='Popular: <a href="Schedule.dc.html">timetable</a><a href="CatalogEn.dc.html">pass marks</a><a href="Dorms.dc.html">housing</a><a href="Contacts.dc.html">campus map</a>',
-  photo='Campus photos', adm_h='Admissions',
+  photo='UrFU main academic building', adm_h='Admissions',
   note='Counting to 20 June, as in the 2026 admission rules. Dates for 2027 will be announced in spring.',
   steps=[('20 June', 'Applications open'), ('25 July', 'Last day for state-funded places by EGE'), ('20 August', 'Last day for paid places'), ('1 September', 'First class')],
   cta1=('CatalogEn.dc.html', 'Find a programme'), cta2=('AdmissionEn.dc.html', 'How to apply'),
@@ -107,7 +107,7 @@ def main_html(t):
 </div>
 </div></section>
 
-<section class="fd-photo" aria-label="{t['photo']}"></section>
+<div class="fd-photo" role="img" aria-label="{t['photo']}"></div>
 
 <section class="fd-sec soft" aria-labelledby="adm-h"><div class="wrap fd-adm">
 <div>
@@ -150,14 +150,12 @@ def build(t):
     head, foot = s[:s.index('<main')], s[s.index('</main>') + len('</main>'):]
     if 'home.css' not in head:
         head = head.replace('<link rel="stylesheet" href="logo-live.css">', '<link rel="stylesheet" href="logo-live.css">\n<link rel="stylesheet" href="home.css">', 1)
-    if 'slides.css' not in head:
-        head = head.replace('<link rel="stylesheet" href="home.css">', '<link rel="stylesheet" href="home.css">\n<link rel="stylesheet" href="slides.css">', 1)
+    head = head.replace('<link rel="stylesheet" href="slides.css">\n', '')
     if 'PTSansNarrow-Bold-cyr.woff2" as="font"' not in head:
         head = head.replace('<link rel="stylesheet" href="site.css">', '<link rel="preload" href="fonts/PTSansNarrow-Bold-cyr.woff2" as="font" type="font/woff2" crossorigin>\n<link rel="stylesheet" href="site.css">', 1)
     head = head.replace('<template id="dc-tpl">\n<div>', '<template id="dc-tpl">\n<div class="fd">', 1)
-    assert 'class="fd"' in head and 'home.css' in head and 'slides.css' in head
-    if 'slides.js' not in foot:
-        foot = foot.replace('<script src="logo-live.js"></script>', '<script src="logo-live.js"></script>\n<script src="slides.js"></script>', 1)
+    assert 'class="fd"' in head and 'home.css' in head
+    foot = foot.replace('<script src="slides.js"></script>\n', '')
     if 'const gems =' not in foot:
         ret = "const qHref = 'Search.dc.html'"
         assert ret in foot
