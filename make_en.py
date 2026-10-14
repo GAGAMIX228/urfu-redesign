@@ -100,6 +100,7 @@ CATALOG = [
 ]
 
 ADMISSION = [
+    ('<a class="btn" href="Quiz.dc.html">Подобрать программу</a>', '<a class="btn" href="CatalogEn.dc.html">Find a programme</a>'),
     ('Пять шагов от выбора программы до заселения. Нажмите на шаг, чтобы увидеть подробности.',
      'Five steps from choosing a programme to moving into the dorm. Click a step to see the details. International applicants: the International Office helps with documents, visas and the Russian-language preparatory year — see Contacts.'),
     ('Как поступить в УрФУ', 'How to apply to UrFU'),
@@ -201,6 +202,7 @@ def build(src, dst, title, desc, current, extra):
     for ru, en in EN_LINKS.items():
         body = body.replace('href="%s"' % ru, 'href="%s"' % en).replace("href:'%s'" % ru, "href:'%s'" % en)
     body = body.replace('href="%s" lang="ru"' % dst, 'href="%s" lang="ru"' % src)  # ссылка «Русская версия» — на русскую страницу
+    body = re.sub(r'^const IL = .*$', lambda m: "const IL = {'IRIT-RTF':['Radio electronics and IT','Institute of Radioelectronics and Information Technologies — RTF'],'INSM':['Natural sciences and mathematics','Institute of Natural Sciences and Mathematics'],'INMT':['New materials and technologies','Institute of New Materials and Technologies'],'UralENIN':['Power engineering','Ural Power Engineering Institute'],'ICEA':['Civil engineering and architecture','Institute of Civil Engineering and Architecture'],'UIH':['Humanities','Ural Institute of Humanities'],'GSEM':['Economics and management','Graduate School of Economics and Management'],'IPT':['Physics and technology','Institute of Physics and Technology']};", body, flags=re.M)
     s = pre + body
     open(dst, 'w', encoding='utf-8').write(s)
     # что осталось непереведённым в видимой части

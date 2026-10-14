@@ -68,7 +68,7 @@ T = {
 
 def main_html(t):
     steps = ''.join(f'<li><b>{d}</b><span>{w}</span></li>' for d, w in t['steps'])
-    news = ''.join(f'<li><a href="Article.dc.html"><small>{d}</small><span class="fd-t">{x}</span></a></li>' for d, x in t['news'])
+    news = ''.join(f'<li><a href="{"Article.dc.html" if i == 0 else "News.dc.html"}"><small>{d}</small><span class="fd-t">{x}</span></a></li>' for i, (d, x) in enumerate(t['news']))
     ev = ''.join(f'<li><a href="Events.dc.html"><b>{d}<small>{m}</small></b><div><div class="fd-ev-t">{x}</div><div class="fd-ev-d">{n}</div></div></a></li>' for d, m, x, n in t['ev'])
     RU = ['ИРИТ-РтФ', 'ИЕНиМ', 'ИНМиТ', 'УралЭНИН', 'ИСА', 'УГИ', 'ИнЭУ', 'ФТИ']
     inst = ''.join(f'<a href="Institute.dc.html?i={RU[k]}"><b>{a}</b><span>{n}</span></a>' for k, (a, n) in enumerate(t['inst']))
