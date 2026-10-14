@@ -46,7 +46,8 @@
 <sc-if value="{{v.on}}" hint-placeholder-val="{{false}}"><button class="chip on" onClick="{{v.pick}}">{{v.label}}</button></sc-if>
 <sc-if value="{{v.off}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{v.pick}}">{{v.label}}</button></sc-if>
 </sc-for>
-</div></div>
+</div>
+<p class="muted" style="font-size:13px;margin-top:8px;line-height:1.45">После школы — бакалавриат (обычно 4 года) или специалитет (5–6 лет). Магистратура — следующая ступень после бакалавриата.</p></div>
 <fieldset style="border:0;padding:0;margin:0"><legend style="font-weight:600;margin-bottom:10px;padding:0">Мои предметы ЕГЭ</legend>
 <div style="display:flex;flex-direction:column;gap:4px">
 <sc-for list="{{subjects}}" as="sj" hint-placeholder-count="10">
