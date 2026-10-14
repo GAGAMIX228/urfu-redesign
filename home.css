@@ -130,3 +130,7 @@
 .fd .fd-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,27,43,.78) 0%,rgba(14,27,43,0) 42%);pointer-events:none}
 .fd .fd-photo-cap{position:absolute;z-index:1;left:max(32px,calc((100% - 1280px) / 2 + 32px));bottom:22px;color:#FFFFFF;font-family:var(--narrow);font-weight:700;font-size:26px;line-height:1.1}
 @media (max-width:640px){.fd .fd-photo-cap{left:16px;bottom:14px;font-size:20px}}
+
+/* скорость: на телефоне — лёгкая версия фото; разделы ниже первого экрана рисуются (и грузят фото), только когда до них долистают */
+@media (max-width:640px){.fd .fd-photo{background-image:url('photos/glavnyj-korpus-leto-960.webp')}}
+.fd .fd-sec{content-visibility:auto;contain-intrinsic-size:auto 640px}

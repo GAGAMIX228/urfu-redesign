@@ -154,6 +154,7 @@ def build(t):
     head = head.replace('<link rel="stylesheet" href="slides.css">\n', '')
     if 'PTSansNarrow-Bold-cyr.woff2" as="font"' not in head:
         head = head.replace('<link rel="stylesheet" href="site.css">', '<link rel="preload" href="fonts/PTSansNarrow-Bold-cyr.woff2" as="font" type="font/woff2" crossorigin>\n<link rel="stylesheet" href="site.css">', 1)
+    head = head.replace('<link rel="preload" href="photos/glavnyj-korpus-leto.webp" as="image">\n', '')
     head = head.replace('<template id="dc-tpl">\n<div>', '<template id="dc-tpl">\n<div class="fd">', 1)
     assert 'class="fd"' in head and 'home.css' in head
     foot = foot.replace('<script src="slides.js"></script>\n', '')
