@@ -46,8 +46,8 @@
 <ol style="list-style:none;padding:0;margin:40px 0 0;display:flex;flex-wrap:wrap;gap:12px">
 <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
 <li style="flex:1 1 180px">
-<sc-if value="{{s.on}}" hint-placeholder-val="{{false}}"><button onClick="{{s.pick}}" style="width:100%;text-align:left;border:2px solid var(--blue);background:var(--blue-soft);border-radius:8px;padding:20px;font:inherit;cursor:pointer;color:var(--ink);min-height:120px"><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:28px;color:var(--blue)">{{s.n}}</div><div style="font-weight:600;margin-top:8px">{{s.t}}</div></button></sc-if>
-<sc-if value="{{s.off}}" hint-placeholder-val="{{true}}"><button onClick="{{s.pick}}" style="width:100%;text-align:left;border:1px solid var(--line);background:#FFFFFF;border-radius:8px;padding:20px;font:inherit;cursor:pointer;color:var(--ink);min-height:120px"><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:28px;color:var(--muted)">{{s.n}}</div><div style="font-weight:600;margin-top:8px">{{s.t}}</div></button></sc-if>
+<sc-if value="{{s.on}}" hint-placeholder-val="{{false}}"><button onClick="{{s.pick}}" style="width:100%;text-align:left;border:2px solid var(--blue);background:var(--blue-soft);border-radius:8px;padding:20px;font:inherit;cursor:pointer;color:var(--ink);min-height:120px"><div style="font-family:var(--narrow);font-weight:700;font-size:28px;color:var(--blue)">{{s.n}}</div><div style="font-weight:600;margin-top:8px">{{s.t}}</div></button></sc-if>
+<sc-if value="{{s.off}}" hint-placeholder-val="{{true}}"><button onClick="{{s.pick}}" style="width:100%;text-align:left;border:1px solid var(--line);background:#FFFFFF;border-radius:8px;padding:20px;font:inherit;cursor:pointer;color:var(--ink);min-height:120px"><div style="font-family:var(--narrow);font-weight:700;font-size:28px;color:var(--muted)">{{s.n}}</div><div style="font-weight:600;margin-top:8px">{{s.t}}</div></button></sc-if>
 </li>
 </sc-for>
 </ol>

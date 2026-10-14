@@ -10,7 +10,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 def chrome(src):
     s = open(src, encoding='utf-8').read()
-    header = s[s.index('<div><a href="#main" class="skip">'):s.index('</header>') + len('</header>')]
+    header = '<div>' + s[s.index('<a href="#main" class="skip">'):s.index('</header>') + len('</header>')]
     footer = s[s.index('<footer'):s.index('</footer>') + len('</footer>')]
     header = header.replace(' aria-current="page"', '')
     return header, footer
@@ -89,7 +89,7 @@ L = {
   okIn='Здесь открылся бы ваш кабинет. Но это макет — настоящий вход пока не подключён.',
   okReg='Здесь создался бы ваш кабинет, а на почту пришло бы письмо для подтверждения. В макете это не работает.',
   okForgot='В настоящем кабинете здесь можно восстановить пароль по почте. В макете это не работает — если не получается войти, позвоните в техподдержку.',
-  example='Посмотреть, как выглядит расписание →'),
+  example='Посмотреть, как выглядит расписание'),
  'en': dict(
   src='MainEn.dc.html', out='LoginEn.dc.html', lang='en', home='MainEn.dc.html', other='Login.dc.html',
   title='Sign in — UrFU',
@@ -117,7 +117,7 @@ L = {
   okIn='You would be signed in here, but this is a mock-up: real sign-in is not connected yet.',
   okReg='Your account would be created here and a confirmation email sent. This does not work in the mock-up.',
   okForgot='In the real account you could reset your password by email here. This does not work in the mock-up; if you cannot sign in, call tech support.',
-  example='See what the timetable looks like →'),
+  example='See what the timetable looks like'),
 }
 
 

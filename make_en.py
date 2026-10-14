@@ -7,7 +7,7 @@ import sys
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 EN = open('MainEn.dc.html', encoding='utf-8').read()
-EN_HEAD = EN[EN.index('<div><a href="#main" class="skip">'):EN.index('</header>') + len('</header>')]
+EN_HEAD = '<div>' + EN[EN.index('<a href="#main" class="skip">'):EN.index('</header>') + len('</header>')]
 EN_FOOT = EN[EN.index('<footer'):EN.index('</footer>') + len('</footer>')]
 
 # ссылки между английскими страницами

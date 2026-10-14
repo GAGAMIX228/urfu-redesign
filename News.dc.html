@@ -49,7 +49,7 @@ a.nc{display:flex;flex-direction:column;gap:10px;min-height:220px;padding:24px;b
 </a>
 <div class="g3" style="margin-top:24px">
 <sc-for list="{{items}}" as="n" hint-placeholder-count="6">
-<a class="{{n.cls}}" href="Article.dc.html"><span class="tag">{{n.tag}}</span><div class="nc-t">{{n.t}}</div><div class="muted nc-d">{{n.d}}</div><span class="nc-more" aria-hidden="true">Читать →</span></a>
+<a class="{{n.cls}}" href="Article.dc.html"><span class="tag">{{n.tag}}</span><div class="nc-t">{{n.t}}</div><div class="muted nc-d">{{n.d}}</div><span class="nc-more" aria-hidden="true">Читать</span></a>
 </sc-for>
 </div>
 <sc-if value="{{empty}}" hint-placeholder-val="{{false}}"><p class="muted" style="margin-top:8px">В этой рубрике пока нет новостей. <a href="Events.dc.html">Посмотрите календарь событий</a>.</p></sc-if>

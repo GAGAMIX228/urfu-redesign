@@ -393,3 +393,28 @@ a[href^="tel:"],a[href^="mailto:"]{display:inline-block;padding:3px 0}
 
 /* кнопка «Наверх» висит и над светлым, и над тёмным фоном: белое кольцо + синяя рамка видны на обоих */
 .to-top:focus-visible{outline:3px solid var(--blue);outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF,0 8px 24px rgba(14,27,43,.25)}
+
+/* ═══ «Уральский камень» — общий стиль всего сайта ═══
+   Заголовки — PT Sans Narrow (ParaType, шрифт общественных надписей), текст — IBM Plex Sans.
+   Один фирменный приём — срезанный угол, как грань самоцвета и знак «У»: у шапок страниц, плиток ролей и фото. */
+@font-face{font-family:'PT Sans Narrow';src:url('fonts/PTSansNarrow-Bold-cyr.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'PT Sans Narrow';src:url('fonts/PTSansNarrow-Bold-lat.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--granite:#1C2329;--limestone:#EEF1F0;--slate:#5A646C;--malachite:#0B7A63;--amethyst:#6A4C9C;--sapphire:#1D4E9E;--jasper:#A63A3A;
+  --narrow:'PT Sans Narrow','IBM Plex Sans',system-ui,sans-serif;--cut:22px;--r:4px;--r-lg:4px}
+h1,h2{font-family:var(--narrow);font-weight:700;letter-spacing:0;line-height:1.02}
+h3{font-family:var(--narrow);font-weight:700;letter-spacing:0;line-height:1.1;font-size:24px}
+h1.big,.phead h1{font-size:clamp(42px,6vw,68px) !important;line-height:.98}
+main h2{font-size:clamp(32px,3.6vw,46px)}
+.card h2,.card h3,aside h2{font-size:26px}
+.num{font-family:var(--narrow);font-weight:700;letter-spacing:0}
+/* подписи над заголовками и ЗАГЛАВНЫЕ — убраны */
+.kicker{display:none}
+.eyebrow,.ncard .meta .cat{text-transform:none;letter-spacing:0}
+/* шапка внутренних страниц: известняк и срезанный нижний угол вместо цветной полосы */
+.phead{background:var(--limestone);clip-path:polygon(0 0,100% 0,100% calc(100% - 40px),calc(100% - 40px) 100%,0 100%)}
+.phead::after,.ft::before{display:none}
+/* стрелки у ссылок больше не нужны */
+.arrow{display:none}
+.chip{border-radius:var(--r)}
+@media (max-width:640px){.phead{clip-path:polygon(0 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%)}}
+#a11y:checked ~ main .phead{clip-path:none}

@@ -8,14 +8,16 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/PTSansNarrow-Bold-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="logo-live.css">
+<link rel="stylesheet" href="home.css">
 <link rel="stylesheet" href="slides.css">
 <link rel="preload" href="photos/glavnyj-korpus-leto.webp" as="image">
 </head>
 <body>
 <template id="dc-tpl">
-<div><a href="#main" class="skip">Skip to content</a><input type="checkbox" id="a11y" class="a11y-cb">
+<div class="fd"><a href="#main" class="skip">Skip to content</a><input type="checkbox" id="a11y" class="a11y-cb">
 <header class="hd"><div class="wrap hd-in">
 <a class="brand" href="MainEn.dc.html" aria-label="UrFU home"><svg class="mark" width="26" height="46" viewBox="0 0 35 62" aria-hidden="true"><defs><linearGradient id="gemH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7A4FB0"></stop><stop offset=".5" stop-color="#1D4E9E"></stop><stop offset="1" stop-color="#14A383"></stop></linearGradient></defs><path d="M1 2 H25 V4 H17 L33 35 C31 46 24 59 12 60 C10 60.2 8.8 59.3 9.4 58.1 C16 55.8 22.6 49 24.4 38.6 L6.2 4 H3.4 Z" fill="url(#gemH)"></path></svg><span class="lk"><b>Ural Federal<br>University</b><i>named after the<br>first President<br>of Russia<br>B.N. Yeltsin</i></span></a>
 <nav class="nav" aria-label="Main menu"><a href="AdmissionEn.dc.html">Admissions</a><a href="Schedule.dc.html">Study</a><a href="Article.dc.html">Research</a><a href="Life.dc.html">Campus life</a><a href="Contacts.dc.html">Partners</a><a href="Institute.dc.html">About</a></nav>
@@ -30,17 +32,15 @@
 </div></header>
 
 <main id="main" tabindex="-1" style="outline:none">
-<section class="hero dark photo" style="--img:url('photos/glavnyj-korpus-leto.webp')"><div class="wrap">
-<div class="hero-grid">
+<section class="fd-hero"><div class="wrap fd-hero-in">
 <div>
-<span class="eyebrow rv">Ural Federal University · since 1920</span>
-<h1 class="rv rv2">Find your place <em>at UrFU</em></h1>
-<p class="hero-lead rv rv3">Programs, people, events and services — all in one search.</p>
-<div class="search rv rv4">
+<h1>What do you need at UrFU?</h1>
+<p class="fd-lead">Programmes, timetable, housing, people and events — found in seconds.</p>
+<div class="search fd-search">
 <div class="search-box">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
 <label for="q" class="sr">Search the site</label>
-<input id="q" autocomplete="off" placeholder="For example: software engineering" value="{{q}}" onChange="{{onQ}}">
+<input id="q" autocomplete="off" placeholder="For example: housing or AI" value="{{q}}" onChange="{{onQ}}">
 <a class="btn" href="{{qHref}}">Search</a>
 </div>
 <sc-if value="{{open}}">
@@ -48,115 +48,59 @@
 <sc-for list="{{sug}}" as="g">
 <a href="{{g.href}}" role="option"><span style="font-weight:500">{{g.t}}</span><span class="muted" style="font-size:13px;white-space:nowrap">{{g.kind}}</span></a>
 </sc-for>
-<sc-if value="{{none}}"><div class="muted" style="padding:14px 18px">Nothing found — try another word</div></sc-if>
-<a href="{{qHref}}" style="background:var(--bg-soft-2);font-weight:600;color:var(--blue)">All search results <span class="arrow">→</span></a>
+<sc-if value="{{none}}"><div class="muted" style="padding:14px 18px">Nothing found. Try the <a href="CatalogEn.dc.html">programme catalogue</a>, <a href="Schedule.dc.html">timetable</a> or <a href="Dorms.dc.html">housing</a>.</div></sc-if>
+<a href="{{qHref}}" style="background:var(--bg-soft-2);font-weight:600;color:var(--blue)">All search results</a>
 </div>
 </sc-if>
 </div>
-<div class="often rv rv5"><span>Popular:</span><a href="Schedule.dc.html">Timetable</a><a href="CatalogEn.dc.html">Passing scores</a><a href="Dorms.dc.html">Housing</a><a href="Contacts.dc.html">Campus map</a></div>
+<p class="fd-often">Popular: <a href="Schedule.dc.html">timetable</a><a href="CatalogEn.dc.html">pass marks</a><a href="Dorms.dc.html">housing</a><a href="Contacts.dc.html">campus map</a></p>
 </div>
-<div class="hero-art" aria-hidden="true">
-<svg class="colonnade" viewBox="0 0 520 360" fill="none">
-<defs><linearGradient id="colFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--hero-em)" stop-opacity=".28"></stop><stop offset="1" style="stop-color:var(--hero-em)" stop-opacity=".04"></stop></linearGradient></defs>
-<path class="ent" d="M0 40 H520"></path>
-<rect class="col" x="20" y="48" width="480" height="32"></rect>
-<rect class="col" x="38" y="80" width="34" height="200" style="animation-delay:.05s"></rect>
-<rect class="col" x="106" y="80" width="34" height="200" style="animation-delay:.1s"></rect>
-<rect class="col" x="174" y="80" width="34" height="200" style="animation-delay:.15s"></rect>
-<rect class="col" x="243" y="80" width="34" height="200" style="animation-delay:.2s"></rect>
-<rect class="col" x="312" y="80" width="34" height="200" style="animation-delay:.25s"></rect>
-<rect class="col" x="380" y="80" width="34" height="200" style="animation-delay:.3s"></rect>
-<rect class="col" x="448" y="80" width="34" height="200" style="animation-delay:.35s"></rect>
-<rect class="col" x="14" y="280" width="492" height="22" style="animation-delay:.4s"></rect>
-<rect class="col" x="4" y="302" width="512" height="22" style="animation-delay:.45s"></rect>
-<rect class="col" x="-6" y="324" width="532" height="22" style="animation-delay:.5s"></rect>
-</svg>
-</div>
-</div>
-
-<div class="stats">
-<div class="stat"><b class="num">1920</b><span>founded</span></div>
-<div class="stat"><b class="num">400+</b><span>degree programs</span></div>
-<div class="stat"><b class="num">164</b><span>research labs</span></div>
-<div class="stat"><b class="num">100+</b><span>countries our students come from</span></div>
+<div class="fd-gems">
+<sc-for list="{{gems}}" as="g" hint-placeholder-count="4">
+<section class="fd-gem" data-role="{{g.key}}" lang="{{g.lang}}" aria-labelledby="{{g.hid}}">
+<h2 id="{{g.hid}}">{{g.me}}</h2>
+<ul><sc-for list="{{g.links}}" as="l" hint-placeholder-count="3"><li><a href="{{l.href}}">{{l.t}}<span>{{l.d}}</span></a></li></sc-for></ul>
+<button type="button" class="fd-toggle" id="{{g.bid}}" aria-expanded="{{g.exp}}" onClick="{{g.toggle}}">{{g.more}}</button>
+</section>
+</sc-for>
 </div>
 </div></section>
 
-<section class="wrap sec">
-<div class="sec-head"><div><div class="kicker">Quick start</div><h2>Who are you?</h2></div>
-<div class="seg" data-role="{{roleKey}}" role="group" aria-label="Choose your role">
-<sc-for list="{{roles}}" as="r"><button type="button" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}">{{r.label}}</button></sc-for>
-</div></div>
-<p class="muted">Pick a role and the home page shows only what you need.</p>
-<div class="qgrid" data-role="{{roleKey}}">
-<sc-for list="{{links}}" as="l">
-<a class="q" href="{{l.href}}"><span class="n num">{{l.n}}</span><span class="t">{{l.t}}<span class="arrow" aria-hidden="true">→</span></span><span class="d">{{l.d}}</span></a>
-</sc-for>
-</div>
-</section>
+<section class="fd-photo" aria-label="Campus photos"></section>
 
-<section class="wrap sec">
-<div class="sec-head"><div><div class="kicker" style="--k:var(--a2)">Structure</div><h2>Institutes</h2></div><a class="more" href="Institute.dc.html">All institutes and units <span class="arrow">→</span></a></div>
-<div class="inst">
-<a href="Institute.dc.html"><b>IRIT-RTF</b><span>Radio electronics and IT</span></a>
-<a href="Institute.dc.html"><b>INSM</b><span>Natural sciences and mathematics</span></a>
-<a href="Institute.dc.html"><b>INMT</b><span>New materials and technologies</span></a>
-<a href="Institute.dc.html"><b>UralENIN</b><span>Power engineering</span></a>
-<a href="Institute.dc.html"><b>ICEA</b><span>Civil engineering and architecture</span></a>
-<a href="Institute.dc.html"><b>UIH</b><span>Humanities</span></a>
-<a href="Institute.dc.html"><b>GSEM</b><span>Economics and management</span></a>
-<a href="Institute.dc.html"><b>IPT</b><span>Physics and technology</span></a>
+<section class="fd-sec soft" aria-labelledby="adm-h"><div class="wrap fd-adm">
+<div>
+<h2 id="adm-h" class="sr">Admissions</h2>
+<div class="fd-days">{{days}}</div>
+<p class="fd-days-l">{{daysWord}} until applications open</p>
+<p class="fd-note">Counting to 20 June, as in the 2026 admission rules. Dates for 2027 will be announced in spring.</p>
 </div>
-</section>
+<div>
+<ol class="fd-steps"><li><b>20 June</b><span>Applications open</span></li><li><b>25 July</b><span>Last day for state-funded places by EGE</span></li><li><b>20 August</b><span>Last day for paid places</span></li><li><b>1 September</b><span>First class</span></li></ol>
+<div class="fd-adm-cta"><a class="btn" href="CatalogEn.dc.html">Find a programme</a><a class="btn2" href="AdmissionEn.dc.html" style="background:#FFFFFF">How to apply</a></div>
+</div>
+</div></section>
 
-<section class="wrap sec">
-<div class="adm">
-<div style="position:relative;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end;z-index:1">
-<div><span class="tag">Admissions 2027</span><h2>Apply in 5 steps</h2></div>
-<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="CatalogEn.dc.html">Find a program</a><a class="btn2" href="AdmissionEn.dc.html" style="background:#FFFFFF">All steps</a></div>
+<section class="fd-sec"><div class="wrap fd-two">
+<div>
+<div class="fd-head"><h2 class="fd-col-h">News</h2><a class="fd-more" href="News.dc.html">All news</a></div>
+<ul class="fd-list fd-news"><li><a href="Article.dc.html"><small>July 2026</small><span class="fd-t">Almost 50,000 applications for state-funded places in 2026</span></a></li><li><a href="Article.dc.html"><small>2026</small><span class="fd-t">UrFU joins the pilot of the new higher education system</span></a></li><li><a href="Article.dc.html"><small>2026</small><span class="fd-t">About 500 teachers learned to build courses with neural networks</span></a></li><li><a href="Article.dc.html"><small>2026</small><span class="fd-t">UrFU scientists explain a puzzling cause of male infertility</span></a></li></ul>
 </div>
-<p class="muted" style="font-size:14px;margin-top:12px;position:relative">Dates follow the 2026 admission rules — 2027 dates are to be confirmed.</p>
-<ol class="steps">
-<li><div class="date num">June 20</div><div class="what">Applications open</div></li>
-<li><div class="date num">July 25</div><div class="what">State-funded places: deadline</div></li>
-<li><div class="date num">August 20</div><div class="what">Paid places: deadline</div></li>
-<li class="last"><div class="date num">September 1</div><div class="what">Classes begin</div></li>
-</ol>
+<div>
+<div class="fd-head"><h2 class="fd-col-h">Events</h2><a class="fd-more" href="Events.dc.html">Calendar</a></div>
+<ul class="fd-list fd-ev"><li><a href="Events.dc.html"><b>13–22<small>October</small></b><div><div class="fd-ev-t">Statistics Dictation</div><div class="fd-ev-d">Open to everyone online</div></div></a></li><li><a href="Events.dc.html"><b>24<small>October</small></b><div><div class="fd-ev-t">Tour Guide School</div><div class="fd-ev-d">Enrolment for a continuing-education course</div></div></a></li><li><a href="Events.dc.html"><b>29<small>October</small></b><div><div class="fd-ev-t">“League of Your Name” case championship</div><div class="fd-ev-d">Applications open</div></div></a></li><li><a href="Events.dc.html"><b>3–12<small>November</small></b><div><div class="fd-ev-t">Big Ethnographic Dictation</div><div class="fd-ev-d">Online on the campaign website</div></div></a></li></ul>
 </div>
-</section>
+</div></section>
 
-<section class="wrap sec">
-<div class="sec-head"><div><div class="kicker" style="--k:var(--a3)">What's on</div><h2>News and events</h2></div><div style="display:flex;gap:20px;flex-wrap:wrap"><a class="more" href="News.dc.html">All news <span class="arrow">→</span></a><a class="more" href="Events.dc.html">Calendar <span class="arrow">→</span></a></div></div>
-<div class="news">
-<a class="ncard big" href="Article.dc.html"><div class="frame"><div class="art t1 photo" style="--img:url('photos/shkolniki.webp');min-height:300px"></div></div><div class="meta"><span class="cat">Admissions</span><span class="dt num">July 2026</span></div><div class="ttl">Almost 50,000 applications for state-funded places in 2026</div></a>
-<div style="display:flex;flex-direction:column;gap:28px">
-<a class="ncard c2" href="Article.dc.html"><div class="frame"><div class="art v2 t2 photo" style="--img:url('photos/kampus-sverhu.webp');min-height:150px"></div></div><div class="meta"><span class="cat">University</span><span class="dt num">2026</span></div><div class="ttl">UrFU joins the pilot of the new higher education system</div></a>
-<a class="ncard c3" href="Article.dc.html"><div class="meta" style="margin-top:0"><span class="cat">Research</span><span class="dt num">2026</span></div><div class="ttl">UrFU scientists explain a puzzling cause of male infertility</div></a>
-</div>
-<div class="ev" aria-label="Upcoming events">
-<a href="Events.dc.html"><div class="ev-d"><b>13–22</b><span>Oct</span></div><div><div class="ev-t">Statistics Dictation</div><div class="muted" style="font-size:14px">Open to everyone</div></div></a>
-<a href="Events.dc.html"><div class="ev-d"><b>24</b><span>Oct</span></div><div><div class="ev-t">Tour Guide School</div><div class="muted" style="font-size:14px">Enrolment for a continuing-education course</div></div></a>
-<a href="Events.dc.html"><div class="ev-d"><b>29</b><span>Oct</span></div><div><div class="ev-t">“League of Your Name” case championship</div><div class="muted" style="font-size:14px">Applications open</div></div></a>
-</div>
-</div>
-</section>
+<section class="fd-sec soft"><div class="wrap">
+<div class="fd-head"><div><h2 class="fd-h2">Institutes</h2><p class="fd-lead">Eight institutes, from radio engineering to the humanities.</p></div><a class="fd-more" href="Institute.dc.html">All units</a></div>
+<div class="fd-inst"><a href="Institute.dc.html"><b>IRIT-RTF</b><span>Radio electronics and IT</span></a><a href="Institute.dc.html"><b>INSM</b><span>Natural sciences and mathematics</span></a><a href="Institute.dc.html"><b>INMT</b><span>New materials and technologies</span></a><a href="Institute.dc.html"><b>UralENIN</b><span>Power engineering</span></a><a href="Institute.dc.html"><b>ICEA</b><span>Civil engineering and architecture</span></a><a href="Institute.dc.html"><b>UIH</b><span>Humanities</span></a><a href="Institute.dc.html"><b>GSEM</b><span>Economics and management</span></a><a href="Institute.dc.html"><b>IPT</b><span>Physics and technology</span></a></div>
+</div></section>
 
-<section class="wrap sec">
-<a class="story" href="Article.dc.html">
-<div class="art v2 t4 photo" style="--img:url('photos/it-konferenciya-2026-zal.webp')"></div>
-<div class="story-tx"><span class="eyebrow">Education</span><h2>About 500 teachers learned to build courses with neural networks</h2><p>At UrFU, AI does not replace teachers — it helps them prepare courses faster.</p><span class="go">Read the story <span class="arrow">→</span></span></div>
-</a>
-</section>
-
-<section class="wrap sec">
-<div class="sec-head"><div><div class="kicker" style="--k:var(--a4)">Campus</div><h2>Campus life</h2></div><a class="more" href="Life.dc.html">Clubs, sports and events <span class="arrow">→</span></a></div>
-<div class="bento">
-<a class="b1" href="Life.dc.html"><div class="art t1 photo" style="--img:url('photos/kampus-leto.webp')"><b>Campus</b></div></a>
-<a class="b2" href="Life.dc.html"><div class="art t2 photo" style="--img:url('photos/bassejn.webp')"><b>Sports</b></div></a>
-<a href="Life.dc.html"><div class="art v3 t3 photo" style="--img:url('photos/tochka-kipeniya.webp')"><b>Clubs</b></div></a>
-<a href="Life.dc.html"><div class="art v3 t4 photo" style="--img:url('photos/volontery-2026.webp')"><b>Events</b></div></a>
-</div>
-</section>
+<section class="fd-sec"><div class="wrap">
+<div class="fd-head"><h2 class="fd-h2">Campus life</h2><a class="fd-more" href="Life.dc.html">Clubs, sports and events</a></div>
+<div class="fd-life"><a href="Life.dc.html"><div class="ph" style="background-image:url('photos/kampus-leto.webp')"></div><b>Campus</b><span>Vtuzgorodok and Mira Street</span></a><a href="Life.dc.html"><div class="ph" style="background-image:url('photos/bassejn.webp')"></div><b>Sports</b><span>Pool, gyms, sections</span></a><a href="Life.dc.html"><div class="ph" style="background-image:url('photos/tochka-kipeniya.webp')"></div><b>Student clubs</b><span>Science, IT, creativity</span></a><a href="Life.dc.html"><div class="ph" style="background-image:url('photos/volontery-2026.webp')"></div><b>Volunteering</b><span>Projects and events</span></a></div>
+</div></section>
 </main>
 
 <footer class="ft"><div class="wrap"><div class="ft-grid">
@@ -187,7 +131,7 @@ const sug = words.length ? QUICK.map(k => ({t:k.t, kind:k.kind, href:k.href, h:w
 const role = (this.state && this.state.role) || 'intl';
 const sets = {
 abit: [
-{t:'Programs in English', d:'Bachelor and Master programs', href:'CatalogEn.dc.html'},
+{t:'Programme catalogue', d:'Filters, exams and pass marks', href:'CatalogEn.dc.html'},
 {t:'How to apply', d:'Steps, documents and deadlines', href:'AdmissionEn.dc.html'},
 {t:'Housing', d:'Dormitories on campus', href:'Dorms.dc.html'},
 {t:'Campus map', d:'Buildings and contacts', href:'Contacts.dc.html'},
@@ -208,7 +152,7 @@ staff: [
 {t:'Contacts', d:'Phones and addresses', href:'Contacts.dc.html'},
 {t:'Services', d:'Mail, documents, staff account', href:'LoginEn.dc.html?role=staff'}],
 intl: [
-{t:'Programs in English', d:'Bachelor and Master programs', href:'CatalogEn.dc.html'},
+{t:'Programme catalogue', d:'Filters, exams and pass marks', href:'CatalogEn.dc.html'},
 {t:'Visa and arrival', d:'What to do before you come', href:'AdmissionEn.dc.html'},
 {t:'Housing', d:'Dormitories for international students', href:'Dorms.dc.html'},
 {t:'Adaptation', d:'Buddy program and events', href:'Life.dc.html'},
@@ -216,8 +160,20 @@ intl: [
 {t:'International office', d:'Contact us', href:'Contacts.dc.html'}]
 };
 const list = [['abit','Applicant'],['student','Student'],['staff','Staff'],['intl','International']];
+const ME = {abit:'I’m applying', student:'I’m a student', staff:'I work at UrFU', intl:'International students'};
+const openG = (this.state && this.state.openG) || {};
+const gems = list.map(([k]) => {
+  const all = sets[k], ex = !!openG[k];
+  return { key: k, me: ME[k], lang: 'en', hid: 'gem-' + k, bid: 'gem-b-' + k,
+    links: ex ? all : all.slice(0, 3), exp: String(ex), more: ex ? 'Show less' : 'Show 3 more',
+    toggle: () => this.setState({ openG: { ...openG, [k]: !ex } }) };
+});
+const NOW = new Date(); const Y0 = NOW.getFullYear();
+let target = new Date(Y0, 5, 20); if (NOW > new Date(Y0, 7, 20)) target = new Date(Y0 + 1, 5, 20);
+const days = Math.max(0, Math.ceil((target - new Date(Y0, NOW.getMonth(), NOW.getDate())) / 864e5));
+const daysWord = days === 1 ? 'Day left' : 'Days left';
 const qHref = 'Search.dc.html' + (q.trim() ? '?q=' + encodeURIComponent(q.trim()) : '');
-return { qHref,
+return { qHref, gems, days, daysWord,
 q, onQ: (e) => this.setState({ q: e.target.value }), open: q.trim().length >= 2, sug, none: q.trim().length >= 2 && sug.length === 0,
 roleKey: role,
 roles: list.map(([k, label]) => ({ label, pressed: k === role ? 'true' : 'false', pick: () => this.setState({ role: k }) })),

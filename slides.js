@@ -25,7 +25,7 @@
   var PLAY = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"></path></svg>';
 
   function build() {
-    var hero = document.querySelector('.hero.photo');
+    var hero = document.querySelector('.fd-photo');
     if (!hero || hero.querySelector('.hs')) return;
     var box = document.createElement('div');
     box.className = 'hs'; box.setAttribute('aria-hidden', 'true');
@@ -52,7 +52,7 @@
     paint();
   }
   function paint() {
-    var hero = document.querySelector('.hero.photo'); if (!hero) return;
+    var hero = document.querySelector('.fd-photo'); if (!hero) return;
     hero.querySelectorAll('.hs-s').forEach(function (s, i) { s.classList.toggle('on', i === cur); s.classList.toggle('zoom', i === cur && !paused); });
     hero.querySelectorAll('.hs-dots button').forEach(function (b, i) { b.setAttribute('aria-current', String(i === cur)); });
     var cap = hero.querySelector('.hs-cap');
