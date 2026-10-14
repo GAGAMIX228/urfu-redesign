@@ -46,7 +46,7 @@ a.nc{display:flex;flex-direction:column;gap:10px;min-height:220px;padding:24px;b
 </div>
 <a href="Article.dc.html" class="card g2" style="margin-top:32px;padding:0;overflow:hidden;gap:0">
 <div class="ph art t1 photo" style="--img:url('photos/shkolniki.webp');min-height:340px;border-radius:0;position:relative;overflow:hidden"></div>
-<div style="padding:40px;display:flex;flex-direction:column;justify-content:center;gap:14px"><span class="tag" style="align-self:flex-start">Главное</span><h2>Почти 50 тысяч заявлений на бюджет: УрФУ подвёл итоги приёма-2026</h2><p class="muted">Заявлений стало на 7,5 тысячи больше, чем годом раньше, а заявлений на целевое обучение (учёбу оплачивает будущий работодатель) — на 40% больше, чем мест.</p><span class="muted" style="font-size:14px">Июль 2026 · по данным телеканала ОТВ</span></div>
+<div style="padding:40px;display:flex;flex-direction:column;justify-content:center;gap:14px"><span class="tag" style="align-self:flex-start">Главное</span><h2>Почти 50 тысяч заявлений на бюджет: УрФУ подвёл итоги приёма-2026</h2><p class="muted">Заявлений стало на 7,5 тысячи больше, чем годом раньше, а целевых — на 40% больше, чем выделено мест.</p><span class="muted" style="font-size:14px">Июль 2026 · по данным ОТВ</span></div>
 </a>
 <div class="g3" style="margin-top:24px">
 <sc-for list="{{items}}" as="n" hint-placeholder-count="6">
@@ -69,12 +69,12 @@ renderVals() {
 const tag = (this.state && this.state.tag) || 'Все';
 const names = ['Все','Наука','Студентам','Поступающим','Образование','Партнёрство'];
 const pool = [
-{tag:'Наука', t:'Учёные УрФУ и Уральского отделения Академии наук объяснили одну из загадочных причин мужского бесплодия', d:'2026 · РИА Новости'},
+{tag:'Наука', t:'Учёные УрФУ и УрО РАН объяснили одну из загадочных причин мужского бесплодия', d:'2026 · РИА Новости'},
 {tag:'Образование', t:'Около 500 преподавателей освоили нейросети для создания учебных курсов', d:'2026 · urfu.ru'},
-{tag:'Поступающим', t:'УрФУ одним из первых переходит на новую систему высшего образования', d:'2026 · urfu.ru'},
+{tag:'Поступающим', t:'УрФУ вошёл в пилотный проект новой системы высшего образования', d:'2026 · urfu.ru'},
 {tag:'Партнёрство', t:'Четыре компании пришли на партнёрскую пятницу в УрФУ', d:'2026 · urfu.ru'},
-{tag:'Наука', t:'В Екатеринбурге открылся международный форум о науке про мозг', d:'2026 · АиФ-Урал'},
-{tag:'Поступающим', t:'Приём на платные места: с экзаменами в УрФУ — до 15 августа, по ЕГЭ — до 20 августа', d:'Июль 2026 · ОТВ'}
+{tag:'Наука', t:'В Екатеринбурге открылся V Международный форум по когнитивным нейронаукам', d:'2026 · АиФ-Урал'},
+{tag:'Поступающим', t:'Приём на платные места: внутренние испытания до 15 августа, ЕГЭ до 20 августа', d:'Июль 2026 · ОТВ'}
 ];
 const C = {'Наука':'a2','Образование':'a3','Поступающим':'a1','Партнёрство':'a4','Студентам':'a1'};
 const items = pool.filter(x => tag === 'Все' || x.tag === tag).map(x => Object.assign({}, x, { cls: 'card nc nc-' + C[x.tag] }));
