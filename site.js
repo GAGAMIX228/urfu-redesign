@@ -30,7 +30,8 @@ document.addEventListener("click",function(e){if(!document.querySelector("base")
 /* Кнопка «Наверх»: появляется после двух экранов прокрутки */
 (function(){
   var b=document.createElement("button");
-  b.type="button";b.className="to-top";b.setAttribute("aria-label","Наверх");b.title="Наверх";
+  var up=document.documentElement.lang==="en"?"Back to top":"Наверх";
+  b.type="button";b.className="to-top";b.setAttribute("aria-label",up);b.title=up;
   b.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>';
   b.addEventListener("click",function(){
     var r=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -41,4 +42,23 @@ document.addEventListener("click",function(e){if(!document.querySelector("base")
   window.addEventListener("scroll",upd,{passive:true});
   if(document.body)document.body.appendChild(b);else document.addEventListener("DOMContentLoaded",function(){document.body.appendChild(b);});
   upd();
+})();
+/* Объявления для программ чтения с экрана («Найдено: 15 программ», «Вопрос 2 из 3»).
+   Движок перерисовывает страницу целиком, и новые aria-live-блоки читалки не замечают —
+   поэтому текст переносится в один постоянный блок вне перерисовки. */
+(function(){
+  var root=document.getElementById("dc-root");if(!root)return;
+  var box=document.createElement("div");box.className="sr";box.id="sr-live";
+  box.setAttribute("aria-live","polite");box.setAttribute("aria-atomic","true");
+  document.body.appendChild(box);
+  var last=null,t=null;
+  function scan(){
+    var els=root.querySelectorAll('[aria-live]:not([aria-live="off"])');
+    var txt=[].map.call(els,function(e){return e.textContent.replace(/\s+/g," ").trim();}).filter(Boolean).join(". ");
+    [].forEach.call(els,function(e){e.setAttribute("aria-live","off");});
+    if(last===null){last=txt;return;}
+    if(txt===last)return;
+    last=txt;clearTimeout(t);box.textContent="";t=setTimeout(function(){box.textContent=txt;},120);
+  }
+  new MutationObserver(scan).observe(root,{childList:true});scan();
 })();

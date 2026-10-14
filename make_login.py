@@ -138,6 +138,7 @@ def build(t):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FFFFFF">
 <title>{t['title']}</title>
 <meta name="description" content="{t['desc']}">
 <meta name="robots" content="noindex">
@@ -167,17 +168,17 @@ def build(t):
 </div>
 
 <sc-if value="{{{{isIn}}}}" hint-placeholder-val="{{{{true}}}}"><form novalidate onSubmit="{{{{submitIn}}}}">
-<div class="field"><label for="f-login">{t['login']}</label><input id="f-login" class="input" autocomplete="username" value="{{{{login}}}}" onChange="{{{{onLogin}}}}" aria-invalid="{{{{invLogin}}}}" aria-describedby="e-login"><p class="lg-err" id="e-login">{{{{eLogin}}}}</p></div>
-<div class="field"><label for="f-pass">{t['pw']}</label><div class="pw"><input id="f-pass" class="input" type="{{{{pwType}}}}" autocomplete="current-password" value="{{{{pass}}}}" onChange="{{{{onPass}}}}" aria-invalid="{{{{invPass}}}}" aria-describedby="e-pass"><button type="button" id="pw-t" aria-label="{{{{pwA}}}}" onClick="{{{{togglePw}}}}">{{{{pwTxt}}}}</button></div><p class="lg-err" id="e-pass">{{{{ePass}}}}</p></div>
+<div class="field"><label for="f-login">{t['login']}</label><input spellcheck="false" autocapitalize="off" id="f-login" name="f-login" class="input" autocomplete="username" value="{{{{login}}}}" onChange="{{{{onLogin}}}}" aria-invalid="{{{{invLogin}}}}" aria-describedby="e-login"><p class="lg-err" id="e-login">{{{{eLogin}}}}</p></div>
+<div class="field"><label for="f-pass">{t['pw']}</label><div class="pw"><input id="f-pass" name="f-pass" class="input" type="{{{{pwType}}}}" autocomplete="current-password" value="{{{{pass}}}}" onChange="{{{{onPass}}}}" aria-invalid="{{{{invPass}}}}" aria-describedby="e-pass"><button type="button" id="pw-t" aria-label="{{{{pwA}}}}" onClick="{{{{togglePw}}}}">{{{{pwTxt}}}}</button></div><p class="lg-err" id="e-pass">{{{{ePass}}}}</p></div>
 <div class="lg-row"><label class="lg-chk"><input type="checkbox" id="f-rem" checked="{{{{rem}}}}" onChange="{{{{onRem}}}}">{t['rem']}</label><button type="button" class="linkbtn" id="f-forgot" onClick="{{{{forgot}}}}">{t['forgot']}</button></div>
 <button type="submit" class="btn lg-submit" id="f-go">{t['submitIn']}</button>
 </form></sc-if>
 
 <sc-if value="{{{{isRegOk}}}}" hint-placeholder-val="{{{{false}}}}"><form novalidate onSubmit="{{{{submitReg}}}}">
-<div class="field"><label for="r-name">{t['name']}</label><input id="r-name" class="input" autocomplete="name" value="{{{{name}}}}" onChange="{{{{onName}}}}" aria-invalid="{{{{invName}}}}" aria-describedby="e-name"><p class="lg-err" id="e-name">{{{{eName}}}}</p></div>
-<div class="field"><label for="r-email">{t['email']}</label><input id="r-email" class="input" type="email" autocomplete="email" value="{{{{email}}}}" onChange="{{{{onEmail}}}}" aria-invalid="{{{{invEmail}}}}" aria-describedby="e-email"><p class="lg-err" id="e-email">{{{{eEmail}}}}</p></div>
-<div class="field"><label for="r-p1">{t['pass1']}</label><div class="pw"><input id="r-p1" class="input" type="{{{{pwType}}}}" autocomplete="new-password" value="{{{{p1}}}}" onChange="{{{{onP1}}}}" aria-invalid="{{{{invP1}}}}" aria-describedby="h-p1 e-p1"><button type="button" id="pw-t2" aria-label="{{{{pwA}}}}" onClick="{{{{togglePw}}}}">{{{{pwTxt}}}}</button></div><p class="muted" id="h-p1" style="font-weight:400">{t['passHint']}</p><p class="lg-err" id="e-p1">{{{{eP1}}}}</p></div>
-<div class="field"><label for="r-p2">{t['pass2']}</label><input id="r-p2" class="input" type="{{{{pwType}}}}" autocomplete="new-password" value="{{{{p2}}}}" onChange="{{{{onP2}}}}" aria-invalid="{{{{invP2}}}}" aria-describedby="e-p2"><p class="lg-err" id="e-p2">{{{{eP2}}}}</p></div>
+<div class="field"><label for="r-name">{t['name']}</label><input id="r-name" name="r-name" class="input" autocomplete="name" value="{{{{name}}}}" onChange="{{{{onName}}}}" aria-invalid="{{{{invName}}}}" aria-describedby="e-name"><p class="lg-err" id="e-name">{{{{eName}}}}</p></div>
+<div class="field"><label for="r-email">{t['email']}</label><input spellcheck="false" autocapitalize="off" id="r-email" name="r-email" class="input" type="email" autocomplete="email" value="{{{{email}}}}" onChange="{{{{onEmail}}}}" aria-invalid="{{{{invEmail}}}}" aria-describedby="e-email"><p class="lg-err" id="e-email">{{{{eEmail}}}}</p></div>
+<div class="field"><label for="r-p1">{t['pass1']}</label><div class="pw"><input id="r-p1" name="r-p1" class="input" type="{{{{pwType}}}}" autocomplete="new-password" value="{{{{p1}}}}" onChange="{{{{onP1}}}}" aria-invalid="{{{{invP1}}}}" aria-describedby="h-p1 e-p1"><button type="button" id="pw-t2" aria-label="{{{{pwA}}}}" onClick="{{{{togglePw}}}}">{{{{pwTxt}}}}</button></div><p class="muted" id="h-p1" style="font-weight:400">{t['passHint']}</p><p class="lg-err" id="e-p1">{{{{eP1}}}}</p></div>
+<div class="field"><label for="r-p2">{t['pass2']}</label><input id="r-p2" name="r-p2" class="input" type="{{{{pwType}}}}" autocomplete="new-password" value="{{{{p2}}}}" onChange="{{{{onP2}}}}" aria-invalid="{{{{invP2}}}}" aria-describedby="e-p2"><p class="lg-err" id="e-p2">{{{{eP2}}}}</p></div>
 <label class="lg-chk top"><input type="checkbox" id="r-ok" checked="{{{{consent}}}}" onChange="{{{{onConsent}}}}" aria-invalid="{{{{invConsent}}}}" aria-describedby="e-ok"><span>{t['consent']}</span></label><p class="lg-err" id="e-ok">{{{{eConsent}}}}</p>
 <button type="submit" class="btn lg-submit" id="r-go">{t['submitReg']}</button>
 </form></sc-if>

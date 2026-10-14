@@ -74,7 +74,7 @@ MAIN = """<main id="main" tabindex="-1" style="outline:none"><section class="phe
 
 <sc-if value="{{isStep3}}" hint-placeholder-val="{{false}}"><div class="qz-q">
 <h2>Сколько у вас баллов?</h2><p class="qz-hint">Сумма трёх ЕГЭ. Если пока не знаете — оставьте пустым, покажем все подходящие программы.</p>
-<div class="field" style="max-width:320px;margin-top:20px"><label for="qzs">Сумма баллов</label><input id="qzs" class="input" inputmode="numeric" placeholder="Например, 240" value="{{my}}" onChange="{{onMy}}"></div>
+<div class="field" style="max-width:320px;margin-top:20px"><label for="qzs">Сумма баллов</label><input autocomplete="off" id="qzs" name="qzs" class="input" inputmode="numeric" placeholder="Например, 240…" value="{{my}}" onChange="{{onMy}}"></div>
 <div class="qz-nav"><button type="button" class="btn2" onClick="{{back}}">← Назад</button><button type="button" class="btn" onClick="{{next}}">Показать программы <span class="arrow">→</span></button></div>
 </div></sc-if>
 
