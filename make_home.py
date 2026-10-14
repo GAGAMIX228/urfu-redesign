@@ -70,7 +70,8 @@ def main_html(t):
     steps = ''.join(f'<li><b>{d}</b><span>{w}</span></li>' for d, w in t['steps'])
     news = ''.join(f'<li><a href="Article.dc.html"><small>{d}</small><span class="fd-t">{x}</span></a></li>' for d, x in t['news'])
     ev = ''.join(f'<li><a href="Events.dc.html"><b>{d}<small>{m}</small></b><div><div class="fd-ev-t">{x}</div><div class="fd-ev-d">{n}</div></div></a></li>' for d, m, x, n in t['ev'])
-    inst = ''.join(f'<a href="Institute.dc.html"><b>{a}</b><span>{n}</span></a>' for a, n in t['inst'])
+    RU = ['ИРИТ-РтФ', 'ИЕНиМ', 'ИНМиТ', 'УралЭНИН', 'ИСА', 'УГИ', 'ИнЭУ', 'ФТИ']
+    inst = ''.join(f'<a href="Institute.dc.html?i={RU[k]}"><b>{a}</b><span>{n}</span></a>' for k, (a, n) in enumerate(t['inst']))
     life = ''.join(f'<a href="Life.dc.html"><div class="ph" style="background-image:url(\'photos/{p}.webp\')"></div><b>{x}</b><span>{n}</span></a>' for p, x, n in t['life'])
     return f"""<main id="main" tabindex="-1" style="outline:none">
 <section class="fd-hero"><div class="wrap fd-hero-in">

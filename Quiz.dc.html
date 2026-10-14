@@ -92,10 +92,10 @@
 <sc-if value="{{isRes}}" hint-placeholder-val="{{false}}"><div class="qz-q">
 <h2>{{resTitle}}</h2><p class="qz-hint">{{resHint}}</p>
 <div class="qz-res">
-<sc-for list="{{res}}" as="p" hint-placeholder-count="6"><a class="{{p.cls}}" href="Program.dc.html"><span class="tag" style="align-self:flex-start">{{p.area}}</span><b>{{p.name}}</b><span class="muted" style="font-size:14px">ЕГЭ: {{p.exams}}</span><span class="v">{{p.verdict}}</span></a></sc-for>
+<sc-for list="{{res}}" as="p" hint-placeholder-count="6"><a class="{{p.cls}}" href="{{p.href}}"><span class="tag" style="align-self:flex-start">{{p.area}}</span><b>{{p.name}}</b><span class="muted" style="font-size:14px">ЕГЭ: {{p.exams}}</span><span class="v">{{p.verdict}}</span></a></sc-for>
 </div>
 <sc-if value="{{hasNear}}" hint-placeholder-val="{{false}}"><h3 style="margin-top:36px">Почти подходят</h3><p class="qz-hint">Не хватает одного предмета ЕГЭ.</p>
-<div class="qz-res"><sc-for list="{{near}}" as="p" hint-placeholder-count="2"><a class="qz-card v-none" href="Program.dc.html"><b>{{p.name}}</b><span class="v">Нужен ещё: {{p.need}}</span></a></sc-for></div></sc-if>
+<div class="qz-res"><sc-for list="{{near}}" as="p" hint-placeholder-count="2"><a class="qz-card v-none" href="{{p.href}}"><b>{{p.name}}</b><span class="v">Нужен ещё: {{p.need}}</span></a></sc-for></div></sc-if>
 <div class="qz-nav"><button type="button" class="btn2" onClick="{{restart}}">Пройти заново</button><a class="btn" href="Catalog.dc.html">Весь каталог с фильтрами</a></div>
 </div></sc-if>
 </div>
@@ -162,9 +162,9 @@ const fit = pool.filter(p => missing(p).length === 0).map(p => {
   if (known && hasMy && myN >= sc) { verdict = 'Баллов хватает: проходной ' + sc; cls = 'qz-card v-ok'; rank = 0; }
   else if (known && hasMy) { verdict = 'Не хватает ' + (sc - myN) + ': проходной ' + sc; cls = 'qz-card v-short'; rank = 2; }
   else if (known) { verdict = 'Проходной ' + (p.sy || '2025') + ': ' + sc; cls = 'qz-card v-ok'; rank = 1; }
-  return { ...p, verdict, cls, rank, area: LBL[p.k] || p.area };
+  return { ...p, verdict, cls, rank, area: LBL[p.k] || p.area, href: 'Program.dc.html?p=' + encodeURIComponent(p.name) };
 }).sort((a, b) => a.rank - b.rank);
-const near = pool.filter(p => missing(p).length === 1).slice(0, 4).map(p => ({ name: p.name, need: NAME[missing(p)[0]] }));
+const near = pool.filter(p => missing(p).length === 1).slice(0, 4).map(p => ({ name: p.name, need: NAME[missing(p)[0]], href: 'Program.dc.html?p=' + encodeURIComponent(p.name) }));
 const n = fit.length, w = (n % 10 === 1 && n % 100 !== 11) ? 'программа' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'программы' : 'программ';
 const verb = (n % 10 === 1 && n % 100 !== 11) ? 'подходит' : 'подходят';
 const go = k => () => { this.setState({ step: k }); setTimeout(() => { const h = document.querySelector('.qz-q h2'); if (h) { h.setAttribute('tabindex', '-1'); h.focus(); } }, 30); };

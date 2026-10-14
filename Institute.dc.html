@@ -27,56 +27,59 @@
 </div>
 </div></header><main id="main" tabindex="-1" style="outline:none"><section class="phead dark">
 <div class="wrap" style="padding-bottom:64px">
-<div class="crumbs" style="color:var(--on-dark-muted)"><a href="Main.dc.html" style="color:var(--on-dark-muted)">Главная</a> / <a href="Institute.dc.html" style="color:var(--on-dark-muted)">Об университете</a> / Институты / ИРИТ-РтФ</div>
+<div class="crumbs" style="color:var(--on-dark-muted)"><a href="Main.dc.html" style="color:var(--on-dark-muted)">Главная</a> / <a href="Institute.dc.html" style="color:var(--on-dark-muted)">Об университете</a> / Институты / {{short}}</div>
 <span class="tag" style="background:var(--ink-2);color:#FFFFFF;margin-top:8px">Институт</span>
-<h1 class="big" style="font-size:48px;margin-top:20px;color:#FFFFFF;max-width:960px">Институт радиоэлектроники и информационных технологий — РтФ</h1>
-<p style="color:var(--on-dark-muted);font-size:19px;margin-top:16px;max-width:720px">Готовит специалистов в IT, информационной безопасности, радиотехнике, электронике и системах связи. Радиофак Уральского политеха — с 1952 года.</p>
+<h1 class="big" style="font-size:48px;margin-top:20px;color:#FFFFFF;max-width:960px">{{full}}</h1>
+<p style="color:var(--on-dark-muted);font-size:19px;margin-top:16px;max-width:720px">{{lead}}</p>
 <nav aria-label="Разделы института" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:32px">
 <a class="chip" href="#progs" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Программы</a>
-<a class="chip" href="#deps" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Кафедры и центры</a>
-<a class="chip" href="#labs" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Лаборатории</a>
+<sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}"><a class="chip" href="#deps" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Кафедры и центры</a>
+<a class="chip" href="#labs" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Лаборатории</a></sc-if>
 <a class="chip" href="#cont" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Контакты</a>
 </nav>
 </div>
 </section>
 <div class="wrap">
-<div class="g4" style="padding:40px 0;border-bottom:1px solid var(--line)">
+<sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}"><div class="g4" style="padding:40px 0;border-bottom:1px solid var(--line)">
 <div><div style="font-family:var(--narrow);font-size:44px;font-weight:700;color:var(--blue)">7 000+</div><div class="muted">студентов</div></div>
 <div><div style="font-family:var(--narrow);font-size:44px;font-weight:700;color:var(--blue)">600+</div><div class="muted">студенческих проектов</div></div>
 <div><div style="font-family:var(--narrow);font-size:44px;font-weight:700;color:var(--blue)">1952</div><div class="muted">год основания радиофака</div></div>
 <div><div style="font-family:var(--narrow);font-size:44px;font-weight:700;color:var(--blue)">1 140</div><div class="muted">выпускников в 2025 году</div></div>
 </div>
+</sc-if>
 <section id="progs" class="sec">
-<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap"><h2>Программы института</h2><a href="Catalog.dc.html">Все в каталоге</a></div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap"><h2>Программы бакалавриата</h2><a href="Catalog.dc.html">Все в каталоге</a></div>
 <div class="g3" style="margin-top:24px">
-<a class="card" href="Program.dc.html"><span class="tag">Бакалавриат</span><div style="font-weight:600;font-size:18px;margin-top:12px">Программная инженерия</div><div class="muted" style="font-size:14px;margin-top:8px">Балл 2025: 259 · Бюджет: 100 мест</div></a>
-<a class="card" href="Program.dc.html"><span class="tag">Бакалавриат</span><div style="font-weight:600;font-size:18px;margin-top:12px">Алгоритмы искусственного интеллекта</div><div class="muted" style="font-size:14px;margin-top:8px">Балл 2025: 246 · Бюджет: 105 мест</div></a>
-<a class="card" href="Program.dc.html"><span class="tag">Бакалавриат</span><div style="font-weight:600;font-size:18px;margin-top:12px">Инфокоммуникационные технологии и системы связи</div><div class="muted" style="font-size:14px;margin-top:8px">Балл 2024: 217 · Бюджет: 66 мест</div></a>
+<sc-for list="{{progs}}" as="o" hint-placeholder-count="3"><a class="card" href="{{o.href}}"><span class="tag">Бакалавриат</span><div style="font-weight:600;font-size:18px;margin-top:12px">{{o.name}}</div><div class="muted" style="font-size:14px;margin-top:8px">{{o.info}}</div></a></sc-for>
+<sc-if value="{{noProgs}}" hint-placeholder-val="{{false}}"><p class="muted">В прототипе для этого института пока нет программ бакалавриата.</p></sc-if>
 </div>
 </section>
-<section id="deps" class="sec">
+<sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}"><section id="deps" class="sec">
 <h2>Кафедры и центры</h2>
 <div class="g2" style="margin-top:24px">
-<a class="card" href="Person.dc.html" style="display:flex;justify-content:space-between;gap:16px;align-items:center"><div><div style="font-weight:600;font-size:18px">Кафедра радиоэлектроники и телекоммуникаций</div><div class="muted" style="font-size:14px;margin-top:4px">Радиотехника, электроника, связь</div></div></a>
-<a class="card" href="Person.dc.html" style="display:flex;justify-content:space-between;gap:16px;align-items:center"><div><div style="font-weight:600;font-size:18px">Кафедра информационных технологий и систем управления</div><div class="muted" style="font-size:14px;margin-top:4px">IT и системы управления</div></div></a>
-<a class="card" href="Person.dc.html" style="display:flex;justify-content:space-between;gap:16px;align-items:center"><div><div style="font-weight:600;font-size:18px">Центр искусственного интеллекта</div><div class="muted" style="font-size:14px;margin-top:4px">Образовательные программы по ИИ</div></div></a>
-<a class="card" href="Person.dc.html" style="display:flex;justify-content:space-between;gap:16px;align-items:center"><div><div style="font-weight:600;font-size:18px">Студенческий центр высоких технологий</div><div class="muted" style="font-size:14px;margin-top:4px">Студенческие проекты и команды</div></div></a>
+<div class="card"><div><div style="font-weight:600;font-size:18px">Кафедра радиоэлектроники и телекоммуникаций</div><div class="muted" style="font-size:14px;margin-top:4px">Радиотехника, электроника, связь</div></div></div>
+<div class="card"><div><div style="font-weight:600;font-size:18px">Кафедра информационных технологий и систем управления</div><div class="muted" style="font-size:14px;margin-top:4px">IT и системы управления</div></div></div>
+<div class="card"><div><div style="font-weight:600;font-size:18px">Центр искусственного интеллекта</div><div class="muted" style="font-size:14px;margin-top:4px">Образовательные программы по ИИ</div></div></div>
+<div class="card"><div><div style="font-weight:600;font-size:18px">Студенческий центр высоких технологий</div><div class="muted" style="font-size:14px;margin-top:4px">Студенческие проекты и команды</div></div></div>
 </div>
 </section>
 <section id="labs" class="sec">
 <h2>Лаборатории</h2>
 <div class="g3" style="margin-top:24px">
-<a class="card" href="Article.dc.html" style="padding:0;overflow:hidden"><div class="ph art t1 photo" style="--img:url('photos/irit-zdanie.webp');height:170px;border-radius:0;position:relative;overflow:hidden"></div><div style="padding:20px;font-weight:600">Лаборатория искусственного интеллекта</div></a>
-<a class="card" href="Article.dc.html" style="padding:0;overflow:hidden"><div class="ph art t2 photo" style="--img:url('photos/irit-vnutri.webp');height:170px;border-radius:0;position:relative;overflow:hidden"></div><div style="padding:20px;font-weight:600">Лаборатория разработки игр и решений виртуальной реальности</div></a>
-<a class="card" href="Article.dc.html" style="padding:0;overflow:hidden"><div class="ph art t3 photo" style="--img:url('photos/it-konferenciya-2026-zal.webp');height:170px;border-radius:0;position:relative;overflow:hidden"></div><div style="padding:20px;font-weight:600">Лаборатория робототехники</div></a>
+<div class="card" style="padding:0;overflow:hidden"><div class="ph art t1 photo" style="--img:url('photos/irit-zdanie.webp');height:170px;border-radius:0;position:relative;overflow:hidden"></div><div style="padding:20px;font-weight:600">Лаборатория искусственного интеллекта</div></div>
+<div class="card" style="padding:0;overflow:hidden"><div class="ph art t2 photo" style="--img:url('photos/irit-vnutri.webp');height:170px;border-radius:0;position:relative;overflow:hidden"></div><div style="padding:20px;font-weight:600">Лаборатория разработки игр и решений виртуальной реальности</div></div>
+<div class="card" style="padding:0;overflow:hidden"><div class="ph art t3 photo" style="--img:url('photos/it-konferenciya-2026-zal.webp');height:170px;border-radius:0;position:relative;overflow:hidden"></div><div style="padding:20px;font-weight:600">Лаборатория робототехники</div></div>
 </div>
 </section>
+</sc-if>
 <section id="cont" class="sec">
-<div class="card g3" style="padding:32px">
+<sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}"><div class="card g3" style="padding:32px">
 <div><div class="muted" style="font-size:14px">Директор</div><div style="font-weight:600;margin-top:4px">Алферьева Татьяна Игоревна</div><div class="muted" style="font-size:14px">исполняющая обязанности директора</div></div>
 <div><div class="muted" style="font-size:14px">Адрес</div><div style="font-weight:600;margin-top:4px">Екатеринбург, ул. Мира, 32</div><a href="Contacts.dc.html" style="font-size:14px">На карте</a></div>
 <div><div class="muted" style="font-size:14px">Дирекция</div><div style="font-weight:600;margin-top:4px"><a href="tel:+73433759700" style="color:inherit">+7 (343) 375-97-00</a></div><a href="mailto:rtf@urfu.ru" style="font-size:14px">rtf@urfu.ru</a></div>
 </div>
+</sc-if>
+<sc-if value="{{notIrit}}" hint-placeholder-val="{{false}}"><div class="card g3" style="padding:32px"><div><div class="muted" style="font-size:14px">Контакт-центр УрФУ</div><div style="font-weight:600;margin-top:4px"><a href="tel:88001005044" style="color:inherit">8-800-100-50-44</a></div><div class="muted" style="font-size:14px">звонок по России бесплатный</div></div><div><div class="muted" style="font-size:14px">Приёмная комиссия</div><div style="font-weight:600;margin-top:4px"><a href="tel:+73433754474" style="color:inherit">+7 (343) 375-44-74</a></div><div class="muted" style="font-size:14px">ул. Мира, 19, каб. ГУК-100</div></div><div><div class="muted" style="font-size:14px">Все службы</div><a href="Contacts.dc.html" style="font-weight:600;display:inline-block;margin-top:4px">Контакты и карта</a></div></div></sc-if>
 </section>
 </div>
 </main><footer class="ft"><div class="wrap"><div class="ft-grid">
@@ -90,10 +93,58 @@
 <script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {
-return {};
+const ALL_PROGS = [
+{name:'Программная инженерия', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'259', budget:'100', price:'390 000 ₽'},
+{name:'Алгоритмы искусственного интеллекта', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'246', budget:'105', price:'300 000 ₽'},
+{name:'Прикладной искусственный интеллект', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[], score:'255', budget:'105', price:'300 000 ₽'},
+{name:'Интеллектуальные системы в гуманитарной сфере', inst:'УГИ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[], budget:'15', price:'246 000 ₽'},
+{name:'Информационная безопасность', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], budget:'135', price:'390 000 ₽', score:'239', sy:'2024'},
+{name:'Информатика и вычислительная техника', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'251', budget:'140', price:'300 000 ₽'},
+{name:'Прикладная информатика', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, информатика, русский', req:["math", "inf", "rus"], ch:[], score:'258', budget:'130', price:'300 000 ₽'},
+{name:'Инфокоммуникационные технологии и системы связи', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], budget:'66', price:'от 275 000 ₽', score:'217', sy:'2024'},
+{name:'Радиотехника', inst:'ИРИТ-РтФ', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], score:'184', sy:'2024', budget:'57', price:'275 000 ₽'},
+{name:'Прикладная математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'247', budget:'25', price:'275 000 ₽'},
+{name:'Математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'233', budget:'50', price:'246 000 ₽'},
+{name:'Физика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'физика, математика, русский', req:["phys", "math", "rus"], ch:[], score:'221', budget:'50', price:'246 000 ₽'},
+{name:'Химия', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'химия, математика, русский', req:["chem", "math", "rus"], ch:[], score:'234'},
+{name:'Биология', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'биология, химия или математика, русский', req:["bio", "rus"], ch:[["chem", "math"]], score:'235'},
+{name:'Металлургия', inst:'ИНМиТ', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]], price:'246 000 ₽'},
+{name:'Материаловедение и технологии материалов', inst:'ИНМиТ', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]]},
+{name:'Электроэнергетика и электротехника', inst:'УралЭНИН', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
+{name:'Теплоэнергетика и теплотехника', inst:'УралЭНИН', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], budget:'60', price:'275 000 ₽'},
+{name:'Строительство', inst:'ИСА', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]], score:'234'},
+{name:'Архитектура', inst:'ИСА', area:'Инженерия', k:'eng', exams:'творческое испытание, математика, русский', req:["math", "rus"], ch:[], budget:'37', price:'300 000 ₽'},
+{name:'Ядерная энергетика и теплофизика', inst:'ФТИ', area:'Инженерия', k:'eng', exams:'математика, физика, русский', req:["math", "phys", "rus"], ch:[]},
+{name:'История', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'история, обществознание, русский', req:["hist", "soc", "rus"], ch:[], budget:'82', price:'246 000 ₽'},
+{name:'Журналистика', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'творческое испытание, литература, русский', req:["lit", "rus"], ch:[], budget:'4', price:'300 000 ₽'},
+{name:'Филология', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'литература, иностранный язык, русский', req:["lit", "lang", "rus"], ch:[], budget:'30', price:'246 000 ₽'},
+{name:'Лингвистика', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'иностранный язык, обществознание, русский', req:["lang", "soc", "rus"], ch:[]},
+{name:'Психология', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'биология или математика, обществознание, русский', req:["soc", "rus"], ch:[["bio", "math"]]},
+{name:'Международные отношения', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'история, иностранный язык, русский', req:["hist", "lang", "rus"], ch:[], budget:'15', price:'390 000 ₽'},
+{name:'Экономика', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, обществознание, русский', req:["math", "soc", "rus"], ch:[]},
+{name:'Менеджмент', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, обществознание, русский', req:["math", "soc", "rus"], ch:[]},
+{name:'Бизнес-информатика', inst:'ИнЭУ', area:'Экономика', k:'eco', exams:'математика, информатика или обществознание, русский', req:["math", "rus"], ch:[["inf", "soc"]]}
+];
+const INST = {
+'ИРИТ-РтФ': ['Институт радиоэлектроники и информационных технологий — РтФ', 'Готовит специалистов в IT, информационной безопасности, радиотехнике, электронике и системах связи. Радиофак Уральского политеха — с 1952 года.'],
+'ИЕНиМ': ['Институт естественных наук и математики', 'Математика, физика, химия, биология, науки о Земле: фундаментальное образование и исследования.'],
+'ИНМиТ': ['Институт новых материалов и технологий', 'Металлургия, материаловедение, машиностроение и робототехника.'],
+'УралЭНИН': ['Уральский энергетический институт', 'Электроэнергетика, теплоэнергетика и энергетическое машиностроение.'],
+'ИСА': ['Институт строительства и архитектуры', 'Архитектура, строительство зданий и развитие территорий.'],
+'УГИ': ['Уральский гуманитарный институт', 'История, филология, журналистика, лингвистика, международные отношения и другие гуманитарные науки.'],
+'ИнЭУ': ['Институт экономики и управления', 'Экономика, менеджмент, государственное управление и бизнес-информатика.'],
+'ФТИ': ['Физико-технологический институт', 'Ядерная энергетика, физика, электроника и наноинженерия.']};
+let key = 'ИРИТ-РтФ';
+try { const q = new URLSearchParams(location.search).get('i'); if (q && INST[q]) key = q; } catch (e) {}
+try { document.title = INST[key][0] + ' — УрФУ'; } catch (e) {}
+const progs = ALL_PROGS.filter(p => p.inst === key).map(p => ({ score: '—', budget: '—', price: '—', sy: '2025', ...p })).map(p => ({
+  name: p.name, href: 'Program.dc.html?p=' + encodeURIComponent(p.name),
+  info: [!isNaN(parseInt(p.score, 10)) ? 'Проходной балл ' + p.sy + ': ' + p.score : '', p.budget !== '—' ? 'Бюджетных мест: ' + p.budget : '', p.price !== '—' ? p.price + ' в год' : ''].filter(Boolean).join(' · ') || 'Данные уточняются' }));
+return { short: key, full: INST[key][0], lead: INST[key][1], isIrit: key === 'ИРИТ-РтФ', notIrit: key !== 'ИРИТ-РтФ', progs, noProgs: progs.length === 0 };
 }
 }
 </script>
+
 <script src="dc-lite.js"></script>
 <script src="site.js"></script>
 <script src="logo-live.js"></script>

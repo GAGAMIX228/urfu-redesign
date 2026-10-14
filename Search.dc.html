@@ -117,13 +117,13 @@ const other = [
 {kind:'Разделы', t:'Институт радиоэлектроники и IT (ИРИТ-РтФ)', d:'Институт · программы, кафедры, контакты', href:'Institute.dc.html', key:'институт ирит ртф кафедры дирекция'},
 {kind:'Программы', t:'Подбор программы за 3 вопроса', d:'Сервис · интересы, ЕГЭ и баллы', href:'Quiz.dc.html', key:'подбор подобрать программу куда поступить тест выбрать направление специальность'},
 {kind:'Документы', t:'Правила приёма УрФУ', d:'PDF', href:'Admission.dc.html', key:'правила приём поступление документы'},
-{kind:'Документы', t:'Учебный план: Программная инженерия', d:'PDF', href:'Program.dc.html', key:'учебный план программная инженерия'}
+{kind:'Документы', t:'Учебный план: Программная инженерия', d:'На сайте УрФУ', href:'https://programs.edu.urfu.ru/ru/9797/', key:'учебный план программная инженерия'}
 ];
 const CORPUS = ALL_PROGS.map(p => p.name + ' ' + p.exams).join(' ') + ' ' + other.map(o => o.t + ' ' + o.key).join(' ');
 const st = window.SmartSearch ? SmartSearch.terms(q, CORPUS) : stems(q);
 const nrm = t => window.SmartSearch ? SmartSearch.norm(t) : t.toLowerCase();
 const hit = t => st.filter(x => nrm(t).includes(x)).length;
-const progRes = ALL_PROGS.map(p => ({kind:'Программы', t:p.name, d:'Бакалавриат · ' + p.inst + ' · ЕГЭ: ' + p.exams, href:'Program.dc.html', h: hit(p.name) * 2}));
+const progRes = ALL_PROGS.map(p => ({kind:'Программы', t:p.name, d:'Бакалавриат · ' + p.inst + ' · ЕГЭ: ' + p.exams, href:'Program.dc.html?p=' + encodeURIComponent(p.name), h: hit(p.name) * 2}));
 const otherRes = other.map(o => ({kind:o.kind, t:o.t, d:o.d, href:o.href, h: hit(o.t + ' ' + o.key)}));
 const all = progRes.concat(otherRes).filter(r => st.length ? r.h > 0 : true).sort((a, b) => b.h - a.h);
 const res = all.filter(r => tab === 'Все' || r.kind === tab);

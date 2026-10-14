@@ -94,7 +94,7 @@
 
 <section class="fd-sec soft"><div class="wrap">
 <div class="fd-head"><div><h2 class="fd-h2">Институты</h2><p class="fd-lead">Восемь институтов — от радиотехники до гуманитарных наук.</p></div><a class="fd-more" href="Institute.dc.html">Все подразделения</a></div>
-<div class="fd-inst"><a href="Institute.dc.html"><b>ИРИТ-РтФ</b><span>Радиоэлектроника и IT</span></a><a href="Institute.dc.html"><b>ИЕНиМ</b><span>Естественные науки и математика</span></a><a href="Institute.dc.html"><b>ИНМиТ</b><span>Новые материалы и технологии</span></a><a href="Institute.dc.html"><b>УралЭНИН</b><span>Энергетика</span></a><a href="Institute.dc.html"><b>ИСА</b><span>Строительство и архитектура</span></a><a href="Institute.dc.html"><b>УГИ</b><span>Гуманитарные науки</span></a><a href="Institute.dc.html"><b>ИнЭУ</b><span>Экономика и управление</span></a><a href="Institute.dc.html"><b>ФТИ</b><span>Физика и технологии</span></a></div>
+<div class="fd-inst"><a href="Institute.dc.html?i=ИРИТ-РтФ"><b>ИРИТ-РтФ</b><span>Радиоэлектроника и IT</span></a><a href="Institute.dc.html?i=ИЕНиМ"><b>ИЕНиМ</b><span>Естественные науки и математика</span></a><a href="Institute.dc.html?i=ИНМиТ"><b>ИНМиТ</b><span>Новые материалы и технологии</span></a><a href="Institute.dc.html?i=УралЭНИН"><b>УралЭНИН</b><span>Энергетика</span></a><a href="Institute.dc.html?i=ИСА"><b>ИСА</b><span>Строительство и архитектура</span></a><a href="Institute.dc.html?i=УГИ"><b>УГИ</b><span>Гуманитарные науки</span></a><a href="Institute.dc.html?i=ИнЭУ"><b>ИнЭУ</b><span>Экономика и управление</span></a><a href="Institute.dc.html?i=ФТИ"><b>ФТИ</b><span>Физика и технологии</span></a></div>
 </div></section>
 
 <section class="fd-sec"><div class="wrap">
@@ -167,7 +167,7 @@ const CORPUS = ALL_PROGS.map(p => p.name).join(' ') + ' ' + QUICK_TEXT;
 const st = window.SmartSearch ? SmartSearch.terms(q, CORPUS) : stems(q);
 const nrm = t => window.SmartSearch ? SmartSearch.norm(t) : t.toLowerCase();
 const hit = t => st.filter(x => nrm(t).includes(x)).length;
-const sug = st.length ? ALL_PROGS.map(p => ({t:p.name, kind:'Программа', href:'Program.dc.html', h:hit(p.name)*2}))
+const sug = st.length ? ALL_PROGS.map(p => ({t:p.name, kind:'Программа', href:'Program.dc.html?p=' + encodeURIComponent(p.name), h:hit(p.name)*2}))
   .concat(QUICK.map(k => ({t:k.t, kind:k.kind, href:k.href, h:hit(k.t + ' ' + k.key)})))
   .filter(x => x.h > 0).sort((a, b) => b.h - a.h).slice(0, 6) : [];
 const role = (this.state && this.state.role) || 'abit';
