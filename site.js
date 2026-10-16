@@ -112,3 +112,51 @@ document.addEventListener("click",function(e){if(!document.querySelector("base")
   document.addEventListener("change",function(e){if(e.target&&e.target.id==="a11y"){e.target.checked=false;if(!panel||panel.hidden)open();}});
   apply();
 })();
+/* Появление блоков при прокрутке и «набегающие» цифры — только при первом открытии страницы.
+   Не работает, если в системе отключена анимация или включена версия для слабовидящих. */
+(function(){
+  var h=document.documentElement, root=document.getElementById("dc-root");
+  if(!root||!("IntersectionObserver" in window))return;
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  function start(){
+    if(/\bvi-/.test(h.className))return;
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("rv-in");io.unobserve(e.target);count(e.target);}});},{rootMargin:"0px 0px -8% 0px"});
+    var sel="main .sec>*,main .fd-sec .wrap>*,main .card,main .fd-gem,main .yu-i,main .yu-l,main .yu-calc,main .yu-ask-list>a,main .yu-dates li,main .yu-collage";
+    var vh=window.innerHeight;
+    [].forEach.call(document.querySelectorAll(sel),function(el,i){
+      if(el.getBoundingClientRect().top<vh*0.92){count(el);return;}
+      el.classList.add("rv");el.style.transitionDelay=(i%4)*70+"ms";io.observe(el);
+    });
+    h.classList.add("rv-on");
+    /* запасной путь: при любой прокрутке показываем всё, что уже на экране или выше */
+    var tick=false;
+    function sweep(){tick=false;var lim=window.innerHeight*0.98;[].forEach.call(document.querySelectorAll(".rv:not(.rv-in)"),function(el){if(el.getBoundingClientRect().top<lim){el.classList.add("rv-in");count(el);}});}
+    window.addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(sweep);}},{passive:true});
+    window.addEventListener("resize",sweep);
+    var k=0,iv=setInterval(function(){sweep();if(++k>90||!document.querySelector(".rv:not(.rv-in)"))clearInterval(iv);},1000);
+    /* после первой перерисовки (клик по фильтру и т. п.) всё просто видно */
+    new MutationObserver(function(){h.classList.add("rv-done");}).observe(root,{childList:true});
+  }
+  function count(el){
+    [].forEach.call(el.querySelectorAll?el.querySelectorAll("[data-count]"):[],function(n){
+      var to=parseInt(n.getAttribute("data-count"),10);if(isNaN(to)||n.dataset.done)return;n.dataset.done=1;
+      var from=to>1000?to-120:0,t0=null;
+      function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1100);n.textContent=Math.round(from+(to-from)*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step);}
+      requestAnimationFrame(step);
+    });
+  }
+  if(root.children.length)setTimeout(start,30);else new MutationObserver(function(m,o){o.disconnect();setTimeout(start,30);}).observe(root,{childList:true});
+})();
+/* Нижнее меню на телефоне — как в приложении: главная, поиск, каталог, расписание, кабинет */
+(function(){
+  if(!document.querySelector(".hd")||document.querySelector(".phone"))return;
+  var EN=document.documentElement.lang==="en";
+  var I={home:'<path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z"/>',search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',cat:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h10M7 17h6"/>',
+    cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>'};
+  var L=EN?[["MainEn.dc.html","home","Home"],["Search.dc.html","search","Search"],["CatalogEn.dc.html","cat","Programmes"],["Schedule.dc.html","cal","Timetable"],["LoginEn.dc.html","user","Sign in"]]
+          :[["Main.dc.html","home","Главная"],["Search.dc.html","search","Поиск"],["Catalog.dc.html","cat","Каталог"],["Schedule.dc.html","cal","Расписание"],["Login.dc.html","user","Кабинет"]];
+  var here=(location.pathname.split("/").pop()||"index.html");
+  var nav=document.createElement("nav");nav.className="tabbar";nav.setAttribute("aria-label",EN?"Quick menu":"Быстрое меню");
+  nav.innerHTML=L.map(function(x){var on=here===x[0];return '<a href="'+x[0]+'"'+(on?' aria-current="page"':'')+'><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+I[x[1]]+'</svg>'+x[2]+'</a>';}).join("");
+  document.body.appendChild(nav);document.documentElement.classList.add("has-tabbar");
+})();

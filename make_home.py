@@ -10,7 +10,7 @@ T = {
  'ru': dict(
   file='Main.dc.html',
   tag='дней до начала приёма документов',
-  tick=['УрФУ — с 1920 года', '8 институтов', '16 общежитий в студгородке', 'Екатеринбург, ул. Мира, 19', 'Приём документов — с 20 июня', 'Версия для слабовидящих на каждой странице'],
+  tick=['УрФУ — с 1920 года', '8 институтов', '18 общежитий в двух кампусах', 'Екатеринбург, ул. Мира, 19', 'Приём документов — с 20 июня', 'Версия для слабовидящих на каждой странице'],
   col=[('kampus-leto', 'Главный учебный корпус'), ('studenty', 'Студенты УрФУ'), ('it-konferenciya-2026-slushateli', 'IT-конференция, 2026')],
   badge1=('1920', 'год основания'), badge2=('8', 'институтов'),
   roles_h='С чего начнём?', roles_lead='Выберите, кто вы, — покажем главное именно для вас.',
@@ -50,7 +50,7 @@ T = {
  'en': dict(
   file='MainEn.dc.html',
   tag='days until applications open',
-  tick=['UrFU — since 1920', '8 institutes', '16 dormitories on campus', 'Yekaterinburg, 19 Mira St.', 'Applications open on 20 June', 'Accessibility mode on every page'],
+  tick=['UrFU — since 1920', '8 institutes', '18 dormitories on two campuses', 'Yekaterinburg, 19 Mira St.', 'Applications open on 20 June', 'Accessibility mode on every page'],
   col=[('kampus-leto', 'Main academic building'), ('studenty', 'UrFU students'), ('it-konferenciya-2026-slushateli', 'IT conference, 2026')],
   badge1=('1920', 'founded'), badge2=('8', 'institutes'),
   roles_h='Where shall we start?', roles_lead='Choose who you are — we will show what matters to you.',
@@ -141,8 +141,8 @@ def main_html(t):
 <p class="fd-often">{t['often']}</p>
 </div>
 <div class="yu-collage">{col}
-<div class="yu-badge yu-b1"><b>{t['badge1'][0]}</b><span>{t['badge1'][1]}</span></div>
-<div class="yu-badge yu-b2"><b>{t['badge2'][0]}</b><span>{t['badge2'][1]}</span></div>
+<div class="yu-badge yu-b1"><b data-count="{t['badge1'][0]}">{t['badge1'][0]}</b><span>{t['badge1'][1]}</span></div>
+<div class="yu-badge yu-b2"><b data-count="{t['badge2'][0]}">{t['badge2'][0]}</b><span>{t['badge2'][1]}</span></div>
 </div>
 </div></section>
 

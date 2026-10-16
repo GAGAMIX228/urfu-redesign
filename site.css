@@ -502,3 +502,64 @@ html[class*="vi-"] .a11y-lbl{background:var(--ink);color:#FFFFFF}
 html[class*="vi-"] *{animation:none !important;transition:none !important}
 /* «хлебные крошки» на тёмной шапке — светлые */
 .dark .crumbs,.phead.dark .crumbs,.hero .crumbs{color:var(--on-dark-muted)}
+
+/* ═══ «Яркий Урал» на внутренних страницах ═══ */
+/* цветная шапка: у каждого раздела свой самоцвет; текст на всех — тёмный (контраст проверен) */
+.phead{--ph:#C9B2FF;background:var(--ph) !important;overflow:hidden;padding-bottom:64px}
+body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead{--ph:var(--gold)}
+body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead{--ph:#FF8DB8}
+body:has(.hd .nav a[aria-current="page"][href^="Contacts"]) .phead{--ph:#5FE3BE}
+.phead::after{content:"";display:block !important;position:absolute;right:-60px;top:-40px;width:340px;height:340px;background:rgba(255,255,255,.28);
+  clip-path:polygon(50% 0,100% 30%,100% 70%,50% 100%,0 70%,0 30%);pointer-events:none}
+.phead::before{content:"";position:absolute;right:220px;bottom:-70px;width:180px;height:180px;background:rgba(22,17,43,.08);clip-path:polygon(50% 0,100% 30%,100% 70%,50% 100%,0 70%,0 30%);pointer-events:none}
+.phead > *{position:relative;z-index:1}
+.phead:not(.dark) h1{color:var(--ink)}
+.phead h1,h1.big{font-size:clamp(52px,7.6vw,112px) !important;line-height:.88 !important}
+.phead:not(.dark) p,.phead:not(.dark) .muted,.phead:not(.dark) .crumbs,.phead:not(.dark) .crumbs a{color:#2B2540 !important}
+.phead:not(.dark) a:not(.btn):not(.btn2):not(.chip):not(.tag){color:var(--ink) !important;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.phead:not(.dark) :focus-visible{outline-color:var(--ink)}
+.phead .btn2{background:#FFFFFF;border:2px solid var(--ink)}
+.phead .tag{background:#FFFFFF;color:var(--ink);font-weight:700}
+/* тёмные шапки (расписание, институт) — с цветным свечением самоцветов */
+.phead.dark{background:radial-gradient(520px 320px at 90% 0%,rgba(224,36,111,.55),transparent 70%),radial-gradient(480px 320px at 0% 100%,rgba(107,43,232,.6),transparent 70%),radial-gradient(360px 260px at 60% 120%,rgba(255,194,26,.35),transparent 70%),var(--ink) !important}
+.phead.dark::after{background:rgba(255,194,26,.18)}
+.phead.dark::before{background:rgba(255,255,255,.06)}
+/* заголовки разделов и карточки */
+main h2{font-size:clamp(36px,4.4vw,60px)}
+.card{border:2px solid var(--line);border-radius:12px}
+a.card:hover{border-color:var(--ink);transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--amethyst)}
+.btn2{border:2px solid var(--ink);font-weight:700}
+.btn2:hover{background:var(--ink);color:#FFFFFF;border-color:var(--ink)}
+.chip{border:2px solid var(--line-strong);font-weight:600}
+.chip.on,.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#FFFFFF}
+.tag{border-radius:6px}
+/* подвал — с полосой четырёх самоцветов */
+.ft{border-top:10px solid transparent;border-image:linear-gradient(90deg,var(--rhodonite) 0 25%,var(--gold) 25% 50%,var(--malachite) 50% 75%,var(--amethyst) 75%) 1}
+@media (max-width:640px){.phead::after{width:200px;height:200px;right:-70px;top:-30px}.phead::before{display:none}.phead{padding-bottom:44px}}
+@media (prefers-reduced-motion:reduce){a.card:hover{transform:none}}
+/* цветные плитки-«грани» (обзор институтов) */
+.yu-tile{--c:var(--rhodonite);--t:#FFFFFF;border:0 !important;border-radius:0 !important;color:var(--t) !important;min-height:200px;
+  background:linear-gradient(135deg,var(--c) 0 62%,color-mix(in srgb,var(--c) 84%,#000) 62%) !important;clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%)}
+.yu-tile:nth-child(4n+2){--c:var(--amethyst)}
+.yu-tile:nth-child(4n+3){--c:var(--malachite);--t:var(--ink)}
+.yu-tile:nth-child(4n+4){--c:var(--gold);--t:var(--ink)}
+.yu-tile *{color:inherit !important}
+.yu-tile .tag{background:rgba(255,255,255,.9) !important;color:var(--ink) !important}
+a.yu-tile:hover{box-shadow:none;transform:translateY(-4px)}
+.yu-tile:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+/* появление при прокрутке (только первая загрузка; без движения — если анимация отключена) */
+html.rv-on:not(.rv-done) .rv:not(.rv-in){opacity:0;transform:translateY(28px)}
+html.rv-on .rv{transition:opacity .6s var(--ease),transform .6s var(--ease)}
+html.rv-done .rv{opacity:1;transform:none;transition:none}
+/* нижнее меню на телефоне */
+.tabbar{display:none}
+@media (max-width:640px){
+  .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:45;background:rgba(255,255,255,.97);border-top:2px solid var(--ink);padding:4px 2px calc(4px + env(safe-area-inset-bottom))}
+  .tabbar a{flex:1;min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11.5px;font-weight:600;color:var(--muted);text-decoration:none;border-radius:10px}
+  .tabbar a[aria-current="page"]{color:var(--amethyst)}
+  .tabbar a[aria-current="page"] svg{background:var(--gold);border-radius:8px;padding:2px 10px;width:42px;box-sizing:content-box;height:22px;margin:-2px 0}
+  .tabbar a:focus-visible{outline:3px solid var(--amethyst);outline-offset:-3px}
+  html.has-tabbar body{padding-bottom:70px}
+  html.has-tabbar .to-top{bottom:84px}
+}
+html[class*="vi-c"] .tabbar{background:var(--vi-bg) !important}
