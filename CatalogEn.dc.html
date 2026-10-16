@@ -155,10 +155,11 @@ const stems = q => q.toLowerCase().split(/[^a-zа-яё0-9]+/).filter(w => w.leng
 const matches = (text, q) => { const st = stems(q); if (!st.length) return true; const t = text.toLowerCase(); return st.some(x => t.includes(x)); };
 
 const s = this.state || {};
-const area = s.area || 'all';
+let urlP = {}; try { const u = new URLSearchParams(location.search); urlP = { my: (u.get('my') || '').replace(/[^0-9]/g, '').slice(0, 3), area: u.get('area') || '' }; } catch (e) {}
+const area = s.area || (['it','eng','nat','hum','eco'].includes(urlP.area) ? urlP.area : 'all');
 const level = s.level || 'bach';
 const q = s.q || '';
-const my = s.my || '';
+const my = s.my !== undefined ? s.my : (urlP.my || '');
 const sel = s.sel || { rus: true, math: true, inf: true };
 const cmp = s.cmp || [];
 const full = cmp.length >= 3;

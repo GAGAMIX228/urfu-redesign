@@ -1,136 +1,230 @@
-/* Главная «Уральский камень»: вопрос и поиск, плитки ролей цвета уральских самоцветов, отсчёт до приёма, списки новостей и событий.
-   Общие шрифты и цвета — в site.css. */
+/* Главная «Яркий Урал»: огромный вопрос и поиск, коллаж из настоящих фото УрФУ, бегущая строка с фактами,
+   плитки ролей цвета уральских самоцветов, калькулятор «Хватит ли баллов?», новости, институты, жизнь, «Не нашли ответ?».
+   Общие цвета и шрифты — в site.css (слой «Яркий Урал»). */
 
-.fd{
-  --granite:#1C2329;      /* текст, подвал */
-  --limestone:#EEF1F0;    /* фон спокойных разделов */
-  --slate:#5A646C;        /* второстепенный текст, 5.9:1 на белом */
-  --malachite:#0B7A63;    /* абитуриент */
-  --amethyst:#6A4C9C;     /* студент */
-  --sapphire:#1D4E9E;     /* сотрудник и все действия */
-  --jasper:#A63A3A;       /* international */
-  --cut:22px;             /* срез угла «грани» */
-  --narrow:'PT Sans Narrow','IBM Plex Sans',system-ui,sans-serif;
-}
-.fd main{color:var(--granite)}
-.fd main h1,.fd main h2,.fd main h3{font-family:var(--narrow);font-weight:700;letter-spacing:0;color:var(--granite)}
-.fd .fd-sec{padding:88px 0}
-.fd .fd-sec.soft{background:var(--limestone)}
-.fd .fd-h2{font-size:clamp(34px,4vw,48px);line-height:1.02;max-width:18ch}
-.fd .fd-lead{color:var(--slate);font-size:18px;line-height:1.55;max-width:60ch;margin-top:14px}
+.fd main{color:var(--ink)}
+.fd main h1,.fd main h2,.fd main h3{font-family:var(--narrow);font-weight:700;letter-spacing:0;color:var(--ink)}
+.fd .fd-sec{padding:96px 0}
+.fd .fd-h2,.fd .fd-col-h,.fd .yu-head h2{font-size:clamp(40px,5vw,72px);line-height:.95}
+.fd .fd-lead{color:var(--muted);font-size:18px;line-height:1.55;max-width:60ch;margin-top:14px}
 .fd .fd-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 32px;flex-wrap:wrap;margin-bottom:36px}
-.fd .fd-more{font-weight:600;color:var(--sapphire);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;padding:8px 0}
-.fd .fd-more:hover{text-decoration-thickness:2px}
+.fd .fd-more{font-weight:700;color:var(--blue);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px;padding:8px 0}
+.fd .fd-more:hover{color:var(--rhodonite-d)}
 
-/* ── первый экран: вопрос + поиск слева, четыре самоцвета справа ── */
-.fd .fd-hero{padding:56px 0 72px;background:#FFFFFF}
-.fd .fd-hero-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
-.fd .fd-hero h1{font-size:clamp(56px,7.2vw,104px);line-height:.92;max-width:8ch;margin-top:8px}
-.fd .fd-hero .fd-lead{font-size:19px;margin-top:22px;max-width:34ch}
-.fd .fd-search{position:relative;margin-top:32px;max-width:520px}
-.fd .fd-search .search-box{border:2px solid var(--granite);border-radius:6px;box-shadow:none;background:#FFFFFF}
-.fd .fd-search .search-box:focus-within{border-color:var(--sapphire);box-shadow:0 0 0 3px color-mix(in srgb,var(--sapphire) 25%,transparent)}
-.fd .fd-search .search-box svg{color:var(--granite)}
-.fd .fd-often{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:15px;color:var(--slate)}
-.fd .fd-often a{color:var(--granite);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-strong);padding:6px 0}
-.fd .fd-often a:hover{text-decoration-color:currentColor}
+/* ── первый экран ── */
+.fd .yu-hero{position:relative;overflow:hidden;padding:56px 0 88px;background:
+  radial-gradient(520px 380px at 92% 8%,rgba(255,194,26,.35),transparent 70%),
+  radial-gradient(560px 420px at 70% 100%,rgba(224,36,111,.18),transparent 70%),
+  radial-gradient(640px 420px at 0% 0%,rgba(107,43,232,.16),transparent 70%),var(--page)}
+.fd .yu-hero-in{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px;align-items:center}
+.fd .yu-tag{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#FFFFFF;padding:8px 16px 8px 8px;font-weight:600;font-size:15px;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)}
+.fd .yu-tag b{background:var(--gold);color:var(--ink);font-family:var(--narrow);font-size:22px;line-height:1;padding:6px 10px}
+.fd .yu-hero h1{font-size:clamp(64px,9.4vw,148px);line-height:.86;margin-top:26px;max-width:9ch;letter-spacing:-.01em}
+.fd .yu-hero h1::after{content:"";display:block;width:min(340px,60%);height:14px;margin-top:22px;background:linear-gradient(90deg,var(--rhodonite) 0 25%,var(--gold) 25% 50%,var(--malachite) 50% 75%,var(--amethyst) 75%);
+  clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%)}
+.fd .yu-hero .fd-lead{font-size:20px;margin-top:22px;max-width:36ch;color:#3E3954}
+.fd .fd-search{position:relative;margin-top:30px;max-width:560px}
+.fd .fd-search .search-box{border:3px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--amethyst);background:#FFFFFF;transition:box-shadow .2s ease}
+.fd .fd-search .search-box:focus-within{box-shadow:6px 6px 0 var(--rhodonite)}
+.fd .fd-search .search-box svg{color:var(--ink)}
+.fd .fd-often{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;font-size:15px;color:var(--muted);align-items:center}
+.fd .fd-often a{color:var(--ink);text-decoration:none;font-weight:600;padding:7px 14px;border:2px solid var(--ink);border-radius:999px;background:#FFFFFF;transition:background .15s ease,color .15s ease}
+.fd .fd-often a:hover{background:var(--ink);color:#FFFFFF}
 
-.fd .fd-gems{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.fd .fd-gem{--g:var(--malachite);position:relative;background:var(--g);color:#FFFFFF;padding:26px 26px 22px;min-height:248px;display:flex;flex-direction:column;
-  clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%);
-  animation:fd-cut .7s cubic-bezier(.2,.7,.2,1) both}
-.fd .fd-gem[data-role="student"]{--g:var(--amethyst);animation-delay:.08s}
-.fd .fd-gem[data-role="staff"]{--g:var(--sapphire);animation-delay:.16s}
-.fd .fd-gem[data-role="intl"]{--g:var(--jasper);animation-delay:.24s}
-/* светлая «грань» на срезе — блик камня */
-.fd .fd-gem::after{content:"";position:absolute;top:0;right:0;width:var(--cut);height:var(--cut);background:linear-gradient(225deg,transparent 50%,rgba(255,255,255,.28) 50%)}
-@keyframes fd-cut{from{clip-path:polygon(0 0,0 0,0 0,0 100%,0 100%)}to{clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%)}}
-.fd .fd-gem h2{color:#FFFFFF;font-size:34px;line-height:1}
-.fd .fd-gem ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:2px}
-.fd .fd-gem li a{display:block;color:#FFFFFF;text-decoration:none;padding:7px 0;font-size:16px;font-weight:500;line-height:1.3;border-bottom:1px solid rgba(255,255,255,.22)}
-.fd .fd-gem li a:hover{border-bottom-color:#FFFFFF}
+/* коллаж: три настоящих снимка со срезанными углами и цветной «гранью» за каждым */
+.fd .yu-collage{position:relative;height:clamp(420px,42vw,600px)}
+.fd .yu-ph{position:absolute;background:var(--limestone) center/cover no-repeat}
+.fd .yu-ph::before{content:"";position:absolute;inset:0;z-index:-1}
+.fd .yu-ph0{left:4%;top:0;width:78%;height:62%;clip-path:polygon(0 0,calc(100% - 44px) 0,100% 44px,100% 100%,0 100%);box-shadow:0 0 0 0 transparent}
+.fd .yu-ph1{left:0;bottom:2%;width:52%;height:42%;clip-path:polygon(0 0,100% 0,100% 100%,36px 100%,0 calc(100% - 36px))}
+.fd .yu-ph2{right:0;bottom:10%;width:44%;height:46%;clip-path:polygon(32px 0,100% 0,100% 100%,0 100%,0 32px)}
+.fd .yu-collage::before,.fd .yu-collage::after{content:"";position:absolute;z-index:0}
+.fd .yu-collage::before{left:10%;top:6%;width:78%;height:62%;background:var(--amethyst);transform:translate(16px,16px);clip-path:polygon(0 0,calc(100% - 44px) 0,100% 44px,100% 100%,0 100%)}
+.fd .yu-collage::after{right:-10px;bottom:6%;width:44%;height:46%;background:var(--gold);clip-path:polygon(32px 0,100% 0,100% 100%,0 100%,0 32px)}
+.fd .yu-ph{z-index:1}
+.fd .yu-badge{position:absolute;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#FFFFFF;font-weight:600;font-size:13px;line-height:1.15}
+.fd .yu-badge b{font-family:var(--narrow);font-size:40px;line-height:.95}
+.fd .yu-b1{right:-1%;top:-5%;width:132px;height:132px;background:var(--rhodonite);clip-path:polygon(50% 0,100% 30%,100% 70%,50% 100%,0 70%,0 30%);animation:yu-float 6s ease-in-out infinite}
+.fd .yu-b2{left:-2%;top:44%;width:112px;height:112px;background:var(--malachite);color:var(--ink);clip-path:polygon(50% 0,100% 30%,100% 70%,50% 100%,0 70%,0 30%);animation:yu-float 6s ease-in-out -3s infinite}
+@keyframes yu-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* ── бегущая строка с настоящими фактами ── */
+.fd .yu-tick{display:flex;overflow:hidden;background:var(--gold);color:var(--ink);border-block:3px solid var(--ink);transform:rotate(-1.2deg);margin:-14px -20px 0;position:relative;z-index:2}
+.fd .yu-tick ul{display:flex;flex:none;list-style:none;margin:0;padding:14px 0;animation:yu-run 38s linear infinite}
+.fd .yu-tick li{font-family:var(--narrow);font-weight:700;font-size:28px;line-height:1;white-space:nowrap;padding:0 22px;display:flex;align-items:center;gap:44px}
+.fd .yu-tick li::after{content:"";width:14px;height:14px;background:var(--rhodonite);transform:rotate(45deg);margin-right:-22px}
+@keyframes yu-run{to{transform:translateX(-100%)}}
+.fd .yu-tick:hover ul{animation-play-state:paused}
+
+/* ── роли ── */
+.fd .yu-roles{padding:104px 0 96px}
+.fd .yu-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 40px;flex-wrap:wrap;margin-bottom:36px}
+.fd .yu-head p{color:var(--muted);font-size:18px;max-width:34ch}
+.fd .fd-gems{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.fd .fd-gem{--g:var(--rhodonite);--gt:#FFFFFF;--gl:rgba(255,255,255,.3);position:relative;color:var(--gt);padding:28px 26px 22px;min-height:340px;display:flex;flex-direction:column;
+  background:linear-gradient(135deg,var(--g) 0 58%,color-mix(in srgb,var(--g) 82%,#000) 58%);
+  clip-path:polygon(0 0,calc(100% - 30px) 0,100% 30px,100% 100%,0 100%);transition:transform .25s var(--ease)}
+.fd .fd-gem:hover{transform:translateY(-6px)}
+.fd .fd-gem[data-role="student"]{--g:var(--amethyst)}
+.fd .fd-gem[data-role="staff"]{--g:var(--malachite);--gt:var(--ink);--gl:rgba(22,17,43,.25)}
+.fd .fd-gem[data-role="intl"]{--g:var(--gold);--gt:var(--ink);--gl:rgba(22,17,43,.25)}
+.fd .fd-gem h3{color:var(--gt);font-size:38px;line-height:.95}
+.fd .fd-gem ul{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:2px}
+.fd .fd-gem li a{display:block;color:var(--gt);text-decoration:none;padding:8px 0;font-size:16px;font-weight:600;line-height:1.3;border-bottom:2px solid var(--gl)}
+.fd .fd-gem li a:hover{border-bottom-color:currentColor}
 .fd .fd-gem li a span{display:block;font-size:13px;font-weight:400;margin-top:2px}
-.fd .fd-gem .fd-toggle{margin-top:auto;align-self:flex-start;padding:12px 0 0;min-height:44px;background:none;border:0;color:#FFFFFF;font:inherit;font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
-.fd .fd-gem :focus-visible{outline:3px solid #FFFFFF;outline-offset:2px}
+.fd .fd-gem .fd-toggle{margin-top:auto;align-self:flex-start;padding:14px 0 0;min-height:44px;background:none;border:0;color:var(--gt);font:inherit;font-size:15px;font-weight:700;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.fd .fd-gem :focus-visible{outline:3px solid currentColor;outline-offset:2px}
 
-/* ── фото главного корпуса: широкая полоса со срезанным углом ── */
-.fd .fd-photo{height:clamp(220px,34vw,440px);background:var(--granite) url('photos/glavnyj-korpus-leto.webp') center 38%/cover no-repeat;
-  clip-path:polygon(0 0,100% 0,100% calc(100% - 48px),calc(100% - 48px) 100%,0 100%)}
-
-/* ── поступление: отсчёт и четыре даты ── */
-.fd .fd-adm{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:end}
-.fd .fd-days{font-family:var(--narrow);font-weight:700;font-size:clamp(88px,11vw,152px);line-height:.85;color:var(--malachite)}
-.fd .fd-days-l{font-size:20px;font-weight:600;margin-top:12px;max-width:22ch}
-.fd .fd-note{color:var(--slate);font-size:14px;margin-top:10px;max-width:46ch}
-.fd .fd-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:3px solid var(--granite)}
-.fd .fd-steps li{padding:16px 16px 0 0;position:relative}
-.fd .fd-steps li::before{content:"";position:absolute;top:-9px;left:0;width:15px;height:15px;background:#FFFFFF;border:3px solid var(--granite);transform:rotate(45deg)}
-.fd .fd-steps b{display:block;font-family:var(--narrow);font-size:28px;line-height:1.1;margin-top:8px}
-.fd .fd-steps span{display:block;color:var(--slate);font-size:15px;margin-top:4px}
-.fd .fd-adm-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px}
+/* ── калькулятор и даты ── */
+.fd .yu-calc-sec{background:var(--amethyst);color:#FFFFFF;padding:96px 0;position:relative;overflow:hidden;
+  clip-path:polygon(0 0,100% 40px,100% 100%,0 calc(100% - 40px))}
+.fd .yu-calc-sec::before{content:"";position:absolute;right:-120px;top:-80px;width:520px;height:520px;background:var(--rhodonite);opacity:.55;clip-path:polygon(50% 0,100% 30%,100% 70%,50% 100%,0 70%,0 30%)}
+.fd .yu-calc-in{position:relative;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px;align-items:center}
+.fd .yu-calc-txt h2{color:#FFFFFF;font-size:clamp(48px,6.4vw,96px);line-height:.9}
+.fd .yu-calc-txt>p{font-size:19px;margin-top:18px;max-width:42ch;color:#F0EAFF}
+.fd .yu-dates{list-style:none;margin:32px 0 0;padding:0;display:flex;gap:12px;flex-wrap:wrap}
+.fd .yu-dates li{background:#FFFFFF;color:var(--ink);padding:14px 16px 12px;min-width:150px;max-width:190px;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%)}
+.fd .yu-dates b{display:block;font-family:var(--narrow);font-size:34px;line-height:1;color:var(--rhodonite-d)}
+.fd .yu-dates span{display:block;font-size:14px;line-height:1.3;margin-top:6px}
+.fd .yu-note{font-size:14px;color:#E9E2FF;margin-top:14px;max-width:52ch}
+.fd .fd-adm-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 .fd .fd-adm-cta .btn,.fd .fd-adm-cta .btn2{white-space:normal;text-align:center;padding-top:8px;padding-bottom:8px}
+.fd .yu-btn-gold{background:var(--gold);color:var(--ink);font-weight:700}
+.fd .yu-btn-gold:hover{background:#FFFFFF;color:var(--ink)}
+.fd .yu-btn-line{border:2px solid currentColor;color:inherit;background:transparent}
+.fd .yu-calc-sec .yu-btn-line{color:#FFFFFF}
+.fd .yu-calc-sec .yu-btn-line:hover{background:#FFFFFF;color:var(--amethyst)}
+.fd .yu-calc-sec :focus-visible{outline-color:#FFFFFF}
+.fd .yu-calc{background:#FFFFFF;color:var(--ink);padding:30px 30px 24px;border:3px solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+  clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,0 100%);display:grid;gap:12px}
+.fd .yu-calc{clip-path:none;border-radius:4px}
+.fd .yu-calc-l{font-weight:700;font-size:15px}
+.fd .yu-calc-v{font-family:var(--narrow);font-weight:700;font-size:88px;line-height:.85;color:var(--amethyst);font-variant-numeric:tabular-nums}
+.fd .yu-calc input[type=range]{--p:56%;width:100%;height:44px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer}
+.fd .yu-calc input[type=range]::-webkit-slider-runnable-track{height:10px;border-radius:999px;background:linear-gradient(90deg,var(--rhodonite) var(--p),#E4DFF2 var(--p))}
+.fd .yu-calc input[type=range]::-moz-range-track{height:10px;border-radius:999px;background:#E4DFF2}
+.fd .yu-calc input[type=range]::-moz-range-progress{height:10px;border-radius:999px;background:var(--rhodonite)}
+.fd .yu-calc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;margin-top:-10px;background:var(--ink);border:4px solid var(--gold);border-radius:50%}
+.fd .yu-calc input[type=range]::-moz-range-thumb{width:24px;height:24px;background:var(--ink);border:4px solid var(--gold);border-radius:50%}
+.fd .yu-calc input[type=range]:focus-visible{outline:3px solid var(--amethyst);outline-offset:4px}
+.fd .yu-chips{display:flex;flex-wrap:wrap;gap:8px}
+.fd .yu-chip{min-height:40px;padding:0 14px;border:2px solid var(--ink);border-radius:999px;background:#FFFFFF;color:var(--ink);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.fd .yu-chip[aria-pressed="true"]{background:var(--ink);color:#FFFFFF}
+.fd .yu-chip:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}
+.fd .yu-res{background:var(--gold-soft);border:2px dashed var(--ink);padding:16px 18px;margin-top:4px}
+.fd .yu-res b{display:block;font-family:var(--narrow);font-size:36px;line-height:1}
+.fd .yu-res span{display:block;font-size:15px;margin-top:6px}
+.fd .yu-btn-pink{background:var(--rhodonite);color:#FFFFFF;font-weight:700;min-height:52px}
+.fd .yu-btn-pink:hover{background:var(--ink);color:#FFFFFF}
+.fd .yu-src{font-size:12.5px;color:var(--muted);line-height:1.4}
 
-/* ── новости и события: списки, не карточки ── */
-.fd .fd-two{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px}
+/* ── новости и события ── */
+.fd .fd-two{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
 .fd .fd-list{list-style:none;margin:0;padding:0}
-.fd .fd-list li{border-top:1px solid var(--line-strong)}
-.fd .fd-list li:last-child{border-bottom:1px solid var(--line-strong)}
-.fd .fd-news a{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;padding:20px 0;color:var(--granite);text-decoration:none}
-.fd .fd-news a:hover .fd-t{text-decoration:underline;text-underline-offset:4px}
-.fd .fd-news small{color:var(--slate);font-size:14px;padding-top:4px}
-.fd .fd-t{font-family:var(--narrow);font-weight:700;font-size:26px;line-height:1.1}
-.fd .fd-ev a{display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:baseline;padding:18px 0;color:var(--granite);text-decoration:none}
-.fd .fd-ev a:hover .fd-ev-t{text-decoration:underline;text-underline-offset:3px}
-.fd .fd-ev b{font-family:var(--narrow);font-size:30px;line-height:1;color:var(--sapphire)}
-.fd .fd-ev b small{display:block;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;color:var(--slate);margin-top:4px}
+.fd .fd-list li{border-top:2px solid var(--ink)}
+.fd .fd-list li:last-child{border-bottom:2px solid var(--ink)}
+.fd .fd-news a{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:22px 0;color:var(--ink);text-decoration:none;transition:padding .2s var(--ease)}
+.fd .fd-news a:hover{padding-left:10px}
+.fd .fd-news a:hover .fd-t{color:var(--amethyst)}
+.fd .fd-news small{color:var(--muted);font-size:14px;padding-top:6px}
+.fd .fd-t{font-family:var(--narrow);font-weight:700;font-size:28px;line-height:1.08}
+.fd .yu-evbox{background:var(--ink);color:#FFFFFF;padding:30px 28px 22px;clip-path:polygon(0 0,calc(100% - 30px) 0,100% 30px,100% 100%,0 100%)}
+.fd .yu-evbox .fd-col-h{color:var(--gold)}
+.fd .yu-evbox .fd-more{color:#FFFFFF}
+.fd .yu-evbox .fd-more:hover{color:var(--gold)}
+.fd .yu-evbox :focus-visible{outline-color:#FFFFFF}
+.fd .yu-evbox .fd-list li{border-color:rgba(255,255,255,.22)}
+.fd .fd-ev a{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;align-items:baseline;padding:16px 0;color:#FFFFFF;text-decoration:none}
+.fd .fd-ev a:hover .fd-ev-t{color:var(--gold)}
+.fd .fd-ev b{font-family:var(--narrow);font-size:34px;line-height:1;color:var(--gold);white-space:nowrap}
+.fd .fd-ev b small{display:block;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;color:#CFC8E6;margin-top:4px}
 .fd .fd-ev-t{font-weight:600;font-size:17px;line-height:1.35}
-.fd .fd-ev-d{color:var(--slate);font-size:14px;margin-top:2px}
-.fd .fd-col-h{font-size:clamp(34px,4vw,48px);line-height:1.02}
+.fd .fd-ev-d{color:#CFC8E6;font-size:14px;margin-top:2px}
 
-/* ── институты: аббревиатуры как вывески ── */
-.fd .fd-inst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px}
-.fd .fd-inst a{display:block;padding:22px 0 24px;border-top:1px solid var(--line-strong);color:var(--granite);text-decoration:none}
-.fd .fd-inst b{display:block;font-family:var(--narrow);font-size:clamp(34px,3.4vw,46px);line-height:1}
-.fd .fd-inst span{display:block;color:var(--slate);font-size:15px;margin-top:8px}
-.fd .fd-inst a:hover b{color:var(--sapphire)}
+/* ── институты: цветные «грани» ── */
+.fd .yu-inst-sec{background:var(--limestone)}
+.fd .yu-inst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.fd .yu-i{--c:var(--rhodonite);--t:#FFFFFF;display:flex;flex-direction:column;justify-content:space-between;min-height:168px;padding:22px;text-decoration:none;color:var(--t);
+  background:linear-gradient(135deg,var(--c) 0 62%,color-mix(in srgb,var(--c) 84%,#000) 62%);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,0 100%);transition:transform .2s var(--ease)}
+.fd .yu-i1{--c:var(--amethyst)}
+.fd .yu-i2{--c:var(--malachite);--t:var(--ink)}
+.fd .yu-i3{--c:var(--gold);--t:var(--ink)}
+.fd .yu-i:hover{transform:translateY(-4px) rotate(-.6deg);color:var(--t)}
+.fd .yu-i b{font-family:var(--narrow);font-size:clamp(34px,3.4vw,48px);line-height:1}
+.fd .yu-i span{font-size:15px;font-weight:600;margin-top:12px}
+.fd .yu-i:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 
 /* ── жизнь в УрФУ ── */
-.fd .fd-life{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.fd .fd-life a{color:var(--granite);text-decoration:none}
-.fd .fd-life .ph{aspect-ratio:4/5;background:var(--limestone) center/cover no-repeat}
-.fd .fd-life b{display:block;font-family:var(--narrow);font-size:24px;margin-top:12px}
-.fd .fd-life span{display:block;color:var(--slate);font-size:15px;margin-top:2px}
-.fd .fd-life a:hover b{text-decoration:underline;text-underline-offset:4px}
+.fd .yu-life{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.fd .yu-l{color:var(--ink);text-decoration:none}
+.fd .yu-l .ph{aspect-ratio:4/5;background:var(--limestone) center/cover no-repeat;clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,0 100%);transition:transform .3s var(--ease)}
+.fd .yu-l:hover .ph{transform:scale(1.03)}
+.fd .yu-l b{display:inline-block;font-family:var(--narrow);font-size:26px;margin-top:14px;padding:2px 10px;background:var(--gold)}
+.fd .yu-l1 b{background:var(--malachite)}
+.fd .yu-l2 b{background:var(--rhodonite);color:#FFFFFF}
+.fd .yu-l3 b{background:var(--amethyst);color:#FFFFFF}
+.fd .yu-l span{display:block;color:var(--muted);font-size:15px;margin-top:6px}
 
+/* ── не нашли ответ ── */
+.fd .yu-ask{background:var(--rhodonite);color:#FFFFFF;padding:80px 0;clip-path:polygon(0 40px,100% 0,100% 100%,0 100%)}
+.fd .yu-ask-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:48px;align-items:center}
+.fd .yu-ask h2{color:#FFFFFF;font-size:clamp(48px,6vw,88px);line-height:.9}
+.fd .yu-ask p{font-size:19px;margin:14px 0 24px}
+.fd .yu-ask .yu-btn-line{color:#FFFFFF}
+.fd .yu-ask .yu-btn-line:hover{background:#FFFFFF;color:var(--rhodonite-d)}
+.fd .yu-ask :focus-visible{outline-color:#FFFFFF}
+.fd .yu-ask-list{display:grid;gap:12px}
+.fd .yu-ask-list a{display:flex;flex-direction:column;background:#FFFFFF;color:var(--ink);text-decoration:none;padding:18px 22px;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);transition:transform .15s ease,box-shadow .15s ease}
+.fd .yu-ask-list a:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink);color:var(--ink)}
+.fd .yu-ask-list a:focus-visible{outline:3px solid #FFFFFF;outline-offset:3px}
+.fd .yu-ask-list b{font-family:var(--narrow);font-size:30px;line-height:1.05}
+.fd .yu-ask-list span{font-size:15px;color:var(--muted);margin-top:4px}
+
+/* ── адаптивность ── */
 @media (max-width:1100px){
-  .fd .fd-hero-in,.fd .fd-adm,.fd .fd-two{grid-template-columns:minmax(0,1fr);gap:40px}
-  .fd .fd-hero h1{max-width:12ch}
-  .fd .fd-inst,.fd .fd-life{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fd .yu-hero-in,.fd .yu-calc-in,.fd .fd-two,.fd .yu-ask-in{grid-template-columns:minmax(0,1fr);gap:40px}
+  .fd .yu-hero h1{max-width:12ch}
+  .fd .yu-collage{height:440px;max-width:680px}
+  .fd .fd-gems,.fd .yu-inst,.fd .yu-life{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:640px){
-  .fd .fd-sec{padding:60px 0}
-  .fd .fd-hero{padding:32px 0 48px}
+  .fd .fd-sec,.fd .yu-roles{padding:64px 0}
+  .fd .yu-hero{padding:28px 0 56px}
+  .fd .yu-hero h1{font-size:clamp(52px,15vw,72px)}
+  .fd .yu-collage{height:340px}
+  .fd .yu-b1{width:100px;height:100px;right:2%;top:-4%}
+  .fd .yu-b1 b{font-size:30px}
+  .fd .yu-b2{width:92px;height:92px;top:46%}
+  .fd .yu-b2 b{font-size:28px}
+  .fd .yu-tick li{font-size:22px}
   .fd .fd-gems{grid-template-columns:1fr}
   .fd .fd-gem{min-height:0}
-  .fd .fd-steps{grid-template-columns:1fr;border-top:0;border-left:3px solid var(--granite);margin-left:7px;padding-left:22px;row-gap:18px}
-  .fd .fd-steps li{padding:0}
-  .fd .fd-steps li::before{top:9px;left:-33px}
-  .fd .fd-steps b{margin-top:0}
   .fd .fd-gem li a span{display:none}
+  .fd .yu-calc-sec{padding:72px 0;clip-path:polygon(0 0,100% 20px,100% 100%,0 calc(100% - 20px))}
+  .fd .yu-calc{padding:22px 18px 18px;box-shadow:6px 6px 0 var(--ink)}
+  .fd .yu-calc-v{font-size:72px}
+  .fd .yu-dates li{min-width:0;flex:1 1 140px}
   .fd .fd-news a{grid-template-columns:1fr;gap:4px}
-  .fd .fd-photo{clip-path:polygon(0 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%)}
+  .fd .yu-evbox{padding:24px 18px 16px}
+  .fd .yu-ask{padding:64px 0;clip-path:polygon(0 20px,100% 0,100% 100%,0 100%)}
 }
-@media (max-width:380px){.fd .fd-inst,.fd .fd-life{grid-template-columns:1fr}.fd .fd-search .btn{padding:0 14px}.fd .fd-search .search-box{gap:8px;padding-left:12px}.fd .fd-search input{min-width:0}}
-@media (prefers-reduced-motion:reduce){.fd .fd-gem{animation:none}}
-/* режим для слабовидящих: крупнее, без срезов */
-#a11y:checked ~ main .fd-gem{clip-path:none;animation:none}
+@media (max-width:380px){.fd .yu-inst,.fd .yu-life{grid-template-columns:1fr}.fd .fd-search .btn{padding:0 14px}.fd .fd-search .search-box{gap:8px;padding-left:12px}.fd .fd-search input{min-width:0}}
+@media (prefers-reduced-motion:reduce){
+  .fd .yu-tick ul{animation:none}
+  .fd .yu-tick ul[aria-hidden]{display:none}
+  .fd .yu-tick{flex-wrap:wrap}
+  .fd .yu-tick ul:first-child{flex-wrap:wrap;row-gap:10px}
+  .fd .yu-badge{animation:none}
+  .fd .fd-gem,.fd .yu-i,.fd .yu-l .ph,.fd .fd-news a{transition:none}
+}
 
-/* подпись к фото главного корпуса */
-.fd .fd-photo{position:relative;margin:0}
-.fd .fd-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,27,43,.78) 0%,rgba(14,27,43,0) 42%);pointer-events:none}
-.fd .fd-photo-cap{position:absolute;z-index:1;left:max(32px,calc((100% - 1280px) / 2 + 32px));bottom:22px;color:#FFFFFF;font-family:var(--narrow);font-weight:700;font-size:26px;line-height:1.1}
-@media (max-width:640px){.fd .fd-photo-cap{left:16px;bottom:14px;font-size:20px}}
-
-/* скорость: на телефоне — лёгкая версия фото; разделы ниже первого экрана рисуются (и грузят фото), только когда до них долистают */
-@media (max-width:640px){.fd .fd-photo{background-image:url('photos/glavnyj-korpus-leto-960.webp')}}
+/* скорость: нижние разделы рисуются (и грузят фото), только когда до них долистают */
 .fd .fd-sec{content-visibility:auto;contain-intrinsic-size:auto 640px}
+
+/* розовый блок «Не нашли ответ?» вплотную к подвалу */
+.fd .ft{margin-top:0}
+
+/* наклонная бегущая строка шире экрана — лишнее обрезаем, чтобы не было прокрутки вбок */
+.fd main{overflow-x:clip}

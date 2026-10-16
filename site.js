@@ -62,3 +62,53 @@ document.addEventListener("click",function(e){if(!document.querySelector("base")
   }
   new MutationObserver(scan).observe(root,{childList:true});scan();
 })();
+/* Версия для слабовидящих: панель настроек по кнопке с глазом в шапке.
+   Размер текста, цветовая схема, изображения, интервал. Выбор сохраняется в этом браузере и действует на всех страницах. */
+(function(){
+  var EN=document.documentElement.lang==="en", KEY="urfu-vi";
+  var T=EN?{h:"Accessibility mode",p:"Settings are saved in this browser",fs:"Text size",c:"Colours",img:"Images",sp:"Spacing",
+      fsv:["A","A+","A++"],fsl:["Normal","Large","Extra large"],cv:["Site colours","Black on white","White on black","Dark blue on light blue","Brown on beige","Green on brown"],
+      imgv:["Colour","Black and white","Hide"],spv:["Normal","Medium","Large"],reset:"Reset",close:"Close"}
+    :{h:"Версия для слабовидящих",p:"Настройки сохраняются в этом браузере",fs:"Размер текста",c:"Цвета",img:"Изображения",sp:"Интервал",
+      fsv:["А","А+","А++"],fsl:["Обычный","Крупный","Очень крупный"],cv:["Цвета сайта","Чёрным по белому","Белым по чёрному","Тёмно-синим по голубому","Коричневым по бежевому","Зелёным по коричневому"],
+      imgv:["Цветные","Ч/б","Скрыть"],spv:["Обычный","Средний","Большой"],reset:"Сбросить",close:"Закрыть"};
+  var S={fs:0,c:0,img:0,sp:0};
+  try{var s=JSON.parse(localStorage.getItem(KEY)||"{}");for(var k in S)if(typeof s[k]==="number")S[k]=s[k];}catch(e){}
+  function apply(){
+    var h=document.documentElement;
+    h.className=h.className.replace(/\bvi-\w+/g,"").replace(/\s+/g," ").trim();
+    if(S.fs)h.classList.add("vi-fs"+S.fs);if(S.c)h.classList.add("vi-c"+S.c);if(S.img)h.classList.add("vi-img"+S.img);if(S.sp)h.classList.add("vi-sp"+S.sp);
+    try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+    if(panel)[].forEach.call(panel.querySelectorAll(".vi-b[data-k]"),function(b){b.setAttribute("aria-pressed",String(S[b.dataset.k]===+b.dataset.v));});
+  }
+  function group(k,label,vals,extra){
+    var h='<fieldset class="vi-g"><legend>'+label+'</legend><div class="vi-row">';
+    vals.forEach(function(v,i){var sw=k==="c"&&i>0;h+='<button type="button" class="vi-b'+(sw?' vi-sw vi-c'+i:'')+'" data-k="'+k+'" data-v="'+i+'"'+(sw||extra?' aria-label="'+(extra?extra[i]:v)+'" title="'+(extra?extra[i]:v)+'"':'')+'>'+(sw?"Аа":v)+'</button>';});
+    return h+'</div></fieldset>';
+  }
+  var panel=null, back=null;
+  function build(){
+    panel=document.createElement("div");panel.className="vi-panel";panel.id="vi-panel";panel.hidden=true;
+    panel.setAttribute("role","region");panel.setAttribute("aria-label",T.h);
+    panel.innerHTML='<div class="vi-in"><div class="vi-title"><div><h2>'+T.h+'</h2><p>'+T.p+'</p></div><div class="vi-acts"><button type="button" class="vi-b" data-act="reset">'+T.reset+'</button><button type="button" class="vi-b vi-close" data-act="close">'+T.close+'</button></div></div>'
+      +group("fs",T.fs,T.fsv,T.fsl)+group("c",T.c,T.cv)+group("img",T.img,T.imgv)+group("sp",T.sp,T.spv)+'</div>';
+    panel.addEventListener("click",function(e){
+      var b=e.target.closest(".vi-b");if(!b)return;
+      if(b.dataset.act==="reset"){S={fs:0,c:0,img:0,sp:0};apply();return;}
+      if(b.dataset.act==="close"){close();return;}
+      S[b.dataset.k]=+b.dataset.v;apply();
+    });
+    panel.addEventListener("keydown",function(e){if(e.key==="Escape"){e.preventDefault();close();}});
+    document.body.appendChild(panel);
+  }
+  function open(){if(!panel)build();back=document.activeElement;panel.hidden=false;apply();var f=panel.querySelector('.vi-b[aria-pressed="true"]')||panel.querySelector(".vi-b");if(f)f.focus();sync();}
+  function close(){if(!panel)return;panel.hidden=true;sync();var cb=document.getElementById("a11y");if(back&&document.contains(back)&&back!==document.body)back.focus();else if(cb)cb.focus();}
+  function sync(){var o=panel&&!panel.hidden;[].forEach.call(document.querySelectorAll(".a11y-lbl"),function(l){l.setAttribute("aria-expanded",String(!!o));});}
+  /* кнопка с глазом в шапке открывает панель (раньше она включала простой «крупный режим») */
+  document.addEventListener("click",function(e){
+    var l=e.target.closest&&e.target.closest(".a11y-lbl");if(!l)return;
+    e.preventDefault();if(panel&&!panel.hidden)close();else open();
+  });
+  document.addEventListener("change",function(e){if(e.target&&e.target.id==="a11y"){e.target.checked=false;if(!panel||panel.hidden)open();}});
+  apply();
+})();

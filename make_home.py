@@ -9,6 +9,18 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 T = {
  'ru': dict(
   file='Main.dc.html',
+  tag='дней до начала приёма документов',
+  tick=['УрФУ — с 1920 года', '8 институтов', '16 общежитий в студгородке', 'Екатеринбург, ул. Мира, 19', 'Приём документов — с 20 июня', 'Версия для слабовидящих на каждой странице'],
+  col=[('kampus-leto', 'Главный учебный корпус'), ('studenty', 'Студенты УрФУ'), ('it-konferenciya-2026-slushateli', 'IT-конференция, 2026')],
+  badge1=('1920', 'год основания'), badge2=('8', 'институтов'),
+  roles_h='С чего начнём?', roles_lead='Выберите, кто вы, — покажем главное именно для вас.',
+  calc_h='Хватит ли баллов?', calc_lead='Сдвиньте ползунок на свою сумму трёх ЕГЭ — покажем, на сколько программ вы прошли бы по проходным баллам прошлого года.',
+  calc_sum='Моя сумма баллов', calc_area='Область', calc_go='Показать в каталоге', calc_src='Проходные баллы 2024–2025 годов из каталога. Программы без опубликованного балла не учитываются.',
+  areas=[('all', 'Все'), ('it', 'IT'), ('eng', 'Инженерия'), ('nat', 'Естественные'), ('hum', 'Гуманитарные'), ('eco', 'Экономика')],
+  cat='Catalog.dc.html',
+  ask_h='Не нашли ответ?', ask_lead='Спросите нас — ответим по телефону или почте.',
+  ask=[('8-800-100-50-44', 'tel:88001005044', 'Контакт-центр, звонок по России бесплатный'), ('+7 (343) 375-44-74', 'tel:+73433754474', 'Приёмная комиссия'), ('contact@urfu.ru', 'mailto:contact@urfu.ru', 'Почта университета')],
+  ask_all=('Contacts.dc.html', 'Все контакты и карта'),
   h1='Что вам нужно в УрФУ?',
   lead='Программы, расписание, общежития и события — найдём за пару секунд.',
   search_l='Поиск по сайту', ph='Например: общежитие или ИИ…', find='Найти', sug_l='Подсказки',
@@ -37,6 +49,18 @@ T = {
  ),
  'en': dict(
   file='MainEn.dc.html',
+  tag='days until applications open',
+  tick=['UrFU — since 1920', '8 institutes', '16 dormitories on campus', 'Yekaterinburg, 19 Mira St.', 'Applications open on 20 June', 'Accessibility mode on every page'],
+  col=[('kampus-leto', 'Main academic building'), ('studenty', 'UrFU students'), ('it-konferenciya-2026-slushateli', 'IT conference, 2026')],
+  badge1=('1920', 'founded'), badge2=('8', 'institutes'),
+  roles_h='Where shall we start?', roles_lead='Choose who you are — we will show what matters to you.',
+  calc_h='Is my score enough?', calc_lead='Move the slider to your total for three EGE exams — we will show how many programmes you would have passed with last year’s pass marks.',
+  calc_sum='My total score', calc_area='Field', calc_go='Show in the catalogue', calc_src='Pass marks for 2024–2025 from the catalogue. Programmes without a published pass mark are not counted.',
+  areas=[('all', 'All'), ('it', 'IT'), ('eng', 'Engineering'), ('nat', 'Sciences'), ('hum', 'Humanities'), ('eco', 'Economics')],
+  cat='CatalogEn.dc.html',
+  ask_h='Didn’t find an answer?', ask_lead='Ask us by phone or email.',
+  ask=[('8-800-100-50-44', 'tel:88001005044', 'Contact centre, free within Russia'), ('+7 (343) 375-44-74', 'tel:+73433754474', 'Admissions Office'), ('contact@urfu.ru', 'mailto:contact@urfu.ru', 'University email')],
+  ask_all=('Contacts.dc.html', 'All contacts and map'),
   h1='What do you need at UrFU?',
   lead='Programmes, timetable, housing and events — found in seconds.',
   search_l='Search the site', ph='For example: housing or AI…', find='Search', sug_l='Suggestions',
@@ -66,16 +90,35 @@ T = {
 }
 
 
+def progs_json():
+    """Короткие данные программ для калькулятора — из каталога, чтобы цифры совпадали: [область, балл, бюджетные места]."""
+    import json
+    c = open('Catalog.dc.html', encoding='utf-8').read()
+    c = c[c.index('const ALL_PROGS'):]
+    c = c[:c.index('];')]
+    out = []
+    for line in c.split('\n'):
+        k = re.search(r"k:'(\w+)'", line); sc = re.search(r"score:'(\d+)'", line); bu = re.search(r"budget:'(\d+)'", line)
+        if line.startswith('{name') and k and sc:
+            out.append([k.group(1), int(sc.group(1)), int(bu.group(1)) if bu else 0])
+    return json.dumps(out, separators=(',', ':'))
+
+
 def main_html(t):
-    steps = ''.join(f'<li><b>{d}</b><span>{w}</span></li>' for d, w in t['steps'])
+    steps = ''.join(f'<li><b>{d}</b><span>{w}</span></li>' for d, w in t['steps'][:3])
     news = ''.join(f'<li><a href="{"Article.dc.html" if i == 0 else "News.dc.html"}"><small>{d}</small><span class="fd-t">{x}</span></a></li>' for i, (d, x) in enumerate(t['news']))
     ev = ''.join(f'<li><a href="Events.dc.html"><b>{d}<small>{m}</small></b><div><div class="fd-ev-t">{x}</div><div class="fd-ev-d">{n}</div></div></a></li>' for d, m, x, n in t['ev'])
     RU = ['ИРИТ-РтФ', 'ИЕНиМ', 'ИНМиТ', 'УралЭНИН', 'ИСА', 'УГИ', 'ИнЭУ', 'ФТИ']
-    inst = ''.join(f'<a href="Institute.dc.html?i={RU[k]}"><b>{a}</b><span>{n}</span></a>' for k, (a, n) in enumerate(t['inst']))
-    life = ''.join(f'<a href="Life.dc.html"><div class="ph" style="background-image:url(\'photos/{p}.webp\')"></div><b>{x}</b><span>{n}</span></a>' for p, x, n in t['life'])
+    inst = ''.join(f'<a class="yu-i yu-i{k % 4}" href="Institute.dc.html?i={RU[k]}"><b>{a}</b><span>{n}</span></a>' for k, (a, n) in enumerate(t['inst']))
+    life = ''.join(f'<a class="yu-l yu-l{k}" href="Life.dc.html"><div class="ph" style="background-image:url(\'photos/{p}.webp\')"></div><b>{x}</b><span>{n}</span></a>' for k, (p, x, n) in enumerate(t['life']))
+    tick = ''.join(f'<li>{x}</li>' for x in t['tick'])
+    col = ''.join(f'<div class="yu-ph yu-ph{k}" role="img" aria-label="{c}" style="background-image:url(\'photos/{p}.webp\')"></div>' for k, (p, c) in enumerate(t['col']))
+    areas = ''.join(f'<button type="button" class="yu-chip" data-area="{k}" aria-pressed="{"true" if k == "all" else "false"}">{n}</button>' for k, n in t['areas'])
+    ask = ''.join(f'<a href="{h}"><b>{n}</b><span>{d}</span></a>' for n, h, d in t['ask'])
     return f"""<main id="main" tabindex="-1" style="outline:none">
-<section class="fd-hero"><div class="wrap fd-hero-in">
-<div>
+<section class="yu-hero"><div class="wrap yu-hero-in">
+<div class="yu-hero-txt">
+<p class="yu-tag"><b>{{{{days}}}}</b> {t['tag']}</p>
 <h1>{t['h1']}</h1>
 <p class="fd-lead">{t['lead']}</p>
 <div class="search fd-search">
@@ -97,10 +140,20 @@ def main_html(t):
 </div>
 <p class="fd-often">{t['often']}</p>
 </div>
+<div class="yu-collage">{col}
+<div class="yu-badge yu-b1"><b>{t['badge1'][0]}</b><span>{t['badge1'][1]}</span></div>
+<div class="yu-badge yu-b2"><b>{t['badge2'][0]}</b><span>{t['badge2'][1]}</span></div>
+</div>
+</div></section>
+
+<div class="yu-tick"><ul>{tick}</ul><ul aria-hidden="true">{tick}</ul></div>
+
+<section class="yu-roles" aria-labelledby="roles-h"><div class="wrap">
+<div class="yu-head"><h2 id="roles-h">{t['roles_h']}</h2><p>{t['roles_lead']}</p></div>
 <div class="fd-gems">
 <sc-for list="{{{{gems}}}}" as="g" hint-placeholder-count="4">
 <section class="fd-gem" data-role="{{{{g.key}}}}" lang="{{{{g.lang}}}}" aria-labelledby="{{{{g.hid}}}}">
-<h2 id="{{{{g.hid}}}}">{{{{g.me}}}}</h2>
+<h3 id="{{{{g.hid}}}}">{{{{g.me}}}}</h3>
 <ul><sc-for list="{{{{g.links}}}}" as="l" hint-placeholder-count="3"><li><a href="{{{{l.href}}}}">{{{{l.t}}}}<span>{{{{l.d}}}}</span></a></li></sc-for></ul>
 <button type="button" class="fd-toggle" id="{{{{g.bid}}}}" aria-expanded="{{{{g.exp}}}}" onClick="{{{{g.toggle}}}}">{{{{g.more}}}}</button>
 </section>
@@ -108,18 +161,23 @@ def main_html(t):
 </div>
 </div></section>
 
-<figure class="fd-photo"><figcaption class="fd-photo-cap">{t['photo']}</figcaption></figure>
-
-<section class="fd-sec soft" aria-labelledby="adm-h"><div class="wrap fd-adm">
-<div>
-<h2 id="adm-h" class="sr">{t['adm_h']}</h2>
-<div class="fd-days">{{{{days}}}}</div>
-<p class="fd-days-l">{{{{daysWord}}}}{t['days_tail']}</p>
-<p class="fd-note">{t['note']}</p>
+<section class="yu-calc-sec" aria-labelledby="calc-h"><div class="wrap yu-calc-in">
+<div class="yu-calc-txt">
+<h2 id="calc-h">{t['calc_h']}</h2>
+<p>{t['calc_lead']}</p>
+<ol class="yu-dates">{steps}</ol>
+<p class="yu-note">{t['note']}</p>
+<div class="fd-adm-cta"><a class="btn yu-btn-gold" href="{t['cta1'][0]}">{t['cta1'][1]}</a><a class="btn2 yu-btn-line" href="{t['cta2'][0]}">{t['cta2'][1]}</a></div>
 </div>
-<div>
-<ol class="fd-steps">{steps}</ol>
-<div class="fd-adm-cta"><a class="btn" href="{t['cta1'][0]}">{t['cta1'][1]}</a><a class="btn2" href="{t['cta2'][0]}" style="background:#FFFFFF">{t['cta2'][1]}</a></div>
+<div class="yu-calc" data-progs='{progs_json()}' data-cat="{t['cat']}">
+<label for="calc-r" class="yu-calc-l">{t['calc_sum']}</label>
+<output class="yu-calc-v" for="calc-r" id="calc-v">240</output>
+<input type="range" id="calc-r" min="150" max="310" step="1" value="240">
+<div class="yu-calc-l" id="calc-al">{t['calc_area']}</div>
+<div class="yu-chips" role="group" aria-labelledby="calc-al">{areas}</div>
+<div class="yu-res" aria-live="polite"><b id="calc-n">—</b><span id="calc-d"></span></div>
+<a class="btn yu-btn-pink" id="calc-go" href="{t['cat']}">{t['calc_go']}</a>
+<p class="yu-src">{t['calc_src']}</p>
 </div>
 </div></section>
 
@@ -128,20 +186,25 @@ def main_html(t):
 <div class="fd-head"><h2 class="fd-col-h">{t['news_h']}</h2><a class="fd-more" href="News.dc.html">{t['news_all']}</a></div>
 <ul class="fd-list fd-news">{news}</ul>
 </div>
-<div>
+<div class="yu-evbox">
 <div class="fd-head"><h2 class="fd-col-h">{t['ev_h']}</h2><a class="fd-more" href="Events.dc.html">{t['ev_all']}</a></div>
 <ul class="fd-list fd-ev">{ev}</ul>
 </div>
 </div></section>
 
-<section class="fd-sec soft"><div class="wrap">
+<section class="fd-sec yu-inst-sec"><div class="wrap">
 <div class="fd-head"><div><h2 class="fd-h2">{t['inst_h']}</h2><p class="fd-lead">{t['inst_lead']}</p></div><a class="fd-more" href="Institute.dc.html">{t['inst_all']}</a></div>
-<div class="fd-inst">{inst}</div>
+<div class="yu-inst">{inst}</div>
 </div></section>
 
 <section class="fd-sec"><div class="wrap">
 <div class="fd-head"><h2 class="fd-h2">{t['life_h']}</h2><a class="fd-more" href="Life.dc.html">{t['life_all']}</a></div>
-<div class="fd-life">{life}</div>
+<div class="yu-life">{life}</div>
+</div></section>
+
+<section class="yu-ask" aria-labelledby="ask-h"><div class="wrap yu-ask-in">
+<div><h2 id="ask-h">{t['ask_h']}</h2><p>{t['ask_lead']}</p><a class="btn2 yu-btn-line" href="{t['ask_all'][0]}">{t['ask_all'][1]}</a></div>
+<div class="yu-ask-list">{ask}</div>
 </div></section>
 </main>"""
 
@@ -158,6 +221,8 @@ def build(t):
     head = head.replace('<template id="dc-tpl">\n<div>', '<template id="dc-tpl">\n<div class="fd">', 1)
     assert 'class="fd"' in head and 'home.css' in head
     foot = foot.replace('<script src="slides.js"></script>\n', '')
+    if 'home-calc.js' not in foot:
+        foot = foot.replace('<script src="site.js"></script>', '<script src="site.js"></script>\n<script src="home-calc.js"></script>', 1)
     if 'const gems =' not in foot:
         ret = "const qHref = 'Search.dc.html'"
         assert ret in foot

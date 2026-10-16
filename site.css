@@ -431,3 +431,74 @@ html{-webkit-tap-highlight-color:rgba(29,78,158,.18)}
 /* цифры одинаковой ширины там, где их сравнивают */
 .num,.pc-s,.fd-steps b,.fd-ev b,.tm,[role="dialog"] div{font-variant-numeric:tabular-nums lining-nums}
 .skip:hover{color:#FFFFFF}
+
+/* ═══ «Яркий Урал» — яркие уральские самоцветы ═══
+   Родонит — камень Екатеринбурга, золото — Урал, малахит и аметист. Контраст текста проверен (WCAG AA). */
+:root{
+  --rhodonite:#E0246F; --rhodonite-d:#C81A62; --gold:#FFC21A; --gold-soft:#FFF4D1; --malachite:#00B386; --amethyst:#6B2BE8;
+  --ink:#16112B; --text:#16112B; --muted:#5B5670; --page:#F8F6FF; --limestone:#EFE9FF; --granite:#16112B;
+  --blue:#6B2BE8; --blue-dark:#5420C4; --blue-soft:#EFE8FF; --blue-line:#D6C6FB;
+  --bg-soft:#EFE9FF; --bg-soft-2:#F6F2FF; --line:#E4DFF2; --line-strong:#C9C0E3; --ink-2:#2A2150; --ink-line:#3A3060;
+  --on-dark-muted:#CFC8E6; --copper:#C81A62;
+  --a1:#C81A62; --a2:#6B2BE8; --a3:#0A7F62; --a4:#9A5B00;
+  --a1l:#FF8DB8; --a2l:#C9B2FF; --a3l:#5FE3BE; --a4l:#FFD766;
+  --hero-1:rgba(107,43,232,.55); --hero-2:rgba(224,36,111,.45); --hero-3:rgba(255,194,26,.3); --hero-em:#FFC21A;
+  --r:8px; --r-lg:10px;
+}
+body{background:var(--page)}
+.hd{background:rgba(255,255,255,.94)}
+.btn{font-weight:700}
+.phead{background:var(--limestone)}
+.phead.dark,.dark.phead{background:var(--ink)}
+.ft{background:var(--ink)}
+
+/* ═══ Версия для слабовидящих: панель настроек (размер текста, цвета, изображения, интервал) ═══ */
+.vi-panel{position:fixed;left:0;right:0;top:0;z-index:60;background:#FFFFFF;color:#16112B;border-bottom:3px solid #16112B;box-shadow:0 18px 40px rgba(22,17,43,.25);font-family:'IBM Plex Sans',system-ui,sans-serif;max-height:100vh;overflow:auto}
+.vi-panel[hidden]{display:none}
+.vi-in{max-width:1280px;margin:0 auto;padding:18px 32px 20px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-start}
+.vi-title{flex:1 1 100%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.vi-title h2{font-family:'PT Sans Narrow','IBM Plex Sans',sans-serif;font-size:28px;line-height:1;margin:0}
+.vi-title p{font-size:14px;color:#5B5670;margin:4px 0 0}
+.vi-g{display:flex;flex-direction:column;gap:8px;border:0;margin:0;padding:0;min-width:0}
+.vi-g legend{font-weight:700;font-size:14px;padding:0;margin-bottom:8px}
+.vi-row{display:flex;flex-wrap:wrap;gap:6px}
+.vi-b{min-height:44px;min-width:44px;padding:0 14px;border:2px solid #16112B;border-radius:8px;background:#FFFFFF;color:#16112B;font:600 15px/1.1 'IBM Plex Sans',system-ui,sans-serif;cursor:pointer}
+.vi-b[aria-pressed="true"]{background:#16112B;color:#FFFFFF}
+.vi-b:focus-visible{outline:3px solid #6B2BE8;outline-offset:2px}
+.vi-sw{width:44px;padding:0;font-weight:700;font-size:18px}
+.vi-c1{background:#FFFFFF;color:#000000}.vi-c2{background:#000000;color:#FFFFFF}.vi-c3{background:#9DD1FF;color:#063462}.vi-c4{background:#F7F3D6;color:#4D4B43}.vi-c5{background:#3B2716;color:#A9E44D}
+.vi-sw[aria-pressed="true"]{outline:3px solid #6B2BE8;outline-offset:2px;box-shadow:inset 0 0 0 3px #FFFFFF}
+.vi-acts{display:flex;gap:8px;flex-wrap:wrap}
+.vi-close{background:#16112B;color:#FFFFFF}
+@media (max-width:640px){.vi-in{padding:14px 16px 16px;gap:14px}}
+
+/* размер текста */
+html.vi-fs1 main,html.vi-fs1 .ft{zoom:1.2}
+html.vi-fs2 main,html.vi-fs2 .ft{zoom:1.45}
+html.vi-fs1 .hd .nav,html.vi-fs2 .hd .nav,html.vi-fs1 .mnav-panel,html.vi-fs2 .mnav-panel{font-size:18px}
+/* интервал между буквами и строками */
+html.vi-sp1 body *:not(.vi-panel *){letter-spacing:.06em !important;word-spacing:.12em !important;line-height:1.75 !important}
+html.vi-sp2 body *:not(.vi-panel *){letter-spacing:.12em !important;word-spacing:.24em !important;line-height:2 !important}
+/* изображения */
+html.vi-img1 img,html.vi-img1 .ph,html.vi-img1 .photo,html.vi-img1 .yu-ph,html.vi-img1 [style*="background-image"],html.vi-img1 [style*="--img"]{filter:grayscale(1) !important}
+html.vi-img2 img{visibility:hidden !important}
+html.vi-img2 .ph,html.vi-img2 .photo,html.vi-img2 .yu-ph,html.vi-img2 [style*="background-image"],html.vi-img2 [style*="--img"]{background-image:none !important;background-color:transparent !important;outline:2px dashed currentColor}
+html.vi-img2 .photo::before,html.vi-img2 .photo::after,html.vi-img2 .art::before,html.vi-img2 .art::after{display:none !important}
+/* цветовые схемы: весь сайт в двух цветах, без декоративных фонов и срезов */
+html[class*="vi-c"] body *:not(.vi-panel):not(.vi-panel *){background-color:var(--vi-bg) !important;color:var(--vi-fg) !important;border-color:var(--vi-fg) !important;box-shadow:none !important;text-shadow:none !important;clip-path:none !important}
+html[class*="vi-c"] body *:not(.vi-panel):not(.vi-panel *):not(.ph):not(.photo):not(.yu-ph):not([style*="--img"]):not([style*="background-image"]){background-image:none !important}
+html[class*="vi-c"] body,html[class*="vi-c"]{background:var(--vi-bg) !important}
+html[class*="vi-c"] a{text-decoration:underline !important}
+html[class*="vi-c"] svg{color:var(--vi-fg) !important}
+html[class*="vi-c"] .yu-collage::before,html[class*="vi-c"] .yu-collage::after,html[class*="vi-c"] .yu-calc-sec::before,html[class*="vi-c"] .yu-hero h1::after{display:none}
+html[class*="vi-c"] :focus-visible{outline:3px solid var(--vi-fg) !important;outline-offset:3px}
+html.vi-c1{--vi-bg:#FFFFFF;--vi-fg:#000000}
+html.vi-c2{--vi-bg:#000000;--vi-fg:#FFFFFF}
+html.vi-c3{--vi-bg:#9DD1FF;--vi-fg:#063462}
+html.vi-c4{--vi-bg:#F7F3D6;--vi-fg:#4D4B43}
+html.vi-c5{--vi-bg:#3B2716;--vi-fg:#A9E44D}
+html[class*="vi-"] .a11y-lbl{background:var(--ink);color:#FFFFFF}
+/* без анимаций в режиме для слабовидящих */
+html[class*="vi-"] *{animation:none !important;transition:none !important}
+/* «хлебные крошки» на тёмной шапке — светлые */
+.dark .crumbs,.phead.dark .crumbs,.hero .crumbs{color:var(--on-dark-muted)}
