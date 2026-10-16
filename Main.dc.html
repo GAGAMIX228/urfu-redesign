@@ -95,7 +95,7 @@
 <p class="yu-note">Считаем до 20 июня — так по правилам приёма 2026 года. Даты на 2027 год объявят весной.</p>
 <div class="fd-adm-cta"><a class="btn yu-btn-gold" href="Quiz.dc.html">Подобрать программу за 3 вопроса</a><a class="btn2 yu-btn-line" href="Admission.dc.html">Как поступить</a></div>
 </div>
-<div class="yu-calc" data-progs='[["it",259,100],["it",246,105],["it",255,105],["it",239,135],["it",251,140],["it",258,130],["it",217,66],["eng",184,57],["nat",247,25],["nat",233,50],["nat",221,50],["nat",234,0],["nat",235,0],["eng",234,0]]' data-cat="Catalog.dc.html">
+<div class="yu-calc" data-progs='[["it",259,100],["it",246,105],["it",255,105],["it",239,135],["it",251,140],["it",258,130],["it",217,66],["eng",184,57],["nat",247,25],["it",280,0],["nat",250,25],["nat",233,50],["nat",221,50],["nat",234,0],["nat",235,0],["eng",234,0]]' data-cat="Catalog.dc.html">
 <label for="calc-r" class="yu-calc-l">Моя сумма баллов</label>
 <output class="yu-calc-v" for="calc-r" id="calc-v">240</output>
 <input type="range" id="calc-r" min="150" max="310" step="1" value="240">
@@ -157,6 +157,8 @@ const ALL_PROGS = [
 {name:'Инфокоммуникационные технологии и системы связи', inst:'ИРИТ-РтФ', area:'IT', k:'it', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], budget:'66', price:'от 275 000 ₽', score:'217', sy:'2024'},
 {name:'Радиотехника', inst:'ИРИТ-РтФ', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], score:'184', sy:'2024', budget:'57', price:'275 000 ₽'},
 {name:'Прикладная математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'247', budget:'25', price:'275 000 ₽'},
+{name:'Фундаментальная информатика и информационные технологии', inst:'ИЕНиМ', area:'IT', k:'it', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'280'},
+{name:'Прикладные математика и физика', inst:'ФТИ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'250', budget:'25'},
 {name:'Математика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'233', budget:'50', price:'246 000 ₽'},
 {name:'Физика', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'физика, математика, русский', req:["phys", "math", "rus"], ch:[], score:'221', budget:'50', price:'246 000 ₽'},
 {name:'Химия', inst:'ИЕНиМ', area:'Естественные науки', k:'nat', exams:'химия, математика, русский', req:["chem", "math", "rus"], ch:[], score:'234'},
@@ -204,7 +206,7 @@ const sug = st.length ? ALL_PROGS.map(p => ({t:p.name, kind:'Программа'
 const role = (this.state && this.state.role) || 'abit';
 const sets = {
 abit: [
-{t:'Каталог программ', d:'30 программ с фильтром по ЕГЭ и баллам', href:'Catalog.dc.html'},
+{t:'Каталог программ', d:'32 программы с фильтром по ЕГЭ и баллам', href:'Catalog.dc.html'},
 {t:'Как поступить', d:'5 шагов от выбора до зачисления', href:'Admission.dc.html'},
 {t:'Подбор программы', d:'3 вопроса — и список, куда вы проходите', href:'Quiz.dc.html'},
 {t:'Общежития', d:'Адреса, цены и как получить место', href:'Dorms.dc.html'},

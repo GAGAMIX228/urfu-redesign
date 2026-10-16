@@ -14,6 +14,8 @@ EN_FOOT = EN[EN.index('<footer'):EN.index('</footer>') + len('</footer>')]
 EN_LINKS = {'Admission.dc.html': 'AdmissionEn.dc.html', 'Catalog.dc.html': 'CatalogEn.dc.html', 'Main.dc.html': 'MainEn.dc.html'}
 
 PROGRAMS = [
+    ('Фундаментальная информатика и информационные технологии', 'Fundamental Computer Science and Information Technology'),
+    ('Прикладные математика и физика', 'Applied Mathematics and Physics'),
     ('Алгоритмы искусственного интеллекта', 'Artificial Intelligence Algorithms'),
     ('Прикладной искусственный интеллект', 'Applied Artificial Intelligence'),
     ('Интеллектуальные системы в гуманитарной сфере', 'Intelligent Systems in the Humanities'),
