@@ -58,8 +58,8 @@
 <ol style="list-style:none;padding:0;margin:40px 0 0;display:flex;flex-wrap:wrap;gap:12px">
 <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
 <li style="flex:1 1 180px">
-<sc-if value="{{s.on}}" hint-placeholder-val="{{false}}"><button onClick="{{s.pick}}" style="width:100%;text-align:left;border:2px solid var(--blue);background:var(--blue-soft);border-radius:8px;padding:20px;font:inherit;cursor:pointer;color:var(--ink);min-height:120px"><div style="font-family:var(--narrow);font-weight:700;font-size:28px;color:var(--blue)">{{s.n}}</div><div style="font-weight:600;margin-top:8px">{{s.t}}</div></button></sc-if>
-<sc-if value="{{s.off}}" hint-placeholder-val="{{true}}"><button onClick="{{s.pick}}" style="width:100%;text-align:left;border:1px solid var(--line);background:#FFFFFF;border-radius:8px;padding:20px;font:inherit;cursor:pointer;color:var(--ink);min-height:120px"><div style="font-family:var(--narrow);font-weight:700;font-size:28px;color:var(--muted)">{{s.n}}</div><div style="font-weight:600;margin-top:8px">{{s.t}}</div></button></sc-if>
+<sc-if value="{{s.on}}" hint-placeholder-val="{{false}}"><button class="stp stp-on" aria-current="step" onClick="{{s.pick}}"><b>{{s.n}}</b><span>{{s.t}}</span></button></sc-if>
+<sc-if value="{{s.off}}" hint-placeholder-val="{{true}}"><button class="stp" onClick="{{s.pick}}"><b>{{s.n}}</b><span>{{s.t}}</span></button></sc-if>
 </li>
 </sc-for>
 </ol>
@@ -71,11 +71,11 @@
 <div class="main">
 <h2>Key dates</h2><p class="muted" style="font-size:14px;margin-top:8px">Based on the 2026 admission rules — the 2027 dates will be announced in spring.</p>
 <div style="margin-top:24px;display:flex;flex-direction:column">
-<div style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)"><div style="min-width:120px;font-weight:600;color:var(--copper)">20 June</div><div>Applications open</div></div>
-<div style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)"><div style="min-width:120px;font-weight:600;color:var(--copper)">15 July</div><div>Deadline for applicants taking UrFU entrance tests</div></div>
-<div style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)"><div style="min-width:120px;font-weight:600;color:var(--copper)">25 July</div><div>Deadline for state-funded places based on the EGE</div></div>
-<div style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)"><div style="min-width:120px;font-weight:600;color:var(--copper)">Early August</div><div>Enrolment orders for state-funded places</div></div>
-<div style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)"><div style="min-width:120px;font-weight:600;color:var(--copper)">20 August</div><div>Deadline for fee-paying places</div></div>
+<div class="kd"><div class="kd-d">20 June</div><div>Applications open</div></div>
+<div class="kd"><div class="kd-d">15 July</div><div>Deadline for applicants taking UrFU entrance tests</div></div>
+<div class="kd"><div class="kd-d">25 July</div><div>Deadline for state-funded places based on the EGE</div></div>
+<div class="kd"><div class="kd-d">Early August</div><div>Enrolment orders for state-funded places</div></div>
+<div class="kd"><div class="kd-d">20 August</div><div>Deadline for fee-paying places</div></div>
 </div>
 <h2 style="margin-top:56px">FAQ</h2>
 <div style="margin-top:12px">

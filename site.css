@@ -595,3 +595,35 @@ html[class*="vi-c"] .cm-svg rect,html[class*="vi-c"] .cm-svg path{fill:none !imp
 .cm-mini .cm-area{grid-template-columns:minmax(0,1fr);margin-top:0}
 .cm-mini .cm-list{max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (max-width:640px){.cm-mini .cm-list{grid-template-columns:minmax(0,1fr)}}
+/* «Как поступить»: шаги — цветные грани, даты крупно */
+.stp{--c:var(--rhodonite);width:100%;min-height:132px;text-align:left;display:flex;flex-direction:column;gap:10px;padding:18px 18px 16px;border:2px solid var(--line-strong);background:#FFFFFF;color:var(--ink);font:inherit;cursor:pointer;
+  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%);transition:transform .15s ease,border-color .15s ease}
+li:nth-child(5n+2) > .stp{--c:var(--amethyst)}li:nth-child(5n+3) > .stp{--c:#0A7F62}li:nth-child(5n+4) > .stp{--c:#9A5B00}li:nth-child(5n+5) > .stp{--c:var(--ink)}
+.stp b{font-family:var(--narrow);font-size:48px;line-height:.85;color:var(--c)}
+.stp span{font-weight:700;line-height:1.25}
+.stp:hover{border-color:var(--ink);transform:translateY(-3px)}
+.stp-on{background:var(--gold);border:3px solid var(--ink)}
+.stp-on b{color:var(--ink)}
+.stp:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}
+.kd{display:flex;gap:24px;align-items:baseline;padding:18px 0;border-bottom:2px solid var(--line)}
+.kd-d{min-width:170px;font-family:var(--narrow);font-weight:700;font-size:30px;line-height:1;color:var(--rhodonite-d)}
+@media (max-width:640px){.kd{flex-direction:column;gap:4px}.kd-d{min-width:0}}
+.countdown{background-image:radial-gradient(420px 220px at 95% 0%,rgba(224,36,111,.55),transparent 70%),radial-gradient(380px 220px at 0% 100%,rgba(107,43,232,.6),transparent 70%) !important}
+.cd-n{color:var(--gold) !important;font-family:var(--narrow)}
+/* «События»: дата — тёмный камень с золотыми цифрами, слева цветная грань */
+.evc{--c:var(--rhodonite);border-left:8px solid var(--c) !important}
+.evc:nth-child(4n+2){--c:var(--amethyst)}.evc:nth-child(4n+3){--c:var(--malachite)}.evc:nth-child(4n+4){--c:var(--gold)}
+.evc .evd{background:var(--ink) !important;color:#FFFFFF !important;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)}
+.evc .evd b{color:var(--gold) !important;font-family:var(--narrow);font-size:34px !important}
+.evc .evd .muted{color:#CFC8E6 !important}
+.evc .evt{font-family:var(--narrow);font-weight:700;font-size:24px !important;line-height:1.1}
+.ev-old{border-left-color:var(--line-strong) !important}
+/* «Вход»: карточка формы с яркой тенью, боковая панель — светлое золото */
+.lg-card{border:3px solid var(--ink) !important;border-radius:4px !important;box-shadow:10px 10px 0 var(--amethyst) !important}
+.lg-side{background:var(--gold-soft) !important;border:2px solid var(--ink) !important;border-radius:4px !important}
+.lg-proto{background:var(--limestone) !important;border-left:4px solid var(--amethyst)}
+/* страница программы: экзамены — цветные грани */
+.exm{--c:var(--rhodonite);border:0 !important;border-radius:0 !important;background:linear-gradient(135deg,var(--c) 0 64%,color-mix(in srgb,var(--c) 84%,#000) 64%) !important;color:#FFFFFF;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
+.exm:nth-child(3n+2){--c:var(--amethyst)}.exm:nth-child(3n+3){--c:var(--ink)}
+.exm *{color:#FFFFFF !important}
+.exm > div:nth-child(2){font-family:var(--narrow);font-size:26px !important;line-height:1.05}

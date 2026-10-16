@@ -61,7 +61,7 @@
 <div class="main">
 <h2>Вступительные испытания</h2>
 <div class="g3" style="margin-top:20px">
-<sc-for list="{{exams}}" as="e" hint-placeholder-count="3"><div class="card"><div class="muted" style="font-size:14px">{{e.kind}}</div><div style="font-weight:600;font-size:18px;margin-top:4px">{{e.t}}</div><sc-if value="{{e.hasMin}}" hint-placeholder-val="{{false}}"><div class="muted" style="font-size:14px;margin-top:8px">Минимум: {{e.min}}</div></sc-if></div></sc-for>
+<sc-for list="{{exams}}" as="e" hint-placeholder-count="3"><div class="card exm"><div class="muted" style="font-size:14px">{{e.kind}}</div><div style="font-weight:600;font-size:18px;margin-top:4px">{{e.t}}</div><sc-if value="{{e.hasMin}}" hint-placeholder-val="{{false}}"><div class="muted" style="font-size:14px;margin-top:8px">Минимум: {{e.min}}</div></sc-if></div></sc-for>
 </div>
 
 <sc-if value="{{known}}" hint-placeholder-val="{{true}}"><h2 style="margin-top:56px">Проходной балл на бюджет</h2>

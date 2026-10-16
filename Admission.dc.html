@@ -57,8 +57,8 @@
 <ol style="list-style:none;padding:0;margin:40px 0 0;display:flex;flex-wrap:wrap;gap:12px">
 <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
 <li style="flex:1 1 180px">
-<sc-if value="{{s.on}}" hint-placeholder-val="{{false}}"><button onClick="{{s.pick}}" style="width:100%;text-align:left;border:2px solid var(--blue);background:var(--blue-soft);border-radius:8px;padding:20px;font:inherit;cursor:pointer;color:var(--ink);min-height:120px"><div style="font-family:var(--narrow);font-weight:700;font-size:28px;color:var(--blue)">{{s.n}}</div><div style="font-weight:600;margin-top:8px">{{s.t}}</div></button></sc-if>
-<sc-if value="{{s.off}}" hint-placeholder-val="{{true}}"><button onClick="{{s.pick}}" style="width:100%;text-align:left;border:1px solid var(--line);background:#FFFFFF;border-radius:8px;padding:20px;font:inherit;cursor:pointer;color:var(--ink);min-height:120px"><div style="font-family:var(--narrow);font-weight:700;font-size:28px;color:var(--muted)">{{s.n}}</div><div style="font-weight:600;margin-top:8px">{{s.t}}</div></button></sc-if>
+<sc-if value="{{s.on}}" hint-placeholder-val="{{false}}"><button class="stp stp-on" aria-current="step" onClick="{{s.pick}}"><b>{{s.n}}</b><span>{{s.t}}</span></button></sc-if>
+<sc-if value="{{s.off}}" hint-placeholder-val="{{true}}"><button class="stp" onClick="{{s.pick}}"><b>{{s.n}}</b><span>{{s.t}}</span></button></sc-if>
 </li>
 </sc-for>
 </ol>
@@ -70,11 +70,11 @@
 <div class="main">
 <h2>Ключевые даты</h2><p class="muted" style="font-size:14px;margin-top:8px">По правилам приёма 2026 года — даты 2027 года появятся весной.</p>
 <div style="margin-top:24px;display:flex;flex-direction:column">
-<div style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)"><div style="min-width:120px;font-weight:600;color:var(--copper)">20 июня</div><div>Начало приёма документов</div></div>
-<div style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)"><div style="min-width:120px;font-weight:600;color:var(--copper)">15 июля</div><div>Окончание приёма для поступающих с внутренними испытаниями</div></div>
-<div style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)"><div style="min-width:120px;font-weight:600;color:var(--copper)">25 июля</div><div>Окончание приёма на бюджет по результатам ЕГЭ</div></div>
-<div style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)"><div style="min-width:120px;font-weight:600;color:var(--copper)">Начало августа</div><div>Приказы о зачислении на бюджет</div></div>
-<div style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)"><div style="min-width:120px;font-weight:600;color:var(--copper)">20 августа</div><div>Окончание приёма на договор</div></div>
+<div class="kd"><div class="kd-d">20 июня</div><div>Начало приёма документов</div></div>
+<div class="kd"><div class="kd-d">15 июля</div><div>Окончание приёма для поступающих с внутренними испытаниями</div></div>
+<div class="kd"><div class="kd-d">25 июля</div><div>Окончание приёма на бюджет по результатам ЕГЭ</div></div>
+<div class="kd"><div class="kd-d">Начало августа</div><div>Приказы о зачислении на бюджет</div></div>
+<div class="kd"><div class="kd-d">20 августа</div><div>Окончание приёма на договор</div></div>
 </div>
 <h2 style="margin-top:56px">Частые вопросы</h2>
 <div style="margin-top:12px">
