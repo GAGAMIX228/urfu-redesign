@@ -21,3 +21,4 @@
 | shkolniki.webp | urfu.ru |
 | studenty.webp | urfu.ru |
 | volontery-2026.webp | urfu.ru |
+| dvorec-vodnyh-vidov-sporta.webp | Ricco Baroni, Wikimedia Commons, CC0 (File:Water sports palace (Yekaterinburg).jpg) |
