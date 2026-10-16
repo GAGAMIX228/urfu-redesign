@@ -48,7 +48,7 @@
 <sc-if value="{{v.off}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{v.pick}}">{{v.label}}</button></sc-if>
 </sc-for>
 </div>
-<p class="muted" style="font-size:13px;margin-top:8px;line-height:1.45">After school you can apply for a Bachelor's (usually 4 years) or a Specialist degree (5–6 years). A Master's comes after a Bachelor's.</p></div>
+<p class="muted" style="font-size:13px;margin-top:8px;line-height:1.45">The catalogue lists Bachelor's programmes: you apply after school, study usually takes 4 years.</p></div>
 <fieldset style="border:0;padding:0;margin:0"><legend style="font-weight:600;margin-bottom:10px;padding:0">My EGE subjects</legend>
 <div style="display:flex;flex-direction:column;gap:4px">
 <sc-for list="{{subjects}}" as="sj" hint-placeholder-count="10">
@@ -168,7 +168,7 @@ const NAME = {}; SUBJ.forEach(([k, n]) => { NAME[k] = n; });
 const ACC = {math:'mathematics', inf:'computer science', phys:'physics', chem:'chemistry', bio:'biology', soc:'social studies', hist:'history', lit:'literature', lang:'a foreign language', rus:'Russian'};
 const missing = p => { const m = p.req.filter(r => !sel[r]); p.ch.forEach(g => { if (!g.some(x => sel[x])) m.push(g[0]); }); return m; };
 const areas = [['all','All'],['it','IT'],['eng','Engineering'],['nat','Natural sciences'],['hum','Humanities'],['eco','Economics']];
-const levels = [['bach','Bachelor'],['spec','Specialist'],['mag','Master']];
+const levels = [['bach','Bachelor']];
 const st = stems(q);
 const myN = parseInt(my, 10);
 const hasMy = !isNaN(myN) && myN > 0;

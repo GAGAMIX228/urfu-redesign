@@ -47,7 +47,7 @@
 <sc-if value="{{v.off}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{v.pick}}">{{v.label}}</button></sc-if>
 </sc-for>
 </div>
-<p class="muted" style="font-size:13px;margin-top:8px;line-height:1.45">После школы — бакалавриат (обычно 4 года) или специалитет (5–6 лет). Магистратура — следующая ступень после бакалавриата.</p></div>
+<p class="muted" style="font-size:13px;margin-top:8px;line-height:1.45">В каталоге — программы бакалавриата: поступают после школы, учатся обычно 4 года.</p></div>
 <fieldset style="border:0;padding:0;margin:0"><legend style="font-weight:600;margin-bottom:10px;padding:0">Мои предметы ЕГЭ</legend>
 <div style="display:flex;flex-direction:column;gap:4px">
 <sc-for list="{{subjects}}" as="sj" hint-placeholder-count="10">
@@ -167,7 +167,7 @@ const NAME = {}; SUBJ.forEach(([k, n]) => { NAME[k] = n; });
 const ACC = {math:'математику', inf:'информатику', phys:'физику', chem:'химию', bio:'биологию', soc:'обществознание', hist:'историю', lit:'литературу', lang:'иностранный язык', rus:'русский язык'};
 const missing = p => { const m = p.req.filter(r => !sel[r]); p.ch.forEach(g => { if (!g.some(x => sel[x])) m.push(g[0]); }); return m; };
 const areas = [['all','Все'],['it','IT'],['eng','Инженерия'],['nat','Естественные науки'],['hum','Гуманитарные'],['eco','Экономика']];
-const levels = [['bach','Бакалавриат'],['spec','Специалитет'],['mag','Магистратура']];
+const levels = [['bach','Бакалавриат']];
 const st = stems(q);
 const myN = parseInt(my, 10);
 const hasMy = !isNaN(myN) && myN > 0;

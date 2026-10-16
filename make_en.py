@@ -55,7 +55,7 @@ CATALOG = [
      'Tick your Unified State Exam (EGE) subjects and enter your score — we will show where you can apply. International applicants may take UrFU entrance tests instead of the EGE.'),
     (' <a href="Quiz.dc.html">Подбор за 3 вопроса</a>', ''),
     ('Специалитет и магистратура открываются тем же каталогом — с другими фильтрами.', "Specialist and Master's programmes use the same catalogue with other filters."),
-    ('После школы — бакалавриат (обычно 4 года) или специалитет (5–6 лет). Магистратура — следующая ступень после бакалавриата.', "After school you can apply for a Bachelor's (usually 4 years) or a Specialist degree (5–6 years). A Master's comes after a Bachelor's."),
+    ('В каталоге — программы бакалавриата: поступают после школы, учатся обычно 4 года.', "The catalogue lists Bachelor's programmes: you apply after school, study usually takes 4 years."),
     ('Отметьте ещё один предмет, смените область или сбросьте фильтры.', 'Tick another subject, change the field or reset the filters.'),
     ('С этими предметами программ не нашлось', 'No programmes match these subjects'),
     ('В прототипе показан бакалавриат', "The prototype shows Bachelor's programmes"),

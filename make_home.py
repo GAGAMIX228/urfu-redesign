@@ -10,7 +10,7 @@ T = {
  'ru': dict(
   file='Main.dc.html',
   h1='Что вам нужно в УрФУ?',
-  lead='Программы, расписание, общежития, люди и события — найдём за пару секунд.',
+  lead='Программы, расписание, общежития и события — найдём за пару секунд.',
   search_l='Поиск по сайту', ph='Например: общежитие или ИИ…', find='Найти', sug_l='Подсказки',
   none='Ничего не нашлось. Попробуйте <a href="Quiz.dc.html">подбор программы</a>, <a href="Schedule.dc.html">расписание</a> или <a href="Dorms.dc.html">общежития</a>.',
   all_res='Все результаты поиска',
@@ -38,7 +38,7 @@ T = {
  'en': dict(
   file='MainEn.dc.html',
   h1='What do you need at UrFU?',
-  lead='Programmes, timetable, housing, people and events — found in seconds.',
+  lead='Programmes, timetable, housing and events — found in seconds.',
   search_l='Search the site', ph='For example: housing or AI…', find='Search', sug_l='Suggestions',
   none='Nothing found. Try the <a href="CatalogEn.dc.html">programme catalogue</a>, <a href="Schedule.dc.html">timetable</a> or <a href="Dorms.dc.html">housing</a>.',
   all_res='All search results',
