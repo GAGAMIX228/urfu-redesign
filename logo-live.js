@@ -25,8 +25,9 @@
       var e = document.createElementNS(NS, 'stop'); e.setAttribute('offset', st[0]); e.setAttribute('stop-color', '#FFFFFF'); e.setAttribute('stop-opacity', String(st[1])); g.appendChild(e);
     });
     defs.appendChild(g);
-    var over = path.cloneNode(false); over.setAttribute('fill', 'url(#' + id + ')'); over.setAttribute('class', 'll-shine');
-    svg.appendChild(over);
+    /* блик по всем частям ленты */
+    var overs = [].map.call(svg.querySelectorAll('path:not(.ll-shine)'), function (p) { var o = p.cloneNode(false); o.setAttribute('fill', 'url(#' + id + ')'); o.setAttribute('class', 'll-shine'); svg.appendChild(o); return o; });
+    var over = { remove: function () { overs.forEach(function (o) { o.remove(); }); } };
     var t0 = null;
     function step(t) {
       if (t0 === null) t0 = t;
@@ -65,7 +66,7 @@
     requestAnimationFrame(step);
   }
   function hook() {
-    document.querySelectorAll('.phead svg[viewBox="0 0 35 62"]:not(.mark), .hero svg[viewBox="0 0 35 62"]:not(.mark)').forEach(function (s) { loop(s); });
+    document.querySelectorAll('.phead svg[viewBox="10 6 82 94"]:not(.mark), .hero svg[viewBox="10 6 82 94"]:not(.mark)').forEach(function (s) { loop(s); });
     /* вариант А: знак в шапке переливается постоянно, чуть сильнее, чем большой — он маленький */
     if (MODE === 'a') { var h = document.querySelector('.hd .brand svg'); if (h) loop(h, 75, 6000); }
   }

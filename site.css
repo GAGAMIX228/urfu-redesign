@@ -627,3 +627,5 @@ li:nth-child(5n+2) > .stp{--c:var(--amethyst)}li:nth-child(5n+3) > .stp{--c:#0A7
 .exm:nth-child(3n+2){--c:var(--amethyst)}.exm:nth-child(3n+3){--c:var(--ink)}
 .exm *{color:#FFFFFF !important}
 .exm > div:nth-child(2){font-family:var(--narrow);font-size:26px !important;line-height:1.05}
+/* новый знак шире старого: на самых узких телефонах — чуть меньше */
+@media (max-width:360px){.hd .brand .mark{width:32px;height:37px}}
