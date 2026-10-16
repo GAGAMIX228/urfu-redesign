@@ -1,7 +1,7 @@
 """Рисует карты двух кампусов УрФУ (SVG) по данным OpenStreetMap и вставляет блок «Карта кампусов» в Dorms.dc.html."""
 import json, math, os, re, html
 HERE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'osm')
-SITE = r'C:\Users\Admin\urfu-redesign'
+SITE = os.path.dirname(os.path.abspath(__file__))
 NOM = json.load(open(os.path.join(HERE, 'points.json'), encoding='utf-8'))
 
 # категории: ключ, подпись, цвет пина, цвет текста номера
