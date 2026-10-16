@@ -591,3 +591,7 @@ html[class*="vi-c"] .tabbar{background:var(--vi-bg) !important}
 .cm-ad{display:block;font-size:14px;color:var(--muted);margin-top:2px}
 @media (max-width:900px){.cm-area{grid-template-columns:minmax(0,1fr)}.cm-list{max-height:none}}
 html[class*="vi-c"] .cm-svg rect,html[class*="vi-c"] .cm-svg path{fill:none !important;stroke:var(--vi-fg) !important;stroke-width:1px !important}
+/* карта на «Контактах»: карта сверху, список под ней в две колонки */
+.cm-mini .cm-area{grid-template-columns:minmax(0,1fr);margin-top:0}
+.cm-mini .cm-list{max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:640px){.cm-mini .cm-list{grid-template-columns:minmax(0,1fr)}}

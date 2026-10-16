@@ -64,7 +64,7 @@ def cen(g):
 ROADW = {'primary': 15, 'secondary': 12, 'tertiary': 10, 'residential': 7, 'unclassified': 7, 'living_street': 6, 'pedestrian': 6, 'service': 4}
 
 
-def build(key):
+def build(key, only=None):
     A = AREAS[key]
     d = json.load(open(os.path.join(HERE, key + '.json'), encoding='utf-8'))
     P, H = proj(A['bbox'])
@@ -72,6 +72,7 @@ def build(key):
     # найти координаты точек
     pts = []
     for cat, name, addr, look in A['pts']:
+        if only and cat not in only: continue
         ll = None
         if look.startswith('@'):
             ll = NOM[look[1:]]
@@ -164,4 +165,27 @@ def main():
     print('ok', {k: (len(v[0]) // 1024, v[2]) for k, v in parts.items()})
 
 
+def contacts():
+    """Карта учебных корпусов и медсанчасти для страницы «Контакты и карта» (вместо старой схемы)."""
+    svg, items, n = build('vtuz', only=('study', 'med'))
+    svg = svg.replace('Карта: Втузгородок.', 'Карта учебных корпусов во Втузгородке.')
+    block = f'''<!-- cmap -->
+<div class="cm cm-mini"><div class="cm-area" data-area="vtuz"><div class="cm-map">{svg}</div><ol class="cm-list">{items}</ol></div>
+<p class="muted" style="font-size:13px;margin-top:10px">Карта — по данным OpenStreetMap (© участники OpenStreetMap, ODbL). Общежития, спорт и новый кампус в Новокольцовском — на странице <a href="Dorms.dc.html">«Кампус и общежития»</a>.</p></div>
+<!-- /cmap -->
+'''
+    f = os.path.join(SITE, 'Contacts.dc.html')
+    s = open(f, encoding='utf-8').read()
+    if '<!-- cmap -->' in s:
+        s = re.sub(r'<!-- cmap -->.*?<!-- /cmap -->\n', block, s, flags=re.S)
+    else:
+        a = s.index('<div class="cmap"'); b = s.index('</p>', s.index('Схема без масштаба')) + 4
+        s = s[:a] + block + s[b:].lstrip('\n')
+    if 'campus-map.js' not in s:
+        s = s.replace('<script src="site.js"></script>', '<script src="site.js"></script>\n<script src="campus-map.js"></script>', 1)
+    open(f, 'w', encoding='utf-8', newline='').write(s)
+    print('ok contacts', n)
+
+
 main()
+contacts()
