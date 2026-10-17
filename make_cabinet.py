@@ -180,7 +180,7 @@ CSS = '''
 .cab-links a{display:flex;flex-direction:column;padding:14px 16px;border-radius:14px;border:2px solid var(--limestone);text-decoration:none;color:var(--ink)}
 .cab-links a:hover{border-color:var(--amethyst)}
 .cab-links span{font-size:14px;color:var(--muted)}
-@media (max-width:900px){.cab{grid-template-columns:1fr}}
+@media (max-width:900px){.cab{grid-template-columns:minmax(0,1fr)}}
 '''
 
 
