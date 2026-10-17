@@ -167,13 +167,13 @@ const stems = q => q.toLowerCase().split(/[^a-zа-яё0-9]+/).filter(w => w.leng
 const matches = (text, q) => { const st = stems(q); if (!st.length) return true; const t = text.toLowerCase(); return st.some(x => t.includes(x)); };
 
 const s = this.state || {};
-let urlP = {}; try { const u = new URLSearchParams(location.search); urlP = { my: (u.get('my') || '').replace(/[^0-9]/g, '').slice(0, 3), area: u.get('area') || '' }; } catch (e) {}
+let urlP = {}; try { const u = new URLSearchParams(location.search); urlP = { my: (u.get('my') || '').replace(/[^0-9]/g, '').slice(0, 3), area: u.get('area') || '', cmp: u.get('cmp') || '' }; } catch (e) {}
 const area = s.area || (['it','eng','nat','hum','eco'].includes(urlP.area) ? urlP.area : 'all');
 const level = s.level || 'bach';
 const q = s.q || '';
 const my = s.my !== undefined ? s.my : (urlP.my || '');
 const sel = s.sel || { rus: true, math: true, inf: true };
-const cmp = s.cmp || [];
+const cmp = s.cmp || (ALL_PROGS.some(x => x.name === urlP.cmp) ? [urlP.cmp] : []);
 const full = cmp.length >= 3;
 const togg = (name) => { const has = cmp.includes(name); const next = has ? cmp.filter(x => x !== name) : (full ? cmp : cmp.concat(name)); this.setState({ cmp: next, show: next.length ? s.show : false }); };
 const SUBJ = [['rus','Русский язык'],['math','Математика'],['inf','Информатика'],['phys','Физика'],['chem','Химия'],['bio','Биология'],['soc','Обществознание'],['hist','История'],['lit','Литература'],['lang','Иностранный язык']];

@@ -53,6 +53,33 @@ body{padding:0;background:var(--bg)}
 .sg-ph .sg-field{min-height:44px}
 .sg-ph .sg-field select,.sg-ph .sg-field input{font-size:16px}
 .sg-ph .sg-row .btn{min-height:44px}
+.wk-view{display:inline-flex;border:2px solid var(--limestone);border-radius:14px;padding:3px;background:#FFFFFF}
+.wk-view button{min-height:40px;padding:0 16px;border:0;border-radius:10px;background:transparent;font:inherit;font-weight:600;color:var(--ink);cursor:pointer}
+.wk-view button[aria-pressed="true"]{background:var(--ink);color:#FFFFFF}
+.wk-view button:focus-visible,.dv-d:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}
+.wk-share{min-height:48px}
+.dv{margin-top:20px;max-width:820px}
+.dv-days{display:flex;gap:8px;flex-wrap:wrap}
+.dv-d{display:flex;flex-direction:column;align-items:center;min-width:64px;padding:8px 10px;border:2px solid var(--limestone);border-radius:14px;background:#FFFFFF;font:inherit;color:var(--ink);cursor:pointer}
+.dv-d span{font-size:14px;color:var(--muted)}
+.dv-d[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#FFFFFF}
+.dv-d[aria-pressed="true"] span{color:#FFFFFF}
+.dv-h{font-family:var(--narrow);font-size:30px;margin-top:24px}
+.dv-free{margin-top:16px;padding:24px;border-radius:16px;background:var(--limestone);font-size:18px}
+.dv-list{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.dv-p{display:flex;gap:20px;align-items:stretch;padding:18px 20px;border-radius:16px;background:#FFFFFF;border:1px solid var(--line);border-left:6px solid var(--c,var(--a3))}
+.dv-p.k-lec{--c:var(--a3)}.dv-p.k-pr{--c:var(--a1)}.dv-p.k-lab{--c:var(--a2)}.dv-p.k-sem{--c:var(--a4)}
+.dv-p.is-now{box-shadow:0 0 0 3px var(--c)}
+.dv-tm{display:flex;flex-direction:column;min-width:64px}
+.dv-tm b{font-family:var(--narrow);font-size:22px}
+.dv-tm span{color:var(--muted);font-size:14px}
+.dv-b{display:flex;flex-direction:column;gap:2px}
+.dv-b b{font-size:18px}
+.dv-b small{color:var(--muted);font-size:14px}
+.dv-now,.dv-next{align-self:flex-start;font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px;margin-bottom:4px}
+.dv-now{background:var(--ink);color:#FFFFFF}
+.dv-next{background:var(--limestone);color:var(--ink)}
+.dv-gap{margin-top:12px}
 .wk-nav{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:32px}
 .wk-btn{width:48px;height:48px;border-radius:14px;border:2px solid var(--limestone);background:#FFFFFF;color:var(--ink);font:inherit;font-size:20px;font-weight:700;cursor:pointer}
 .wk-btn:hover{border-color:var(--amethyst)}
@@ -113,8 +140,9 @@ body{padding:0;background:var(--bg)}
 </div>
 </section>
 <div class="wrap" style="padding-bottom:72px">
-<div class="wk-nav" role="group" aria-label="Неделя"><button type="button" class="wk-btn" onClick="{{prevW}}" aria-label="Предыдущая неделя">←</button><div class="wk-now" aria-live="polite"><b>{{wkWhen}}</b><span>{{wkShort}}</span></div><button type="button" class="wk-btn" onClick="{{nextW}}" aria-label="Следующая неделя">→</button><sc-if value="{{notNow}}" hint-placeholder-val="{{false}}"><button type="button" class="btn2 wk-today" onClick="{{thisW}}">К текущей неделе</button></sc-if><button type="button" class="btn2 wk-ics" onClick="{{ics}}">Добавить в календарь телефона</button></div>
-<div class="week">
+<div class="wk-nav" role="group" aria-label="Неделя"><button type="button" class="wk-btn" onClick="{{prevW}}" aria-label="Предыдущая неделя">←</button><div class="wk-now" aria-live="polite"><b>{{wkWhen}}</b><span>{{wkShort}}</span></div><button type="button" class="wk-btn" onClick="{{nextW}}" aria-label="Следующая неделя">→</button><sc-if value="{{notNow}}" hint-placeholder-val="{{false}}"><button type="button" class="btn2 wk-today" onClick="{{thisW}}">К текущей неделе</button></sc-if><div class="wk-view" role="group" aria-label="Вид"><button type="button" aria-pressed="{{isWeek}}" onClick="{{toWeek}}">Неделя</button><button type="button" aria-pressed="{{isDay}}" onClick="{{toDay}}">День</button></div><button type="button" class="btn2 wk-ics" onClick="{{ics}}">Добавить в календарь телефона</button><button type="button" class="btn2 wk-share" data-share="{{shareQ}}">Поделиться</button></div>
+<sc-if value="{{isDay}}" hint-placeholder-val="{{false}}"><div class="dv"><div class="dv-days" role="group" aria-label="День недели"><sc-for list="{{days}}" as="x" hint-placeholder-count="6"><button type="button" class="dv-d" aria-pressed="{{x.on}}" onClick="{{x.pick}}"><b>{{x.w}}</b><span>{{x.n}}</span></button></sc-for></div><h2 class="dv-h">{{dayFull}}</h2><sc-if value="{{empty}}" hint-placeholder-val="{{false}}"><div class="dv-free">Пар нет — свободный день.</div></sc-if><ol class="dv-list"><sc-for list="{{pairsX}}" as="p" hint-placeholder-count="3"><li class="{{p.cls}}"><div class="dv-tm"><b>{{p.from}}</b><span>{{p.to}}</span></div><div class="dv-b"><sc-if value="{{p.now}}" hint-placeholder-val="{{false}}"><span class="dv-now">Идёт сейчас</span></sc-if><sc-if value="{{p.next}}" hint-placeholder-val="{{false}}"><span class="dv-next">{{p.nextT}}</span></sc-if><b>{{p.t}}</b><small>{{p.kind}} · {{p.n}}-я пара</small></div></li></sc-for></ol><sc-if value="{{hasGap}}" hint-placeholder-val="{{false}}"><p class="muted dv-gap">{{gapT}}</p></sc-if></div></sc-if>
+<sc-if value="{{isWeek}}" hint-placeholder-val="{{true}}"><div class="week">
 <sc-for list="{{week}}" as="w" hint-placeholder-count="6">
 <section class="{{w.cls}}" aria-label="{{w.full}}">
 <div class="wday-h">{{w.w}}<span>{{w.n}}</span></div>
@@ -126,7 +154,7 @@ body{padding:0;background:var(--bg)}
 </div>
 </section>
 </sc-for>
-</div>
+</div></sc-if>
 <div class="wlegend" aria-label="Обозначения"><span><i style="--c:var(--a3)"></i>Лекция</span><span><i style="--c:var(--a1)"></i>Практика</span><span><i style="--c:var(--a2)"></i>Лабораторная</span><span><i style="--c:var(--a4)"></i>Семинар</span></div>
 <p class="muted" style="margin-top:12px;font-size:14px">{{note}} На телефоне эта страница открывается как экран приложения.</p>
 </div>
@@ -211,6 +239,14 @@ const ps = plan[k].map(([i, t, kind]) => ({ from: T[i][0], to: T[i][1], t, kind,
 return { w, n, full: full[k], cls: 'wday' + (k === todayIdx ? ' today' : ''), pairs: ps, empty: ps.length === 0 };
 });
 const pairs = plan[d].map(([i, t, kind]) => ({ from: T[i][0], to: T[i][1], t, kind }));
+const view = (this.state && this.state.v) || 'week';
+const nowMin = now.getHours() * 60 + now.getMinutes(), mm = hm => { const [h, m] = hm.split(':').map(Number); return h * 60 + m; };
+const isToday = d === todayIdx && wd !== 6;
+let nextSet = false;
+const pairsX = plan[d].map(([i, t, kind]) => { const a = mm(T[i][0]), b = mm(T[i][1]); const nowP = isToday && nowMin >= a && nowMin < b; let next = false, nextT = '';
+  if (isToday && !nextSet && nowMin < a) { next = true; nextSet = true; const left = a - nowMin; nextT = 'Через ' + (left >= 60 ? Math.floor(left / 60) + ' ч ' : '') + (left % 60) + ' мин'; }
+  return { from: T[i][0], to: T[i][1], t, kind, n: i + 1, now: nowP, next, nextT, cls: 'dv-p ' + KC[kind] + (nowP ? ' is-now' : '') }; });
+const gaps = []; for (let j = 1; j < plan[d].length; j++) { const gp = mm(T[plan[d][j][0]][0]) - mm(T[plan[d][j - 1][0]][1]); if (gp >= 40) gaps.push(gp); }
 const inSem = wkNo >= 1 && wkNo <= 22 && semStart <= mon;
 const parity = inSem ? (wkNo % 2 ? 'нечётная' : 'чётная') : '';
 // выгрузка недели в календарь телефона (.ics); Екатеринбург — UTC+5
@@ -233,6 +269,9 @@ prevW: () => this.setState({ w: off - 1, d: 0 }), nextW: () => this.setState({ w
 days: days.map(([w, n], k) => ({ w, n, on: k === d, off: k !== d, pick: () => this.setState({ d: k }) })),
 pairs,
 week,
+isWeek: view === 'week', isDay: view === 'day', toWeek: () => this.setState({ v: 'week' }), toDay: () => this.setState({ v: 'day' }),
+dayFull: full[d] + ', ' + dm(dt(d)), pairsX, hasGap: gaps.length > 0, gapT: gaps.length ? 'Большой перерыв: ' + gaps[0] + ' мин — успеете пообедать.' : '',
+shareQ: g ? '?g=' + encodeURIComponent(g) : '',
 empty: pairs.length === 0
 };
 }

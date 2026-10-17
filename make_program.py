@@ -163,7 +163,7 @@ return {
   deep: !!X.deep, noDeep: !X.deep, linkBox: !!PAGE[P.name] && !X.deep,
   hasSkills: !!X.skills, skills: (X.skills || []).map(([t, d]) => ({ t, d })), jobs: X.jobs || [],
   hasLink: !!PAGE[P.name], link: PAGE[P.name] ? 'https://programs.edu.urfu.ru/ru/' + PAGE[P.name] + '/' : '',
-  similar, cmpHref: 'Catalog.dc.html?cmp=' + encodeURIComponent(P.name) + '#cmp-h',
+  similar, cmpHref: 'Catalog.dc.html?cmp=' + encodeURIComponent(P.name) + '',
   calcLead: known ? 'Сравните свою сумму с проходным баллом ' + P.sy + ' года.' : 'Введите сумму баллов ЕГЭ — подскажем, что делать дальше.',
   my, has, resT, resD, resCls, onMy: (e) => this.setState({ my: e.target.value })
 };
