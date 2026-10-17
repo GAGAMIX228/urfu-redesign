@@ -629,3 +629,13 @@ li:nth-child(5n+2) > .stp{--c:var(--amethyst)}li:nth-child(5n+3) > .stp{--c:#0A7
 .exm > div:nth-child(2){font-family:var(--narrow);font-size:26px !important;line-height:1.05}
 /* новый знак шире старого: на самых узких телефонах — чуть меньше */
 @media (max-width:360px){.hd .brand .mark{width:32px;height:37px}}
+
+/* таблица цен общежитий */
+.dp-wrap{margin-top:20px;overflow-x:auto;border-radius:16px;border:1px solid var(--limestone)}
+.dp{width:100%;min-width:520px;font-size:16px;background:#fff}
+.dp th,.dp td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--limestone);vertical-align:top}
+.dp thead th{background:var(--ink);color:#fff;font-weight:600;font-size:14px}
+.dp tbody th{font-weight:600}
+.dp tbody tr:last-child>*{border-bottom:0}
+.dp td:last-child{white-space:nowrap}
+.dp-wrap:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}

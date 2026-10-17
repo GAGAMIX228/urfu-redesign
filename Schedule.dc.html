@@ -35,6 +35,18 @@ body{padding:0;background:var(--bg)}
 .phone{display:none !important}
 .desk{display:block}
 }
+.sg-form{margin-top:24px;max-width:560px}
+.sg-form label{display:block;color:#FFFFFF;font-weight:600;margin-bottom:8px}
+.sg-row{display:flex;gap:8px}
+.sg-row input{flex:1;min-width:0;min-height:48px;padding:0 16px;border-radius:12px;border:2px solid transparent;font:inherit;font-size:17px;background:#FFFFFF;color:var(--ink)}
+.sg-row input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.sg-row input[aria-invalid="true"]{border-color:#FF8FB4}
+.sg-row .btn{min-height:48px;white-space:nowrap}
+.sg-hint{color:var(--on-dark-muted);font-size:14px;margin-top:8px}
+.sg-err{color:#FFD0E0;font-size:15px;font-weight:600;margin-top:8px}
+.sg-ph{margin-top:14px}
+.sg-ph .sg-row input{min-height:44px;font-size:16px}
+.sg-ph .sg-row .btn{min-height:44px}
 .week{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:32px}
 .wday{border:1px solid var(--line);border-radius:10px;background:#FFFFFF;display:flex;flex-direction:column;min-height:320px;overflow:hidden}
 .wday-h{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;font-weight:600;background:var(--bg-soft)}
@@ -72,7 +84,13 @@ body{padding:0;background:var(--bg)}
 <div class="wrap" style="padding-bottom:56px">
 <div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="Schedule.dc.html">Обучение</a> / Расписание</div>
 <h1 class="big" style="font-size:48px;margin-top:16px;color:#FFFFFF">Расписание</h1>
-<p style="color:var(--on-dark-muted);font-size:18px;margin-top:12px">Пример расписания первого курса · неделя {{wkRange}} · {{wkNo}}</p>
+<p style="color:var(--on-dark-muted);font-size:18px;margin-top:12px">{{sub}} · неделя {{wkRange}} · {{wkNo}}</p>
+<form class="sg-form" action="Schedule.dc.html" method="get" role="search" aria-label="Расписание группы" novalidate>
+<label for="sg-in">Номер группы</label>
+<div class="sg-row"><input id="sg-in" name="g" value="{{g}}" placeholder="например, РИ-140944" autocomplete="off" spellcheck="false" aria-describedby="sg-hint sg-err"><button class="btn" type="submit">Показать</button></div>
+<p id="sg-hint" class="sg-hint">Номер есть в студенческом билете и в личном кабинете. Сайт запомнит его в этом браузере.</p>
+<p id="sg-err" class="sg-err" role="alert" hidden></p>
+</form>
 </div>
 </section>
 <div class="wrap" style="padding-bottom:72px">
@@ -90,7 +108,7 @@ body{padding:0;background:var(--bg)}
 </sc-for>
 </div>
 <div class="wlegend" aria-label="Обозначения"><span><i style="--c:var(--a3)"></i>Лекция</span><span><i style="--c:var(--a1)"></i>Практика</span><span><i style="--c:var(--a2)"></i>Лабораторная</span><span><i style="--c:var(--a4)"></i>Семинар</span></div>
-<p class="muted" style="margin-top:12px;font-size:14px">Это пример: в настоящем расписании здесь будут аудитории и преподаватели вашей группы. На телефоне эта страница открывается как экран приложения.</p>
+<p class="muted" style="margin-top:12px;font-size:14px">{{note}} На телефоне эта страница открывается как экран приложения.</p>
 </div>
 </main><footer class="ft"><div class="wrap"><div class="ft-grid">
 <div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="40" height="46" aria-hidden="true" viewBox="10 6 82 94"><defs><linearGradient id="ulA2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B5CFF"></stop><stop offset="1" stop-color="#5A1FD1"></stop></linearGradient><linearGradient id="ulB2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4D8D"></stop><stop offset="1" stop-color="#C2185B"></stop></linearGradient><linearGradient id="ulF2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"></stop><stop offset="1" stop-color="#000" stop-opacity="0"></stop></linearGradient></defs><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="url(#ulA2)"></path><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="url(#ulB2)"></path><path d="M46 70 L60 56 L54 72 Z" fill="url(#ulF2)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого<br>Президента России<br>Б.Н. Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p><p style="margin-top:12px">Контакт-центр, бесплатно по России:<br><a href="tel:88001005044" style="color:#FFFFFF;font-weight:600;font-size:18px">8-800-100-50-44</a><br><a href="mailto:contact@urfu.ru">contact@urfu.ru</a></p></div>
@@ -101,8 +119,13 @@ body{padding:0;background:var(--bg)}
 </div>
 <div class="phone" role="main" aria-label="Расписание" style="background:#F6F7F9;display:flex;flex-direction:column;font-family:'IBM Plex Sans',sans-serif;color:var(--ink)">
 <div class="phone-top" style="color:#FFFFFF;padding:20px 20px 16px">
-<div style="display:flex;justify-content:space-between;align-items:center"><a href="Main.dc.html" aria-label="На главную" style="display:flex;padding:6px 12px 6px 0;margin:-6px 0"><svg width="28" height="32" aria-hidden="true" viewBox="10 6 82 94"><defs><linearGradient id="ulA3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B5CFF"></stop><stop offset="1" stop-color="#5A1FD1"></stop></linearGradient><linearGradient id="ulB3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4D8D"></stop><stop offset="1" stop-color="#C2185B"></stop></linearGradient><linearGradient id="ulF3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"></stop><stop offset="1" stop-color="#000" stop-opacity="0"></stop></linearGradient></defs><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="url(#ulA3)"></path><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="url(#ulB3)"></path><path d="M46 70 L60 56 L54 72 Z" fill="url(#ulF3)"></path></svg></a><span style="font-size:14px;color:var(--on-dark-muted)">Пример: 1 курс</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><a href="Main.dc.html" aria-label="На главную" style="display:flex;padding:6px 12px 6px 0;margin:-6px 0"><svg width="28" height="32" aria-hidden="true" viewBox="10 6 82 94"><defs><linearGradient id="ulA3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B5CFF"></stop><stop offset="1" stop-color="#5A1FD1"></stop></linearGradient><linearGradient id="ulB3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4D8D"></stop><stop offset="1" stop-color="#C2185B"></stop></linearGradient><linearGradient id="ulF3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"></stop><stop offset="1" stop-color="#000" stop-opacity="0"></stop></linearGradient></defs><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="url(#ulA3)"></path><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="url(#ulB3)"></path><path d="M46 70 L60 56 L54 72 Z" fill="url(#ulF3)"></path></svg></a><span style="font-size:14px;color:var(--on-dark-muted)">{{chip}}</span></div>
 <h1 style="font-family:var(--narrow);font-weight:700;font-size:24px;line-height:1.25;margin:16px 0 0;color:#FFFFFF">Расписание</h1>
+<form class="sg-form sg-ph" action="Schedule.dc.html" method="get" role="search" aria-label="Расписание группы" novalidate>
+<label for="sg-in2" class="sr">Номер группы</label>
+<div class="sg-row"><input id="sg-in2" name="g" value="{{g}}" placeholder="Группа, например РИ-140944" autocomplete="off" spellcheck="false" aria-describedby="sg-err2"><button class="btn" type="submit">Найти</button></div>
+<p id="sg-err2" class="sg-err" role="alert" hidden></p>
+</form>
 <div style="display:flex;gap:6px;margin-top:16px">
 <sc-for list="{{days}}" as="d" hint-placeholder-count="6">
 <sc-if value="{{d.on}}" hint-placeholder-val="{{false}}"><button onClick="{{d.pick}}" style="flex:1;min-height:56px;border-radius:6px;border:0;background:#FFFFFF;color:var(--ink);font:inherit;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">{{d.w}}<span style="font-size:12px;font-weight:500">{{d.n}}</span></button></sc-if>
@@ -139,6 +162,10 @@ const todayIdx = wd === 6 ? 0 : wd;
 const dt = k => new Date(mon.getFullYear(), mon.getMonth(), mon.getDate() + k);
 const dm = x => String(x.getDate()).padStart(2, '0') + '.' + String(x.getMonth() + 1).padStart(2, '0');
 const d = (this.state && this.state.d !== undefined) ? this.state.d : todayIdx;
+// группа из адреса ?g= — только буквы, цифры и дефис
+let gSaved = ''; try { gSaved = localStorage.getItem('urfu-group') || ''; } catch (e) {}
+const gRaw = (new URLSearchParams(location.search).get('g') || gSaved).toUpperCase().trim();
+const g = /^[А-ЯЁ]{1,6}-\d{6}$/.test(gRaw) ? gRaw : '';
 const days = ['Пн','Вт','Ср','Чт','Пт','Сб'].map((w, k) => [w, String(dt(k).getDate())]);
 const semStart = new Date(now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1, 8, 1);
 const semMon = new Date(semStart.getFullYear(), 8, 1 - (semStart.getDay() + 6) % 7);
@@ -160,6 +187,8 @@ return { w, n, full: full[k], cls: 'wday' + (k === todayIdx ? ' today' : ''), pa
 });
 const pairs = plan[d].map(([i, t, kind]) => ({ from: T[i][0], to: T[i][1], t, kind }));
 return {
+g, sub: g ? 'Группа ' + g : 'Пример расписания первого курса', chip: g ? g + ' · пример' : 'Пример: 1 курс',
+note: g ? 'Пары показаны для примера: на настоящем сайте здесь будет расписание группы ' + g + ' из системы расписания УрФУ — с аудиториями и преподавателями.' : 'Это пример: введите номер группы, и здесь будет её расписание — с аудиториями и преподавателями.',
 wkRange: dm(mon) + ' — ' + dm(dt(5)), wkNo: (wkNo >= 1 && wkNo <= 22 && now.getMonth() >= 8) ? wkNo + '-я неделя семестра' : 'текущая неделя',
 days: days.map(([w, n], k) => ({ w, n, on: k === d, off: k !== d, pick: () => this.setState({ d: k }) })),
 pairs,
@@ -172,6 +201,7 @@ empty: pairs.length === 0
 </script>
 <script src="dc-lite.js"></script>
 <script src="site.js"></script>
+<script src="schedule-group.js"></script>
 <script src="logo-live.js"></script>
 </body>
 </html>

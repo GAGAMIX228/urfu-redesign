@@ -45,6 +45,24 @@
 .st-changes p{color:var(--muted);margin-top:6px;font-size:15px;line-height:1.55}
 @media (max-width:1000px){.st-grid{grid-template-columns:1fr}.st-arrow{transform:rotate(90deg)}.st-changes{grid-template-columns:1fr}}
 @media (max-width:560px){.st-cards{grid-template-columns:1fr}}
+.au-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.au{border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 22px;background:#FFFFFF;box-shadow:inset 0 4px 0 var(--c,var(--a1))}
+.au b{display:block;font-family:var(--narrow);font-size:44px;line-height:1;color:var(--ink)}
+.au span{display:block;margin-top:8px;font-weight:600;line-height:1.35}
+.au small{display:block;margin-top:6px;color:var(--muted);font-size:14px;line-height:1.5}
+.au-grid .au:nth-child(3n+2){--c:var(--a2)}.au-grid .au:nth-child(3n){--c:var(--a3)}
+.pt-wrap{margin-top:24px;overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-lg)}
+.pt{width:100%;min-width:720px;background:#FFFFFF;font-size:15px;line-height:1.5}
+.pt th,.pt td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.pt thead th{background:var(--ink);color:#FFFFFF;font-size:14px;font-weight:600}
+.pt tbody tr:last-child>*{border-bottom:0}
+.pt tbody th{font-weight:600;width:22%}
+.pt .n{display:inline-block;min-width:34px;padding:2px 10px;margin-right:8px;border-radius:999px;font-weight:700;text-align:center;background:var(--bg-soft);color:var(--ink)}
+.pt .n.good{background:var(--malachite);color:#04261C}
+.pt .n.bad{background:#FFD9E6;color:#8A0F3F}
+.pt-wrap:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}
+@media (max-width:900px){.au-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.au-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -87,6 +105,20 @@
 </div>
 </section>
 
+<section class="wrap sec" id="audit">
+<div class="sec-head"><div><div class="kicker" style="--k:var(--a1)">Исследование</div><h2>Что мешает на urfu.ru сейчас</h2></div></div>
+<p class="muted" style="max-width:780px;margin-top:8px;font-size:17px">Мы разобрали главную страницу urfu.ru по её копии в веб-архиве от 12 октября 2026 года и прошли по ней частые задачи. Все цифры ниже посчитаны по коду страницы, а не на глаз.</p>
+<div class="au-grid">
+<div class="au"><b>419</b><span>ссылок на главной</span><small>206 из них спрятаны в выпадающих меню. В одном меню «Абитуриентам» — 67 ссылок.</small></div>
+<div class="au"><b>22</b><span>пункта меню в двух рядах</span><small>«Все разделы» (8 — для кого) и «Меню» (14 — по устройству университета).</small></div>
+<div class="au"><b>40</b><span>других сайтов УрФУ в ссылках</span><small>115 ссылок с главной уводят на поддомены и внешние сайты — у каждого своё меню.</small></div>
+<div class="au"><b>0</b><span>раз слово «общежитие» на главной</span><small>Есть только «Поселение». Адресов общежитий нет и на самой странице «Поселение».</small></div>
+<div class="au"><b>×5</b><span>одна и та же ссылка</span><small>«Списки поступающих», «Списки зачисленных» и «Спорт» — по 5 раз, «Контакты приёмной комиссии» — 4 раза.</small></div>
+<div class="au"><b>1</b><span>пустой раздел</span><small>В меню «Партнерам»: «Раздел находится в стадии заполнения контентом. Приносим извинения…»</small></div>
+</div>
+<p class="muted" style="margin-top:16px;font-size:14px">Источник: <a href="https://web.archive.org/web/20261012070238/https://urfu.ru/ru/" target="_blank" rel="noopener">копия urfu.ru/ru от 12.10.2026 в веб-архиве<span class="sr"> (откроется в новой вкладке)</span></a>. Внутренние страницы — из того же архива.</p>
+</section>
+
 <section class="wrap sec" id="structure">
 <div class="sec-head"><div><div class="kicker" style="--k:var(--a4)">Структура и навигация</div><h2>Было → стало</h2></div></div>
 <p class="muted" style="max-width:760px;margin-top:8px;font-size:17px">Сейчас на главной urfu.ru 22 пункта меню в двух рядах и 4 разных личных кабинета — меню повторяет устройство университета. Мы собрали сайт вокруг задач человека: 6 разделов, 4 роли на главной и один вход в личный кабинет.</p>
@@ -103,8 +135,25 @@
 <div class="st-changes">
 <div><h3>Убрали из главного меню</h3><p>Эндаумент, Инновации, Устойчивое развитие, Новый кампус, Филиалы — важны, но нужны немногим. Теперь они внутри «Об университете», в одном клике.</p></div>
 <div><h3>Объединили</h3><p>8 вкладок «для кого» → 4 роли на первом экране главной. Творчество и Спорт → «Жизнь в УрФУ». Образование и Институты → «Обучение». Контакты и Обратная связь → один раздел с поиском службы. 4 личных кабинета → один вход.</p></div>
-<div><h3>Добавили</h3><p>Подбор программы за 3 вопроса, расписание в один клик, календарь событий, общежития отдельным разделом, умный поиск с подсказками, отсчёт до приёма документов, английскую версию.</p></div>
+<div><h3>Добавили</h3><p>Подбор программы за 3 вопроса, расписание в один клик с поиском группы, цены общежитий таблицей, календарь событий, общежития отдельным разделом, умный поиск с подсказками, отсчёт до приёма документов, английскую версию.</p></div>
 </div>
+</section>
+<section class="wrap sec" id="paths">
+<div class="sec-head"><div><div class="kicker" style="--k:var(--a3)">Удобство</div><h2>Путь до ответа</h2></div></div>
+<p class="muted" style="max-width:780px;margin-top:8px;font-size:17px">Восемь частых задач. Считаем действия от главной до ответа: открыть меню, нажать ссылку, скачать файл. Где мы не лучше — так и пишем.</p>
+<div class="pt-wrap" role="region" aria-label="Путь до ответа: urfu.ru и новый сайт" tabindex="0"><table class="pt">
+<thead><tr><th scope="col">Задача</th><th scope="col">urfu.ru сейчас</th><th scope="col">Новый сайт</th></tr></thead>
+<tbody>
+<tr><th scope="row">Хватит ли моих баллов на бюджет</th><td><span class="n bad">2</span>Меню «Абитуриентам» → «Калькулятор ЕГЭ» — открывается отдельный сайт calcege.my1.urfu.ru</td><td><span class="n good">0</span>Ползунок баллов прямо на главной: сразу видно, на сколько программ проходишь и сколько там бюджетных мест</td></tr>
+<tr><th scope="row">Когда подавать документы</th><td><span class="n bad">2</span>Меню «Абитуриентам» → «Календарь приема» → таблица</td><td><span class="n good">0</span>На главной: «Приём документов — с 20 июня» и отсчёт дней</td></tr>
+<tr><th scope="row">Сколько стоит обучение</th><td><span class="n bad">3</span>Меню → «Стоимость обучения» → скачать приказ PDF на 16 МБ и найти в нём свою программу</td><td><span class="n good">1</span>«Каталог» — цена за год в карточке каждой программы</td></tr>
+<tr><th scope="row">Адрес общежития</th><td><span class="n bad">—</span>Меню «Студентам» → «Поселение»: порядок заселения и группы ВК, а адресов нет. Они только на отдельном сайте кампуса</td><td><span class="n good">1</span>«Общежития» на первом экране главной → карта и список с адресами</td></tr>
+<tr><th scope="row">Сколько стоит общежитие</th><td><span class="n bad">4</span>Меню → «Поселение» → «Плата за проживание» → скан приказа в PDF, 3 МБ, и таблица тарифов по строкам</td><td><span class="n good">1</span>«Общежития» → таблица: сколько в месяц, вдвоём в комнате</td></tr>
+<tr><th scope="row">Расписание своей группы</th><td><span class="n bad">2</span>Меню «Студентам» → «Расписание занятий» → ввести группу. Личное расписание — только в кабинете, нужен вход</td><td><span class="n good">1</span>«Расписание» на первом экране → номер группы. Сайт запоминает группу — в следующий раз сразу пары</td></tr>
+<tr><th scope="row">Телефон приёмной комиссии</th><td><span class="n">1</span>Значок телефона в шапке → список служб</td><td><span class="n">0</span>Внизу главной, рядом с контакт-центром</td></tr>
+<tr><th scope="row">Версия для слабовидящих</th><td><span class="n">1</span>Значок в шапке → отдельная версия сайта</td><td><span class="n">1</span>Значок «глаз» → панель поверх любой страницы: размер, цвета, картинки, интервал</td></tr>
+</tbody></table></div>
+<p class="muted" style="margin-top:12px;font-size:14px">Цифра — сколько действий нужно от главной страницы, 0 — ответ виден на главной сразу. Пути на urfu.ru пройдены по копиям страниц в веб-архиве: главная — 12.10.2026, внутренние — 2025–2026.</p>
 </section>
 <section class="wrap sec">
 <div class="sec-head"><div><div class="kicker" style="--k:var(--a2)">Фирменный стиль</div><h2>Яркий Урал</h2></div><a class="more" href="Logo.dc.html">Логотип и стиль подробно <span class="arrow">→</span></a></div>
@@ -123,8 +172,10 @@
 <div class="kicker" style="--k:var(--a3)">Результат</div><h2>Результат в цифрах</h2>
 <div style="margin-top:24px;border-top:2px solid var(--ink)">
 <div style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)"><span class="muted">Логика меню</span><b style="text-align:right">оргструктура → задачи</b></div>
-<div style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)"><span class="muted">Кликов до своей программы</span><b class="num" style="text-align:right">4 → 2</b></div>
-<div style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)"><span class="muted">Кликов до расписания</span><b class="num" style="text-align:right">4 → 1</b></div>
+<div style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)"><span class="muted">Ссылок на главной</span><b class="num" style="text-align:right">419 → 88</b></div>
+<div style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)"><span class="muted">Пунктов меню</span><b class="num" style="text-align:right">22 → 6</b></div>
+<div style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)"><span class="muted">Других сайтов в ссылках с главной</span><b class="num" style="text-align:right">40 → 0</b></div>
+<div style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)"><span class="muted">Действий до ответа в 6 частых задачах</span><b class="num" style="text-align:right">15 → 4</b></div>
 </div>
 </div>
 <div class="side">
