@@ -22,6 +22,20 @@
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="logo-live.css">
+<style>
+.ar-top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;margin-bottom:40px;font-size:16px;line-height:1.5}
+.ar-short{background:var(--ink);color:#FFFFFF;border-radius:16px;padding:22px 24px}
+.ar-short h2,.ar-toc h2{font-family:var(--narrow);font-size:22px;margin:0}
+.ar-short ul{margin:12px 0 0;padding-left:20px}
+.ar-short li{margin-top:6px}
+.ar-short li::marker{color:var(--hero-em,#7FD8C1)}
+.ar-toc{border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.ar-toc ol{margin:12px 0 0;padding-left:22px}
+.ar-toc li{margin-top:6px}
+.ar-quote{display:flex;gap:18px;align-items:center;margin-top:24px;padding:20px 24px;border-left:6px solid var(--a2);background:var(--bg-soft-2);border-radius:0 16px 16px 0;font-size:17px;line-height:1.4}
+.ar-quote b{font-family:var(--narrow);font-size:44px;color:var(--a2);white-space:nowrap}
+@media (max-width:760px){.ar-top{grid-template-columns:1fr}.ar-quote{flex-direction:column;align-items:flex-start}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -39,12 +53,27 @@
 </div></header><main id="main" tabindex="-1" style="outline:none"><article>
 <section class="phead"><div class="wrap" style="max-width:860px">
 <div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="News.dc.html">Новости</a> / Поступающим</div>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center"><span class="tag">Поступающим</span><span class="muted" style="font-size:14px">Июль 2026 · 3 минуты чтения</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center"><span class="tag">Поступающим</span><span class="muted" style="font-size:14px">27 июля 2026 · 4 минуты чтения</span></div>
 <h1 class="big" style="font-size:44px;margin-top:20px">Почти 50 тысяч заявлений на бюджет: УрФУ подвёл итоги приёма-2026</h1>
 <p style="font-size:22px;line-height:1.45;margin-top:24px;color:#2B3946">Бюджетный этап приёмной кампании завершён, и интерес к университету заметно вырос: заявлений стало на 7,5 тысячи больше, чем годом раньше.</p>
 </div></section>
 <div class="wrap" style="margin-top:40px"><div class="ph art t1 photo" style="--img:url('photos/glavnyj-korpus-fasad.webp');height:480px;position:relative;overflow:hidden"></div></div>
 <div class="wrap" style="max-width:860px;margin-top:40px;font-size:19px;line-height:1.7">
+<div class="ar-top">
+<aside class="ar-short" aria-labelledby="ar-sh"><h2 id="ar-sh">Коротко</h2><ul>
+<li>Почти 50 тысяч заявлений на бюджет — на 7,5 тысячи больше, чем в 2025 году.</li>
+<li>Больше всего хотят на IT и инженерные программы.</li>
+<li>Целевых заявлений на 40% больше, чем мест.</li>
+<li>УрФУ уходит от бакалавриата к «базовому высшему» — в пилотном проекте.</li>
+</ul></aside>
+<nav class="ar-toc" aria-labelledby="ar-toc"><h2 id="ar-toc">Содержание</h2><ol>
+<li><a href="#ar-num">Итоги в цифрах</a></li>
+<li><a href="#ar-who">Кто и куда подавал</a></li>
+<li><a href="#ar-late">Что ещё можно было успеть</a></li>
+<li><a href="#ar-new">Что меняется в университете</a></li>
+</ol></nav>
+</div>
+<h2 id="ar-num" style="margin-top:8px;margin-bottom:20px;font-size:28px">Итоги в цифрах</h2>
 <div class="g3" style="margin-bottom:36px;font-size:16px;line-height:1.4">
 <div style="border-top:3px solid var(--blue);padding-top:14px"><div class="num" style="font-weight:700;font-size:34px;color:var(--blue)">49 832</div><div class="muted">заявления на бюджетные места</div></div>
 <div style="border-top:3px solid var(--blue);padding-top:14px"><div class="num" style="font-weight:700;font-size:34px;color:var(--blue)">+7,5 тыс.</div><div class="muted">к прошлому году</div></div>
@@ -52,10 +81,15 @@
 </div>
 <p>Приём документов на бюджетные места в Уральском федеральном университете закончился. Всего абитуриенты подали почти 50 тысяч заявлений — заметно больше, чем в прошлую кампанию.</p>
 <p style="margin-top:20px">Особенно вырос спрос на целевое обучение: заявлений по целевой квоте пришло примерно на 40% больше, чем было выделено мест.</p>
-<h2 style="margin-top:44px;font-size:28px">Что ещё можно успеть</h2>
+<h2 id="ar-who" style="margin-top:44px;font-size:28px">Кто и куда подавал</h2>
+<p style="margin-top:16px">Самый высокий спрос — на IT-программы и инженерные специальности. Отдельно считают тех, кто может поступить без вступительных испытаний: такие абитуриенты претендуют на 1 861 бюджетное место.</p>
+<div class="ar-quote"><b>1 861</b><span>бюджетное место — на столько претендуют абитуриенты с правом поступления без экзаменов</span></div>
+<p style="margin-top:20px">Целевое обучение снова стало популярнее: заявлений по целевой квоте — 1 065, это на 40% больше, чем выделено мест. Значит, и на целевые места был конкурс. Как устроена целевая квота — в разделе <a href="Admission.dc.html#benefits">«Особые права»</a>.</p>
+<h2 id="ar-late" style="margin-top:44px;font-size:28px">Что ещё можно было успеть</h2>
 <p style="margin-top:16px">Приём на платные места продолжается. Тем, кто сдаёт внутренние вступительные испытания, документы принимают до 15 августа, а поступающим по результатам ЕГЭ — до 20 августа. Подробности — на странице <a href="Admission.dc.html">«Как поступить»</a>.</p>
-<h2 style="margin-top:44px;font-size:28px">Что меняется в университете</h2>
+<h2 id="ar-new" style="margin-top:44px;font-size:28px">Что меняется в университете</h2>
 <p style="margin-top:16px">УрФУ стал участником пилотного проекта новой системы высшего образования. Вместо привычной схемы «бакалавриат — магистратура» в вузе будет два уровня: базовое и специализированное высшее образование.</p>
+<p style="margin-top:20px">Базовое высшее образование будет длиться от 4 до 6 лет, а специализированное (магистратура, ординатура) — от 1 до 3 лет.</p>
 <p style="margin-top:28px;font-size:15px;color:var(--muted)">Источник: <a href="https://obltv.ru/news/bolshe-50-tysyach-abiturientov-podali-zayavleniya-v-urfu-v-2026-33873">ОТВ</a>. Текст пересказан для прототипа.</p>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid var(--line);align-items:center"><span class="muted" style="font-size:15px">Поделиться:</span><a class="chip" href="https://vk.com/share.php?url=https%3A%2F%2Fgagamix228.github.io%2Furfu-redesign%2FArticle.dc.html" target="_blank" rel="noopener">ВКонтакте</a><a class="chip" href="https://t.me/share/url?url=https%3A%2F%2Fgagamix228.github.io%2Furfu-redesign%2FArticle.dc.html" target="_blank" rel="noopener">Telegram</a><button class="chip" type="button" onClick="{{copy}}">{{copyLbl}}</button></div>
 </div>
