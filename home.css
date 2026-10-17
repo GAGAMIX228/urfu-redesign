@@ -228,3 +228,55 @@
 
 /* наклонная бегущая строка шире экрана — лишнее обрезаем, чтобы не было прокрутки вбок */
 .fd main{overflow-x:clip}
+
+/* Главная под роль (home-role.js ставит html[data-urole]) */
+.fd .yu-who{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:20px}
+.fd .yu-who>span{font-family:var(--narrow);font-weight:700;font-size:22px;margin-right:4px}
+.fd .yu-who-b{min-height:44px;padding:0 18px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.fd .yu-who-b:hover{background:var(--limestone)}
+.fd .yu-who-b[aria-pressed="true"]{background:var(--ink);color:#FFFFFF}
+.fd .yu-who-b:focus-visible,.fd .fd-pick:focus-visible,.fd .me-reset:focus-visible{outline:3px solid var(--amethyst);outline-offset:3px}
+.fd h1 [class^="r-"]:not(.r-any),.fd .fd-lead [class^="r-"]:not(.r-any){display:none}
+html[data-urole="abit"] .fd .r-abit,html[data-urole="student"] .fd .r-student,html[data-urole="staff"] .fd .r-staff,html[data-urole="intl"] .fd .r-intl{display:inline !important}
+html[data-urole] .fd .r-any{display:none}
+.fd .fd-pick{margin-top:10px;align-self:flex-start;min-height:40px;padding:0 16px;border-radius:999px;border:2px solid var(--gt);background:transparent;color:var(--gt);font:inherit;font-weight:700;cursor:pointer}
+.fd .fd-pick:hover{background:var(--gl)}
+.fd .me-panels{display:none}
+html[data-urole] .fd .fd-gems{display:none}
+html[data-urole] .fd .me-panels{display:block}
+.fd .me-panel{display:none;border-radius:28px;padding:32px;color:var(--ink);background:var(--g);--g:var(--rhodonite)}
+html[data-urole="abit"] .fd .me-abit,html[data-urole="student"] .fd .me-student,html[data-urole="staff"] .fd .me-staff,html[data-urole="intl"] .fd .me-intl{display:block}
+.fd .me-abit{--g:#FFE0EC}.fd .me-student{--g:#EDE3FF}.fd .me-staff{--g:#D6F5EA}.fd .me-intl{--g:var(--gold-soft)}
+.fd .me-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.fd .me-top h3{font-size:36px;line-height:1}
+.fd .me-reset{min-height:40px;padding:0 16px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.fd .me-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;margin-top:24px;align-items:stretch}
+.fd .me-links{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fd .me-links a{display:flex;flex-direction:column;gap:4px;height:100%;padding:16px 18px;border-radius:16px;background:#FFFFFF;color:var(--ink);text-decoration:none;border:2px solid transparent}
+.fd .me-links a:hover{border-color:var(--ink)}
+.fd .me-links a:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}
+.fd .me-links b{font-size:17px}.fd .me-links span{font-size:14px;color:var(--muted)}
+.fd .me-live{background:var(--ink);color:#FFFFFF;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.fd .me-live b{color:#FFFFFF;font-family:var(--narrow);font-size:24px}
+.fd .me-live .me-big{font-size:64px;line-height:1;color:var(--gold)}
+.fd .me-live span{color:#E7E1FA}
+.fd .me-live .btn{margin-top:auto}
+.fd .me-k{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold) !important}
+.fd .me-pairs{list-style:none;margin:4px 0 8px;padding:0;display:flex;flex-direction:column;gap:6px;width:100%}
+.fd .me-pairs li{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.fd .me-pairs li span{color:var(--gold);font-weight:700;min-width:46px}
+.fd .me-pairs li b{font-family:inherit;font-size:16px;font-weight:600}
+.fd .me-pairs .me-free{color:#E7E1FA}
+.fd .me-note{font-size:13px}
+/* порядок блоков под роль */
+html[data-urole] .fd main{display:flex;flex-direction:column}
+html[data-urole] .fd main>*{order:50}
+html[data-urole] .fd .yu-hero{order:1}html[data-urole] .fd .yu-tick{order:2}html[data-urole] .fd .yu-roles{order:3}
+html[data-urole="abit"] .fd .yu-calc-sec{order:4}html[data-urole="abit"] .fd .yu-news-sec{order:5}html[data-urole="abit"] .fd .yu-inst-sec{order:6}html[data-urole="abit"] .fd .yu-life-sec{order:7}
+html[data-urole="student"] .fd .yu-news-sec{order:4}html[data-urole="student"] .fd .yu-life-sec{order:5}html[data-urole="student"] .fd .yu-inst-sec{order:7}html[data-urole="student"] .fd .yu-calc-sec{order:54}
+html[data-urole="staff"] .fd .yu-news-sec{order:4}html[data-urole="staff"] .fd .yu-inst-sec{order:5}html[data-urole="staff"] .fd .yu-life-sec{order:7}html[data-urole="staff"] .fd .yu-calc-sec{order:54}
+html[data-urole="intl"] .fd .yu-calc-sec{order:4}html[data-urole="intl"] .fd .yu-inst-sec{order:5}html[data-urole="intl"] .fd .yu-life-sec{order:6}html[data-urole="intl"] .fd .yu-news-sec{order:7}
+html[data-urole] .fd .yu-ask{order:55}
+@media (max-width:900px){.fd .me-grid{grid-template-columns:1fr}.fd .me-top h3{font-size:30px}}
+@media (max-width:560px){.fd .me-links{grid-template-columns:1fr}.fd .me-panel{padding:20px;border-radius:22px}}
+html[data-urole="student"] .fd .yu-tag,html[data-urole="staff"] .fd .yu-tag{display:none}

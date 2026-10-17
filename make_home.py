@@ -21,6 +21,15 @@ T = {
   ask_h='Не нашли ответ?', ask_lead='Спросите нас — ответим по телефону или почте.',
   ask=[('8-800-100-50-44', 'tel:88001005044', 'Контакт-центр, звонок по России бесплатный'), ('+7 (343) 375-44-74', 'tel:+73433754474', 'Приёмная комиссия'), ('contact@urfu.ru', 'mailto:contact@urfu.ru', 'Почта университета')],
   ask_all=('Help.dc.html', 'Центр помощи: ответы и службы'),
+  who=[('abit', 'поступаю'), ('student', 'учусь'), ('staff', 'работаю'), ('intl', 'International')],
+  who_h={'abit': ('Поступление в УрФУ — на одном экране', 'Проходные баллы прошлых лет, сроки, стоимость и общежития. Без лишних вкладок.'),
+         'student': ('Что у вас сегодня?', 'Пары вашей группы, общежитие, помощь и события — главное для студента.'),
+         'staff': ('УрФУ для сотрудников', 'Наука, справочник служб, новости и мероприятия университета.'),
+         'intl': ('Study at UrFU', 'Programmes in English, how to apply and where to live.')},
+  panel={'abit': ('Главное для поступающих', [('Каталог программ', 'Фильтр по ЕГЭ и баллам', 'Catalog.dc.html'), ('Календарь приёма', 'Сроки подачи и согласия', 'Admission.dc.html#calendar'), ('Подбор за 3 вопроса', 'Куда вы проходите', 'Quiz.dc.html'), ('Стоимость обучения', 'Калькулятор по программам', 'Admission.dc.html#cost'), ('Общежития и цены', 'Таблица по приказам УрФУ', 'Dorms.dc.html#price-h'), ('Центр помощи', 'Ответы на частые вопросы', 'Help.dc.html')]),
+         'student': ('Главное для студента', [('Расписание', 'Ваша группа, недели, календарь', 'Schedule.dc.html'), ('Центр помощи', 'Справки, медосмотр, Wi-Fi', 'Help.dc.html'), ('Общежитие', 'Цены и заселение', 'Dorms.dc.html'), ('Молодёжные лаборатории', 'Как попасть в науку', 'Science.dc.html#stud-h'), ('Клубы и спорт', 'Секции и студклубы', 'Life.dc.html'), ('Карта кампуса', 'Корпуса и медсанчасть', 'Contacts.dc.html')]),
+         'staff': ('Главное для сотрудников', [('Наука', 'Проекты «Приоритет-2030»', 'Science.dc.html'), ('Справочник служб', 'Телефоны и почта', 'Help.dc.html#dir-h'), ('Новости', 'Что происходит в УрФУ', 'News.dc.html'), ('Мероприятия', 'Календарь университета', 'Events.dc.html'), ('Институты', 'Структура и подразделения', 'Institute.dc.html'), ('Личный кабинет', 'Сервисы сотрудника', 'Login.dc.html?role=staff')]),
+         'intl': ('For international students', [('Programme catalogue', 'In English: exams and pass marks', 'CatalogEn.dc.html'), ('How to apply', 'Steps, documents, deadlines', 'AdmissionEn.dc.html'), ('Housing', 'Dormitories and prices', 'Dorms.dc.html'), ('Campus map', 'Buildings and contacts', 'Contacts.dc.html'), ('English home page', 'The whole site in brief', 'MainEn.dc.html'), ('Help centre', 'Contacts of university services', 'Help.dc.html')])},
   h1='Что вам нужно в УрФУ?',
   lead='Программы, расписание, общежития и события — найдём за пару секунд.',
   search_l='Поиск по сайту', ph='Например: общежитие или ИИ…', find='Найти', sug_l='Подсказки',
@@ -104,6 +113,37 @@ def progs_json():
     return json.dumps(out, separators=(',', ':'))
 
 
+def who_html(t):
+    """Переключатель «Я —» и заголовки для каждой роли (показывает home-role.js)."""
+    if not t.get('who'):
+        return '', f"<h1>{t['h1']}</h1>\n<p class=\"fd-lead\">{t['lead']}</p>"
+    btns = ''.join(f'<button type="button" class="yu-who-b" data-urole="{k}" aria-pressed="false"{" lang=\"en\"" if k == "intl" else ""}>{n}</button>' for k, n in t['who'])
+    sw = f'<div class="yu-who" role="group" aria-label="Кто вы"><span>Я —</span>{btns}</div>'
+    h = f'<h1><span class="r-any">{t["h1"]}</span>' + ''.join(f'<span class="r-{k}"{" lang=\"en\"" if k == "intl" else ""}>{a}</span>' for k, (a, b) in t['who_h'].items()) + '</h1>'
+    lead = f'<p class="fd-lead"><span class="r-any">{t["lead"]}</span>' + ''.join(f'<span class="r-{k}"{" lang=\"en\"" if k == "intl" else ""}>{b}</span>' for k, (a, b) in t['who_h'].items()) + '</p>'
+    return sw, h + '\n' + lead
+
+
+def panels_html(t):
+    """Панель «Главное для вас» под выбранную роль."""
+    if not t.get('panel'):
+        return ''
+    out = []
+    for k, (title, links) in t['panel'].items():
+        en = ' lang="en"' if k == 'intl' else ''
+        ls = ''.join(f'<li><a href="{h}"><b>{a}</b><span>{d}</span></a></li>' for a, d, h in links)
+        if k == 'abit':
+            live = '<div class="me-live"><b class="me-big" data-me="days">—</b><span data-me="daysw">дней до приёма документов</span><a class="btn yu-btn-gold" href="#calc-h">Хватит ли моих баллов?</a></div>'
+        elif k == 'student':
+            live = '<div class="me-live"><span class="me-k" data-me="dayk">Сегодня</span><b data-me="grp">Пример расписания</b><ul class="me-pairs" data-me="pairs"></ul><a class="btn yu-btn-gold" href="Schedule.dc.html" data-me="grpbtn">Укажите свою группу</a><span class="me-note">Пары — пример, как в разделе «Расписание».</span></div>'
+        elif k == 'staff':
+            live = '<div class="me-live"><b class="me-big">54</b><span>научных проекта «Приоритет-2030» — с поиском и фильтрами</span><a class="btn yu-btn-gold" href="Science.dc.html">Открыть «Науку»</a></div>'
+        else:
+            live = '<div class="me-live"><b class="me-big">32</b><span>bachelor programmes with entrance exams and pass marks in English</span><a class="btn yu-btn-gold" href="CatalogEn.dc.html">Open catalogue</a></div>'
+        out.append(f'<div class="me-panel me-{k}"{en}><div class="me-top"><h3>{title}</h3><button type="button" class="me-reset" data-urole="">{"Change role" if k == "intl" else "Сменить роль"}</button></div><div class="me-grid"><ul class="me-links">{ls}</ul>{live}</div></div>')
+    return '<div class="me-panels">' + ''.join(out) + '</div>'
+
+
 def main_html(t):
     steps = ''.join(f'<li><b>{d}</b><span>{w}</span></li>' for d, w in t['steps'][:3])
     news = ''.join(f'<li><a href="{"Article.dc.html" if i == 0 else "News.dc.html"}"><small>{d}</small><span class="fd-t">{x}</span></a></li>' for i, (d, x) in enumerate(t['news']))
@@ -115,12 +155,13 @@ def main_html(t):
     col = ''.join(f'<div class="yu-ph yu-ph{k}" role="img" aria-label="{c}" style="background-image:url(\'photos/{p}.webp\')"></div>' for k, (p, c) in enumerate(t['col']))
     areas = ''.join(f'<button type="button" class="yu-chip" data-area="{k}" aria-pressed="{"true" if k == "all" else "false"}">{n}</button>' for k, n in t['areas'])
     ask = ''.join(f'<a href="{h}"><b>{n}</b><span>{d}</span></a>' for n, h, d in t['ask'])
+    who, heads = who_html(t)
+    pick = '<button type="button" class="fd-pick" data-urole="{{g.key}}">{{g.pickT}}</button>' if t.get('who') else ''
     return f"""<main id="main" tabindex="-1" style="outline:none">
 <section class="yu-hero"><div class="wrap yu-hero-in">
 <div class="yu-hero-txt">
-<p class="yu-tag"><b>{{{{days}}}}</b> {t['tag']}</p>
-<h1>{t['h1']}</h1>
-<p class="fd-lead">{t['lead']}</p>
+{who}<p class="yu-tag"><b>{{{{days}}}}</b> {t['tag']}</p>
+{heads}
 <div class="search fd-search">
 <div class="search-box">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
@@ -155,10 +196,11 @@ def main_html(t):
 <section class="fd-gem" data-role="{{{{g.key}}}}" lang="{{{{g.lang}}}}" aria-labelledby="{{{{g.hid}}}}">
 <h3 id="{{{{g.hid}}}}">{{{{g.me}}}}</h3>
 <ul><sc-for list="{{{{g.links}}}}" as="l" hint-placeholder-count="3"><li><a href="{{{{l.href}}}}">{{{{l.t}}}}<span>{{{{l.d}}}}</span></a></li></sc-for></ul>
-<button type="button" class="fd-toggle" id="{{{{g.bid}}}}" aria-expanded="{{{{g.exp}}}}" onClick="{{{{g.toggle}}}}">{{{{g.more}}}}</button>
+<button type="button" class="fd-toggle" id="{{{{g.bid}}}}" aria-expanded="{{{{g.exp}}}}" onClick="{{{{g.toggle}}}}">{{{{g.more}}}}</button>{pick}
 </section>
 </sc-for>
 </div>
+{panels_html(t)}
 </div></section>
 
 <section class="yu-calc-sec" aria-labelledby="calc-h"><div class="wrap yu-calc-in">
@@ -181,7 +223,7 @@ def main_html(t):
 </div>
 </div></section>
 
-<section class="fd-sec"><div class="wrap fd-two">
+<section class="fd-sec yu-news-sec"><div class="wrap fd-two">
 <div>
 <div class="fd-head"><h2 class="fd-col-h">{t['news_h']}</h2><a class="fd-more" href="News.dc.html">{t['news_all']}</a></div>
 <ul class="fd-list fd-news">{news}</ul>
@@ -197,7 +239,7 @@ def main_html(t):
 <div class="yu-inst">{inst}</div>
 </div></section>
 
-<section class="fd-sec"><div class="wrap">
+<section class="fd-sec yu-life-sec"><div class="wrap">
 <div class="fd-head"><h2 class="fd-h2">{t['life_h']}</h2><a class="fd-more" href="Life.dc.html">{t['life_all']}</a></div>
 <div class="yu-life">{life}</div>
 </div></section>
@@ -221,6 +263,8 @@ def build(t):
     head = head.replace('<template id="dc-tpl">\n<div>', '<template id="dc-tpl">\n<div class="fd">', 1)
     assert 'class="fd"' in head and 'home.css' in head
     foot = foot.replace('<script src="slides.js"></script>\n', '')
+    if t.get('who') and 'home-role.js' not in foot:
+        foot = foot.replace('<script src="home-calc.js"></script>', '<script src="home-calc.js"></script>\n<script src="home-role.js"></script>', 1)
     if 'home-calc.js' not in foot:
         foot = foot.replace('<script src="site.js"></script>', '<script src="site.js"></script>\n<script src="home-calc.js"></script>', 1)
     if 'const gems =' not in foot:
