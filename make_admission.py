@@ -48,7 +48,7 @@ def block():
     return f'''<!-- adm -->
 <section id="calendar" class="adm-sec" aria-labelledby="cal-h">
 <h2 id="cal-h">Календарь приёма</h2>
-<p class="muted adm-lead">Даты приёма-2026 в бакалавриат и специалитет. Правила приёма-2027 вуз публикует до 1 ноября — сроки обычно меняются мало.</p>
+<p class="muted adm-lead">Даты приёма-2026 в бакалавриат и специалитет. Правила следующего года УрФУ публикует зимой: на приём-2026 — до 20 января. Сроки от года к году меняются мало.</p>
 <div class="tl-cols">
 <div class="tl-col tl-b"><h3>На бюджет</h3><ol class="tl">{tl(BUDGET)}</ol></div>
 <div class="tl-col tl-p"><h3>На платное</h3><ol class="tl">{tl(PAID)}</ol></div>
