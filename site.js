@@ -176,3 +176,19 @@ document.addEventListener('click', function (e) {
   if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { done('Ссылка скопирована'); }, function () { done(url); });
   else done(url);
 });
+/* Быстрый поиск с клавиатуры: Ctrl+K (⌘K на Mac) или «/» — где угодно, кроме полей ввода */
+document.addEventListener('keydown', function (e) {
+  var t = e.target, typing = t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+  var k = (e.key || '').toLowerCase();
+  var combo = (e.ctrlKey || e.metaKey) && (k === 'k' || k === 'л');
+  if (!combo && !(k === '/' && !typing && !e.ctrlKey && !e.metaKey && !e.altKey)) return;
+  e.preventDefault();
+  var q = document.querySelector('#search-q, .srch-in input, input[type=search]');
+  if (q && /Search\.dc\.html$/.test(location.pathname)) { q.focus(); q.select && q.select(); return; }
+  location.href = 'Search.dc.html';
+});
+/* подсказка о сочетании клавиш у кнопки поиска в шапке */
+(function () {
+  function hint() { [].forEach.call(document.querySelectorAll('.hd a.ico[href="Search.dc.html"]'), function (a) { if (!a.title) a.title = 'Поиск (Ctrl+K)'; a.setAttribute('aria-keyshortcuts', 'Control+K'); }); }
+  var root = document.getElementById('dc-root'); if (root) new MutationObserver(hint).observe(root, { childList: true }); hint();
+})();
