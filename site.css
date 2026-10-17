@@ -898,3 +898,18 @@ li:nth-child(5n+2) > .stp{--c:var(--amethyst)}li:nth-child(5n+3) > .stp{--c:#0A7
 .cab-co{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 .cab-co span{padding:6px 12px;border-radius:10px;background:var(--limestone);font-weight:600;font-size:14px}
 @media (max-width:520px){.cab-dli{flex-wrap:wrap}.cab-dli em{margin-left:40px}}
+
+/* Фото УрФУ в шапке внутренних страниц: шестиугольник с цветной «тенью» (make_heroph.py) */
+.ph-hex{display:none}
+@media (min-width:1100px){
+  .phead.has-ph .wrap{position:relative;min-height:330px}
+  .phead.has-ph .wrap>:not(.ph-hex){max-width:calc(100% - 380px)}
+  .ph-hex{display:block;position:absolute;right:40px;top:50%;width:270px;aspect-ratio:1/1.1547;transform:translateY(-50%);pointer-events:none}
+  .ph-hex::before,.ph-hex::after{content:"";position:absolute;inset:0;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+  .ph-hex::before{background:var(--rhodonite,#E0337A);transform:translate(18px,14px)}
+  .ph-hex::after{background:var(--img) center/cover no-repeat,var(--ink)}
+  .phead.dark .ph-hex::before{background:var(--gold,#FFC21A)}
+  body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .ph-hex::before{background:var(--amethyst,#6B2BE0)}
+}
+.vi-img2 .ph-hex,.vi-img1 .ph-hex::after{filter:grayscale(1)}
+.vi-img2 .ph-hex{display:none !important}
