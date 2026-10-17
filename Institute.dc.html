@@ -22,6 +22,17 @@
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="logo-live.css">
+<style>
+.in-logos{display:flex;flex-wrap:wrap;gap:8px}
+.in-logos span{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:1px solid var(--line);border-radius:12px;background:#FFFFFF;font-family:var(--narrow);font-weight:700;font-size:17px}
+.in-ways b,.in-ev b{font-size:18px;display:block}
+.in-ways p,.in-ev p{margin-top:6px;font-size:15px}
+.in-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding:32px;border-radius:24px;background:linear-gradient(135deg,#EDE3FF,#DCE8FF)}
+.in-ev .card{border-top:4px solid var(--a2)}
+.in-news{display:flex;flex-direction:column;gap:8px;border-left:6px solid var(--a2)}
+.in-news .tag{align-self:flex-start}
+.in-news b{font-size:19px;line-height:1.35}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -45,7 +56,7 @@
 <nav aria-label="Разделы института" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:32px">
 <a class="chip" href="#progs" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Программы</a>
 <sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}"><a class="chip" href="#deps" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Кафедры и центры</a>
-<a class="chip" href="#labs" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Лаборатории</a></sc-if>
+<a class="chip" href="#labs" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Лаборатории</a><a class="chip" href="#partners" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Партнёры</a><a class="chip" href="#life" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Жизнь института</a></sc-if>
 <a class="chip" href="#cont" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Контакты</a>
 </nav>
 </div>
@@ -83,6 +94,34 @@
 </div>
 </section>
 </sc-if>
+<sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}"><section id="partners" class="sec">
+<h2>Учёба вместе с компаниями</h2>
+<p class="muted" style="margin-top:8px;max-width:760px">У ИРИТ-РтФ больше 50 активных компаний-партнёров — от IT-компаний до промышленности и органов власти.</p>
+<div class="in-logos" style="margin-top:20px"><span>УЦСБ</span><span>Naumen</span><span>СКБ Контур</span><span>Сбер</span><span>Прософт-Системы</span><span>Золотое яблоко</span><span>JetStyle</span><span>Targem Games</span><span>Artsofte</span><span>Т-Банк (Тинькофф)</span><span>НПО автоматики</span><span>Yandex Cloud</span><span>К Телеком</span><span>Синара</span><span>Брусника</span></div>
+<div class="g3 in-ways" style="margin-top:24px">
+<div class="card"><b>Спецкурсы и интенсивы</b><p class="muted">Партнёры ведут спецкурсы, проектный практикум и выпускные работы.</p></div>
+<div class="card"><b>Практика и стажировки</b><p class="muted">Производственная практика и стажировки — прямо в компаниях.</p></div>
+<div class="card"><b>Лаборатории и пространства</b><p class="muted">Совместные лаборатории, брендированные пространства, кружки и сообщества.</p></div>
+</div>
+</section>
+<section id="top" class="sec">
+<div class="in-top">
+<div><span class="tag" style="background:#FFFFFF">С 2025 года</span><h2 style="margin-top:12px">ТОП-трек: учёба топ-уровня в IT</h2>
+<p style="margin-top:12px;max-width:620px">На базе учебно-научного центра «Информационные технологии» ИРИТ-РтФ студенты учатся по программам топ-уровня вместе с индустриальными партнёрами. Это часть нацпроекта «Экономика данных и цифровая трансформация государства».</p></div>
+<a class="btn" href="Program.dc.html">Пример: «Программная инженерия»</a>
+</div>
+</section>
+<section id="life" class="sec">
+<h2>Не только учёба</h2>
+<div class="g4 in-ev" style="margin-top:24px">
+<div class="card"><b>День Радио</b><p class="muted">Праздник радиофака — с партнёрами института.</p></div>
+<div class="card"><b>Ярмарка вакансий</b><p class="muted">Компании ищут стажёров и выпускников.</p></div>
+<div class="card"><b>Выставка проектов</b><p class="muted">Студенческие проекты для заказчиков.</p></div>
+<div class="card"><b>«Вселенная ИРИТ-РТФ»</b><p class="muted">Большое событие института для студентов и партнёров.</p></div>
+</div>
+<div class="card in-news" style="margin-top:20px"><span class="tag">Новость института · 1 июля 2025</span><b>ИРИТ-РтФ выиграл грант «Топ-ИТ» и подтвердил статус одного из ведущих центров IT-образования в России</b><p class="muted">Ещё один грант — на развитие Data Science и искусственного интеллекта.</p></div>
+<p class="muted" style="font-size:14px;margin-top:12px">По данным <a href="https://programs.edu.urfu.ru/ru/9797/pages/employers/" target="_blank" rel="noopener">сайта образовательных программ УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
+</section></sc-if>
 <section id="cont" class="sec">
 <sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}"><div class="card g3" style="padding:32px">
 <div><div class="muted" style="font-size:14px">Директор</div><div style="font-weight:600;margin-top:4px">Алферьева Татьяна Игоревна</div><div class="muted" style="font-size:14px">исполняющая обязанности директора</div></div>
