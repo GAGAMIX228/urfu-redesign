@@ -114,6 +114,36 @@ def block():
 <p class="muted adm-src">Цена может расти каждый год вместе с инфляцией. УрФУ даёт скидки отдельным категориям студентов — условия в приказе о скидках. Ещё есть образовательный кредит с господдержкой: 3% годовых, платить начинают после выпуска.</p>
 </section>
 
+<section id="docs-need" class="adm-sec" aria-labelledby="dn-h">
+<h2 id="dn-h">Какие документы понадобятся</h2>
+<p class="muted adm-lead">Подготовьте сканы заранее — при подаче через Госуслуги или личный кабинет их загружают файлами.</p>
+<ul class="dn">
+<li><b>Паспорт</b><span>Страница с фото и страница с пропиской</span></li>
+<li><b>Аттестат</b><span>Или диплом колледжа — вместе с приложением с оценками</span></li>
+<li><b>СНИЛС</b><span>Если есть. По нему вас найдут в конкурсных списках</span></li>
+<li><b>Достижения</b><span>Аттестат с отличием, ГТО, волонтёрство — до 10 дополнительных баллов</span></li>
+<li><b>Документы на особые права</b><span>Для олимпиадников, особой, отдельной и целевой квот</span></li>
+<li><b>Военный билет</b><span>Если служили: +10 баллов, нужна копия двух первых разворотов</span></li>
+</ul>
+</section>
+
+<section id="choose" class="adm-sec" aria-labelledby="ch-h">
+<h2 id="ch-h">Не знаете, куда поступать?</h2>
+<div class="g3 ch">
+<a class="card ch-c" href="Quiz.dc.html"><span class="way-i" aria-hidden="true">1</span><b>Подбор за 3 вопроса</b><span class="muted">Интересы, предметы ЕГЭ и баллы — покажем подходящие программы.</span></a>
+<a class="card ch-c" href="Catalog.dc.html"><span class="way-i" aria-hidden="true">2</span><b>Каталог с проходными</b><span class="muted">Фильтр по ЕГЭ и сумме баллов, сравнение до трёх программ.</span></a>
+<a class="card ch-c" href="Program.dc.html"><span class="way-i" aria-hidden="true">3</span><b>Страница программы</b><span class="muted">Учебный план, преподаватели, проекты и кем работать — на примере «Программной инженерии».</span></a>
+</div>
+</section>
+
+<section id="dorm1" class="adm-sec" aria-labelledby="d1-h">
+<div class="d1">
+<div><h2 id="d1-h">Общежитие для первокурсников</h2>
+<p style="margin-top:10px;max-width:640px">Отметьте потребность в общежитии при подаче документов. В 2025 году первокурсников заселяли в три этапа: 25–29 августа, в сентябре и в октябре. Перед заселением — медосмотр в медсанчасти УрФУ.</p></div>
+<div class="d1-n"><b>1 340–2 110 ₽</b><span>в месяц в студгородке, вдвоём в комнате, по приказам УрФУ 2025 года</span><a class="btn" href="Dorms.dc.html#price-h">Цены всех общежитий</a></div>
+</div>
+</section>
+
 <section id="year" class="adm-sec" aria-labelledby="year-h">
 <h2 id="year-h">Приём-2026 в цифрах</h2>
 <div class="g4 yr">
@@ -192,6 +222,21 @@ CSS = '''
 .lf-row span{background:rgba(255,255,255,.12);border-radius:999px;padding:4px 12px;font-size:14px}
 .lf-v{margin-top:14px;font-weight:600}
 .lf-demo{margin-top:10px;font-size:13px;color:var(--on-dark-muted)}
+.dn{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.dn li{display:flex;flex-direction:column;gap:4px;padding:18px 20px;border-radius:16px;background:#FFFFFF;border:1px solid var(--limestone);border-top:5px solid var(--gold,#FFC21A)}
+.dn b{font-family:var(--narrow);font-size:20px}
+.dn span{color:var(--muted);font-size:15px}
+.ch{margin-top:24px}
+.ch-c{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink)}
+.ch-c:hover{border-color:var(--amethyst)}
+.ch-c b{font-size:19px}
+.d1{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:center;padding:32px;border-radius:24px;background:var(--ink);color:#FFFFFF}
+.d1 h2{color:#FFFFFF}
+.d1-n{display:flex;flex-direction:column;gap:8px}
+.d1-n b{font-family:var(--narrow);font-size:40px;color:var(--gold,#FFC21A);line-height:1}
+.d1-n span{color:var(--on-dark-muted)}
+.d1-n .btn{align-self:flex-start;margin-top:6px}
+@media (max-width:900px){.dn{grid-template-columns:1fr}.d1{grid-template-columns:1fr}}
 .yr{margin-top:24px}
 .yr-c{border-top:4px solid var(--amethyst);padding-top:14px;display:flex;flex-direction:column;gap:4px}
 .yr-c b{font-family:var(--narrow);font-size:40px;line-height:1.05;color:var(--ink)}

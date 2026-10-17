@@ -110,6 +110,28 @@ def main_html():
 <sc-if value="{{{{d.h}}}}" hint-placeholder-val="{{{{true}}}}"><span class="hp-h">{{{{d.h}}}}</span></sc-if></div></sc-for>
 <sc-if value="{{{{dirNone}}}}" hint-placeholder-val="{{{{false}}}}"><p class="muted">По этому запросу служб не нашлось — <button type="button" class="hp-link" onClick="{{{{clear}}}}">показать все</button>.</p></sc-if>
 </div>
+<h2 id="if-h" style="margin-top:56px">Что делать, если…</h2>
+<div class="hp-scs"><a class="hp-sc" href="Help.dc.html?q=стипенд"><b>Не пришла стипендия</b><span>Сначала — в дирекцию своего института. Если не помогли — горячая линия Минобрнауки 8-800-222-55-71, доб. 1.</span></a><a class="hp-sc" href="Help.dc.html?q=wi-fi"><b>Не могу войти в кабинет или почту</b><span>Техподдержка УрФУ: +7 (343) 227-20-70, support@urfu.ru.</span></a><a class="hp-sc" href="#hl-h"><b>Нарушают мои права</b><span>Учёба, перевод, общежитие, документы — горячая линия 8-800-222-55-71, доб. 1. Звонок бесплатный.</span></a><a class="hp-sc" href="#hl-h"><b>Тяжело, тревожно</b><span>Психологическая помощь студентам: 8-800-222-55-71, доб. 2. Бесплатно по России.</span></a><a class="hp-sc" href="Help.dc.html?q=мед"><b>Заболел</b><span>Медсанчасть УрФУ — ул. Комсомольская, 59, пн–пт 8:00–18:00. В Новокольцовском — свой медцентр.</span></a><a class="hp-sc" href="Cabinet.dc.html#cr-h"><b>Нужна справка в военкомат</b><span>Закажите в кабинете студента — вместе с другими справками.</span></a></div>
+
+<h2 id="where-h" style="margin-top:56px">Где что находится</h2>
+<ul class="hp-where">
+<li><b>Главный учебный корпус</b><span>ул. Мира, 19</span><small>Приёмная комиссия — аудитория ГУК-100</small></li>
+<li><b>ИРИТ-РтФ</b><span>ул. Мира, 32</span><small>Институт радиоэлектроники и информационных технологий</small></li>
+<li><b>Медсанчасть УрФУ</b><span>ул. Комсомольская, 59</span><small>Пн–пт 8:00–18:00 · медосмотр для заселения</small></li>
+<li><b>Медцентр кампуса Новокольцовский</b><span>ул. 100-летия Университета, стр. 10</span><small>Пн–пт 8:30–17:00</small></li>
+</ul>
+<p style="margin-top:12px"><a href="Contacts.dc.html">Карта кампуса и все корпуса →</a></p>
+
+<h2 id="svc-h" style="margin-top:56px">Полезные сервисы УрФУ</h2>
+<div class="hp-svcs">
+<a href="https://pay.urfu.ru/" target="_blank" rel="noopener"><b>pay.urfu.ru</b><span>Оплата общежития, медосмотра и услуг</span><i class="sr"> (откроется в новой вкладке)</i></a>
+<a href="https://programs.edu.urfu.ru/" target="_blank" rel="noopener"><b>programs.edu.urfu.ru</b><span>Учебные планы, преподаватели и документы программ</span><i class="sr"> (откроется в новой вкладке)</i></a>
+<a href="https://dovuz.urfu.ru/" target="_blank" rel="noopener"><b>dovuz.urfu.ru</b><span>Олимпиады и занятия для школьников</span><i class="sr"> (откроется в новой вкладке)</i></a>
+<a href="https://youthscience.urfu.ru/" target="_blank" rel="noopener"><b>youthscience.urfu.ru</b><span>Молодёжная наука: конкурсы и конференции</span><i class="sr"> (откроется в новой вкладке)</i></a>
+<a href="https://journals.urfu.ru/" target="_blank" rel="noopener"><b>journals.urfu.ru</b><span>Научные журналы университета</span><i class="sr"> (откроется в новой вкладке)</i></a>
+<a href="https://elar.urfu.ru/" target="_blank" rel="noopener"><b>elar.urfu.ru</b><span>Электронный архив: статьи, диссертации, газета «Уральский федеральный»</span><i class="sr"> (откроется в новой вкладке)</i></a>
+</div>
+
 <h2 id="ask-h" style="margin-top:56px">Не нашли ответ? Напишите нам</h2>
 <form class="card hp-form" novalidate aria-labelledby="ask-h">
 <div class="hp-f2"><div><label for="af-n">Как к вам обращаться</label><input id="af-n" class="input" autocomplete="name"></div>
@@ -202,6 +224,23 @@ CSS = '''
 .hl-tel:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .hp-ask{display:flex;flex-direction:column;gap:10px}
 .hp-ask .btn,.hp-ask .btn2{text-align:center;justify-content:center}
+.hp-where{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.hp-where li{display:flex;flex-direction:column;gap:2px;padding:18px 20px;border-radius:16px;background:#FFFFFF;border:1px solid var(--limestone);border-left:6px solid var(--amethyst)}
+.hp-where span{font-family:var(--narrow);font-size:20px;font-weight:700}
+.hp-where small{color:var(--muted);font-size:14px}
+.hp-svcs{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.hp-svcs a{display:flex;flex-direction:column;gap:4px;padding:18px 20px;border-radius:16px;background:var(--ink);color:#FFFFFF;text-decoration:none}
+.hp-svcs a:hover{background:var(--ink-2)}
+.hp-svcs b{color:var(--gold,#FFC21A);font-size:18px}
+.hp-svcs span{color:#D9D2F0;font-size:14px}
+.hp-svcs a:focus-visible{outline:3px solid var(--amethyst);outline-offset:3px}
+@media (max-width:620px){.hp-where,.hp-svcs{grid-template-columns:1fr}}
+.hp-scs{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.hp-sc{display:flex;flex-direction:column;gap:6px;padding:20px;border-radius:16px;background:#FFFFFF;border:2px solid var(--limestone);color:var(--ink);text-decoration:none}
+.hp-sc:hover{border-color:var(--rhodonite,#E0337A)}
+.hp-sc b{font-family:var(--narrow);font-size:21px}
+.hp-sc span{color:var(--muted);font-size:15px}
+@media (max-width:620px){.hp-scs{grid-template-columns:1fr}}
 .hp-need-h{font-family:var(--narrow);font-size:30px;margin-top:40px}
 .hp-need{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .hp-need a{display:flex;flex-direction:column;gap:4px;min-height:96px;padding:18px 20px;border-radius:16px;border:2px solid var(--limestone);background:#FFFFFF;color:var(--ink);text-decoration:none;transition:border-color .15s ease,transform .15s ease}

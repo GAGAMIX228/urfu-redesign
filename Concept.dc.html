@@ -63,6 +63,21 @@
 .pt-wrap:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}
 @media (max-width:900px){.au-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.au-grid{grid-template-columns:1fr}}
+.cf-grid{margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.cf{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:var(--ink);border-top:5px solid var(--a2)}
+.cf:nth-child(4n+2){border-top-color:var(--a1)}.cf:nth-child(4n+3){border-top-color:var(--a3)}.cf:nth-child(4n){border-top-color:var(--a4)}
+.cf:hover{border-color:var(--amethyst)}
+.cf b{font-family:var(--narrow);font-size:20px}
+.cf span{font-size:15px}
+.cd-list{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.cd-list li{display:flex;flex-direction:column;gap:2px;padding:14px 18px;border-radius:14px;border:1px solid var(--line);background:#FFFFFF}
+.cd-list span{color:var(--muted);font-size:15px}
+.cq{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+.cq li{display:flex;flex-direction:column}
+.cq b{font-family:var(--narrow);font-size:32px;line-height:1}
+.cq span{color:var(--muted);font-size:15px}
+@media (max-width:1000px){.cf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cf-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -166,6 +181,40 @@
 </div>
 </section>
 
+<section class="wrap sec" id="features">
+<div class="kicker" style="--k:var(--a2)">Функции</div><h2>Что умеет новый сайт</h2>
+<p class="muted" style="margin-top:12px;max-width:760px;font-size:18px">16 вещей, которых нет на urfu.ru сейчас или до которых там нужно долго идти. Каждая карточка ведёт на рабочую страницу.</p>
+<div class="cf-grid"><a class="card cf" href="Main.dc.html?role=student"><b>Главная под роль</b><span class="muted">5 ролей: поступаю, учусь, работаю, партнёр, International — свой заголовок, порядок блоков и панель «Главное для вас».</span></a><a class="card cf" href="Catalog.dc.html"><b>Хватит ли баллов</b><span class="muted">Ползунок на главной и фильтр в каталоге: сумма ЕГЭ против проходных прошлых лет.</span></a><a class="card cf" href="Quiz.dc.html"><b>Подбор за 3 вопроса</b><span class="muted">Интересы, предметы и баллы — и сразу список подходящих программ.</span></a><a class="card cf" href="Catalog.dc.html?cmp=Программная инженерия"><b>Сравнение программ</b><span class="muted">До трёх программ рядом: баллы, места, цена, экзамены.</span></a><a class="card cf" href="Program.dc.html"><b>Страница программы</b><span class="muted">Учебный план по темам, проекты, преподаватели, партнёры — с официального сайта программ.</span></a><a class="card cf" href="Admission.dc.html#calendar"><b>Календарь и стоимость</b><span class="muted">Настоящие даты приёма-2026 и калькулятор цены за год, семестр и 4 года.</span></a><a class="card cf" href="Admission.dc.html#lists"><b>Найди себя в списках</b><span class="muted">Демо поиска по СНИЛС или коду: место, баллы, согласие.</span></a><a class="card cf" href="Schedule.dc.html"><b>Расписание группы</b><span class="muted">Буквы группы списком, дефис сам; недели, вид «день», «идёт сейчас», в календарь телефона.</span></a><a class="card cf" href="Dorms.dc.html#price-h"><b>Общежития и цены</b><span class="muted">Все 15 общежитий с ценами по приказам УрФУ и карта двух кампусов.</span></a><a class="card cf" href="Help.dc.html"><b>Центр помощи</b><span class="muted">26 ответов с источниками, «Мне нужно…», справочник служб, горячие линии.</span></a><a class="card cf" href="Science.dc.html"><b>Наука</b><span class="muted">54 проекта «Приоритет-2030» с поиском, 28 научных школ, открытия 2026 года.</span></a><a class="card cf" href="Cabinet.dc.html"><b>Кабинет студента</b><span class="muted">Пары, дедлайны, уведомления, справки и плата за общежитие — демо.</span></a><a class="card cf" href="News.dc.html"><b>Новости</b><span class="muted">Лента по месяцам с источниками, поиск, афиша, подписка.</span></a><a class="card cf" href="Search.dc.html"><b>Поиск</b><span class="muted">По всему сайту, понимает «общага» и «стипуха», прощает опечатки; открывается по Ctrl+K.</span></a><a class="card cf" href="Main.dc.html"><b>Для слабовидящих</b><span class="muted">Размер текста, 5 цветовых схем, изображения, интервал — на любой странице.</span></a><a class="card cf" href="MainEn.dc.html"><b>English</b><span class="muted">Главная, каталог, поступление и вход — на английском.</span></a></div>
+</section>
+
+<section class="wrap sec" id="data">
+<div class="row" style="align-items:flex-start">
+<div class="main">
+<div class="kicker" style="--k:var(--a1)">Данные</div><h2>Только настоящие данные</h2>
+<p class="muted" style="margin-top:12px;font-size:18px;max-width:720px">Цифры, даты, цены и контакты взяты из открытых источников. Где показан пример (пары в расписании, демо-кабинет, поиск в списках), это подписано прямо на странице.</p>
+<ul class="cd-list">
+<li><b>urfu.ru</b><span>Календарь приёма, контакты, научные проекты и школы, ответы приёмной комиссии — копии в веб-архиве</span></li>
+<li><b>Приказы УрФУ</b><span>Цены всех общежитий на 2025 год</span></li>
+<li><b>programs.edu.urfu.ru</b><span>Учебный план, преподаватели, партнёры и проекты программы</span></li>
+<li><b>Подразделения УрФУ</b><span>Мероприятия для школьников ИЕНиМ, газета в электронном архиве</span></li>
+<li><b>СМИ</b><span>РИА Новости, «Коммерсантъ», ОТВ — новости и итоги приёма</span></li>
+</ul>
+</div>
+<div class="side">
+<div class="adm" style="padding:32px">
+<div class="kicker" style="--k:var(--a3)">Качество</div>
+<h3 style="font-size:24px">Как мы проверяли</h3>
+<ul class="cq">
+<li><b>0</b><span>ошибок доступности (axe, WCAG 2.2 AA) на всех страницах</span></li>
+<li><b>129</b><span>адресов обойдено роботом — без битых ссылок</span></li>
+<li><b>320–1920</b><span>пикселей ширины — ничего не вылезает за экран</span></li>
+<li><b>~300 КБ</b><span>весит обычная страница; без внешних сервисов и чужих скриптов</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
 <section class="wrap sec">
 <div class="row" style="align-items:flex-start">
 <div class="main">
@@ -182,7 +231,7 @@
 <div class="adm" style="padding:32px">
 <div class="kicker" style="--k:var(--a1)">Как смотреть</div>
 <h3 style="font-size:24px">Все страницы связаны</h3>
-<p class="muted" style="margin-top:12px">Начните с главной: выберите роль, попробуйте поиск, откройте каталог программ и сравните программы. Список всех 24 экранов — на стартовой странице.</p>
+<p class="muted" style="margin-top:12px">Начните с главной: выберите роль, попробуйте поиск, откройте каталог программ и сравните программы. Список всех экранов — на стартовой странице.</p>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px"><a class="btn" href="index.html">Все экраны</a><a class="btn2" href="Quiz.dc.html" style="background:#FFFFFF">Подбор программы</a></div>
 </div>
 </div>

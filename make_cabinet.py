@@ -75,6 +75,35 @@ def main_html():
 <p class="muted cab-note">На примере ИРИТ-РтФ — по данным <a href="https://programs.edu.urfu.ru/ru/9797/pages/employers/" target="_blank" rel="noopener">сайта образовательных программ УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>. <a href="Events.dc.html">Ближайшие события →</a></p>
 </section>
 
+<section class="card cab-ses" aria-labelledby="cse-h">
+<div class="cab-h"><h2 id="cse-h">Зимняя сессия</h2><span class="muted" style="font-size:14px">январь · пример</span></div>
+<table class="cab-tb"><caption class="sr">Экзамены и зачёты зимней сессии — пример</caption><thead><tr><th scope="col">Предмет</th><th scope="col">Форма</th></tr></thead><tbody>
+<tr><td>Математический анализ</td><td><span class="cab-ex">экзамен</span></td></tr>
+<tr><td>Программирование</td><td><span class="cab-ex">экзамен</span></td></tr>
+<tr><td>Физика</td><td><span class="cab-ex">экзамен</span></td></tr>
+<tr><td>Алгебра и геометрия</td><td>зачёт</td></tr>
+<tr><td>История России</td><td>зачёт</td></tr>
+<tr><td>Английский язык</td><td>зачёт</td></tr>
+<tr><td>Физическая культура</td><td>зачёт</td></tr>
+</tbody></table>
+<p class="muted cab-note">Чтобы получать академическую стипендию, сдайте сессию без троек и долгов. Предметы — как в примере расписания.</p>
+</section>
+
+<section class="card cab-evs nw-afisha" aria-labelledby="cev-h">
+<div class="cab-h"><h2 id="cev-h">Конкурсы и олимпиады</h2><a href="Events.dc.html">Все события →</a></div>
+<ul><li><b class="nw-d">25<span>окт</span></b><div><b>Твой ход</b><span class="muted">Всероссийский студенческий проект</span></div></li><li><b class="nw-d">29<span>окт</span></b><div><b>Кейс-чемпионат «Лига твоего имени»</b><span class="muted">Успей подать заявку</span></div></li><li><b class="nw-d">1<span>ноя</span></b><div><b>Премия губернатора для молодых учёных</b><span class="muted">Приём заявок</span></div></li><li><b class="nw-d">10<span>ноя</span></b><div><b>Я — профессионал</b><span class="muted">Олимпиада для студентов</span></div></li><li><b class="nw-d">19<span>янв</span></b><div><b>Изумруд.Студент</b><span class="muted">Олимпиада УрФУ</span></div></li></ul>
+</section>
+
+<section class="card cab-svc" aria-labelledby="csv-h">
+<div class="cab-h"><h2 id="csv-h">Сервисы УрФУ</h2></div>
+<ul>
+<li><a href="https://pay.urfu.ru/" target="_blank" rel="noopener"><b>Оплата</b><span>pay.urfu.ru — общежитие, медосмотр</span><i class="sr"> (откроется в новой вкладке)</i></a></li>
+<li><a href="https://programs.edu.urfu.ru/" target="_blank" rel="noopener"><b>Моя программа</b><span>Учебный план и преподаватели</span><i class="sr"> (откроется в новой вкладке)</i></a></li>
+<li><a href="https://youthscience.urfu.ru/" target="_blank" rel="noopener"><b>Молодёжная наука</b><span>Конкурсы и конференции</span><i class="sr"> (откроется в новой вкладке)</i></a></li>
+<li><a href="https://elar.urfu.ru/" target="_blank" rel="noopener"><b>Электронный архив</b><span>Статьи, ВКР, газета университета</span><i class="sr"> (откроется в новой вкладке)</i></a></li>
+</ul>
+</section>
+
 <section class="card cab-links" aria-labelledby="cl-h">
 <div class="cab-h"><h2 id="cl-h">Быстро</h2></div>
 <ul>

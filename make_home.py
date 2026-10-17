@@ -148,6 +148,24 @@ def panels_html(t):
     return '<div class="me-panels">' + ''.join(out) + '</div>'
 
 
+def sci_html(t):
+    """Блок «Наука» на русской главной: цифры и открытия 2026 (РИА Новости)."""
+    if not t.get('who'):
+        return ''
+    finds = [('8 октября', 'Титановые сплавы для авиадвигателей'), ('31 августа', '«Газовые батарейки» в восемь раз мощнее'), ('7 сентября', 'Астероиды, опасные для Земли')]
+    li = ''.join(f'<li><small>{d}</small><b>{x}</b></li>' for d, x in finds)
+    return f"""
+<section class="fd-sec yu-sci-sec" aria-labelledby="hsci-h"><div class="wrap">
+<div class="hs">
+<div class="hs-l"><h2 class="fd-h2" id="hsci-h">Наука УрФУ</h2>
+<div class="hs-n"><div><b>54</b><span>проекта «Приоритет-2030»</span></div><div><b>28</b><span>ведущих научных школ</span></div><div><b>23</b><span>научных журнала</span></div></div>
+<a class="btn yu-btn-gold" href="Science.dc.html">Все проекты и лаборатории</a></div>
+<div class="hs-r"><p class="hs-k">Открытия 2026 года</p><ul>{li}</ul><a href="Science.dc.html#find-h" class="hs-more">Ещё открытия</a></div>
+</div>
+</div></section>
+"""
+
+
 def main_html(t):
     steps = ''.join(f'<li><b>{d}</b><span>{w}</span></li>' for d, w in t['steps'][:3])
     news = ''.join(f'<li><a href="{"Article.dc.html" if ("2026" in x or "50,000" in x) else "News.dc.html"}"><small>{d}</small><span class="fd-t">{x}</span></a></li>' for i, (d, x) in enumerate(t['news']))
@@ -247,7 +265,7 @@ def main_html(t):
 <div class="fd-head"><h2 class="fd-h2">{t['life_h']}</h2><a class="fd-more" href="Life.dc.html">{t['life_all']}</a></div>
 <div class="yu-life">{life}</div>
 </div></section>
-
+{sci_html(t)}
 <section class="yu-ask" aria-labelledby="ask-h"><div class="wrap yu-ask-in">
 <div><h2 id="ask-h">{t['ask_h']}</h2><p>{t['ask_lead']}</p><a class="btn2 yu-btn-line" href="{t['ask_all'][0]}">{t['ask_all'][1]}</a></div>
 <div class="yu-ask-list">{ask}</div>

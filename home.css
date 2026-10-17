@@ -281,3 +281,19 @@ html[data-urole] .fd .yu-ask{order:55}
 @media (max-width:900px){.fd .me-grid{grid-template-columns:1fr}.fd .me-top h3{font-size:30px}}
 @media (max-width:560px){.fd .me-links{grid-template-columns:1fr}.fd .me-panel{padding:20px;border-radius:22px}}
 html[data-urole="student"] .fd .yu-tag,html[data-urole="staff"] .fd .yu-tag,html[data-urole="partner"] .fd .yu-tag{display:none}
+/* Главная: блок «Наука УрФУ» */
+.fd .hs{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px;padding:40px;border-radius:32px;background:var(--ink);color:#FFFFFF}
+.fd .hs .fd-h2{color:#FFFFFF}
+.fd .hs-n{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}
+.fd .hs-n b{display:block;font-family:var(--narrow);font-size:52px;line-height:1;color:var(--gold,#FFC21A)}
+.fd .hs-n span{color:#D9D2F0;font-size:15px}
+.fd .hs-k{font-weight:700;color:#D9D2F0;text-transform:uppercase;letter-spacing:.06em;font-size:13px}
+.fd .hs-r ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.fd .hs-r li{display:flex;flex-direction:column;padding:14px 18px;border-radius:16px;background:rgba(255,255,255,.08);border-left:4px solid var(--rhodonite,#E0337A)}
+.fd .hs-r small{color:#D9D2F0}
+.fd .hs-r b{font-size:18px}
+.fd .hs-more{display:inline-block;margin-top:14px;color:#FFFFFF;font-weight:600}
+.fd .hs-more:focus-visible{outline:3px solid var(--gold,#FFC21A);outline-offset:3px}
+html[data-urole="staff"] .fd .yu-sci-sec,html[data-urole="partner"] .fd .yu-sci-sec{order:4}
+html[data-urole="staff"] .fd .yu-news-sec,html[data-urole="partner"] .fd .yu-news-sec{order:5}
+@media (max-width:900px){.fd .hs{grid-template-columns:1fr;padding:28px}.fd .hs-n b{font-size:40px}}

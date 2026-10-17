@@ -99,9 +99,29 @@ def projects():
     return [[k, t, areas_of(t)] for k, t in P2030]
 
 
+RIA = 'https://ria.ru/organization_Uralskijj_federalnyjj_universitet/'
+# научные новости 2026 (РИА Новости): дата, область, заголовок, пояснение
+FINDS = [
+    ('8 октября', 'mat', 'Титановые сплавы для авиадвигателей', 'Выдерживают экстремальные условия работы двигателя.'),
+    ('8 октября', 'mat', 'Материал для долгой жизни двигателей и турбин', 'Продлевает срок службы деталей, которые работают в жаре и под нагрузкой.'),
+    ('7 сентября', 'ai', 'Астероиды, опасные для Земли', 'Учёные изучили объекты, которые могут сблизиться с планетой.'),
+    ('31 августа', 'energy', '«Газовые батарейки» в восемь раз мощнее', 'Нашли способ заметно поднять мощность источника тока.'),
+    ('18 августа', 'bio', 'Причина необъяснимого мужского бесплодия', 'Вместе с УрО РАН выяснили, чем опасен перегрев.'),
+    ('14 июля', 'bio', 'Биодобавки из отходов виноделия', 'Отходы производства превратили в полезный продукт.'),
+    ('2 июля', 'bio', 'Рентген ускоряет созревание йогуртов', 'Новый способ ускорить производство кисломолочных продуктов.'),
+]
+
+
 def main_html(n_proj, n_school):
     n_young = sum(1 for k, _ in P2030 if k == 'young')
     n_ind = sum(1 for k, _ in P2030 if k == 'ind')
+    an = {k: n for k, n, _ in AREAS}
+    cnt = {k: 0 for k, _, _ in AREAS}
+    for _, t, a in projects():
+        for x in a: cnt[x] += 1
+    mx = max(cnt.values())
+    bars = ''.join(f'<li><span class="sb-n">{an[k]}</span><span class="sb-bar"><i style="width:{round(v / mx * 100)}%"></i></span><b>{v}</b></li>' for k, v in sorted(cnt.items(), key=lambda x: -x[1]))
+    finds = ''.join(f'<li class="sf sf-{a}"><span class="sf-d">{d} 2026 · {an[a]}</span><b>{t}</b><span class="muted">{x}</span></li>' for d, a, t, x in FINDS)
     schools = ''.join(f'<div class="sc-col"><h3>{g} <span>{len(xs)}</span></h3><ul>' + ''.join(f'<li>{x}</li>' for x in xs) + '</ul></div>' for g, xs in SCHOOLS)
     return f'''<main id="main" tabindex="-1" style="outline:none"><section class="phead dark sci-head"><div class="wrap">
 <div class="crumbs"><a href="Main.dc.html">Главная</a> / Наука</div>
@@ -131,6 +151,19 @@ def main_html(n_proj, n_school):
 <sc-if value="{{{{none}}}}" hint-placeholder-val="{{{{false}}}}"><div class="card" style="margin-top:12px"><b>Таких проектов нет.</b> <button type="button" class="hp-link" onClick="{{{{reset}}}}">Показать все проекты</button></div></sc-if>
 <sc-if value="{{{{more}}}}" hint-placeholder-val="{{{{false}}}}"><button type="button" class="btn2 sci-more" onClick="{{{{showAll}}}}">Показать все {{{{total}}}}</button></sc-if>
 <p class="muted sci-src">Источник: <a href="{SRC_P}" target="_blank" rel="noopener">проекты развития в рамках программы «Приоритет-2030», urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a>. Области мы проставили сами по названию проекта.</p>
+</section>
+
+<section class="sci-sec" aria-labelledby="dir-h">
+<h2 id="dir-h">Где больше всего проектов</h2>
+<p class="muted sci-lead">Сколько из {n_proj} проектов «Приоритет-2030» относится к каждой области. Один проект может быть сразу в двух.</p>
+<ul class="sci-bars">{bars}</ul>
+</section>
+
+<section class="sci-sec" aria-labelledby="find-h">
+<h2 id="find-h">Открытия 2026 года</h2>
+<p class="muted sci-lead">О чём писали в новостях про учёных УрФУ.</p>
+<ol class="sci-finds">{finds}</ol>
+<p class="muted sci-src">По данным <a href="{RIA}" target="_blank" rel="noopener">РИА Новости<span class="sr"> (откроется в новой вкладке)</span></a>. <a href="News.dc.html?tag=Наука">Все новости науки →</a></p>
 </section>
 
 <section class="sci-sec" aria-labelledby="stud-h">
@@ -180,7 +213,7 @@ const AN = {}; AREAS.forEach(x => AN[x[0]] = x[1]);
 const words = q0.toLowerCase().split(/\\s+/).filter(w => w.length > 1).map(w => w.slice(0, Math.max(4, w.length - 2)));
 const all = P.filter(p => (t === 'all' || p[0] === t) && (a === 'all' || p[2].indexOf(a) !== -1) && words.every(w => p[1].toLowerCase().indexOf(w) !== -1));
 const filtered = !!q0 || a !== 'all' || t !== 'all';
-const LIM = 12, open = st.all || filtered;
+const LIM = 30, open = st.all || filtered;
 const list = (open ? all : all.slice(0, LIM)).map(p => ({ k: p[0], kn: TS[p[0]], t: p[1], an: p[2].map(x => AN[x]).join(' · ') }));
 const n = all.length;
 const form = n % 10 === 1 && n % 100 !== 11 ? 'проект' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'проекта' : 'проектов';
