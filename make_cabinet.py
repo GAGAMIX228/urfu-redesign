@@ -89,6 +89,18 @@ def main_html():
 <p class="muted cab-note">Чтобы получать академическую стипендию, сдайте сессию без троек и долгов. Предметы — как в примере расписания.</p>
 </section>
 
+<section class="card cab-camp" aria-labelledby="ccm-h">
+<div class="cab-h"><h2 id="ccm-h">Мой корпус</h2><a href="Help.dc.html#bld-h">Все корпуса →</a></div>
+<p class="cab-big">Радиофак <span>ул. Мира, 32 · ИРИТ-РтФ</span></p>
+<ul class="cab-cm">
+<li><b>Коворкинг</b><span>1 этаж, Р-044 и левое крыло</span></li>
+<li><b>Столовая</b><span>1 этаж</span></li>
+<li><b>Библиотека</b><span>в ГУК: Б-202 техническая, Б-203 гуманитарная</span></li>
+<li><b>Тьюторы</b><span>Р-138а</span></li>
+</ul>
+<p class="muted cab-note">Пример для группы РИ. По данным «Навигатора первокурсника» и сайта программ УрФУ.</p>
+</section>
+
 <section class="card cab-evs nw-afisha" aria-labelledby="cev-h">
 <div class="cab-h"><h2 id="cev-h">Конкурсы и олимпиады</h2><a href="Events.dc.html">Все события →</a></div>
 <ul><li><b class="nw-d">25<span>окт</span></b><div><b>Твой ход</b><span class="muted">Всероссийский студенческий проект</span></div></li><li><b class="nw-d">29<span>окт</span></b><div><b>Кейс-чемпионат «Лига твоего имени»</b><span class="muted">Успей подать заявку</span></div></li><li><b class="nw-d">1<span>ноя</span></b><div><b>Премия губернатора для молодых учёных</b><span class="muted">Приём заявок</span></div></li><li><b class="nw-d">10<span>ноя</span></b><div><b>Я — профессионал</b><span class="muted">Олимпиада для студентов</span></div></li><li><b class="nw-d">19<span>янв</span></b><div><b>Изумруд.Студент</b><span class="muted">Олимпиада УрФУ</span></div></li></ul>

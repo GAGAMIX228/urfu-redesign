@@ -122,6 +122,16 @@ def main_html():
 </ul>
 <p style="margin-top:12px"><a href="Contacts.dc.html">Карта кампуса и все корпуса →</a></p>
 
+<h2 id="bld-h" style="margin-top:56px">Как называют корпуса</h2>
+<p class="muted" style="margin-top:8px;max-width:720px">Во Втузгородке у корпусов есть «студенческие» имена — их услышите в первый же день.</p>
+<ul class="hp-bld"><li><b>ГУК</b><span>ул. Мира, 19</span><small>Главный учебный корпус: руководство университета, лекционные аудитории разных институтов</small></li><li><b>Электрофак</b><span>ул. Мира, 19, левое крыло</span><small>В основном ИНМиТ и УралЭНИН</small></li><li><b>Инжэк</b><span>ул. Мира, 19, правое крыло</span><small>В основном ИнЭУ. Внутри — музейно-выставочный комплекс</small></li><li><b>Стройфак</b><span>ул. Мира, 17</span><small>Институт строительства и архитектуры</small></li><li><b>Физтех</b><span>ул. Мира, 21</span><small>ФТИ и УПИШ</small></li><li><b>Третий корпус</b><span>ул. Мира, 28</span><small>ХТИ и ИНМиТ</small></li><li><b>Радиофак</b><span>ул. Мира, 32</span><small>ИРИТ-РтФ</small></li><li><b>Теплофак</b><span>ул. Софьи Ковалевской, 5</span><small>УралЭНИН и ИнФО, внутри баскетбольный зал</small></li><li><b>Точка кипения</b><span>пр. Ленина, 66</span><small>Пространство для студенческих проектов и мероприятий</small></li></ul>
+
+<div class="hp-two">
+<div class="card"><h3>Где позаниматься между парами</h3><p class="muted" style="margin-top:6px">Коворкинги:</p><ul class="hp-cw"><li><b>Электрофак</b><span>5 этаж, левое крыло, М-524а</span></li><li><b>Радиофак</b><span>1 этаж, Р-044 и левое крыло</span></li><li><b>ГУК</b><span>4 этаж, правое крыло</span></li><li><b>Физтех</b><span>4 этаж, Ф-411</span></li><li><b>Третий корпус</b><span>2 этаж, Мт-205а</span></li><li><b>Инжэк</b><span>5 этаж</span></li></ul><p style="margin-top:10px">Библиотека в ГУК: <b>Б-202</b> — техническая литература, <b>Б-203</b> — гуманитарная.</p></div>
+<div class="card"><h3>Не выходя на мороз</h3><p class="muted" style="margin-top:6px">Корпуса соединены переходами:</p><ul class="hp-cw"><li><b>Электрофак ↔ Стройфак</b></li><li><b>Стройфак ↔ ГУК</b></li><li><b>Теплофак ↔ ГУК</b></li><li><b>Третий корпус ↔ ГУК</b></li><li><b>Инжэк ↔ Физтех</b></li></ul><p style="margin-top:10px">Столовые — на первых этажах Радиофака, ГУК и Третьего корпуса, в Инжэке — на третьем.</p></div>
+</div>
+<p class="muted" style="font-size:14px;margin-top:12px">По данным <a href="https://privet.urfu.ru/navigation" target="_blank" rel="noopener">«Навигатора первокурсника» УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>. Расписание есть и в официальном приложении «УрФУ.Учеба».</p>
+
 <h2 id="svc-h" style="margin-top:56px">Полезные сервисы УрФУ</h2>
 <div class="hp-svcs">
 <a href="https://pay.urfu.ru/" target="_blank" rel="noopener"><b>pay.urfu.ru</b><span>Оплата общежития, медосмотра и услуг</span><i class="sr"> (откроется в новой вкладке)</i></a>
@@ -241,6 +251,18 @@ CSS = '''
 .hp-sc b{font-family:var(--narrow);font-size:21px}
 .hp-sc span{color:var(--muted);font-size:15px}
 @media (max-width:620px){.hp-scs{grid-template-columns:1fr}}
+.hp-bld{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.hp-bld li{display:flex;flex-direction:column;gap:2px;padding:18px 20px;border-radius:16px;background:#FFFFFF;border:1px solid var(--limestone);border-top:5px solid var(--gold,#FFC21A)}
+.hp-bld b{font-family:var(--narrow);font-size:22px}
+.hp-bld span{font-weight:600}
+.hp-bld small{color:var(--muted);font-size:14px}
+.hp-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.hp-two h3{font-size:20px}
+.hp-cw{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.hp-cw li{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:8px 12px;border-radius:10px;background:var(--bg-soft-2);font-size:15px}
+.hp-cw span{color:var(--muted)}
+@media (max-width:900px){.hp-bld{grid-template-columns:repeat(2,minmax(0,1fr))}.hp-two{grid-template-columns:1fr}}
+@media (max-width:560px){.hp-bld{grid-template-columns:1fr}}
 .hp-need-h{font-family:var(--narrow);font-size:30px;margin-top:40px}
 .hp-need{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .hp-need a{display:flex;flex-direction:column;gap:4px;min-height:96px;padding:18px 20px;border-radius:16px;border:2px solid var(--limestone);background:#FFFFFF;color:var(--ink);text-decoration:none;transition:border-color .15s ease,transform .15s ease}

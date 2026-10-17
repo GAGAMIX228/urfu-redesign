@@ -112,6 +112,14 @@ FINDS = [
 ]
 
 
+JOURNALS = [('Quaestio Rossica', 'Web of Science'), ('Античная древность и средние века', 'Scopus · ERIH PLUS · РИНЦ'), ('Известия УрФУ. Серия 2. Гуманитарные науки', 'Web of Science (ESCI) · ERIH PLUS · ВАК'),
+    ('Известия УрФУ. Серия 1. Проблемы образования, науки и культуры', 'РИНЦ · «Белый список»'), ('Уральское востоковедение', 'РИНЦ'), ('Вопросы ономастики', ''), ('Changing Societies & Personalities', ''),
+    ('Экономика региона', ''), ('Chimica Techno Acta', ''), ('Ural Mathematical Journal', ''), ('Аналитика и контроль', ''), ('Journal of Tax Reform', ''), ('Университетское управление: практика и анализ', ''),
+    ('R-Economy', ''), ('Journal of Applied Economic Research', ''), ('Ural Radio Engineering Journal', ''), ('Tempus et Memoria', ''),
+    ('Russian Journal of Construction Science and Technology', ''), ('Актуальные вопросы спортивной психологии и педагогики', ''), ('Electrochemical Materials and Technologies', '')]
+CKP = [('Комплексных исследований и экспертной оценки органических материалов', 'О. С. Ельцов, канд. хим. наук'), ('Структурных методов анализа и свойств материалов и наноматериалов', 'С. В. Беликов, канд. техн. наук'), ('Электромагнитной совместимости', 'Н. С. Князев, канд. техн. наук')]
+
+
 def main_html(n_proj, n_school):
     n_young = sum(1 for k, _ in P2030 if k == 'young')
     n_ind = sum(1 for k, _ in P2030 if k == 'ind')
@@ -122,6 +130,8 @@ def main_html(n_proj, n_school):
     mx = max(cnt.values())
     bars = ''.join(f'<li><span class="sb-n">{an[k]}</span><span class="sb-bar"><i style="width:{round(v / mx * 100)}%"></i></span><b>{v}</b></li>' for k, v in sorted(cnt.items(), key=lambda x: -x[1]))
     finds = ''.join(f'<li class="sf sf-{a}"><span class="sf-d">{d} 2026 · {an[a]}</span><b>{t}</b><span class="muted">{x}</span></li>' for d, a, t, x in FINDS)
+    jl = ''.join(f'<li><b>{n}</b>' + (f'<span>{i}</span>' if i else '') + '</li>' for n, i in JOURNALS)
+    ckp = ''.join(f'<li><b>Лаборатория {n[0].lower() + n[1:]}</b><span>Заведующий — {h}</span></li>' for n, h in CKP)
     schools = ''.join(f'<div class="sc-col"><h3>{g} <span>{len(xs)}</span></h3><ul>' + ''.join(f'<li>{x}</li>' for x in xs) + '</ul></div>' for g, xs in SCHOOLS)
     return f'''<main id="main" tabindex="-1" style="outline:none"><section class="phead dark sci-head"><div class="wrap">
 <div class="crumbs"><a href="Main.dc.html">Главная</a> / Наука</div>
@@ -191,12 +201,22 @@ def main_html(n_proj, n_school):
 </div>
 </section>
 
+<section class="sci-sec" aria-labelledby="ckp-h">
+<h2 id="ckp-h">Центр коллективного пользования</h2>
+<p class="muted sci-lead">Научное оборудование университета, на котором можно заказать исследования и анализы. В центре три лаборатории:</p>
+<ul class="sci-ckp">{ckp}</ul>
+<p class="muted sci-src">Список оборудования, услуги и цены — на <a href="https://ckp.urfu.ru/" target="_blank" rel="noopener">ckp.urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
+</section>
+
 <section class="sci-sec" aria-labelledby="jr-h">
 <h2 id="jr-h">Журналы и издательство</h2>
 <div class="g2 sci-two">
 <div class="card"><b class="sci-big">23</b><h3>научных журнала</h3><p class="muted">Двенадцать из них входят в международные базы цитирования. Все журналы — на одном портале.</p><a href="https://journals.urfu.ru/" target="_blank" rel="noopener">journals.urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a></div>
 <div class="card"><h3>Издательство Уральского университета</h3><p class="muted">По данным УрФУ — крупнейшее университетское издательство в Уральском регионе: учебники, монографии, научная литература.</p><a href="https://print.urfu.ru/" target="_blank" rel="noopener">print.urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a></div>
 </div>
+<h3 class="sci-jh">Журналы на портале journals.urfu.ru</h3>
+<ul class="sci-jl">{jl}</ul>
+<p class="muted sci-src">Индексы — как указаны на портале; у журналов без подписи сведений на портале нет.</p>
 <p class="muted sci-src">Источник: <a href="{SRC_J}" target="_blank" rel="noopener">научное издательство, urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a>. <a href="News.dc.html?tag=Наука">Новости науки →</a></p>
 </section>
 </div>
