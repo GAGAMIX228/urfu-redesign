@@ -118,6 +118,7 @@
 <aside class="lg-side" data-role="{{roleKey}}" aria-labelledby="side-h">
 <h2 id="side-h">Что будет в кабинете: {{roleName}}</h2>
 <ul><sc-for list="{{feat}}" as="f" hint-placeholder-count="4"><li>{{f}}</li></sc-for></ul>
+<a class="btn2 lg-demo" href="Cabinet.dc.html">Открыть демо-кабинет студента</a>
 <div class="lg-help"><b>Не получается войти?</b><br>Техподдержка: <a href="tel:+73432272070">+7 (343) 227-20-70</a>, <a href="mailto:support@urfu.ru">support@urfu.ru</a></div>
 </aside>
 </div>
@@ -151,7 +152,7 @@ const submitIn = ev => {
   const e = {};
   if (!s.login.trim()) e.login = TX.eLogin;
   if (!s.pass) e.pass = TX.ePass;
-  if (Object.keys(e).length) fail(e, [['login', 'f-login'], ['pass', 'f-pass']]); else done(TX.okIn);
+  if (Object.keys(e).length) fail(e, [['login', 'f-login'], ['pass', 'f-pass']]); else if (s.role === 'student') location.href = 'Cabinet.dc.html'; else done(TX.okIn);
 };
 const submitReg = ev => {
   ev.preventDefault();
