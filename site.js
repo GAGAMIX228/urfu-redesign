@@ -160,3 +160,19 @@ document.addEventListener("click",function(e){if(!document.querySelector("base")
   nav.innerHTML=L.map(function(x){var on=here===x[0];return '<a href="'+x[0]+'"'+(on?' aria-current="page"':'')+'><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+I[x[1]]+'</svg>'+x[2]+'</a>';}).join("");
   document.body.appendChild(nav);document.documentElement.classList.add("has-tabbar");
 })();
+/* Кнопка «Поделиться»: на телефоне — системное меню, на компьютере — копируем ссылку.
+   data-share="" — текущий адрес; data-share="?g=…" — адрес с параметрами. */
+document.addEventListener('click', function (e) {
+  var b = e.target.closest && e.target.closest('[data-share]');
+  if (!b) return;
+  var extra = b.getAttribute('data-share') || '';
+  var url = extra ? location.href.split('?')[0].split('#')[0] + extra : location.href;
+  function done(t) {
+    var old = document.querySelector('.share-ok'); if (old) old.remove();
+    var m = document.createElement('div'); m.className = 'share-ok'; m.setAttribute('role', 'status'); m.textContent = t;
+    document.body.appendChild(m); setTimeout(function () { m.remove(); }, 2600);
+  }
+  if (navigator.share && matchMedia('(pointer:coarse)').matches) { navigator.share({ title: document.title, url: url }).catch(function () {}); return; }
+  if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { done('Ссылка скопирована'); }, function () { done(url); });
+  else done(url);
+});

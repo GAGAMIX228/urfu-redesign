@@ -26,7 +26,7 @@ MAIN = """<main id="main" tabindex="-1" style="outline:none"><section class="phe
 <sc-if value="{{hasPrice}}" hint-placeholder-val="{{true}}"><div><div class="muted" style="font-size:14px">Стоимость в год</div><div style="font-family:var(--narrow);font-weight:700;font-size:28px">{{price}}</div></div></sc-if>
 <div><div class="muted" style="font-size:14px">Форма обучения</div><div style="font-family:var(--narrow);font-weight:700;font-size:28px">{{form}}</div></div>
 </div>
-<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px"><a class="btn" href="Admission.dc.html" style="min-height:52px;padding:0 28px">Подать документы</a><a class="btn2" href="Catalog.dc.html" style="min-height:52px">Сравнить с другими</a></div>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px"><a class="btn" href="Admission.dc.html" style="min-height:52px;padding:0 28px">Подать документы</a><a class="btn2" href="{{cmpHref}}" style="min-height:52px">Сравнить с другими</a><button type="button" class="btn2 share-btn" style="min-height:52px" data-share="">Поделиться</button></div>
 </div>
 </section>
 <div class="wrap">
@@ -48,10 +48,51 @@ MAIN = """<main id="main" tabindex="-1" style="outline:none"><section class="phe
 
 <sc-if value="{{hasSkills}}" hint-placeholder-val="{{true}}"><h2 style="margin-top:56px">Чему вы научитесь</h2>
 <div class="g2" style="margin-top:20px"><sc-for list="{{skills}}" as="k" hint-placeholder-count="4"><div class="card"><div style="font-weight:600;font-size:18px">{{k.t}}</div><p class="muted" style="margin-top:8px">{{k.d}}</p></div></sc-for></div>
-<h2 style="margin-top:56px">Кем работают выпускники</h2>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px"><sc-for list="{{jobs}}" as="j" hint-placeholder-count="6"><span class="chip">{{j}}</span></sc-for></div></sc-if>
+<sc-if value="{{noDeep}}" hint-placeholder-val="{{false}}"><h2 style="margin-top:56px">Кем работают выпускники</h2>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px"><sc-for list="{{jobs}}" as="j" hint-placeholder-count="6"><span class="chip">{{j}}</span></sc-for></div></sc-if></sc-if>
 
-<sc-if value="{{hasLink}}" hint-placeholder-val="{{true}}"><h2 style="margin-top:56px">Подробнее о программе</h2>
+<sc-if value="{{deep}}" hint-placeholder-val="{{true}}">
+<h2 style="margin-top:56px" id="study-h">Что будешь изучать</h2>
+<p class="muted" style="margin-top:8px;max-width:720px">Модули учебного плана по темам. С 2 курса часть предметов выбираете сами — это индивидуальная траектория.</p>
+<div class="pg-blks" style="margin-top:20px"><div class="pg-blk" style="--c:#E0337A"><div class="pg-blk-h"><b>Математика</b><span>6 модулей</span></div><ul><li>Элементарные основы математики и физики</li><li>Математические методы для разработчиков 1 и 2</li><li>Дискретная математика и математическая логика</li><li>Теория вероятностей и математическая статистика</li><li>Векторный анализ</li><li>Дополнительные главы математики</li></ul></div><div class="pg-blk" style="--c:#6B2BE0"><div class="pg-blk-h"><b>Программирование</b><span>6 модулей</span></div><ul><li>Программирование</li><li>Современные языки программирования</li><li>Технологии программирования</li><li>Прикладное программирование</li><li>Алгоритмы и анализ сложности</li><li>Web-технологии</li></ul></div><div class="pg-blk" style="--c:#0E8A6A"><div class="pg-blk-h"><b>Системы и данные</b><span>7 модулей</span></div><ul><li>Архитектура ЭВМ</li><li>Операционные системы</li><li>Компьютерные сети</li><li>Базы данных</li><li>Виртуализация и облачные технологии</li><li>Информационная безопасность</li><li>Анализ данных и искусственный интеллект</li></ul></div><div class="pg-blk" style="--c:#B86E00"><div class="pg-blk-h"><b>Инженерия и управление</b><span>7 модулей</span></div><ul><li>Теория и практика программной инженерии</li><li>Базовая архитектура ПО</li><li>Проектирование информационных систем</li><li>Системная аналитика</li><li>Управление проектами</li><li>Экономика инженерии</li><li>Правовые основы IT</li></ul></div><div class="pg-blk" style="--c:#1F5FD1"><div class="pg-blk-h"><b>Проекты и практика</b><span>4 модуля</span></div><ul><li>Основы проектной деятельности</li><li>Проектная деятельность</li><li>Учебная практика: ознакомительная и проектно-технологическая</li><li>Производственная практика: технологическая, проектная, преддипломная</li></ul></div><div class="pg-blk" style="--c:#C2185B"><div class="pg-blk-h"><b>По выбору</b><span>2 модуля</span></div><ul><li>Профессиональные спецкурсы 1–6</li><li>Майнор — курс другого направления</li></ul></div></div>
+<p style="margin-top:14px;font-size:15px"><a href="https://programs.edu.urfu.ru/ru/9797/documents/" target="_blank" rel="noopener">Учебный план и рабочие программы модулей<span class="sr"> (откроется в новой вкладке)</span></a></p>
+
+<h2 style="margin-top:56px">Проекты — с первого года</h2>
+<p class="muted" style="margin-top:8px;max-width:720px">Проектная деятельность идёт каждый семестр. Задачи часто приносят компании-партнёры. Вот проекты студентов программы:</p>
+<div class="g3 pg-projs" style="margin-top:20px"><div class="card pg-proj"><span class="tag">Заказ партнёра</span><div class="pg-proj-t">Meetups — платформа для мероприятий</div><div class="muted" style="font-size:14px;margin-top:auto">Заказчик: ГК «Иннотех»</div></div><div class="card pg-proj"><span class="tag">Заказ партнёра</span><div class="pg-proj-t">Сервис онлайн-опросов и голосований с аналитикой</div><div class="muted" style="font-size:14px;margin-top:auto">Заказчик: ГК «Иннотех»</div></div><div class="card pg-proj"><span class="tag">Заказ партнёра</span><div class="pg-proj-t">Мобильный путеводитель по городам России</div><div class="muted" style="font-size:14px;margin-top:auto">Заказчик: УБРиР</div></div><div class="card pg-proj"><span class="tag">Реализован</span><div class="pg-proj-t">Образовательная игра «Coding Learn» на Unity: учит программировать на C#</div></div><div class="card pg-proj"><span class="tag">Реализован</span><div class="pg-proj-t">Система бронирования мест в коворкинге</div><div class="muted" style="font-size:14px;margin-top:auto">Заказчик: ГК «Хост»</div></div></div>
+
+<h2 style="margin-top:56px">Кем будешь работать</h2>
+<ul class="pg-profs" style="margin-top:20px"><li><b>Программист — разработчик ПО</b><span>Пишет программы и приложения.</span></li><li><b>Web-разработчик</b><span>Сайты, веб-сервисы, мобильные и настольные приложения.</span></li><li><b>Разработчик мобильных приложений</b><span>Приложения для телефонов и планшетов.</span></li><li><b>Тестировщик</b><span>Проверяет, что программа работает правильно.</span></li><li><b>DevOps-инженер</b><span>Ускоряет выпуск обновлений: сборка, выкладка, мониторинг.</span></li><li><b>Архитектор ПО</b><span>Решает, из каких частей состоит система и как они связаны.</span></li><li><b>Разработчик компьютерных игр</b><span>От концепции и прототипа до готовой игры.</span></li><li><b>Менеджер IT-проектов</b><span>Сроки, качество и команда проекта.</span></li><li><b>Руководитель разработки ПО</b><span>Организует процесс разработки и ресурсы.</span></li></ul>
+
+<h2 style="margin-top:56px">С кем работает программа</h2>
+<p class="muted" style="margin-top:8px;max-width:720px">Партнёры помогают составлять программу, ведут проекты, берут на практику и на работу.</p>
+<div class="pg-logos" style="margin-top:20px"><span class="pg-logo">Сбер</span><span class="pg-logo">СКБ Контур</span><span class="pg-logo">VK</span><span class="pg-logo">Naumen</span><span class="pg-logo">Альфа-Банк</span><span class="pg-logo">МТС Банк</span><span class="pg-logo">УЦСБ</span><span class="pg-logo">66 Бит</span><span class="pg-logo">Targem Games</span><span class="pg-logo">Artsofte</span><span class="pg-logo">НПО автоматики</span><span class="pg-logo">НПЦ «РИЦ»</span><span class="pg-logo">Акоммерс</span><span class="pg-logo">ФТ-Софт</span></div>
+
+<h2 style="margin-top:56px">Кто будет учить</h2>
+<div class="g2" style="margin-top:20px"><div class="card pg-t"><span class="pg-ava" aria-hidden="true">НМ</span><div><b>Новиков Максим Юрьевич</b><div class="muted" style="font-size:14px">канд. пед. наук, руководитель программы</div><p style="font-size:15px;margin-top:8px">Технологии программирования · Облачные вычисления · Fullstack на Next.js</p></div></div><div class="card pg-t"><span class="pg-ava" aria-hidden="true">ОИ</span><div><b>Обабков Илья Николаевич</b><div class="muted" style="font-size:14px">канд. техн. наук, ректор УрФУ</div><p style="font-size:15px;margin-top:8px">Инженерия программного обеспечения · Анализ и управление требованиями</p></div></div><div class="card pg-t"><span class="pg-ava" aria-hidden="true">БВ</span><div><b>Белоусова Вероника Игоревна</b><div class="muted" style="font-size:14px">канд. физ.-мат. наук, доцент</div><p style="font-size:15px;margin-top:8px">Математический анализ · Дискретная математика · Теория вероятностей</p></div></div><div class="card pg-t"><span class="pg-ava" aria-hidden="true">ДА</span><div><b>Долганов Антон Юрьевич</b><div class="muted" style="font-size:14px">канд. техн. наук, доцент</div><p style="font-size:15px;margin-top:8px">Машинное обучение · Обработка естественного языка</p></div></div><div class="card pg-t"><span class="pg-ava" aria-hidden="true">ЗО</span><div><b>Зверева Ольга Михайловна</b><div class="muted" style="font-size:14px">канд. техн. наук, доцент</div><p style="font-size:15px;margin-top:8px">Операционные системы · Современные интернет-технологии</p></div></div><div class="card pg-t"><span class="pg-ava" aria-hidden="true">РМ</span><div><b>Ронкин Михаил Владимирович</b><div class="muted" style="font-size:14px">канд. техн. наук, старший научный сотрудник</div><p style="font-size:15px;margin-top:8px">Нейронные сети · Компьютерное зрение · Анализ временных рядов</p></div></div></div>
+<p style="margin-top:14px;font-size:15px"><a href="https://programs.edu.urfu.ru/ru/9797/teachers/" target="_blank" rel="noopener">Все преподаватели программы<span class="sr"> (откроется в новой вкладке)</span></a></p>
+
+<h2 style="margin-top:56px">Что говорят студенты</h2>
+<div class="card pg-rev" style="margin-top:20px">
+<p class="pg-rev-q">Любимый предмет — проектный практикум: каждый семестр делаешь проект, часто для настоящего заказчика, и сам выбираешь роль в команде.</p>
+<p style="margin-top:12px">Ещё нравится, что предметы можно выбирать: если не хочется только программировать, можно уйти в дизайн или аналитику. Поначалу было трудно с программированием — помогало спрашивать преподавателей.</p>
+<div class="muted" style="font-size:14px;margin-top:14px">Пересказ интервью студентки 3 курса Ксении Поповой · <a href="https://programs.edu.urfu.ru/ru/9797/pages/feedback/" target="_blank" rel="noopener">полный текст<span class="sr"> (откроется в новой вкладке)</span></a></div>
+</div>
+
+<h2 style="margin-top:56px">Частые вопросы о программе</h2>
+<div class="faq" style="margin-top:12px"><details><summary>Можно ли самому выбирать предметы?</summary><p>Да. Со 2 курса вместе с обязательными курсами выбираете курсы по выбору — так складывается своя траектория. Если выбор не подошёл, на старших курсах его можно поправить. Плюс майнор — курс другого направления.</p></details><details><summary>Сколько мест в 2026 году?</summary><p>Очная форма: 130 бюджетных и 70 платных мест.</p></details><details><summary>Сколько стоит платное обучение?</summary><p>390 000 ₽ в год, со скидкой — 331 500 ₽ (для граждан России). Условия скидок — в разделе «Стоимость и скидки» на сайте программы.</p></details><details><summary>Какие минимальные баллы ЕГЭ?</summary><p>В 2026 году: математика — 40, русский язык — 40, по выбору информатика — 46 или физика — 41.</p></details><details><summary>Будет ли практика в компаниях?</summary><p>Да: две учебные и три производственные практики. Места дают компании-партнёры, они же приносят задачи для проектов.</p></details><details><summary>Что такое ТОП-трек?</summary><p>С 2025 года на базе учебно-научного центра «Информационные технологии» ИРИТ-РтФ есть обучение по программам топ-уровня вместе с индустриальными партнёрами — в рамках нацпроекта «Экономика данных».</p></details><details><summary>Где проходят занятия?</summary><p>В ИРИТ-РтФ: Екатеринбург, ул. Мира, 32.</p></details></div>
+
+<h2 style="margin-top:56px">Контакты программы</h2>
+<div class="g3" style="margin-top:20px">
+<div class="card"><div class="muted" style="font-size:14px">Руководитель программы</div><b style="display:block;margin-top:4px">Новиков Максим Юрьевич</b><p class="muted" style="font-size:14px;margin-top:6px">Р-327, ул. Мира, 32</p><a href="mailto:novikov.maksim@urfu.ru">novikov.maksim@urfu.ru</a></div>
+<div class="card"><div class="muted" style="font-size:14px">Тьютор</div><b style="display:block;margin-top:4px">Ирина Колмогорцева</b><p class="muted" style="font-size:14px;margin-top:6px">Р-138а, ул. Мира, 32</p><a href="mailto:i.s.kolmogortseva@urfu.ru">i.s.kolmogortseva@urfu.ru</a></div>
+<div class="card"><div class="muted" style="font-size:14px">Тьютор</div><b style="display:block;margin-top:4px">Алёна Садова</b><p class="muted" style="font-size:14px;margin-top:6px">Р-138а, ул. Мира, 32</p><a href="mailto:a.a.sadova@urfu.ru">a.a.sadova@urfu.ru</a></div>
+</div>
+<p class="muted" style="font-size:14px;margin-top:16px">Данные — с официального <a href="https://programs.edu.urfu.ru/ru/9797/" target="_blank" rel="noopener">сайта образовательных программ УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>, октябрь 2026.</p>
+</sc-if>
+
+
+<sc-if value="{{linkBox}}" hint-placeholder-val="{{false}}"><h2 style="margin-top:56px">Подробнее о программе</h2>
 <div class="card" style="margin-top:20px"><p>Учебный план, преподаватели и документы программы — на официальном сайте образовательных программ УрФУ.</p><a href="{{link}}" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-weight:600">Открыть страницу программы на programs.edu.urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a></div></sc-if>
 
 <h2 style="margin-top:56px">Похожие программы</h2>
@@ -77,7 +118,7 @@ const INST = {'ИРИТ-РтФ':'Института радиоэлектрони
 // подробности есть только у программы-примера
 const EXTRA = {'Программная инженерия': {
   lead: 'Проектирование, разработка и сопровождение программных систем: от требований заказчика до работающего продукта.',
-  form: '4 года, очно', mins: {'математика': 40, 'информатика или физика': '46 / 41', 'русский': 40},
+  form: '4 года, очно', deep: true, mins: {'математика': 40, 'информатика или физика': '46 / 41', 'русский': 40},
   hist: [[2023, 253], [2024, 244], [2025, 259]],
   skills: [['Писать код', 'Алгоритмы, структуры данных, несколько языков программирования.'], ['Проектировать системы', 'Архитектура, базы данных, требования к продукту.'], ['Работать в команде', 'Командные проекты по методологиям разработки.'], ['Проверять качество', 'Тестирование, ревью кода, сопровождение.']],
   jobs: ['Backend-разработчик', 'Frontend-разработчик', 'Инженер по тестированию', 'Системный аналитик', 'DevOps-инженер', 'Руководитель проектов'] }};
@@ -119,9 +160,10 @@ return {
   score: P.score, budget: P.budget, price: P.price, sy: P.sy, form: X.form || 'Очная',
   exams, hasHist: hist.length > 0, hist, histLabel: 'Проходной балл: ' + hist.map(h => h.y + ' — ' + h.v).join(', '),
   oneScore: !hist.length && known, known, hasScoreV: known, hasBudget: P.budget !== '—' && !!P.budget, hasPrice: P.price !== '—' && !!P.price,
+  deep: !!X.deep, noDeep: !X.deep, linkBox: !!PAGE[P.name] && !X.deep,
   hasSkills: !!X.skills, skills: (X.skills || []).map(([t, d]) => ({ t, d })), jobs: X.jobs || [],
   hasLink: !!PAGE[P.name], link: PAGE[P.name] ? 'https://programs.edu.urfu.ru/ru/' + PAGE[P.name] + '/' : '',
-  similar,
+  similar, cmpHref: 'Catalog.dc.html?cmp=' + encodeURIComponent(P.name) + '#cmp-h',
   calcLead: known ? 'Сравните свою сумму с проходным баллом ' + P.sy + ' года.' : 'Введите сумму баллов ЕГЭ — подскажем, что делать дальше.',
   my, has, resT, resD, resCls, onMy: (e) => this.setState({ my: e.target.value })
 };
