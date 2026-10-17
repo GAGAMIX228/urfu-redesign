@@ -53,6 +53,19 @@ body{padding:0;background:var(--bg)}
 .sg-ph .sg-field{min-height:44px}
 .sg-ph .sg-field select,.sg-ph .sg-field input{font-size:16px}
 .sg-ph .sg-row .btn{min-height:44px}
+.wk-nav{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:32px}
+.wk-btn{width:48px;height:48px;border-radius:14px;border:2px solid var(--limestone);background:#FFFFFF;color:var(--ink);font:inherit;font-size:20px;font-weight:700;cursor:pointer}
+.wk-btn:hover{border-color:var(--amethyst)}
+.wk-btn:focus-visible,.wk-ph button:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}
+.wk-now{display:flex;flex-direction:column;min-width:190px;padding:0 6px}
+.wk-now b{font-family:var(--narrow);font-size:20px}
+.wk-now span{font-size:14px;color:var(--muted)}
+.wk-today{min-height:48px}
+.wk-ics{min-height:48px;margin-left:auto}
+.wk-nav + .week{margin-top:16px}
+.wk-ph{display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-size:14px;color:var(--on-dark-muted)}
+.wk-ph button{width:44px;height:36px;border-radius:10px;border:0;background:var(--ink-2);color:#FFFFFF;font-size:20px;cursor:pointer}
+@media (max-width:700px){.wk-ics{margin-left:0}}
 .week{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:32px}
 .wday{border:1px solid var(--line);border-radius:10px;background:#FFFFFF;display:flex;flex-direction:column;min-height:320px;overflow:hidden}
 .wday-h{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;font-weight:600;background:var(--bg-soft)}
@@ -100,6 +113,7 @@ body{padding:0;background:var(--bg)}
 </div>
 </section>
 <div class="wrap" style="padding-bottom:72px">
+<div class="wk-nav" role="group" aria-label="Неделя"><button type="button" class="wk-btn" onClick="{{prevW}}" aria-label="Предыдущая неделя">←</button><div class="wk-now" aria-live="polite"><b>{{wkWhen}}</b><span>{{wkShort}}</span></div><button type="button" class="wk-btn" onClick="{{nextW}}" aria-label="Следующая неделя">→</button><sc-if value="{{notNow}}" hint-placeholder-val="{{false}}"><button type="button" class="btn2 wk-today" onClick="{{thisW}}">К текущей неделе</button></sc-if><button type="button" class="btn2 wk-ics" onClick="{{ics}}">Добавить в календарь телефона</button></div>
 <div class="week">
 <sc-for list="{{week}}" as="w" hint-placeholder-count="6">
 <section class="{{w.cls}}" aria-label="{{w.full}}">
@@ -133,7 +147,8 @@ body{padding:0;background:var(--bg)}
 <p id="sg-hint2" class="sg-hint" aria-live="polite"></p>
 <p id="sg-err2" class="sg-err" role="alert" hidden></p>
 </form>
-<div style="display:flex;gap:6px;margin-top:16px">
+<div class="wk-ph" role="group" aria-label="Неделя"><button type="button" onClick="{{prevW}}" aria-label="Предыдущая неделя">‹</button><span aria-live="polite">{{wkShort}}</span><button type="button" onClick="{{nextW}}" aria-label="Следующая неделя">›</button></div>
+<div style="display:flex;gap:6px;margin-top:12px">
 <sc-for list="{{days}}" as="d" hint-placeholder-count="6">
 <sc-if value="{{d.on}}" hint-placeholder-val="{{false}}"><button onClick="{{d.pick}}" style="flex:1;min-height:56px;border-radius:6px;border:0;background:#FFFFFF;color:var(--ink);font:inherit;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">{{d.w}}<span style="font-size:12px;font-weight:500">{{d.n}}</span></button></sc-if>
 <sc-if value="{{d.off}}" hint-placeholder-val="{{true}}"><button onClick="{{d.pick}}" style="flex:1;min-height:56px;border-radius:6px;border:0;background:var(--ink-2);color:#FFFFFF;font:inherit;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px">{{d.w}}<span style="font-size:12px;font-weight:500;color:var(--on-dark-muted)">{{d.n}}</span></button></sc-if>
@@ -164,11 +179,12 @@ class Component extends DCLogic {
 renderVals() {
 // текущая учебная неделя: в воскресенье показываем следующую
 const now = new Date(); const wd = (now.getDay() + 6) % 7;
-const mon = new Date(now.getFullYear(), now.getMonth(), now.getDate() - wd + (wd === 6 ? 7 : 0));
-const todayIdx = wd === 6 ? 0 : wd;
+const off = (this.state && this.state.w) || 0;
+const mon = new Date(now.getFullYear(), now.getMonth(), now.getDate() - wd + (wd === 6 ? 7 : 0) + off * 7);
+const todayIdx = off === 0 ? (wd === 6 ? 0 : wd) : -1;
 const dt = k => new Date(mon.getFullYear(), mon.getMonth(), mon.getDate() + k);
 const dm = x => String(x.getDate()).padStart(2, '0') + '.' + String(x.getMonth() + 1).padStart(2, '0');
-const d = (this.state && this.state.d !== undefined) ? this.state.d : todayIdx;
+const d = (this.state && this.state.d !== undefined) ? this.state.d : Math.max(0, todayIdx);
 // группа из адреса ?g= — только буквы, цифры и дефис
 let gSaved = ''; try { gSaved = localStorage.getItem('urfu-group') || ''; } catch (e) {}
 const qs = new URLSearchParams(location.search);
@@ -195,10 +211,25 @@ const ps = plan[k].map(([i, t, kind]) => ({ from: T[i][0], to: T[i][1], t, kind,
 return { w, n, full: full[k], cls: 'wday' + (k === todayIdx ? ' today' : ''), pairs: ps, empty: ps.length === 0 };
 });
 const pairs = plan[d].map(([i, t, kind]) => ({ from: T[i][0], to: T[i][1], t, kind }));
+const inSem = wkNo >= 1 && wkNo <= 22 && semStart <= mon;
+const parity = inSem ? (wkNo % 2 ? 'нечётная' : 'чётная') : '';
+// выгрузка недели в календарь телефона (.ics); Екатеринбург — UTC+5
+const ics = () => {
+  const z = n => String(n).padStart(2, '0');
+  const st = (day, hm) => { const [h, m] = hm.split(':').map(Number); const x = new Date(Date.UTC(day.getFullYear(), day.getMonth(), day.getDate(), h - 5, m)); return x.getUTCFullYear() + z(x.getUTCMonth() + 1) + z(x.getUTCDate()) + 'T' + z(x.getUTCHours()) + z(x.getUTCMinutes()) + '00Z'; };
+  const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//URFU redesign//schedule//RU', 'CALSCALE:GREGORIAN'];
+  plan.forEach((ps, k) => ps.forEach(([i, t, kind], j) => { const day = dt(k); L.push('BEGIN:VEVENT', 'UID:' + st(day, T[i][0]) + '-' + j + '@urfu-redesign', 'DTSTAMP:' + st(new Date(), '12:00'), 'DTSTART:' + st(day, T[i][0]), 'DTEND:' + st(day, T[i][1]), 'SUMMARY:' + t + ' (' + kind.toLowerCase() + ')', 'DESCRIPTION:' + (g ? 'Группа ' + g + '. ' : '') + 'Пример расписания с сайта-прототипа УрФУ', 'END:VEVENT'); }));
+  L.push('END:VCALENDAR');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([L.join('\r\n')], { type: 'text/calendar' }));
+  a.download = 'raspisanie-' + (g || 'primer') + '-' + dm(mon).replace('.', '-') + '.ics'; document.body.appendChild(a); a.click(); a.remove();
+};
 return {
 g, sub: g ? 'Группа ' + g : 'Пример расписания первого курса', chip: g ? g + ' · пример' : 'Пример: 1 курс',
 note: g ? 'Пары показаны для примера: на настоящем сайте здесь будет расписание группы ' + g + ' из системы расписания УрФУ — с аудиториями и преподавателями.' : 'Это пример: введите номер группы, и здесь будет её расписание — с аудиториями и преподавателями.',
-wkRange: dm(mon) + ' — ' + dm(dt(5)), wkNo: (wkNo >= 1 && wkNo <= 22 && now.getMonth() >= 8) ? wkNo + '-я неделя семестра' : 'текущая неделя',
+wkRange: dm(mon) + ' — ' + dm(dt(5)), wkNo: inSem ? wkNo + '-я неделя семестра, ' + parity : (off === 0 ? 'текущая неделя' : 'вне семестра'),
+wkShort: dm(mon) + '–' + dm(dt(5)) + (parity ? ' · ' + parity : ''),
+isNow: off === 0, notNow: off !== 0, wkWhen: off === 0 ? 'Эта неделя' : off === 1 ? 'Следующая неделя' : off === -1 ? 'Прошлая неделя' : (off > 0 ? 'Через ' + off + ' нед.' : off + ' нед.'),
+prevW: () => this.setState({ w: off - 1, d: 0 }), nextW: () => this.setState({ w: off + 1, d: 0 }), thisW: () => this.setState({ w: 0, d: undefined }), ics,
 days: days.map(([w, n], k) => ({ w, n, on: k === d, off: k !== d, pick: () => this.setState({ d: k }) })),
 pairs,
 week,
