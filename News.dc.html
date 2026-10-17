@@ -30,6 +30,35 @@
 .nc-more{margin-top:auto;color:var(--blue);font-weight:600;font-size:15px}
 a.nc:hover .nc-t{text-decoration:underline}
 .nc-a1{--c:var(--a1)}.nc-a2{--c:var(--a2)}.nc-a3{--c:var(--a3)}.nc-a4{--c:var(--a4)}
+.nw-bar{margin-top:28px;display:flex;flex-direction:column;gap:14px}
+.nw-q{position:relative;max-width:560px}
+.nw-q svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.nw-q .input{padding-left:46px;width:100%;min-height:52px}
+.nw-tags{display:flex;gap:8px;flex-wrap:wrap}
+.nw-count:empty{display:none}
+.nw-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px;margin-top:12px;align-items:start}
+.nw-m{margin-top:40px}
+.nw-mh{font-family:var(--narrow);font-size:30px;display:flex;align-items:baseline;gap:10px}
+.nw-mh span{font-size:15px;color:var(--muted);font-family:inherit;font-weight:500}
+.nw-cards{margin-top:16px}
+.nc{min-height:200px}
+.nc-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.nc-date{font-size:14px;color:var(--muted);white-space:nowrap}
+.nw-side{display:flex;flex-direction:column;gap:20px;margin-top:40px;position:sticky;top:96px}
+.nw-sh{font-family:var(--narrow);font-size:24px}
+.nw-afisha ul{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+.nw-afisha li{display:flex;gap:14px;align-items:flex-start}
+.nw-afisha li div{display:flex;flex-direction:column;font-size:15px}
+.nw-d{flex:0 0 58px;display:flex;flex-direction:column;align-items:center;padding:6px 4px;border-radius:12px;background:var(--ink);color:#FFFFFF;font-family:var(--narrow);font-size:18px;line-height:1.1}
+.nw-d span{font-size:13px;font-family:inherit;font-weight:500;color:var(--on-dark-muted)}
+.sub-t{border:0;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px 14px}
+.sub-t legend{font-weight:600;padding:0;margin-bottom:6px}
+.sub-t label{display:inline-flex;align-items:center;gap:8px;min-height:32px;font-size:15px}
+.sub-t input{width:20px;height:20px}
+.sub-msg{margin-top:10px;font-size:14px;font-weight:600}
+.sub-msg.err{color:var(--a4)}
+@media (max-width:1000px){.nw-grid{grid-template-columns:1fr}.nw-side{position:static}}
+@media (max-width:700px){.nw-cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -49,22 +78,61 @@ a.nc:hover .nc-t{text-decoration:underline}
 <div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="Institute.dc.html">Об университете</a> / Новости</div>
 <h1 class="big" style="font-size:48px">Новости</h1>
 </div></section><div class="wrap">
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:28px">
+<div class="nw-bar">
+<div class="nw-q"><label for="nq" class="sr">Поиск по новостям</label><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><input id="nq" class="input" type="search" placeholder="Поиск: титан, ректор, олимпиада…" value="{{q}}" onChange="{{onQ}}" autocomplete="off"></div>
+<div class="nw-tags" role="group" aria-label="Рубрики">
 <sc-for list="{{tags}}" as="t" hint-placeholder-count="6">
-<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="chip on" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
-<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="chip on" aria-pressed="true" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="chip" aria-pressed="false" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
 </sc-for>
 </div>
-<sc-if value="{{showTop}}" hint-placeholder-val="{{true}}"><a href="Article.dc.html" class="card g2" style="margin-top:32px;padding:0;overflow:hidden;gap:0">
+<p class="muted nw-count" aria-live="polite">{{countT}}</p>
+</div>
+<sc-if value="{{showTop}}" hint-placeholder-val="{{true}}"><a href="Article.dc.html" class="card g2" style="margin-top:28px;padding:0;overflow:hidden;gap:0">
 <div class="ph art t1 photo" style="--img:url('photos/shkolniki.webp');min-height:340px;border-radius:0;position:relative;overflow:hidden"></div>
 <div style="padding:40px;display:flex;flex-direction:column;justify-content:center;gap:14px"><span class="tag" style="align-self:flex-start">Главное</span><h2>Почти 50 тысяч заявлений на бюджет: УрФУ подвёл итоги приёма-2026</h2><p class="muted">Заявлений стало на 7,5 тысячи больше, чем годом раньше, а целевых — на 40% больше, чем выделено мест.</p><span class="muted" style="font-size:14px">Июль 2026 · по данным ОТВ</span></div>
 </a></sc-if>
-<div class="g3" style="margin-top:24px">
-<sc-for list="{{items}}" as="n" hint-placeholder-count="6">
-<sc-if value="{{n.art}}" hint-placeholder-val="{{false}}"><a class="{{n.cls}}" href="Article.dc.html"><span class="tag">{{n.tag}}</span><div class="nc-t">{{n.t}}</div><div class="muted nc-d">{{n.d}}</div><span class="nc-more" aria-hidden="true">Читать</span></a></sc-if><sc-if value="{{n.noArt}}" hint-placeholder-val="{{true}}"><div class="{{n.cls}}"><span class="tag">{{n.tag}}</span><div class="nc-t">{{n.t}}</div><div class="muted nc-d">{{n.d}}</div></div></sc-if>
+<div class="nw-grid">
+<div class="nw-feed">
+<sc-for list="{{months}}" as="m" hint-placeholder-count="3">
+<section class="nw-m" aria-label="{{m.title}}"><h2 class="nw-mh">{{m.title}} <span>{{m.n}}</span></h2>
+<div class="g2 nw-cards">
+<sc-for list="{{m.items}}" as="n" hint-placeholder-count="4">
+<sc-if value="{{n.art}}" hint-placeholder-val="{{false}}"><a class="{{n.cls}}" href="Article.dc.html"><div class="nc-top"><span class="tag">{{n.tag}}</span><span class="nc-date">{{n.date}}</span></div><div class="nc-t">{{n.t}}</div><div class="muted nc-d">{{n.src}}</div><span class="nc-more" aria-hidden="true">Читать</span></a></sc-if>
+<sc-if value="{{n.ext}}" hint-placeholder-val="{{true}}"><a class="{{n.cls}}" href="{{n.url}}" target="_blank" rel="noopener"><div class="nc-top"><span class="tag">{{n.tag}}</span><span class="nc-date">{{n.date}}</span></div><div class="nc-t">{{n.t}}</div><div class="muted nc-d">{{n.src}}</div><span class="nc-more">Источник<span class="sr"> (откроется в новой вкладке)</span> ↗</span></a></sc-if>
+<sc-if value="{{n.plain}}" hint-placeholder-val="{{false}}"><div class="{{n.cls}}"><div class="nc-top"><span class="tag">{{n.tag}}</span><span class="nc-date">{{n.date}}</span></div><div class="nc-t">{{n.t}}</div><div class="muted nc-d">{{n.src}}</div></div></sc-if>
 </sc-for>
+</div></section>
+</sc-for>
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}"><div class="card" style="margin-top:28px"><b>Ничего не нашлось.</b><p class="muted" style="margin-top:6px">Попробуйте другое слово или рубрику «Все». <a href="Events.dc.html">Календарь событий</a></p></div></sc-if>
 </div>
-<sc-if value="{{empty}}" hint-placeholder-val="{{false}}"><p class="muted" style="margin-top:8px">В этой рубрике пока нет новостей. <a href="Events.dc.html">Посмотрите календарь событий</a>.</p></sc-if>
+<aside class="nw-side" aria-label="Афиша и подписка">
+<div class="card nw-afisha"><h2 class="nw-sh">Афиша</h2>
+<ul>
+<li><b class="nw-d">17<span>окт</span></b><div><b>Метрологический хакатон</b><span class="muted">для школьников · ИЕНиМ</span></div></li>
+<li><b class="nw-d">ноя<span>дек</span></b><div><b>Уральский турнир юных биологов</b><span class="muted">для школьников</span></div></li>
+<li><b class="nw-d">до 19<span>янв</span></b><div><b>Олимпиада «Изумруд»</b><span class="muted">отборочный этап, регистрация открыта</span></div></li>
+<li><b class="nw-d">27<span>фев</span></b><div><b>Фестиваль естествознания</b><span class="muted">ИЕНиМ · подробности позже</span></div></li>
+</ul>
+<a class="btn2" href="Events.dc.html" style="width:100%;margin-top:12px">Весь календарь событий</a>
+<p class="muted" style="font-size:13px;margin-top:10px">По данным <a href="https://insma.urfu.ru/shkolniku/" target="_blank" rel="noopener">insma.urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a></p>
+</div>
+<div class="card nw-sub"><h2 class="nw-sh">Главное за неделю — на почту</h2>
+<p class="muted" style="font-size:15px;margin-top:6px">Одно письмо в пятницу. Без рекламы.</p>
+<form class="sub-form" novalidate>
+<label for="sub-e" style="display:block;font-weight:600;margin-top:14px">Почта</label>
+<input id="sub-e" class="input" type="email" autocomplete="email" placeholder="name@mail.ru" style="width:100%;margin-top:6px">
+<fieldset class="sub-t"><legend>Темы</legend><label><input type="checkbox" checked> Наука</label><label><input type="checkbox" checked> Студентам</label><label><input type="checkbox"> Поступающим</label><label><input type="checkbox"> Партнёрство</label></fieldset>
+<button class="btn" type="submit" style="width:100%;margin-top:14px">Подписаться</button>
+<p class="sub-msg" role="status"></p>
+</form></div>
+<div class="card nw-press"><h2 class="nw-sh">Пресс-служба</h2>
+<p style="margin-top:8px">Для журналистов: комментарии учёных, аккредитация на события, фото.</p>
+<p style="margin-top:10px"><a href="tel:+73433759733" style="font-weight:700;font-size:18px">+7 (343) 375-97-33</a></p>
+<a href="Help.dc.html#dir-h" style="display:inline-block;margin-top:6px">Все службы университета</a>
+</div>
+</aside>
+</div>
 </div>
 </main><footer class="ft"><div class="wrap"><div class="ft-grid">
 <div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="40" height="46" aria-hidden="true" viewBox="10 6 82 94"><defs><linearGradient id="ulA2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B5CFF"></stop><stop offset="1" stop-color="#5A1FD1"></stop></linearGradient><linearGradient id="ulB2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4D8D"></stop><stop offset="1" stop-color="#C2185B"></stop></linearGradient><linearGradient id="ulF2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"></stop><stop offset="1" stop-color="#000" stop-opacity="0"></stop></linearGradient></defs><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="url(#ulA2)"></path><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="url(#ulB2)"></path><path d="M46 70 L60 56 L54 72 Z" fill="url(#ulF2)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого<br>Президента России<br>Б.Н. Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p><p style="margin-top:12px">Контакт-центр, бесплатно по России:<br><a href="tel:88001005044" style="color:#FFFFFF;font-weight:600;font-size:18px">8-800-100-50-44</a><br><a href="mailto:contact@urfu.ru">contact@urfu.ru</a></p></div>
@@ -80,22 +148,58 @@ renderVals() {
 const names = ['Все','Наука','Студентам','Поступающим','Образование','Партнёрство'];
 let urlTag = null; try { urlTag = new URLSearchParams(location.search).get('tag'); } catch (e) {}
 const tag = (this.state && this.state.tag) || (names.indexOf(urlTag) > 0 ? urlTag : 'Все');
+const q = (this.state && this.state.q) || '';
+const RIA = 'https://ria.ru/organization_Uralskijj_federalnyjj_universitet/';
+// настоящие новости 2026 года; источник — у каждой
 const pool = [
-{tag:'Наука', t:'Учёные УрФУ и УрО РАН объяснили одну из загадочных причин мужского бесплодия', d:'2026 · РИА Новости'},
-{tag:'Образование', t:'Около 500 преподавателей освоили нейросети для создания учебных курсов', d:'2026 · urfu.ru'},
-{tag:'Поступающим', t:'УрФУ вошёл в пилотный проект новой системы высшего образования', d:'2026 · urfu.ru'},
-{tag:'Партнёрство', t:'Четыре компании пришли на партнёрскую пятницу в УрФУ', d:'2026 · urfu.ru'},
-{tag:'Наука', t:'В Екатеринбурге открылся V Международный форум по когнитивным нейронаукам', d:'2026 · АиФ-Урал'},
-{tag:'Поступающим', t:'Приём на платные места: внутренние испытания до 15 августа, ЕГЭ до 20 августа', d:'Июль 2026 · ОТВ', art:true}
+{m:10, day:17, tag:'Поступающим', t:'Метрологический хакатон для школьников в Институте естественных наук и математики', src:'insma.urfu.ru', url:'https://insma.urfu.ru/shkolniku/'},
+{m:10, day:15, tag:'Студентам', t:'После 15 октября — снова очные занятия: гибридный формат из-за Международного фестиваля молодёжи закончился', src:'По приказу ректора · Коммерсантъ', url:'https://www.kommersant.ru/doc/8607360'},
+{m:10, day:14, tag:'Студентам', t:'Военной подготовке в УрФУ — 90 лет', src:'Профсоюз работников УрФУ', url:'https://pk-urfu.ru/'},
+{m:10, day:8, tag:'Наука', t:'На Урале создали титановые сплавы для авиадвигателей, которые выдерживают экстремальные условия', src:'РИА Новости', url:RIA},
+{m:10, day:8, tag:'Наука', t:'Создан материал, который продлевает срок службы двигателей и турбин', src:'РИА Новости', url:RIA},
+{m:10, day:5, tag:'Студентам', t:'Вышел октябрьский номер газеты «Уральский федеральный»', src:'Электронный архив УрФУ', url:'https://elar.urfu.ru/handle/10995/157686'},
+{m:9, day:30, tag:'Образование', t:'Ректор УрФУ: искусственный интеллект может изменить защиту дипломных работ', src:'РИА Новости', url:RIA},
+{m:9, day:27, tag:'Образование', t:'Ректор УрФУ рассказал, как в вузе внедряют новую модель образования', src:'РИА Новости', url:RIA},
+{m:9, day:7, tag:'Наука', t:'Учёные изучили астероиды, потенциально опасные для Земли', src:'РИА Новости', url:RIA},
+{m:9, day:1, tag:'Студентам', t:'Учебный год начался в гибридном формате: в Екатеринбурге 11–17 сентября проходит Международный фестиваль молодёжи', src:'Коммерсантъ', url:'https://www.kommersant.ru/doc/8607360'},
+{m:9, day:1, tag:'Поступающим', t:'Открыт отборочный этап олимпиады «Изумруд» — он продлится до 19 января 2027 года', src:'insma.urfu.ru', url:'https://insma.urfu.ru/shkolniku/'},
+{m:8, day:31, tag:'Наука', t:'Мощность «газовых батареек» удалось повысить в восемь раз', src:'РИА Новости', url:RIA},
+{m:8, day:18, tag:'Наука', t:'Учёные УрФУ и УрО РАН объяснили одну из загадочных причин мужского бесплодия', src:'РИА Новости', url:RIA},
+{m:8, day:7, tag:'Поступающим', t:'Среди зачисленных на бюджет становится больше олимпиадников', src:'РИА Новости', url:RIA},
+{m:7, day:14, tag:'Наука', t:'Отходы виноделия превратили в биодобавки', src:'РИА Новости', url:RIA},
+{m:7, day:5, tag:'Партнёрство', t:'Михаил Мишустин обсудил с губернатором Денисом Паслером кампус УрФУ мирового уровня', src:'РИА Новости', url:RIA},
+{m:7, day:2, tag:'Наука', t:'Рентген помог ускорить созревание йогуртов', src:'РИА Новости', url:RIA},
+{m:7, day:0, tag:'Поступающим', t:'Приём на платные места: внутренние испытания до 15 августа, ЕГЭ до 20 августа', src:'ОТВ', art:true},
+{m:0, day:0, tag:'Образование', t:'Около 500 преподавателей освоили нейросети для создания учебных курсов', src:'urfu.ru'},
+{m:0, day:0, tag:'Поступающим', t:'УрФУ вошёл в пилотный проект новой системы высшего образования', src:'urfu.ru'},
+{m:0, day:0, tag:'Партнёрство', t:'Четыре компании пришли на партнёрскую пятницу в УрФУ', src:'urfu.ru'},
+{m:0, day:0, tag:'Наука', t:'В Екатеринбурге открылся V Международный форум по когнитивным нейронаукам', src:'АиФ-Урал'}
 ];
+const MN = ['', 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+const MT = {10:'Октябрь 2026', 9:'Сентябрь 2026', 8:'Август 2026', 7:'Июль 2026', 0:'Ранее в 2026 году'};
 const C = {'Наука':'a2','Образование':'a3','Поступающим':'a1','Партнёрство':'a4','Студентам':'a1'};
-const items = pool.filter(x => tag === 'Все' || x.tag === tag).map(x => Object.assign({}, x, { art: !!x.art, noArt: !x.art, cls: 'card nc nc-' + C[x.tag] }));
-return { navSci: tag === 'Наука', navAbout: tag !== 'Наука', showTop: tag === 'Все' || tag === 'Поступающим', empty: items.length === 0, tags: names.map(l => ({ label: l, on: l === tag, off: l !== tag, pick: () => this.setState({ tag: l }) })), items };
+const norm = x => x.toLowerCase().replace(/ё/g, 'е');
+const words = norm(q).split(/\s+/).filter(Boolean);
+const items = pool.filter(x => (tag === 'Все' || x.tag === tag) && words.every(w => norm(x.t + ' ' + x.tag + ' ' + x.src).includes(w.length > 4 ? w.slice(0, -1) : w)))
+  .map(x => Object.assign({}, x, { art: !!x.art, ext: !x.art && !!x.url, plain: !x.art && !x.url, date: x.day ? x.day + ' ' + MN[x.m] : (x.m ? MT[x.m].split(' ')[0] : '2026'), cls: 'card nc nc-' + C[x.tag] }));
+const months = [10, 9, 8, 7, 0].map(m => { const it = items.filter(x => x.m === m); const k = it.length; return { title: MT[m], n: k, items: it }; }).filter(x => x.n > 0);
+const k = items.length;
+const countT = q || tag !== 'Все' ? 'Найдено: ' + k + ' ' + (k % 10 === 1 && k % 100 !== 11 ? 'новость' : (k % 10 >= 2 && k % 10 <= 4 && (k % 100 < 12 || k % 100 > 14)) ? 'новости' : 'новостей') : '';
+return { navSci: tag === 'Наука', navAbout: tag !== 'Наука', showTop: (tag === 'Все' || tag === 'Поступающим') && !q, empty: k === 0, tags: names.map(l => ({ label: l, on: l === tag, off: l !== tag, pick: () => this.setState({ tag: l }) })), months, q, countT, onQ: e => this.setState({ q: e.target.value }) };
 }
 }
 </script>
 <script src="dc-lite.js"></script>
 <script src="site.js"></script>
+<script>
+document.addEventListener('submit', function (e) {
+  var f = e.target.closest && e.target.closest('.sub-form'); if (!f) return;
+  e.preventDefault();
+  var em = f.querySelector('input[type=email]'), m = f.querySelector('.sub-msg');
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())) { m.className = 'sub-msg err'; m.textContent = 'Проверьте адрес почты: например, name@mail.ru'; em.setAttribute('aria-invalid', 'true'); em.focus(); return; }
+  em.removeAttribute('aria-invalid'); m.className = 'sub-msg'; m.textContent = 'Готово! Это прототип — письма пока не отправляются.';
+});
+</script>
 <script src="logo-live.js"></script>
 </body>
 </html>
