@@ -29,6 +29,17 @@ def main_html():
 <p class="muted cab-note">Пары — пример, как в разделе «Расписание».</p>
 </section>
 
+<section class="card cab-dl" aria-labelledby="cdl-h">
+<div class="cab-h"><h2 id="cdl-h">Дедлайны</h2><span class="muted" style="font-size:14px">{{dlLeft}}</span></div>
+<ul class="cab-dls"><sc-for list="{{dls}}" as="x" hint-placeholder-count="4"><li class="{{x.cls}}"><button type="button" class="cab-chk" aria-pressed="{{x.done}}" onClick="{{x.tog}}"><span class="sr">Отметить выполненным: {{x.t}}</span></button><span class="cab-dlt"><b>{{x.t}}</b><small>{{x.s}}</small></span><em>{{x.when}}</em></li></sc-for></ul>
+<p class="muted cab-note">Задания — пример. Отметки сохраняются в этом браузере.</p>
+</section>
+
+<section class="card cab-nt" aria-labelledby="cnt-h">
+<div class="cab-h"><h2 id="cnt-h">Уведомления <span class="cab-badge">{{ntN}}</span></h2></div>
+<ul class="cab-nts"><sc-for list="{{nts}}" as="x" hint-placeholder-count="3"><li class="{{x.cls}}"><b>{{x.t}}</b><span>{{x.d}}</span><sc-if value="{{x.href}}" hint-placeholder-val="{{false}}"><a href="{{x.href}}">{{x.lt}}</a></sc-if></li></sc-for></ul>
+</section>
+
 <section class="card cab-req" aria-labelledby="cr-h">
 <div class="cab-h"><h2 id="cr-h">Справки и заявления</h2></div>
 <p class="lg-lbl" id="req-l">Какая справка нужна?</p>
@@ -43,6 +54,25 @@ def main_html():
 <div class="cab-dorms" role="group" aria-labelledby="dorm-l"><sc-for list="{{dorms}}" as="d" hint-placeholder-count="15"><button type="button" class="chip" aria-pressed="{{d.on}}" onClick="{{d.pick}}">{{d.n}}</button></sc-for></div>
 <dl class="cab-pay" aria-live="polite"><div><dt>Зимой</dt><dd>{{winter}}</dd></div><div><dt>Летом</dt><dd>{{summer}}</dd></div></dl>
 <p class="muted cab-note">В месяц на человека, вдвоём в комнате — по приказам УрФУ 2025 года. Оплата — на pay.urfu.ru или по QR-коду.</p>
+</section>
+
+<section class="card cab-stip" aria-labelledby="cs-h">
+<div class="cab-h"><h2 id="cs-h">Стипендии и выплаты</h2><a href="Help.dc.html?q=стипенд">Вопросы →</a></div>
+<ul class="cab-st">
+<li><b>Академическая</b><span>Студентам бюджета, которые сдали сессию без троек и долгов.</span></li>
+<li><b>Повышенная академическая</b><span>За достижения в учёбе, науке, спорте, творчестве или общественной работе.</span></li>
+<li><b>Социальная</b><span>Тем, у кого есть право на соцподдержку: сироты, инвалиды, получатели госсоциальной помощи и другие.</span></li>
+<li><b>Материальная помощь</b><span>Разовая выплата в трудной ситуации — по заявлению.</span></li>
+</ul>
+<p class="muted cab-note">Начисления ведёт институт. Если выплату задерживают — горячая линия Минобрнауки <a href="tel:88002225571">8-800-222-55-71</a>, доб. 1. Суммы зависят от решения университета, поэтому здесь их не приводим.</p>
+</section>
+
+<section class="card cab-job" aria-labelledby="cj-h">
+<div class="cab-h"><h2 id="cj-h">Практика и работа</h2></div>
+<p class="muted" style="margin-top:8px">У ИРИТ-РтФ больше 50 компаний-партнёров. Они берут на практику и стажировки, ведут спецкурсы и проекты.</p>
+<div class="cab-co"><span>УЦСБ</span><span>Naumen</span><span>СКБ Контур</span><span>Сбер</span><span>Прософт-Системы</span><span>JetStyle</span><span>Targem Games</span><span>Artsofte</span><span>Yandex Cloud</span><span>НПО автоматики</span></div>
+<ul class="cab-ev"><li><b>Ярмарка вакансий</b><span>Компании ищут стажёров и выпускников</span></li><li><b>Выставка проектов</b><span>Студенческие проекты для партнёров</span></li></ul>
+<p class="muted cab-note">На примере ИРИТ-РтФ — по данным <a href="https://programs.edu.urfu.ru/ru/9797/pages/employers/" target="_blank" rel="noopener">сайта образовательных программ УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>. <a href="Events.dc.html">Ближайшие события →</a></p>
 </section>
 
 <section class="card cab-links" aria-labelledby="cl-h">
@@ -61,6 +91,15 @@ def main_html():
 LOGIC = '''<script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {
+const DL0 = [['Лабораторная работа №3', 'Программирование', 2], ['Домашнее задание', 'Математический анализ', 4], ['Эссе', 'Основы российской государственности', 8], ['Контрольная работа', 'Физика', 12], ['Проект: защита прототипа', 'Проектная деятельность', 19]];
+let dlDone = []; try { dlDone = JSON.parse(localStorage.getItem('urfu-dl') || '[]'); } catch (e) {}
+if (this.state && this.state.dlDone) dlDone = this.state.dlDone;
+const tday = new Date(); tday.setHours(0, 0, 0, 0);
+const MNs = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+const dls = DL0.map(([t, s2, k], i) => { const dd = new Date(tday.getTime() + k * 864e5); const done = dlDone.indexOf(i) !== -1;
+  return { t, s: s2, done: String(done), cls: 'cab-dli' + (done ? ' is-done' : (k <= 3 ? ' is-soon' : '')), when: done ? 'готово' : (k === 1 ? 'завтра' : 'через ' + k + ' ' + (k % 10 === 1 && k !== 11 ? 'день' : (k % 10 >= 2 && k % 10 <= 4 && (k < 12 || k > 14)) ? 'дня' : 'дней')) + ' · ' + dd.getDate() + ' ' + MNs[dd.getMonth()],
+    tog: () => { const nx = done ? dlDone.filter(x => x !== i) : dlDone.concat(i); try { localStorage.setItem('urfu-dl', JSON.stringify(nx)); } catch (e) {} this.setState({ dlDone: nx }); } }; });
+const left = DL0.length - dlDone.length;
 const DORMS = __DORMS__, REQ = __REQ__;
 const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } };
 const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
@@ -86,7 +125,15 @@ const order = () => {
   const d = new Date(); const dd = String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0');
   const reqs = [{ t: s.rt, c: n, d: dd }].concat(s.reqs).slice(0, 5); save('urfu-cab-reqs', reqs); this.setState({ reqs });
 };
+const ntReady = s.reqs.length > 1;
+const nts = [
+  ntReady ? { t: 'Справка готова', d: 'Заберите в дирекции института или скачайте в кабинете.', href: '#cr-h', lt: 'К справкам', cls: 'cab-nti is-new' } : null,
+  { t: 'Снова очные занятия', d: 'С 15 октября занятия идут в аудиториях — гибридный формат закончился.', href: 'News.dc.html', lt: 'Новости', cls: 'cab-nti is-new' },
+  { t: 'Расписание на следующую неделю', d: 'Пример: в четверг пара по физике перенесена на 12:00.', href: 'Schedule.dc.html', lt: 'Расписание', cls: 'cab-nti' },
+  { t: 'Горячая линия для студентов', d: 'Права студента и психологическая помощь — бесплатно по России.', href: 'Help.dc.html#hl-h', lt: 'Подробнее', cls: 'cab-nti' }
+].filter(Boolean);
 return {
+  dls, dlLeft: left ? 'Осталось: ' + left : 'Всё сделано!', nts, ntN: String(nts.filter(x => x.cls.indexOf('is-new') !== -1).length),
   hello: g ? 'Группа ' + g + ' · это ваш кабинет: расписание, справки и общежитие в одном месте.' : 'Это ваш кабинет: расписание, справки и общежитие в одном месте.',
   dayTitle: day === wd ? 'Сегодня' : 'Сегодня пар нет · в ' + DN[day],
   pairs: PLAN[day].map(([i, t, kind]) => ({ from: T[i][0], to: T[i][1], t, kind })),

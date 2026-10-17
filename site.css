@@ -875,3 +875,26 @@ li:nth-child(5n+2) > .stp{--c:var(--amethyst)}li:nth-child(5n+3) > .stp{--c:#0A7
 @media (max-width:900px){.lf,.sch{grid-template-columns:1fr}}
 @media (max-width:900px){.tl-cols,.cost{grid-template-columns:1fr}}
 @media (max-width:520px){.cost-out{grid-template-columns:1fr}.cost{padding:20px}}
+
+/* Кабинет: дедлайны, уведомления, стипендии, практика */
+.cab-dls,.cab-nts,.cab-st,.cab-ev{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.cab-dli{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;border:1px solid var(--limestone)}
+.cab-dli.is-soon{border-color:var(--rhodonite,#C2185B);box-shadow:inset 4px 0 0 var(--rhodonite,#C2185B)}
+.cab-dli.is-done .cab-dlt{opacity:.6;text-decoration:line-through}
+.cab-chk{flex:0 0 28px;width:28px;height:28px;border-radius:8px;border:2px solid var(--line-strong);background:#FFFFFF;cursor:pointer;display:grid;place-items:center}
+.cab-chk[aria-pressed="true"]{background:var(--malachite,#0B7A63);border-color:var(--malachite,#0B7A63)}
+.cab-chk[aria-pressed="true"]::after{content:"";width:12px;height:7px;border:3px solid #FFFFFF;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-2px)}
+.cab-chk:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}
+.cab-dlt{display:flex;flex-direction:column;flex:1;min-width:0}
+.cab-dlt small{color:var(--muted);font-size:14px}
+.cab-dli em{font-style:normal;font-size:14px;font-weight:600;white-space:nowrap;color:var(--ink)}
+.cab-badge{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 8px;border-radius:999px;background:var(--rhodonite,#C2185B);color:#FFFFFF;font-size:15px;vertical-align:middle}
+.cab-nti{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:12px;background:var(--limestone)}
+.cab-nti.is-new{background:#FFFFFF;border:2px solid var(--amethyst)}
+.cab-nti span{font-size:14px;color:var(--muted)}
+.cab-nti a{font-size:14px;font-weight:600;margin-top:4px}
+.cab-st li,.cab-ev li{display:flex;flex-direction:column;padding:12px 14px;border-radius:12px;border:1px solid var(--limestone)}
+.cab-st span,.cab-ev span{font-size:14px;color:var(--muted)}
+.cab-co{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.cab-co span{padding:6px 12px;border-radius:10px;background:var(--limestone);font-weight:600;font-size:14px}
+@media (max-width:520px){.cab-dli{flex-wrap:wrap}.cab-dli em{margin-left:40px}}
