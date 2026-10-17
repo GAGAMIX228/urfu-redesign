@@ -21,14 +21,16 @@ T = {
   ask_h='Не нашли ответ?', ask_lead='Спросите нас — ответим по телефону или почте.',
   ask=[('8-800-100-50-44', 'tel:88001005044', 'Контакт-центр, звонок по России бесплатный'), ('+7 (343) 375-44-74', 'tel:+73433754474', 'Приёмная комиссия'), ('contact@urfu.ru', 'mailto:contact@urfu.ru', 'Почта университета')],
   ask_all=('Help.dc.html', 'Центр помощи: ответы и службы'),
-  who=[('abit', 'поступаю'), ('student', 'учусь'), ('staff', 'работаю'), ('intl', 'International')],
+  who=[('abit', 'поступаю'), ('student', 'учусь'), ('staff', 'работаю'), ('partner', 'партнёр'), ('intl', 'International')],
   who_h={'abit': ('Поступление в УрФУ — на одном экране', 'Проходные баллы прошлых лет, сроки, стоимость и общежития. Без лишних вкладок.'),
          'student': ('Что у вас сегодня?', 'Пары вашей группы, общежитие, помощь и события — главное для студента.'),
          'staff': ('УрФУ для сотрудников', 'Наука, справочник служб, новости и мероприятия университета.'),
+         'partner': ('Задача для учёных УрФУ?', 'Исследования на заказ, практиканты и выпускники, совместные проекты и лаборатории.'),
          'intl': ('Study at UrFU', 'Programmes in English, how to apply and where to live.')},
   panel={'abit': ('Главное для поступающих', [('Каталог программ', 'Фильтр по ЕГЭ и баллам', 'Catalog.dc.html'), ('Календарь приёма', 'Сроки подачи и согласия', 'Admission.dc.html#calendar'), ('Подбор за 3 вопроса', 'Куда вы проходите', 'Quiz.dc.html'), ('Стоимость обучения', 'Калькулятор по программам', 'Admission.dc.html#cost'), ('Общежития и цены', 'Таблица по приказам УрФУ', 'Dorms.dc.html#price-h'), ('Центр помощи', 'Ответы на частые вопросы', 'Help.dc.html')]),
          'student': ('Главное для студента', [('Расписание', 'Ваша группа, недели, календарь', 'Schedule.dc.html'), ('Центр помощи', 'Справки, медосмотр, Wi-Fi', 'Help.dc.html'), ('Общежитие', 'Цены и заселение', 'Dorms.dc.html'), ('Молодёжные лаборатории', 'Как попасть в науку', 'Science.dc.html#stud-h'), ('Клубы и спорт', 'Секции и студклубы', 'Life.dc.html'), ('Карта кампуса', 'Корпуса и медсанчасть', 'Contacts.dc.html')]),
          'staff': ('Главное для сотрудников', [('Наука', 'Проекты «Приоритет-2030»', 'Science.dc.html'), ('Справочник служб', 'Телефоны и почта', 'Help.dc.html#dir-h'), ('Новости', 'Что происходит в УрФУ', 'News.dc.html'), ('Мероприятия', 'Календарь университета', 'Events.dc.html'), ('Институты', 'Структура и подразделения', 'Institute.dc.html'), ('Личный кабинет', 'Сервисы сотрудника', 'Login.dc.html?role=staff')]),
+         'partner': ('Главное для партнёров', [('Заказать исследование', 'Как начать работу с учёными', 'Science.dc.html#biz-h'), ('Научные проекты', '54 проекта «Приоритет-2030»', 'Science.dc.html#proj-h'), ('Практиканты и выпускники', 'Пример: партнёры программы', 'Program.dc.html'), ('Реклама и партнёрство', '+7 (343) 375-93-53', 'Help.dc.html#dir-h'), ('Новости партнёрства', 'Что делают с компаниями', 'News.dc.html?tag=Партнёрство'), ('Мероприятия', 'Ярмарки и выставки', 'Events.dc.html')]),
          'intl': ('For international students', [('Programme catalogue', 'In English: exams and pass marks', 'CatalogEn.dc.html'), ('How to apply', 'Steps, documents, deadlines', 'AdmissionEn.dc.html'), ('Housing', 'Dormitories and prices', 'Dorms.dc.html'), ('Campus map', 'Buildings and contacts', 'Contacts.dc.html'), ('English home page', 'The whole site in brief', 'MainEn.dc.html'), ('Help centre', 'Contacts of university services', 'Help.dc.html')])},
   h1='Что вам нужно в УрФУ?',
   lead='Программы, расписание, общежития и события — найдём за пару секунд.',
@@ -138,6 +140,8 @@ def panels_html(t):
             live = '<div class="me-live"><span class="me-k" data-me="dayk">Сегодня</span><b data-me="grp">Пример расписания</b><ul class="me-pairs" data-me="pairs"></ul><a class="btn yu-btn-gold" href="Schedule.dc.html" data-me="grpbtn">Укажите свою группу</a><span class="me-note">Пары — пример, как в разделе «Расписание».</span></div>'
         elif k == 'staff':
             live = '<div class="me-live"><b class="me-big">54</b><span>научных проекта «Приоритет-2030» — с поиском и фильтрами</span><a class="btn yu-btn-gold" href="Science.dc.html">Открыть «Науку»</a></div>'
+        elif k == 'partner':
+            live = '<div class="me-live"><b class="me-big">50+</b><span>компаний-партнёров только у ИРИТ-РтФ: Контур, Сбер, Naumen, УЦСБ и другие</span><a class="btn yu-btn-gold" href="Science.dc.html#biz-h">Заказать исследование</a></div>'
         else:
             live = '<div class="me-live"><b class="me-big">32</b><span>bachelor programmes with entrance exams and pass marks in English</span><a class="btn yu-btn-gold" href="CatalogEn.dc.html">Open catalogue</a></div>'
         out.append(f'<div class="me-panel me-{k}"{en}><div class="me-top"><h3>{title}</h3><button type="button" class="me-reset" data-urole="">{"Change role" if k == "intl" else "Сменить роль"}</button></div><div class="me-grid"><ul class="me-links">{ls}</ul>{live}</div></div>')

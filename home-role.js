@@ -2,7 +2,7 @@
    Роль запоминается в браузере; порядок блоков и заголовки меняет CSS по html[data-urole].
    Работает вне движка страницы: делегирование событий + наблюдатель за перерисовкой. */
 (function () {
-  var KEY = 'urfu-role', ROLES = ['abit', 'student', 'staff', 'intl'];
+  var KEY = 'urfu-role', ROLES = ['abit', 'student', 'staff', 'partner', 'intl'];
   var role = '';
   try { role = localStorage.getItem(KEY) || ''; } catch (e) {}
   // ссылка вида Main.dc.html?role=student сразу открывает главную под роль

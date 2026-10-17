@@ -237,7 +237,7 @@
 .fd .yu-who-b[aria-pressed="true"]{background:var(--ink);color:#FFFFFF}
 .fd .yu-who-b:focus-visible,.fd .fd-pick:focus-visible,.fd .me-reset:focus-visible{outline:3px solid var(--amethyst);outline-offset:3px}
 .fd h1 [class^="r-"]:not(.r-any),.fd .fd-lead [class^="r-"]:not(.r-any){display:none}
-html[data-urole="abit"] .fd .r-abit,html[data-urole="student"] .fd .r-student,html[data-urole="staff"] .fd .r-staff,html[data-urole="intl"] .fd .r-intl{display:inline !important}
+html[data-urole="abit"] .fd .r-abit,html[data-urole="student"] .fd .r-student,html[data-urole="staff"] .fd .r-staff,html[data-urole="partner"] .fd .r-partner,html[data-urole="intl"] .fd .r-intl{display:inline !important}
 html[data-urole] .fd .r-any{display:none}
 .fd .fd-pick{margin-top:10px;align-self:flex-start;min-height:40px;padding:0 16px;border-radius:999px;border:2px solid var(--gt);background:transparent;color:var(--gt);font:inherit;font-weight:700;cursor:pointer}
 .fd .fd-pick:hover{background:var(--gl)}
@@ -245,8 +245,8 @@ html[data-urole] .fd .r-any{display:none}
 html[data-urole] .fd .fd-gems{display:none}
 html[data-urole] .fd .me-panels{display:block}
 .fd .me-panel{display:none;border-radius:28px;padding:32px;color:var(--ink);background:var(--g);--g:var(--rhodonite)}
-html[data-urole="abit"] .fd .me-abit,html[data-urole="student"] .fd .me-student,html[data-urole="staff"] .fd .me-staff,html[data-urole="intl"] .fd .me-intl{display:block}
-.fd .me-abit{--g:#FFE0EC}.fd .me-student{--g:#EDE3FF}.fd .me-staff{--g:#D6F5EA}.fd .me-intl{--g:var(--gold-soft)}
+html[data-urole="abit"] .fd .me-abit,html[data-urole="student"] .fd .me-student,html[data-urole="staff"] .fd .me-staff,html[data-urole="partner"] .fd .me-partner,html[data-urole="intl"] .fd .me-intl{display:block}
+.fd .me-abit{--g:#FFE0EC}.fd .me-student{--g:#EDE3FF}.fd .me-staff{--g:#D6F5EA}.fd .me-partner{--g:#DCE8FF}.fd .me-intl{--g:var(--gold-soft)}
 .fd .me-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .fd .me-top h3{font-size:36px;line-height:1}
 .fd .me-reset{min-height:40px;padding:0 16px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
@@ -275,8 +275,9 @@ html[data-urole] .fd .yu-hero{order:1}html[data-urole] .fd .yu-tick{order:2}html
 html[data-urole="abit"] .fd .yu-calc-sec{order:4}html[data-urole="abit"] .fd .yu-news-sec{order:5}html[data-urole="abit"] .fd .yu-inst-sec{order:6}html[data-urole="abit"] .fd .yu-life-sec{order:7}
 html[data-urole="student"] .fd .yu-news-sec{order:4}html[data-urole="student"] .fd .yu-life-sec{order:5}html[data-urole="student"] .fd .yu-inst-sec{order:7}html[data-urole="student"] .fd .yu-calc-sec{order:54}
 html[data-urole="staff"] .fd .yu-news-sec{order:4}html[data-urole="staff"] .fd .yu-inst-sec{order:5}html[data-urole="staff"] .fd .yu-life-sec{order:7}html[data-urole="staff"] .fd .yu-calc-sec{order:54}
+html[data-urole="partner"] .fd .yu-news-sec{order:4}html[data-urole="partner"] .fd .yu-inst-sec{order:5}html[data-urole="partner"] .fd .yu-life-sec{order:7}html[data-urole="partner"] .fd .yu-calc-sec{order:54}
 html[data-urole="intl"] .fd .yu-calc-sec{order:4}html[data-urole="intl"] .fd .yu-inst-sec{order:5}html[data-urole="intl"] .fd .yu-life-sec{order:6}html[data-urole="intl"] .fd .yu-news-sec{order:7}
 html[data-urole] .fd .yu-ask{order:55}
 @media (max-width:900px){.fd .me-grid{grid-template-columns:1fr}.fd .me-top h3{font-size:30px}}
 @media (max-width:560px){.fd .me-links{grid-template-columns:1fr}.fd .me-panel{padding:20px;border-radius:22px}}
-html[data-urole="student"] .fd .yu-tag,html[data-urole="staff"] .fd .yu-tag{display:none}
+html[data-urole="student"] .fd .yu-tag,html[data-urole="staff"] .fd .yu-tag,html[data-urole="partner"] .fd .yu-tag{display:none}
