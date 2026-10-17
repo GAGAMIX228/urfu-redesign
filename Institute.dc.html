@@ -23,6 +23,17 @@
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="logo-live.css">
 <style>
+.in-addr{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:20px}
+.in-addr .card{display:flex;flex-direction:column;gap:4px;border-left:6px solid var(--a3)}
+.in-addr b{font-family:var(--narrow);font-size:22px}
+.in-p26{margin-top:20px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FFFFFF}
+.in-r{display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);align-items:center}
+.in-r:last-child{border-bottom:0}
+.in-rh{background:var(--bg-soft-2);font-size:14px;color:var(--muted);font-weight:600}
+.in-r>span{font-family:var(--narrow);font-size:19px;font-weight:700}
+.in-r small{display:none}
+.in-r a{font-weight:600}
+@media (max-width:640px){.in-rh{display:none}.in-r{grid-template-columns:repeat(3,minmax(0,1fr))}.in-r a{grid-column:1/-1}.in-r small{display:block;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500;color:var(--muted)}}
 .in-logos{display:flex;flex-wrap:wrap;gap:8px}
 .in-logos span{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:1px solid var(--line);border-radius:12px;background:#FFFFFF;font-family:var(--narrow);font-weight:700;font-size:17px}
 .in-ways b,.in-ev b{font-size:18px;display:block}
@@ -123,6 +134,25 @@
 <div class="card in-news" style="margin-top:20px"><span class="tag">Новость института · 1 июля 2025</span><b>ИРИТ-РтФ выиграл грант «Топ-ИТ» и подтвердил статус одного из ведущих центров IT-образования в России</b><p class="muted">Ещё один грант — на развитие Data Science и искусственного интеллекта.</p></div>
 <p class="muted" style="font-size:14px;margin-top:12px">По данным <a href="https://programs.edu.urfu.ru/ru/9797/pages/employers/" target="_blank" rel="noopener">сайта образовательных программ УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
 </section></sc-if>
+<sc-if value="{{notIrit}}" hint-placeholder-val="{{false}}"><section id="where" class="sec">
+<h2>Где учиться</h2>
+<div class="in-addr"><sc-for list="{{addrs}}" as="a" hint-placeholder-count="2"><div class="card"><b>{{a.a}}</b><span class="muted">{{a.n}}</span></div></sc-for></div>
+<sc-if value="{{hasSite}}" hint-placeholder-val="{{false}}"><p style="margin-top:14px"><a href="{{site}}" target="_blank" rel="noopener">Сайт института: {{siteN}}<span class="sr"> (откроется в новой вкладке)</span></a></p></sc-if>
+<p style="margin-top:10px"><a href="Contacts.dc.html">Корпуса на карте кампуса →</a></p>
+</section>
+<sc-if value="{{hasP26}}" hint-placeholder-val="{{false}}"><section class="sec">
+<h2>Места и цены 2026 года</h2>
+<div class="in-p26"><div class="in-r in-rh" aria-hidden="true"><span>Программа</span><span>Бюджет</span><span>Платно</span><span>Цена в год</span></div>
+<sc-for list="{{p26}}" as="r" hint-placeholder-count="3"><div class="in-r"><a href="{{r.href}}">{{r.n}}</a><span><small>Бюджет</small>{{r.b}}</span><span><small>Платно</small>{{r.c}}</span><span><small>Цена в год</small>{{r.p}}</span></div></sc-for></div>
+<p class="muted" style="font-size:14px;margin-top:10px">Очная форма. По данным сайта образовательных программ УрФУ, октябрь 2026. «—» — данных на странице программы нет.</p>
+</section></sc-if>
+<sc-if value="{{hasPart}}" hint-placeholder-val="{{false}}"><section class="sec">
+<h2>Партнёры программ</h2>
+<p class="muted" style="margin-top:8px">Участвуют в составлении программ, проектах, практике и трудоустройстве.</p>
+<div class="in-logos" style="margin-top:16px"><sc-for list="{{part}}" as="x" hint-placeholder-count="2"><span>{{x}}</span></sc-for></div>
+</section></sc-if>
+<sc-if value="{{school}}" hint-placeholder-val="{{false}}"><section class="sec"><div class="in-top"><div><h2>Для школьников</h2><p style="margin-top:10px;max-width:620px">Олимпиада «Изумруд», Школа юного биолога и Школа юного химика, хакатоны и турниры — институт ведёт их весь учебный год.</p></div><a class="btn" href="Admission.dc.html#school">Что есть для школьников</a></div></section></sc-if>
+</sc-if>
 <section id="cont" class="sec">
 <sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}"><div class="card g3" style="padding:32px">
 <div><div class="muted" style="font-size:14px">Директор</div><div style="font-weight:600;margin-top:4px">Алферьева Татьяна Игоревна</div><div class="muted" style="font-size:14px">исполняющая обязанности директора</div></div>
@@ -187,6 +217,16 @@ const INST = {
 'УГИ': ['Уральский гуманитарный институт', 'История, филология, журналистика, лингвистика, международные отношения и другие гуманитарные науки.'],
 'ИнЭУ': ['Институт экономики и управления', 'Экономика, менеджмент, государственное управление и бизнес-информатика.'],
 'ФТИ': ['Физико-технологический институт', 'Ядерная энергетика, физика, электроника и наноинженерия.']};
+// адреса, сайты, партнёры и места 2026 — с programs.edu.urfu.ru и сайтов институтов (октябрь 2026)
+const INFO = {
+'ИЕНиМ': { addrs: [['ул. Куйбышева, 48', 'Физика'], ['ул. Тургенева, 4', 'Математика']], site: 'https://insma.urfu.ru/', part: ['Институт физики металлов УрО РАН'], school: true, p26: [['Физика', 50, 5, '246 000 ₽'], ['Математика', 50, 10, '246 000 ₽']] },
+'ИНМиТ': { addrs: [['ул. Мира, 28', 'Металлургия и материалы']], p26: [['Металлургия', '—', '—', '246 000 ₽']] },
+'УралЭНИН': { addrs: [['ул. Мира, 19', 'Аудитории с буквой «Э»']], part: ['Россети Урал', 'АСК (Автоматизированные системы и комплексы)'] },
+'ИСА': { addrs: [['ул. Мира, 17', 'Аудитории с буквой «С»']], part: ['НИЦ «Геотехструктура»', 'Renga Software'], p26: [['Строительство', 239, 55, '283 000 ₽'], ['Архитектура', 37, 35, '300 000 ₽']] },
+'УГИ': { addrs: [['ул. Тургенева, 4', 'Основной корпус'], ['пр. Ленина, 51', 'Журналистика и другие программы']], part: ['«Коляда-Театр»', 'Областное телевидение'], p26: [['История', 82, 30, '246 000 ₽'], ['Журналистика', 4, 68, '300 000 ₽'], ['Лингвистика', 7, 115, '275 000 ₽'], ['Международные отношения', 15, 83, '390 000 ₽']] },
+'ИнЭУ': { addrs: [['ул. Мира, 19', 'Основной адрес'], ['ул. Гоголя, 25', 'Учебный корпус'], ['ул. Ленина, 13б', 'Учебный корпус'], ['ул. Чапаева, 16', 'Учебный корпус']], site: 'https://gsem.urfu.ru/' },
+'ФТИ': { addrs: [['ул. Мира, 21', 'Учебный корпус ФТИ']], site: 'https://fizteh.urfu.ru/' }
+};
 let key = 'ИРИТ-РтФ', isAll = true;
 try { const q = new URLSearchParams(location.search).get('i'); if (q && INST[q]) { key = q; isAll = false; } } catch (e) {}
 try { document.title = (isAll ? 'Институты' : INST[key][0]) + ' — УрФУ'; } catch (e) {}
@@ -195,7 +235,10 @@ const all = Object.keys(INST).map(k => { const c = ALL_PROGS.filter(p => p.inst 
 const progs = ALL_PROGS.filter(p => p.inst === key).map(p => ({ score: '—', budget: '—', price: '—', sy: '2025', ...p })).map(p => ({
   name: p.name, href: 'Program.dc.html?p=' + encodeURIComponent(p.name),
   info: [!isNaN(parseInt(p.score, 10)) ? 'Проходной балл ' + p.sy + ': ' + p.score : '', p.budget !== '—' ? 'Бюджетных мест: ' + p.budget : '', p.price !== '—' ? p.price + ' в год' : ''].filter(Boolean).join(' · ') }));
-return { isAll, isOne: !isAll, all, short: key, full: INST[key][0], lead: INST[key][1], isIrit: key === 'ИРИТ-РтФ', notIrit: key !== 'ИРИТ-РтФ', progs, noProgs: progs.length === 0 };
+return { isAll, isOne: !isAll, all, short: key, full: INST[key][0], lead: INST[key][1], isIrit: key === 'ИРИТ-РтФ', notIrit: key !== 'ИРИТ-РтФ', progs, noProgs: progs.length === 0,
+  addrs: ((INFO[key] || {}).addrs || []).map(([a, n]) => ({ a, n })), hasSite: !!(INFO[key] || {}).site, site: (INFO[key] || {}).site || '', siteN: ((INFO[key] || {}).site || '').replace(/^https?:\/\//, '').replace(/\/$/, ''),
+  hasPart: !!((INFO[key] || {}).part || []).length, part: (INFO[key] || {}).part || [], school: !!(INFO[key] || {}).school,
+  hasP26: !!((INFO[key] || {}).p26 || []).length, p26: ((INFO[key] || {}).p26 || []).map(([n, b, c, p]) => ({ n, b: String(b), c: String(c), p, href: 'Program.dc.html?p=' + encodeURIComponent(n) })) };
 }
 }
 </script>
