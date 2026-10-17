@@ -11,7 +11,11 @@ SRC = {
     'pos': WA + '20251114102246/https://urfu.ru/ru/students/social/campus/',
     'cont': WA + '20251114044926/https://urfu.ru/ru/contacts/',
     'line': WA + '20251114063908/https://urfu.ru/ru/students/social/gorjachaja-linija-dlja-studentov/',
+    'kom': 'https://www.kommersant.ru/doc/8607360',
+    'insma': 'https://insma.urfu.ru/shkolniku/',
+    'prog': 'https://programs.edu.urfu.ru/ru/9797/pages/iot/',
 }
+SRCN = {'kom': 'Коммерсантъ', 'insma': 'insma.urfu.ru', 'prog': 'programs.edu.urfu.ru'}
 
 TOPICS = [('all', 'Все'), ('adm', 'Поступление'), ('dorm', 'Общежитие'), ('study', 'Учёба'), ('health', 'Здоровье'), ('money', 'Деньги'), ('it', 'Wi-Fi и почта')]
 
@@ -35,7 +39,28 @@ FAQ = [
     ('money', 'Кто поможет со стипендией и выплатами?', 'Начисления ведёт ваш институт. Если выплату задерживают или отказывают без причины — горячая линия Минобрнауки 8-800-222-55-71, добавочный 1.', '', '', 'line'),
     ('money', 'Как оплатить общежитие или медосмотр?', 'Через сервис электронных платежей УрФУ pay.urfu.ru, Систему быстрых платежей по QR-коду или в кассе медсанчасти.', '', '', 'pos'),
     ('it', 'Не работает Wi-Fi, почта или доступ к сервисам', 'Техподдержка УрФУ: +7 (343) 227-20-70, support@urfu.ru.', '', '', 'cont'),
+    ('it', 'Я первокурсник — что сделать в первую очередь?', 'Активировать учётную запись в личном кабинете студента и выбрать там вид спорта для занятий физкультурой. Если войти не получается — техподдержка: +7 (343) 227-20-70.', 'Login.dc.html', 'Личный кабинет', 'kom'),
+    ('study', 'Когда осенью 2026 года начались очные занятия?', 'После 15 октября. С 1 сентября все курсы учились в гибридном и дистанционном формате: в Екатеринбурге 11–17 сентября проходил Международный фестиваль молодёжи. Так решил приказ ректора.', 'News.dc.html', 'Новости', 'kom'),
+    ('study', 'Можно ли самому выбирать предметы?', 'На многих программах — да: со 2 курса часть курсов выбираете сами, так складывается индивидуальная траектория. Ещё есть майнор — курс другого направления. Подробности — на странице своей программы.', 'Program.dc.html', 'Пример: «Программная инженерия»', 'prog'),
+    ('study', 'Как выбрать секцию по физкультуре?', 'Вид спорта первокурсники выбирают в личном кабинете студента. Список секций и студклубов — в разделе «Жизнь в УрФУ».', 'Life.dc.html', 'Клубы и секции', 'kom'),
+    ('adm', 'Дают ли баллы за олимпиады самого УрФУ?', 'Да. Победители и призёры олимпиад и турниров, которые УрФУ проводит сам, получают дополнительно 4 балла при поступлении в УрФУ.', 'Admission.dc.html#benefits', 'Особые права', 'insma'),
+    ('adm', 'Что такое олимпиада «Изумруд» и когда её отбор?', 'Это олимпиада УрФУ для школьников. Отборочный этап сезона 2026/27 идёт с 1 сентября 2026 по 19 января 2027 года, регистрация — на dovuz.urfu.ru.', 'Admission.dc.html#school', 'Школьникам', 'insma'),
+    ('adm', 'Есть ли занятия для школьников?', 'Да: например, в Институте естественных наук и математики — Школа юного биолога и Школа юного химика (октябрь–май), Школа юных математиков, Школа олимпиадного программирования, хакатоны и турниры.', 'Admission.dc.html#school', 'Школьникам', 'insma'),
+    ('money', 'Можно ли взять кредит на платное обучение?', 'Да, есть образовательный кредит с господдержкой под 3% годовых. Платить его начинают после учёбы. Стоимость программ — в калькуляторе на странице «Как поступить».', 'Admission.dc.html#cost', 'Калькулятор стоимости', ''),
 ]
+
+# «Мне нужно…» — быстрые задачи (заголовок, пояснение, ссылка)
+TASKS = [
+    ('Справку об обучении', 'Заказать в кабинете', 'Cabinet.dc.html#cr-h'),
+    ('Расписание группы', 'Пары на неделю', 'Schedule.dc.html'),
+    ('Место в общежитии', 'Как получить и цены', 'Help.dc.html?q=общежит'),
+    ('Пройти медосмотр', 'Где и что взять', 'Help.dc.html?q=медосмотр'),
+    ('Оплатить общежитие', 'Онлайн и по QR-коду', 'Help.dc.html?q=оплат'),
+    ('Починить Wi-Fi и почту', 'Телефон техподдержки', 'Help.dc.html?q=wi-fi'),
+    ('Узнать про стипендию', 'Кто начисляет', 'Help.dc.html?q=стипенд'),
+    ('Поговорить с психологом', 'Бесплатная горячая линия', '#hl-h'),
+]
+
 
 # (название, что решает, телефон, tel, почта, часы/адрес, ключевые слова)
 DIR = [
@@ -54,6 +79,7 @@ LINES = [
 
 
 def main_html():
+    tasks = ''.join(f'<li><a href="{h}"><b>{t}</b><span>{d}</span></a></li>' for t, d, h in TASKS)
     lines = ''.join(f'<div class="hl-line"><b>{t}</b><a href="tel:88002225571" class="hl-tel">{p} <span>{a}</span></a><span class="muted">{d}</span></div>' for t, p, a, d in LINES)
     return f'''<main id="main" tabindex="-1" style="outline:none"><section class="phead hp-head"><div class="wrap">
 <div class="crumbs"><a href="Main.dc.html">Главная</a> / Центр помощи</div>
@@ -66,13 +92,14 @@ def main_html():
 <sc-for list="{{{{topics}}}}" as="t" hint-placeholder-count="7"><button type="button" class="chip hp-chip" aria-pressed="{{{{t.on}}}}" onClick="{{{{t.pick}}}}">{{{{t.n}}}}</button></sc-for>
 </div>
 </div></section>
+<div class="wrap"><h2 class="hp-need-h">Мне нужно…</h2><ul class="hp-need">{tasks}</ul></div>
 <div class="wrap hp-body">
 <div class="hp-main">
 <h2 id="faq-h">Частые вопросы</h2>
 <p class="muted hp-count" aria-live="polite">{{{{countText}}}}</p>
 <div class="hp-faq">
 <sc-for list="{{{{faq}}}}" as="f" hint-placeholder-count="6"><details class="hp-q"><summary><span class="tag">{{{{f.tn}}}}</span>{{{{f.q}}}}</summary><div class="hp-a"><p>{{{{f.a}}}}</p>
-<div class="hp-links"><sc-if value="{{{{f.href}}}}" hint-placeholder-val="{{{{true}}}}"><a href="{{{{f.href}}}}">{{{{f.lt}}}} →</a></sc-if><sc-if value="{{{{f.src}}}}" hint-placeholder-val="{{{{true}}}}"><a class="hp-src" href="{{{{f.src}}}}" target="_blank" rel="noopener">Источник: urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a></sc-if></div></div></details></sc-for>
+<div class="hp-links"><sc-if value="{{{{f.href}}}}" hint-placeholder-val="{{{{true}}}}"><a href="{{{{f.href}}}}">{{{{f.lt}}}} →</a></sc-if><sc-if value="{{{{f.src}}}}" hint-placeholder-val="{{{{true}}}}"><a class="hp-src" href="{{{{f.src}}}}" target="_blank" rel="noopener">Источник: {{{{f.sn}}}}<span class="sr"> (откроется в новой вкладке)</span></a></sc-if></div></div></details></sc-for>
 <sc-if value="{{{{none}}}}" hint-placeholder-val="{{{{false}}}}"><div class="card hp-none"><b>Такого вопроса пока нет.</b><p class="muted">Позвоните в контакт-центр — <a href="tel:88001005044">8-800-100-50-44</a>, бесплатно по России. Или задайте вопрос на горячей линии приёмной комиссии: там отвечают за 2–3 рабочих дня.</p></div></sc-if>
 </div>
 <h2 id="dir-h" style="margin-top:56px">Справочник служб</h2>
@@ -83,6 +110,17 @@ def main_html():
 <sc-if value="{{{{d.h}}}}" hint-placeholder-val="{{{{true}}}}"><span class="hp-h">{{{{d.h}}}}</span></sc-if></div></sc-for>
 <sc-if value="{{{{dirNone}}}}" hint-placeholder-val="{{{{false}}}}"><p class="muted">По этому запросу служб не нашлось — <button type="button" class="hp-link" onClick="{{{{clear}}}}">показать все</button>.</p></sc-if>
 </div>
+<h2 id="ask-h" style="margin-top:56px">Не нашли ответ? Напишите нам</h2>
+<form class="card hp-form" novalidate aria-labelledby="ask-h">
+<div class="hp-f2"><div><label for="af-n">Как к вам обращаться</label><input id="af-n" class="input" autocomplete="name"></div>
+<div><label for="af-e">Почта для ответа <span aria-hidden="true">*</span></label><input id="af-e" class="input" type="email" autocomplete="email" required aria-describedby="af-err"></div></div>
+<label for="af-t">Тема</label><select id="af-t" class="input"><option>Поступление</option><option>Общежитие</option><option>Учёба и расписание</option><option>Стипендия и оплата</option><option>Wi-Fi, почта, кабинет</option><option>Другое</option></select>
+<label for="af-m">Вопрос <span aria-hidden="true">*</span></label><textarea id="af-m" class="input" rows="4" required aria-describedby="af-err"></textarea>
+<p id="af-err" class="hp-ferr" role="alert"></p>
+<button class="btn" type="submit">Отправить</button>
+<p class="muted" style="font-size:14px">Ответ придёт на почту за 1–3 рабочих дня. Это прототип: сообщение никуда не отправляется.</p>
+<p class="hp-fok" role="status"></p>
+</form>
 <p class="muted" style="margin-top:14px;font-size:14px">Контакты — со страницы <a href="{SRC['cont']}" target="_blank" rel="noopener">«Контакты» urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
 </div>
 <aside class="hp-side" aria-labelledby="hl-h">
@@ -96,7 +134,7 @@ def main_html():
 LOGIC = '''<script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {
-const FAQ = __FAQ__, DIR = __DIR__, TOP = __TOP__, SRC = __SRC__;
+const FAQ = __FAQ__, DIR = __DIR__, TOP = __TOP__, SRC = __SRC__, SRCN = __SRCN__;
 const st = this.state || {};
 let q0 = st.q; if (q0 === undefined) { q0 = new URLSearchParams(location.search).get('q') || ''; }
 const t = st.t || 'all';
@@ -107,7 +145,7 @@ const words = q.split(/\\s+/).filter(w => w.length > 1).map(w => w.slice(0, Math
 const hit = s => words.every(w => s.toLowerCase().indexOf(w) !== -1);
 const TN = {}; TOP.forEach(([k, n]) => TN[k] = n);
 const faq = FAQ.filter(f => (t === 'all' || f[0] === t) && hit(f[1] + ' ' + f[2] + ' ' + TN[f[0]]))
-  .map(f => ({ tn: TN[f[0]], q: f[1], a: f[2], href: f[3], lt: f[4], src: f[5] ? SRC[f[5]] : '' }));
+  .map(f => ({ tn: TN[f[0]], q: f[1], a: f[2], href: f[3], lt: f[4], src: f[5] ? SRC[f[5]] : '', sn: SRCN[f[5]] || 'urfu.ru' }));
 const dir = DIR.filter(d => hit(d.join(' '))).map(d => ({ n: d[0], w: d[1], p: d[2], tel: d[3], m: d[4], h: d[5] }));
 const n = faq.length;
 const form = n % 10 === 1 && n % 100 !== 11 ? 'ответ' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'ответа' : 'ответов';
@@ -139,6 +177,8 @@ CSS = '''
 .hp-q{background:#FFFFFF;border:1px solid var(--limestone);border-radius:16px;padding:0}
 .hp-q summary{padding:18px 20px;font-weight:600;cursor:pointer;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;line-height:1.4}
 .hp-q summary .tag{font-size:12px;font-weight:600}
+.hp-q summary{justify-content:flex-start}
+.hp-q summary::after{margin-left:auto}
 .hp-q[open] summary{border-bottom:1px solid var(--limestone)}
 .hp-a{padding:16px 20px 20px;line-height:1.6}
 .hp-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:12px;font-size:15px}
@@ -162,9 +202,41 @@ CSS = '''
 .hl-tel:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .hp-ask{display:flex;flex-direction:column;gap:10px}
 .hp-ask .btn,.hp-ask .btn2{text-align:center;justify-content:center}
+.hp-need-h{font-family:var(--narrow);font-size:30px;margin-top:40px}
+.hp-need{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.hp-need a{display:flex;flex-direction:column;gap:4px;min-height:96px;padding:18px 20px;border-radius:16px;border:2px solid var(--limestone);background:#FFFFFF;color:var(--ink);text-decoration:none;transition:border-color .15s ease,transform .15s ease}
+.hp-need a:hover{border-color:var(--amethyst);transform:translateY(-2px)}
+.hp-need b{font-size:17px}
+.hp-need span{font-size:14px;color:var(--muted)}
+.hp-form{display:flex;flex-direction:column;gap:8px;margin-top:20px;padding:24px}
+.hp-form label{font-weight:600;margin-top:6px}
+.hp-form .input{width:100%}
+.hp-form textarea{min-height:110px;padding:12px 14px;resize:vertical;font:inherit}
+.hp-form .btn{align-self:flex-start;margin-top:8px}
+.hp-f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hp-f2>div{display:flex;flex-direction:column;gap:6px}
+.hp-ferr{color:var(--a4,#A63A3A);font-weight:600;font-size:15px}
+.hp-ferr:empty,.hp-fok:empty{display:none}
+.hp-fok{font-weight:600;color:var(--a1,#0B7A63)}
+@media (max-width:980px){.hp-need{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.hp-f2{grid-template-columns:1fr}}
 @media (max-width:980px){.hp-body{grid-template-columns:1fr}.hp-side{position:static}}
 @media (max-width:620px){.hp-dir{grid-template-columns:1fr}.hp-search input{font-size:16px}}
 '''
+
+
+# форма «Напишите нам»: проверка полей, без отправки (прототип)
+FORM_JS = r'''<script>
+document.addEventListener('submit', function (e) {
+  var f = e.target.closest && e.target.closest('.hp-form'); if (!f) return;
+  e.preventDefault();
+  var em = f.querySelector('#af-e'), msg = f.querySelector('#af-m'), err = f.querySelector('.hp-ferr'), ok = f.querySelector('.hp-fok');
+  ok.textContent = ''; [em, msg].forEach(function (x) { x.removeAttribute('aria-invalid'); });
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())) { err.textContent = 'Укажите почту для ответа, например name@mail.ru'; em.setAttribute('aria-invalid', 'true'); em.focus(); return; }
+  if (msg.value.trim().length < 5) { err.textContent = 'Напишите вопрос — хотя бы пару слов'; msg.setAttribute('aria-invalid', 'true'); msg.focus(); return; }
+  err.textContent = ''; ok.textContent = 'Спасибо! Вопрос принят. Это прототип — на настоящем сайте ответ придёт на ' + em.value.trim() + '.';
+});
+</script>'''
 
 
 def main():
@@ -183,12 +255,19 @@ def main():
     logic = (LOGIC.replace('__FAQ__', json.dumps(FAQ, ensure_ascii=False))
              .replace('__DIR__', json.dumps(DIR, ensure_ascii=False))
              .replace('__TOP__', json.dumps(TOPICS, ensure_ascii=False))
-             .replace('__SRC__', json.dumps(SRC, ensure_ascii=False)))
+             .replace('__SRC__', json.dumps(SRC, ensure_ascii=False))
+             .replace('__SRCN__', json.dumps(SRCN, ensure_ascii=False)))
+    tail = tail.replace('<script src="site.js"></script>', '<script src="site.js"></script>\n' + FORM_JS, 1)
     out = head + main_html() + foot + logic + '\n' + tail
     open('Help.dc.html', 'w', encoding='utf-8', newline='').write(out)
+    # стили центра помощи в site.css заменяем целиком
     css = open('site.css', encoding='utf-8').read()
-    if '/* Центр помощи */' not in css:
-        open('site.css', 'a', encoding='utf-8', newline='').write(CSS)
+    if '/* Центр помощи */' in css:
+        a = css.index('\n/* Центр помощи */')
+        b = css.index('@media (max-width:620px){.hp-dir', a)
+        b = css.index('\n', b) + 1
+        css = css[:a] + css[b:]
+    open('site.css', 'w', encoding='utf-8', newline='').write(css.rstrip('\n') + '\n' + CSS)
     print('Help.dc.html: вопросов', len(FAQ), 'служб', len(DIR))
 
 
