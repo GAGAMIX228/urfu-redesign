@@ -22,6 +22,21 @@
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="logo-live.css">
+<style>
+.lv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.lv{margin:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FFFFFF;display:flex;flex-direction:column}
+.lv img{width:100%;height:auto;display:block;border-bottom:1px solid var(--line)}
+.lv figcaption{padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.lv b{font-family:var(--narrow);font-size:20px}
+.lv span{font-size:15px}
+.lv em{font-style:normal;font-size:14px;color:var(--a4,#A63A3A);font-weight:600}
+.lv-win{margin-top:20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:3px solid var(--amethyst,#6B2BE0)}
+.lv-win img{border-bottom:0;border-right:1px solid var(--line)}
+.lv-win figcaption{justify-content:center;padding:24px}
+.lv-win b{font-size:26px;color:var(--amethyst,#6B2BE0)}
+@media (max-width:900px){.lv-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lv-win{grid-template-columns:1fr}.lv-win img{border-right:0}}
+@media (max-width:560px){.lv-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -94,6 +109,12 @@
 </div>
 </section>
 
+<section class="wrap sec" aria-labelledby="lv-h">
+<h2 id="lv-h">Как мы пришли к знаку</h2>
+<p class="muted" style="margin-top:12px;max-width:760px;font-size:18px">Мы нарисовали восемь вариантов и проверили каждый: в шапке, на тёмном фоне и в иконке 16 пикселей. Вот шесть, которые не прошли, — и почему.</p>
+<div class="lv-grid"><figure class="lv"><img src="logo-variants/monoliniya.webp" width="484" height="250" alt="Вариант «Монолиния»: «У» одним движением и золотой камень." loading="lazy"><figcaption><b>Монолиния</b><span>«У» одним движением и золотой камень.</span><em>Почему нет: Тонкая линия теряется в иконке размером 16 пикселей.</em></figcaption></figure><figure class="lv"><img src="logo-variants/nasledie.webp" width="484" height="250" alt="Вариант «Наследие»: Исторический знак УрФУ в новых цветах." loading="lazy"><figcaption><b>Наследие</b><span>Исторический знак УрФУ в новых цветах.</span><em>Почему нет: Узнаваемо, но не даёт ощущения обновления.</em></figcaption></figure><figure class="lv"><img src="logo-variants/pechat.webp" width="484" height="250" alt="Вариант «Печать»: Эмблема с годом основания — 1920." loading="lazy"><figcaption><b>Печать</b><span>Эмблема с годом основания — 1920.</span><em>Почему нет: Надпись по кругу не читается в маленькой иконке.</em></figcaption></figure><figure class="lv"><img src="logo-variants/nalozhenie.webp" width="484" height="250" alt="Вариант «Наложение»: Две полупрозрачные половины, на пересечении третий цвет." loading="lazy"><figcaption><b>Наложение</b><span>Две полупрозрачные половины, на пересечении третий цвет.</span><em>Почему нет: Цвет на пересечении «плывёт» при печати в один цвет.</em></figcaption></figure><figure class="lv"><img src="logo-variants/vyrez.webp" width="484" height="250" alt="Вариант «Вырез»: «У» вырезана в переливающемся круге." loading="lazy"><figcaption><b>Вырез</b><span>«У» вырезана в переливающемся круге.</span><em>Почему нет: Круг похож на значки приложений — знак теряет характер.</em></figcaption></figure><figure class="lv"><img src="logo-variants/nadpis.webp" width="484" height="250" alt="Вариант «Надпись»: «УрФУ» подчёркнуто хвостом буквы." loading="lazy"><figcaption><b>Надпись</b><span>«УрФУ» подчёркнуто хвостом буквы.</span><em>Почему нет: Хорошо в шапке, но нет отдельного знака для иконки.</em></figcaption></figure></div>
+<figure class="lv lv-win"><img src="logo-variants/lenta.webp" width="484" height="250" alt="Итоговый вариант «Лента»: сложенная лента с переливом и тенью на сгибе" loading="lazy"><figcaption><b>Выбрали: «Лента»</b><span>Сложенная лента с переливом и тенью на сгибе. Читается в 16 пикселях, работает на светлом и тёмном фоне, а две половины — это аметист и родонит из палитры «Яркий Урал».</span></figcaption></figure>
+</section>
 <section class="wrap sec">
 <div class="sec-head"><div><div class="kicker" style="--k:var(--a4)">Элементы</div><h2>Как стиль живёт на страницах</h2></div></div>
 <div class="g3">
