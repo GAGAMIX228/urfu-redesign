@@ -148,6 +148,25 @@ def panels_html(t):
     return '<div class="me-panels">' + ''.join(out) + '</div>'
 
 
+def now_html(t):
+    """«Этой осенью» на русской главной: сроки, которые идут сейчас (источники — на страницах по ссылкам)."""
+    if not t.get('who'):
+        return ''
+    # последний день показа: прошедшие сроки скрывает home-role.js
+    items = [('до 26 окт', 'Студентам', 'QR-код первокурсника работает до 26 октября — получите пластиковый пропуск', 'Cabinet.dc.html#cp-h', '2026-10-26'),
+             ('с 15 окт', 'Студентам', 'Занятия снова очные — гибридный формат закончился', 'News.dc.html', '2026-11-10'),
+             ('до 1 ноя', 'Поступающим', 'УрФУ публикует правила приёма-2027', 'Article.dc.html#ar-year', '2026-11-01'),
+             ('ноябрь', 'Поступающим', 'Правила приёма-2027 опубликованы — проверьте экзамены и баллы за достижения', 'Admission.dc.html#ach', '2026-12-31'),
+             ('до 19 янв', 'Школьникам', 'Отборочный этап олимпиады «Изумруд» — дополнительные баллы при поступлении', 'Admission.dc.html#school', '2027-01-19'),
+             ('до 1 фев', 'Выпускникам школ', 'Заявление на ЕГЭ-2027 — в своей школе', 'Article.dc.html#ar-year', '2027-02-01')]
+    li = ''.join(f'<li data-end="{e}"{' data-start="2026-11-02"' if d == 'ноябрь' else ''}><a href="{h}"><b>{d}</b><span class="yn-k">{k}</span><span class="yn-t">{x}</span></a></li>' for d, k, x, h, e in items)
+    return f"""
+<section class="fd-sec yu-now-sec" aria-labelledby="now-h"><div class="wrap">
+<div class="fd-head"><div><h2 class="fd-h2" id="now-h">Этой осенью</h2><p class="fd-lead">Сроки, которые идут прямо сейчас.</p></div><a class="fd-more" href="Events.dc.html">Календарь событий</a></div>
+<ol class="yu-now">{li}</ol>
+</div></section>"""
+
+
 def sci_html(t):
     """Блок «Наука» на русской главной: цифры и открытия 2026 (РИА Новости)."""
     if not t.get('who'):
@@ -258,6 +277,7 @@ def main_html(t):
 </div>
 </div></section>
 
+{now_html(t)}
 <section class="fd-sec yu-inst-sec"><div class="wrap">
 <div class="fd-head"><div><h2 class="fd-h2">{t['inst_h']}</h2><p class="fd-lead">{t['inst_lead']}</p></div><a class="fd-more" href="Institute.dc.html">{t['inst_all']}</a></div>
 <div class="yu-inst">{inst}</div>
