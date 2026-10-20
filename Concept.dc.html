@@ -110,6 +110,14 @@
 @media (max-width:1000px){.ds-col{grid-template-columns:repeat(3,minmax(0,1fr))}.ds-pairs{grid-template-columns:repeat(2,minmax(0,1fr))}.ds-ui,.ds-rules{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:620px){.ds-col{grid-template-columns:repeat(2,minmax(0,1fr))}.ds-pairs,.ds-type,.ds-ui,.ds-rules{grid-template-columns:minmax(0,1fr)}.ds-t1{font-size:38px}}
 </style>
+<style id="nx-css">
+.nx{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;counter-reset:n}
+.nx li{counter-increment:n;display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:16px;background:#FFFFFF;border:1px solid var(--line);border-left:5px solid var(--gold)}
+.nx li::before{content:"0" counter(n);font-family:var(--narrow);font-size:20px;font-weight:700;color:var(--rhodonite-d,#C81A62)}
+.nx b{font-family:var(--narrow);font-size:22px}
+.nx span{font-size:15px;color:var(--muted)}
+@media (max-width:900px){.nx{grid-template-columns:minmax(0,1fr)}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -249,6 +257,18 @@
 <li><b>Меньше движения</b><span>Если в системе включено «уменьшить движение» — анимации выключаются.</span></li>
 </ul>
 </section>
+<!-- next --><section class="wrap sec" id="next">
+<div class="sec-head"><div><h2>Что дальше — после конкурса</h2></div></div>
+<p class="muted" style="margin-top:12px;max-width:760px;font-size:18px">Прототип показывает, как должен работать сайт. Чтобы он стал настоящим, его нужно подключить к системам университета. Вот что для этого нужно — честно, без обещаний за других.</p>
+<ol class="nx">
+<li><b>Расписание</b><span>Подключить к той же базе, что у приложения «УрФУ.Учеба», — вместо примера появятся настоящие пары группы.</span></li>
+<li><b>Личный кабинет</b><span>Вход через id.urfu.ru: баллы, справки и пропуск — из iStudent, а не из примера.</span></li>
+<li><b>Каталог и цены</b><span>Брать программы, места и баллы прямо с programs.edu.urfu.ru — один источник вместо копий в PDF.</span></li>
+<li><b>Новости и события</b><span>Выгрузка из редакции портала: прошедшие события сайт уже убирает сам.</span></li>
+<li><b>Проверка на людях</b><span>Задания для сравнения с urfu.ru готовы — время и клики по шести частым задачам.</span></li>
+<li><b>Английская версия</b><span>Сейчас на английском главная, каталог, поступление и вход — дальше остальные разделы.</span></li>
+</ol>
+</section><!-- /next -->
 <section class="wrap sec" id="data">
 <div class="row" style="align-items:flex-start">
 <div class="main">

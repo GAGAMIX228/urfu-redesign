@@ -1127,6 +1127,18 @@ li:nth-child(5n+2) > .stp{--c:var(--amethyst)}li:nth-child(5n+3) > .stp{--c:#0A7
 @media (max-width:1000px){.da-list{grid-template-columns:repeat(2,minmax(0,1fr))}.da-nvk{grid-column:span 2}}
 @media (max-width:620px){.da-list{grid-template-columns:minmax(0,1fr)}.da-nvk{grid-column:auto}}
 /* /Все общежития */
+/* Типы общежитий */
+.dt-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+.dt-g .card{display:flex;flex-direction:column;gap:6px}
+.dt-p{font-family:var(--narrow);font-size:24px;font-weight:700;color:var(--amethyst)}
+.dt-g h3{font-family:var(--narrow);font-size:24px}
+.dt-g p{font-size:15px}
+.dt-n{margin-top:auto;padding-top:8px;font-size:14px;font-weight:700}
+.dt-g .is-new{background:var(--ink);border-color:var(--ink);color:#FFFFFF}
+.dt-g .is-new .muted{color:var(--on-dark-muted)}.dt-g .is-new .dt-p{color:var(--gold)}
+@media (max-width:1000px){.dt-g{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.dt-g{grid-template-columns:minmax(0,1fr)}}
+/* /Типы общежитий */
 
 /* Кабинет v3 */
 .cab-head .wrap{padding-bottom:8px}

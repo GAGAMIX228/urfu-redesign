@@ -63,6 +63,14 @@
 .ar-faq{margin-top:10px}
 .ar-faq p{margin-top:10px;color:var(--muted)}
 </style>
+<style id="ar4-css">
+.ar-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.ar-kv div{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:14px;background:var(--bg-soft-2,#F6F2FF);border-left:5px solid var(--amethyst)}
+.ar-kv b{font-family:var(--narrow);font-size:20px}
+.ar-kv span{font-size:15px;color:var(--muted)}
+@media (max-width:620px){.ar-kv{grid-template-columns:minmax(0,1fr)}}
+</style>
+<style id="ar5-css">.ar-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:36px;padding:22px 24px;border-radius:18px;background:var(--ink);color:#FFFFFF}.ar-cta div{flex:1 1 320px;display:flex;flex-direction:column;gap:4px}.ar-cta b{font-family:var(--narrow);font-size:26px}.ar-cta span{color:var(--on-dark-muted);font-size:15px}.ar-cta .btn2{color:#FFFFFF;border-color:#FFFFFF}</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -96,7 +104,7 @@
 <nav class="ar-toc" aria-labelledby="ar-toc"><h2 id="ar-toc">Содержание</h2><ol>
 <li><a href="#ar-num">Итоги в цифрах</a></li>
 <li><a href="#ar-who">Кто и куда подавал</a></li>
-<li><a href="#ar-late">Что ещё можно было успеть</a></li>
+<li><a href="#ar-bvi">Кто поступает без экзаменов и по квотам</a></li><li><a href="#ar-late">Что ещё можно было успеть</a></li>
 <li><a href="#ar-tl">Как шёл приём-2026</a></li>
 <li><a href="#ar-new">Что меняется в университете</a></li>
 <li><a href="#ar-cmp">Сравнение с 2025 годом</a></li><li><a href="#ar-next">Что это значит для поступающих в 2027 году</a></li><li><a href="#ar-year">Год до поступления: что и когда</a></li><li><a href="#ar-faq">Вопросы и ответы</a></li>
@@ -114,6 +122,15 @@
 <p style="margin-top:16px">Самый высокий спрос — на IT-программы и инженерные специальности. Отдельно считают тех, кто может поступить без вступительных испытаний: такие абитуриенты претендуют на 1 861 бюджетное место.</p>
 <div class="ar-quote"><b>1 861</b><span>бюджетное место — на столько претендуют абитуриенты с правом поступления без экзаменов</span></div>
 <p style="margin-top:20px">Целевое обучение снова стало популярнее: заявлений по целевой квоте — 1 065, это на 40% больше, чем выделено мест. Значит, и на целевые места был конкурс. Как устроена целевая квота — в разделе <a href="Admission.dc.html#benefits">«Особые права»</a>.</p>
+<!-- ar4 --><h2 id="ar-bvi" style="margin-top:44px;font-size:28px">Кто поступает без экзаменов и по квотам</h2>
+<p style="margin-top:12px">1 861 бюджетное место, о котором пишут итоги, — это места, на которые претендуют абитуриенты с правом поступления без вступительных испытаний. Кто это и как устроены отдельные конкурсы:</p>
+<div class="ar-kv">
+<div><b>Без экзаменов</b><span>Победители и призёры заключительного этапа Всероссийской олимпиады школьников; победители и призёры олимпиад из перечня — по профилю программы.</span></div>
+<div><b>Особая квота</b><span>Дети-инвалиды, инвалиды I и II групп, инвалиды с детства. Конкурс — среди своих, не меньше 10% бюджетных мест.</span></div>
+<div><b>Отдельная квота</b><span>Участники специальной военной операции и их дети — тоже отдельный конкурс.</span></div>
+<div><b>Целевая квота</b><span>По договору с заказчиком: в 2026 году заявлений было на 40% больше, чем мест.</span></div>
+</div>
+<p class="muted" style="font-size:15px;margin-top:10px">Подробно — в разделах <a href="Admission.dc.html#benefits">«Особые права»</a> и <a href="Admission.dc.html#target">«Целевое обучение»</a>.</p><!-- /ar4 -->
 <h2 id="ar-late" style="margin-top:44px;font-size:28px">Что ещё можно было успеть</h2>
 <p style="margin-top:16px">Приём на платные места продолжается. Тем, кто сдаёт внутренние вступительные испытания, документы принимают до 15 августа, а поступающим по результатам ЕГЭ — до 20 августа. Подробности — на странице <a href="Admission.dc.html">«Как поступить»</a>.</p>
 <h2 id="ar-new" style="margin-top:44px;font-size:28px">Что меняется в университете</h2>
@@ -138,6 +155,7 @@
 <li><b>Соберите достижения</b><span>Аттестат с отличием, ГТО, волонтёрство и олимпиады УрФУ дают дополнительные баллы — <a href="Admission.dc.html#school">что есть для школьников</a>.</span></li>
 <li><b>Запишите даты</b><span>Приём начинается 20 июня, согласие подают в начале августа — <a href="Admission.dc.html#calendar">календарь приёма</a>.</span></li>
 </ol>
+<!-- ar5 --><div class="ar-cta"><div><b>А вам хватит баллов?</b><span>Сдвиньте ползунок на свою сумму ЕГЭ — покажем, на сколько программ вы прошли бы по баллам прошлого года.</span></div><a class="btn" href="Main.dc.html#calc-h">Проверить на главной</a><a class="btn2" href="Catalog.dc.html">Каталог с фильтром</a></div><!-- /ar5 -->
 <!-- ar3 --><h2 id="ar-year" style="margin-top:44px;font-size:28px">Год до поступления: что и когда</h2>
 <p style="margin-top:12px">Для тех, кто поступает в 2027 году. Точные даты университет объявит в правилах приёма.</p>
 <ol class="ar-year">
