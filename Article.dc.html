@@ -48,6 +48,21 @@
 .ar-quote b{font-family:var(--narrow);font-size:44px;color:var(--a2);white-space:nowrap}
 @media (max-width:760px){.ar-top{grid-template-columns:1fr}.ar-quote{flex-direction:column;align-items:flex-start}}
 </style>
+<style id="ar3-css">
+.ar-bars{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.ar-bars div{display:grid;grid-template-columns:52px minmax(0,1fr) 92px;gap:12px;align-items:center}
+.ar-bars span{font-weight:700}
+.ar-bars i{display:block;height:28px;border-radius:8px;background:var(--limestone)}
+.ar-bars .is-now i{background:linear-gradient(90deg,var(--amethyst),var(--rhodonite))}
+.ar-bars b{font-family:var(--narrow);font-size:22px;text-align:right}
+.ar-year{list-style:none;margin:18px 0 0;padding:0 0 0 22px;border-left:3px solid var(--gold);display:flex;flex-direction:column;gap:14px}
+.ar-year li{position:relative;display:flex;flex-direction:column}
+.ar-year li::before{content:"";position:absolute;left:-31px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--ink);border:3px solid var(--gold)}
+.ar-year b{font-family:var(--narrow);font-size:21px}
+.ar-year span{color:var(--muted)}
+.ar-faq{margin-top:10px}
+.ar-faq p{margin-top:10px;color:var(--muted)}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -84,7 +99,7 @@
 <li><a href="#ar-late">Что ещё можно было успеть</a></li>
 <li><a href="#ar-tl">Как шёл приём-2026</a></li>
 <li><a href="#ar-new">Что меняется в университете</a></li>
-<li><a href="#ar-next">Что это значит для поступающих в 2027 году</a></li>
+<li><a href="#ar-cmp">Сравнение с 2025 годом</a></li><li><a href="#ar-next">Что это значит для поступающих в 2027 году</a></li><li><a href="#ar-year">Год до поступления: что и когда</a></li><li><a href="#ar-faq">Вопросы и ответы</a></li>
 </ol></nav>
 </div>
 <h2 id="ar-num" style="margin-top:8px;margin-bottom:20px;font-size:28px">Итоги в цифрах</h2>
@@ -104,6 +119,13 @@
 <h2 id="ar-new" style="margin-top:44px;font-size:28px">Что меняется в университете</h2>
 <p style="margin-top:16px">УрФУ стал участником пилотного проекта новой системы высшего образования. Вместо привычной схемы «бакалавриат — магистратура» в вузе будет два уровня: базовое и специализированное высшее образование.</p>
 <p style="margin-top:20px">Базовое высшее образование будет длиться от 4 до 6 лет, а специализированное (магистратура, ординатура) — от 1 до 3 лет.</p>
+<!-- ar3 --><h2 id="ar-cmp" style="margin-top:44px;font-size:28px">Сравнение с 2025 годом</h2>
+<p style="margin-top:12px">Заявлений на бюджет стало больше примерно на шестую часть.</p>
+<div class="ar-bars" role="img" aria-label="Заявления на бюджет: 2025 год — около 42 300, 2026 год — 49 832">
+<div><span>2025</span><i style="width:84.9%"></i><b>≈ 42 300</b></div>
+<div class="is-now"><span>2026</span><i style="width:100%"></i><b>49 832</b></div>
+</div>
+<p class="muted" style="font-size:14px;margin-top:8px">2025 год — посчитано из разницы «+7,5 тыс.», которую назвал университет.</p><!-- /ar3 -->
 <h2 id="ar-tl" style="margin-top:44px;font-size:28px">Как шёл приём-2026</h2>
 <ol class="ar-tl"><li><b>20 июня</b><span>Старт приёма документов</span></li><li><b>15 июля</b><span>Последний день для тех, кто сдаёт экзамены УрФУ</span></li><li><b>25 июля</b><span>Последний день приёма на бюджет по ЕГЭ</span></li><li><b>27 июля</b><span>Итоги: 49 832 заявления на бюджет</span></li><li><b>1, 5 и 9 августа</b><span>Согласия на зачисление: квоты, основной и дополнительный этапы</span></li><li><b>20 августа</b><span>Последний день подачи на платное</span></li></ol>
 <p style="margin-top:12px;font-size:15px;color:var(--muted)">Даты — из <a href="Admission.dc.html#calendar">календаря приёма УрФУ</a>.</p>
@@ -116,6 +138,24 @@
 <li><b>Соберите достижения</b><span>Аттестат с отличием, ГТО, волонтёрство и олимпиады УрФУ дают дополнительные баллы — <a href="Admission.dc.html#school">что есть для школьников</a>.</span></li>
 <li><b>Запишите даты</b><span>Приём начинается 20 июня, согласие подают в начале августа — <a href="Admission.dc.html#calendar">календарь приёма</a>.</span></li>
 </ol>
+<!-- ar3 --><h2 id="ar-year" style="margin-top:44px;font-size:28px">Год до поступления: что и когда</h2>
+<p style="margin-top:12px">Для тех, кто поступает в 2027 году. Точные даты университет объявит в правилах приёма.</p>
+<ol class="ar-year">
+<li><b>До 1 ноября 2026</b><span>УрФУ публикует правила приёма-2027 — по закону, не позже этого дня</span></li>
+<li><b>До 19 января 2027</b><span>отборочный этап олимпиады «Изумруд» — победа и призёрство дают дополнительные баллы</span></li>
+<li><b>Январь</b><span>день открытых дверей — перед приёмом-2026 его называли на 17–18 января</span></li>
+<li><b>До 1 февраля 2027</b><span>заявление на ЕГЭ — в своей школе</span></li>
+<li><b>Май — июнь</b><span>основной период ЕГЭ</span></li>
+<li><b>С 20 июня</b><span>приём документов — так было в 2026 году</span></li>
+</ol>
+<h2 id="ar-faq" style="margin-top:44px;font-size:28px">Вопросы и ответы</h2>
+<div class="ar-faq">
+<details><summary>Что такое «базовое высшее образование»?</summary><p>Новый уровень вместо бакалавриата в пилотном проекте: учиться от 4 до 6 лет. После него — специализированное высшее, например магистратура, от 1 до 3 лет.</p></details>
+<details><summary>На сколько направлений можно подать?</summary><p>До пяти направлений в одном вузе — и расставить их по приоритету. Зачислят на самое желанное, куда хватит баллов.</p></details>
+<details><summary>Где посмотреть проходные баллы?</summary><p>В <a href="Catalog.dc.html">каталоге программ</a> — по каждой программе за последний известный год, с фильтром по вашим ЕГЭ.</p></details>
+<details><summary>Можно ли ещё поступить в 2026 году?</summary><p>Нет: последний день подачи на платное обучение был 20 августа. Следующий приём начнётся летом 2027 года.</p></details>
+<details><summary>Куда задать вопрос о поступлении?</summary><p>Приёмная комиссия: <a href="tel:+73433754474">+7 (343) 375-44-74</a>, priem@urfu.ru, ул. Мира, 19, ГУК-100. Контакт-центр — <a href="tel:88001005044">8-800-100-50-44</a>, бесплатно по России.</p></details>
+</div><!-- /ar3 -->
 <p style="margin-top:28px;font-size:15px;color:var(--muted)">Источник: <a href="https://obltv.ru/news/bolshe-50-tysyach-abiturientov-podali-zayavleniya-v-urfu-v-2026-33873">ОТВ</a>. Текст пересказан для прототипа.</p>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid var(--line);align-items:center"><span class="muted" style="font-size:15px">Поделиться:</span><a class="chip" href="https://vk.com/share.php?url=https%3A%2F%2Fgagamix228.github.io%2Furfu-redesign%2FArticle.dc.html" target="_blank" rel="noopener">ВКонтакте</a><a class="chip" href="https://t.me/share/url?url=https%3A%2F%2Fgagamix228.github.io%2Furfu-redesign%2FArticle.dc.html" target="_blank" rel="noopener">Telegram</a><button class="chip" type="button" onClick="{{copy}}">{{copyLbl}}</button></div>
 </div>
