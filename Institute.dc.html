@@ -45,6 +45,35 @@
 .in-news .tag{align-self:flex-start}
 .in-news b{font-size:19px;line-height:1.35}
 </style>
+<style id="im-css">
+.im-ex{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.im-ex button{font:inherit;font-weight:600;font-size:15px;min-height:44px;padding:8px 16px;border-radius:999px;border:2px solid var(--line-strong);background:#FFFFFF;color:var(--ink);cursor:pointer}
+.im-ex button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#FFFFFF}
+.im-ex button:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}
+.im-res{margin-top:16px;font-family:var(--narrow);font-size:26px;font-weight:700}
+.im-fit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.im-fit .card{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--ink)}
+.im-fit b{font-family:var(--narrow);font-size:26px}
+.im-n{font-weight:700;color:var(--amethyst)}
+.im-fit .muted{font-size:14px}
+.im-addr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.im-addr div{display:flex;flex-direction:column;padding:14px 16px;border-radius:14px;background:#FFFFFF;border:1px solid var(--line);border-left:5px solid var(--gold)}
+.im-addr span{font-size:14px;color:var(--muted)}
+.im-bars{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.im-bars li{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr) 110px;gap:14px;align-items:center}
+.im-bar{height:14px;border-radius:8px;background:var(--limestone);overflow:hidden}
+.im-bar i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--amethyst),var(--rhodonite))}
+.im-bars b{font-family:var(--narrow);font-size:24px;text-align:right}
+.im-bars small{font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:var(--muted);font-weight:500}
+.im-eg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.im-eg .card,.im-fy .card{display:flex;flex-direction:column;gap:6px}
+.im-eg .muted,.im-fy .muted{font-size:15px}
+.im-fy{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.im-fy a.card{text-decoration:none;color:var(--ink)}
+.im-fy a.card:hover{border-color:var(--amethyst)}
+@media (max-width:900px){.im-fit,.im-addr{grid-template-columns:repeat(2,minmax(0,1fr))}.im-eg,.im-fy{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:620px){.im-fit,.im-addr{grid-template-columns:minmax(0,1fr)}.im-bars li{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px}.im-bar{grid-column:1/-1;grid-row:2}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -59,7 +88,22 @@
 <details class="mnav"><summary class="ico" aria-label="Меню"><svg class="i-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><svg class="i-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></summary>
 <nav class="mnav-panel" aria-label="Главное меню"><a href="Admission.dc.html">Поступление</a><a href="Schedule.dc.html">Обучение</a><a href="Science.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html" aria-current="page">Об университете</a><a href="Login.dc.html">Личный кабинет</a></nav></details>
 </div>
-</div></header><main id="main" tabindex="-1" style="outline:none"><sc-if value="{{isAll}}" hint-placeholder-val="{{false}}"><section class="phead has-ph dark"><div class="wrap" style="padding-bottom:64px"><div class="ph-hex" style="--img:url('photos/glavnyj-korpus-fasad.webp')" aria-hidden="true"></div><div class="crumbs" style="color:var(--on-dark-muted)"><a href="Main.dc.html" style="color:var(--on-dark-muted)">Главная</a> / Об университете / Институты</div><h1 class="big" style="font-size:48px;margin-top:20px;color:#FFFFFF;max-width:960px">Институты УрФУ</h1><p style="color:var(--on-dark-muted);font-size:19px;margin-top:16px;max-width:720px">Выберите институт, чтобы посмотреть его программы бакалавриата и контакты.</p></div></section><div class="wrap"><section class="sec"><div class="g2"><sc-for list="{{all}}" as="x" hint-placeholder-count="8"><a class="card yu-tile" href="{{x.href}}" style="display:flex;flex-direction:column;gap:10px"><span class="tag" style="align-self:flex-start">{{x.short}}</span><div style="font-family:var(--narrow);font-weight:700;font-size:21px">{{x.full}}</div><div class="muted" style="font-size:15px">{{x.lead}}</div><div style="font-size:14px;color:var(--blue);font-weight:600;margin-top:auto">{{x.cnt}}</div></a></sc-for></div></section></div></sc-if><sc-if value="{{isOne}}" hint-placeholder-val="{{true}}"><section class="phead has-ph dark">
+</div></header><main id="main" tabindex="-1" style="outline:none"><sc-if value="{{isAll}}" hint-placeholder-val="{{false}}"><section class="phead has-ph dark"><div class="wrap" style="padding-bottom:64px"><div class="ph-hex" style="--img:url('photos/glavnyj-korpus-fasad.webp')" aria-hidden="true"></div><div class="crumbs" style="color:var(--on-dark-muted)"><a href="Main.dc.html" style="color:var(--on-dark-muted)">Главная</a> / Об университете / Институты</div><h1 class="big" style="font-size:48px;margin-top:20px;color:#FFFFFF;max-width:960px">Институты УрФУ</h1><p style="color:var(--on-dark-muted);font-size:19px;margin-top:16px;max-width:720px">Выберите институт, чтобы посмотреть его программы бакалавриата и контакты.</p></div></section><div class="wrap"><section class="sec"><div class="g2"><sc-for list="{{all}}" as="x" hint-placeholder-count="8"><a class="card yu-tile" href="{{x.href}}" style="display:flex;flex-direction:column;gap:10px"><span class="tag" style="align-self:flex-start">{{x.short}}</span><div style="font-family:var(--narrow);font-weight:700;font-size:21px">{{x.full}}</div><div class="muted" style="font-size:15px">{{x.lead}}</div><div style="font-size:14px;color:var(--blue);font-weight:600;margin-top:auto">{{x.cnt}}</div></a></sc-for></div></section></div><!-- imore --><div class="wrap">
+<section class="sec im-pick" aria-labelledby="im-ex-h">
+<h2 id="im-ex-h">Куда можно с моими ЕГЭ</h2>
+<p class="muted" style="margin-top:8px;max-width:720px">Отметьте предметы, которые сдаёте, — покажем институты и программы, куда они подходят. Русский язык нужен везде.</p>
+<div class="im-ex" role="group" aria-label="Мои предметы ЕГЭ"><sc-for list="{{exBtns}}" as="b" hint-placeholder-count="9"><button type="button" aria-pressed="{{b.on}}" onClick="{{b.tog}}">{{b.n}}</button></sc-for></div>
+<p class="im-res" aria-live="polite">{{exSum}}</p>
+<div class="im-fit"><sc-for list="{{exFit}}" as="x" hint-placeholder-count="3"><a class="card" href="{{x.href}}"><b>{{x.short}}</b><span class="im-n">{{x.cnt}}</span><span class="muted">{{x.names}}</span></a></sc-for></div>
+<p class="muted" style="font-size:14px;margin-top:10px">По каталогу программ сайта. Для архитектуры и журналистики нужен ещё творческий экзамен в УрФУ.</p>
+</section>
+<section class="sec" aria-labelledby="im-ad-h">
+<h2 id="im-ad-h">Где учатся институты</h2>
+<div class="im-addr"><sc-for list="{{addrAll}}" as="a" hint-placeholder-count="8"><div><b>{{a.a}}</b><span>{{a.who}}</span></div></sc-for></div>
+<p style="margin-top:12px"><a href="Contacts.dc.html">Корпуса на карте кампуса →</a> · <a href="Help.dc.html#bld-h">Как называют корпуса →</a></p>
+</section>
+<section class="sec"><div class="in-top"><div><h2>Не знаете, какой институт выбрать?</h2><p style="margin-top:10px;max-width:620px">Начните с программы, а не с института: три вопроса — и список программ с проходными баллами.</p></div><a class="btn" href="Quiz.dc.html">Подобрать программу</a></div></section>
+</div><!-- /imore --></sc-if><sc-if value="{{isOne}}" hint-placeholder-val="{{true}}"><section class="phead has-ph dark">
 <div class="wrap" style="padding-bottom:64px"><div class="ph-hex" style="--img:url('photos/glavnyj-korpus-fasad.webp')" aria-hidden="true"></div>
 <div class="crumbs" style="color:var(--on-dark-muted)"><a href="Main.dc.html" style="color:var(--on-dark-muted)">Главная</a> / <a href="Institute.dc.html" style="color:var(--on-dark-muted)">Об университете</a> / Институты / {{short}}</div>
 <span class="tag" style="background:var(--ink-2);color:#FFFFFF;margin-top:8px">Институт</span>
@@ -153,6 +197,25 @@
 </section></sc-if>
 <sc-if value="{{school}}" hint-placeholder-val="{{false}}"><section class="sec"><div class="in-top"><div><h2>Для школьников</h2><p style="margin-top:10px;max-width:620px">Олимпиада «Изумруд», Школа юного биолога и Школа юного химика, хакатоны и турниры — институт ведёт их весь учебный год.</p></div><a class="btn" href="Admission.dc.html#school">Что есть для школьников</a></div></section></sc-if>
 </sc-if>
+<!-- ione --><sc-if value="{{hasScores}}" hint-placeholder-val="{{false}}"><section class="sec" aria-labelledby="im-sc-h">
+<h2 id="im-sc-h">Проходные баллы</h2>
+<p class="muted" style="margin-top:8px">Сумма трёх ЕГЭ на бюджет, последний известный год.</p>
+<ul class="im-bars"><sc-for list="{{scores}}" as="x" hint-placeholder-count="3"><li><a href="{{x.href}}">{{x.name}}</a><div class="im-bar" aria-hidden="true"><i style="width:{{x.w}}%"></i></div><b>{{x.score}}<small> · {{x.sy}}</small></b></li></sc-for></ul>
+</section></sc-if>
+<sc-if value="{{hasExams}}" hint-placeholder-val="{{false}}"><section class="sec" aria-labelledby="im-eg-h">
+<h2 id="im-eg-h">Какие ЕГЭ сдавать</h2>
+<div class="im-eg"><sc-for list="{{exams}}" as="x" hint-placeholder-count="2"><div class="card"><b>{{x.ex}}</b><span class="muted">{{x.names}}</span></div></sc-for></div>
+</section></sc-if>
+<section class="sec" aria-labelledby="im-fy-h">
+<h2 id="im-fy-h">Первокурснику {{short}}</h2>
+<div class="im-fy">
+<sc-if value="{{hasPos}}" hint-placeholder-val="{{true}}"><a class="card" href="{{posHref}}" target="_blank" rel="noopener"><b>Поселение в общежитие</b><span class="muted">Даты выдачи ордеров и договоров — в группе института: {{pos}}</span><i class="sr"> (откроется в новой вкладке)</i></a></sc-if>
+<a class="card" href="Dorms.dc.html#settle-h"><b>Как заселиться</b><span class="muted">Медкомиссия, ордер, оплата, регистрация — пошагово</span></a>
+<a class="card" href="Cabinet.dc.html#cg-first"><b>Чек-лист первых недель</b><span class="muted">Учётная запись, пропуск, физкультура, английский</span></a>
+<div class="card"><b>Профбюро и наставники</b><span class="muted">Профбюро — союз студентов института: помогут с любым вопросом. Наставник — старшекурсник, который помогает первокурсникам освоиться.</span></div>
+</div>
+<p class="muted" style="font-size:14px;margin-top:10px">По <a href="https://privet.urfu.ru/accommodation" target="_blank" rel="noopener">«Навигатору первокурсника» УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
+</section><!-- /ione -->
 <section id="cont" class="sec">
 <sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}"><div class="card g3" style="padding:32px">
 <div><div class="muted" style="font-size:14px">Директор</div><div style="font-weight:600;margin-top:4px">Алферьева Татьяна Игоревна</div><div class="muted" style="font-size:14px">исполняющая обязанности директора</div></div>
@@ -195,7 +258,7 @@ const ALL_PROGS = [
 {name:'Материаловедение и технологии материалов', inst:'ИНМиТ', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]]},
 {name:'Электроэнергетика и электротехника', inst:'УралЭНИН', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]]},
 {name:'Теплоэнергетика и теплотехника', inst:'УралЭНИН', area:'Инженерия', k:'eng', exams:'математика, физика или информатика, русский', req:["math", "rus"], ch:[["phys", "inf"]], budget:'60', price:'275 000 ₽'},
-{name:'Строительство', inst:'ИСА', area:'Инженерия', k:'eng', exams:'математика, физика или химия, русский', req:["math", "rus"], ch:[["phys", "chem"]], score:'234'},
+{name:'Строительство', inst:'ИСА', area:'Инженерия', k:'eng', exams:'математика, информатика или физика, русский', req:["math", "rus"], ch:[["inf", "phys"]], score:'234'},
 {name:'Архитектура', inst:'ИСА', area:'Инженерия', k:'eng', exams:'творческое испытание, математика, русский', req:["math", "rus"], ch:[], budget:'37', price:'300 000 ₽'},
 {name:'Ядерная энергетика и теплофизика', inst:'ФТИ', area:'Инженерия', k:'eng', exams:'математика, физика, русский', req:["math", "phys", "rus"], ch:[]},
 {name:'История', inst:'УГИ', area:'Гуманитарные', k:'hum', exams:'история, обществознание, русский', req:["hist", "soc", "rus"], ch:[], budget:'82', price:'246 000 ₽'},
@@ -216,7 +279,12 @@ const INST = {
 'ИСА': ['Институт строительства и архитектуры', 'Архитектура, строительство зданий и развитие территорий.'],
 'УГИ': ['Уральский гуманитарный институт', 'История, филология, журналистика, лингвистика, международные отношения и другие гуманитарные науки.'],
 'ИнЭУ': ['Институт экономики и управления', 'Экономика, менеджмент, государственное управление и бизнес-информатика.'],
-'ФТИ': ['Физико-технологический институт', 'Ядерная энергетика, физика, электроника и наноинженерия.']};
+'ФТИ': ['Физико-технологический институт', 'Ядерная энергетика, физика, электроника и наноинженерия.'],
+'ХТИ': ['Химико-технологический институт', 'Химическая технология и смежные инженерные направления.'],
+'ИФКСиМП': ['Институт физической культуры, спорта и молодёжной политики', 'Физическая культура, спорт и молодёжная политика.'],
+'ИнФО': ['Институт фундаментального образования', 'Фундаментальная подготовка студентов университета.'],
+'ИТОО': ['Институт технологий открытого образования', 'Онлайн-обучение и открытые образовательные технологии.'],
+'УПИШ': ['Уральская передовая инженерная школа', 'Инженерное образование вместе с промышленными компаниями.']};
 // адреса, сайты, партнёры и места 2026 — с programs.edu.urfu.ru и сайтов институтов (октябрь 2026)
 const INFO = {
 'ИЕНиМ': { addrs: [['ул. Куйбышева, 48', 'Физика'], ['ул. Тургенева, 4', 'Математика']], site: 'https://insma.urfu.ru/', part: ['Институт физики металлов УрО РАН'], school: true, p26: [['Физика', 50, 5, '246 000 ₽'], ['Математика', 50, 10, '246 000 ₽']] },
@@ -231,14 +299,33 @@ let key = 'ИРИТ-РтФ', isAll = true;
 try { const q = new URLSearchParams(location.search).get('i'); if (q && INST[q]) { key = q; isAll = false; } } catch (e) {}
 try { document.title = (isAll ? 'Институты' : INST[key][0]) + ' — УрФУ'; } catch (e) {}
 const plural = n => n % 10 === 1 && n % 100 !== 11 ? 'программа' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'программы' : 'программ');
-const all = Object.keys(INST).map(k => { const c = ALL_PROGS.filter(p => p.inst === k).length; return { short: k, full: INST[k][0], lead: INST[k][1], href: 'Institute.dc.html?i=' + encodeURIComponent(k), cnt: c + ' ' + plural(c) + ' бакалавриата' }; });
+const all = Object.keys(INST).map(k => { const c = ALL_PROGS.filter(p => p.inst === k).length; return { short: k, full: INST[k][0], lead: INST[k][1], href: 'Institute.dc.html?i=' + encodeURIComponent(k), cnt: c ? c + ' ' + plural(c) + ' бакалавриата' : 'Программ пока нет в каталоге прототипа' }; });
 const progs = ALL_PROGS.filter(p => p.inst === key).map(p => ({ score: '—', budget: '—', price: '—', sy: '2025', ...p })).map(p => ({
   name: p.name, href: 'Program.dc.html?p=' + encodeURIComponent(p.name),
   info: [!isNaN(parseInt(p.score, 10)) ? 'Проходной балл ' + p.sy + ': ' + p.score : '', p.budget !== '—' ? 'Бюджетных мест: ' + p.budget : '', p.price !== '—' ? p.price + ' в год' : ''].filter(Boolean).join(' · ') }));
+// imore-logic
+const POS = {'ИРИТ-РтФ': 'vk.com/irit_rtf', 'ИнЭУ': 'vk.com/poselenie_ineu', 'ИЕНиМ': 'vk.com/poselenie_ien_urfu', 'УГИ': 'vk.com/urgi_hostel', 'ИНМиТ': 'vk.com/poselinmt', 'ИСА': 'vk.com/isa1924_urfu', 'ФТИ': 'vk.com/profburo_fti', 'УралЭНИН': 't.me/enin_poselenie', 'ХТИ': 'vk.com/hti_urfu', 'ИФКСиМП': 'vk.com/poselenifksimp', 'ИнФО': 'vk.com/info_urfu', 'УПИШ': 'vk.com/upish_urfu'};
+const EXN = [['math', 'Математика'], ['inf', 'Информатика'], ['phys', 'Физика'], ['chem', 'Химия'], ['bio', 'Биология'], ['soc', 'Обществознание'], ['hist', 'История'], ['lit', 'Литература'], ['lang', 'Иностранный язык']];
+if (!this.state) this.state = { ex: ['math', 'inf'] };
+const S = new Set(this.state.ex.concat('rus'));
+const fits = q => q.req.every(r => S.has(r)) && q.ch.every(g => g.some(r => S.has(r)));
+const fitAll = ALL_PROGS.filter(fits);
+const exFit = Object.keys(INST).map(k => { const ps = fitAll.filter(q => q.inst === k); return { short: k, n: ps.length, cnt: ps.length + ' ' + plural(ps.length), names: ps.map(q => q.name).join(', '), href: 'Institute.dc.html?i=' + encodeURIComponent(k) }; }).filter(x => x.n).sort((a, b) => b.n - a.n);
+const exBtns = EXN.map(([k, n]) => { const on = this.state.ex.indexOf(k) !== -1; return { n, on: String(on), tog: () => this.setState({ ex: on ? this.state.ex.filter(x => x !== k) : this.state.ex.concat(k) }) }; });
+const exSum = fitAll.length ? 'Подходит ' + fitAll.length + ' ' + plural(fitAll.length) + ' в ' + exFit.length + ' ' + (exFit.length === 1 ? 'институте' : 'институтах') + '.' : 'Пока ничего не подходит — добавьте предмет.';
+const addrAll = [{ a: 'ул. Мира, 32', who: 'ИРИТ-РтФ' }];
+Object.keys(INFO).forEach(k => (INFO[k].addrs || []).forEach(([a]) => { const f = addrAll.find(x => x.a === a); if (f) { if (f.who.indexOf(k) === -1) f.who += ', ' + k; } else addrAll.push({ a, who: k }); }));
+const mine = ALL_PROGS.filter(q => q.inst === key);
+const scores = mine.filter(q => !isNaN(parseInt(q.score, 10))).map(q => ({ name: q.name, score: q.score, sy: q.sy || '2025', w: Math.round(parseInt(q.score, 10) / 300 * 100), href: 'Program.dc.html?p=' + encodeURIComponent(q.name) })).sort((a, b) => b.score - a.score);
+const exMap = {}; mine.forEach(q => { (exMap[q.exams] = exMap[q.exams] || []).push(q.name); });
+const exams = Object.keys(exMap).map(e => ({ ex: e[0].toUpperCase() + e.slice(1), names: exMap[e].join(', ') }));
+const IMORE = { exBtns, exSum, exFit, addrAll, scores, hasScores: scores.length > 0, exams, hasExams: exams.length > 0, hasPos: !!POS[key], pos: POS[key] || '', posHref: 'https://' + (POS[key] || '') };
+// /imore-logic
 return { isAll, isOne: !isAll, all, short: key, full: INST[key][0], lead: INST[key][1], isIrit: key === 'ИРИТ-РтФ', notIrit: key !== 'ИРИТ-РтФ', progs, noProgs: progs.length === 0,
   addrs: ((INFO[key] || {}).addrs || []).map(([a, n]) => ({ a, n })), hasSite: !!(INFO[key] || {}).site, site: (INFO[key] || {}).site || '', siteN: ((INFO[key] || {}).site || '').replace(/^https?:\/\//, '').replace(/\/$/, ''),
   hasPart: !!((INFO[key] || {}).part || []).length, part: (INFO[key] || {}).part || [], school: !!(INFO[key] || {}).school,
-  hasP26: !!((INFO[key] || {}).p26 || []).length, p26: ((INFO[key] || {}).p26 || []).map(([n, b, c, p]) => ({ n, b: String(b), c: String(c), p, href: 'Program.dc.html?p=' + encodeURIComponent(n) })) };
+  hasP26: !!((INFO[key] || {}).p26 || []).length, p26: ((INFO[key] || {}).p26 || []).map(([n, b, c, p]) => ({ n, b: String(b), c: String(c), p, href: 'Program.dc.html?p=' + encodeURIComponent(n) })),
+  ...IMORE, };
 }
 }
 </script>

@@ -297,3 +297,7 @@ html[data-urole="student"] .fd .yu-tag,html[data-urole="staff"] .fd .yu-tag,html
 html[data-urole="staff"] .fd .yu-sci-sec,html[data-urole="partner"] .fd .yu-sci-sec{order:4}
 html[data-urole="staff"] .fd .yu-news-sec,html[data-urole="partner"] .fd .yu-news-sec{order:5}
 @media (max-width:900px){.fd .hs{grid-template-columns:1fr;padding:28px}.fd .hs-n b{font-size:40px}}
+
+.fd .yu-more{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px;font-weight:600}
+.fd .yu-more a{display:inline-flex;align-items:center;min-height:40px;padding:6px 16px;border-radius:999px;border:2px solid var(--ink);background:#FFFFFF;color:var(--ink);text-decoration:none;font-weight:700}
+.fd .yu-more a:hover{background:var(--ink);color:#FFFFFF}

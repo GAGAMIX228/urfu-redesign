@@ -10,9 +10,9 @@ T = {
  'ru': dict(
   file='Main.dc.html',
   tag='дней до начала приёма документов',
-  tick=['УрФУ — с 1920 года', '8 институтов', '18 общежитий в двух кампусах', 'Екатеринбург, ул. Мира, 19', 'Приём документов — с 20 июня', 'Версия для слабовидящих на каждой странице'],
+  tick=['УрФУ — с 1920 года', '13 институтов', '18 общежитий в двух кампусах', 'Екатеринбург, ул. Мира, 19', 'Приём документов — с 20 июня', 'Версия для слабовидящих на каждой странице'],
   col=[('kampus-leto', 'Главный учебный корпус'), ('studenty', 'Студенты УрФУ'), ('it-konferenciya-2026-slushateli', 'IT-конференция, 2026')],
-  badge1=('1920', 'год основания'), badge2=('8', 'институтов'),
+  badge1=('1920', 'год основания'), badge2=('13', 'институтов'),
   roles_h='С чего начнём?', roles_lead='Выберите, кто вы, — покажем главное именно для вас.',
   calc_h='Хватит ли баллов?', calc_lead='Сдвиньте ползунок на свою сумму трёх ЕГЭ — покажем, на сколько программ вы прошли бы по проходным баллам прошлого года.',
   calc_sum='Моя сумма баллов', calc_area='Область', calc_go='Показать в каталоге', calc_src='Проходные баллы 2024–2025 годов из каталога. Программы без опубликованного балла не учитываются.',
@@ -47,7 +47,7 @@ T = {
         ('30 сентября', 'Ректор УрФУ: ИИ может изменить защиту дипломных работ'), ('Июль 2026', 'Почти 50 тысяч заявлений на бюджет: итоги приёма-2026')],
   ev=[('13–22', 'октября', 'Статистический диктант', 'Онлайн, можно успеть'), ('24', 'октября', 'Школа экскурсоводов', 'Набор на программу допобразования'),
       ('29', 'октября', 'Кейс-чемпионат «Лига твоего имени»', 'Приём заявок'), ('3–12', 'ноября', 'Большой этнографический диктант', 'Онлайн на сайте акции')],
-  inst_h='Институты', inst_lead='Восемь институтов — от радиотехники до гуманитарных наук.', inst_all='Все подразделения',
+  inst_h='Институты', inst_lead='13 институтов — от радиотехники до спорта. У восьми программы бакалавриата уже есть в нашем каталоге.', inst_all='Все подразделения', inst_more='Ещё в УрФУ:',
   inst=[('ИРИТ-РтФ', 'Радиоэлектроника и IT'), ('ИЕНиМ', 'Естественные науки и математика'), ('ИНМиТ', 'Новые материалы и технологии'), ('УралЭНИН', 'Энергетика'),
         ('ИСА', 'Строительство и архитектура'), ('УГИ', 'Гуманитарные науки'), ('ИнЭУ', 'Экономика и управление'), ('ФТИ', 'Физика и технологии')],
   life_h='Жизнь в УрФУ', life_all='Клубы, спорт и события',
@@ -61,9 +61,9 @@ T = {
  'en': dict(
   file='MainEn.dc.html',
   tag='days until applications open',
-  tick=['UrFU — since 1920', '8 institutes', '18 dormitories on two campuses', 'Yekaterinburg, 19 Mira St.', 'Applications open on 20 June', 'Accessibility mode on every page'],
+  tick=['UrFU — since 1920', '13 institutes', '18 dormitories on two campuses', 'Yekaterinburg, 19 Mira St.', 'Applications open on 20 June', 'Accessibility mode on every page'],
   col=[('kampus-leto', 'Main academic building'), ('studenty', 'UrFU students'), ('it-konferenciya-2026-slushateli', 'IT conference, 2026')],
-  badge1=('1920', 'founded'), badge2=('8', 'institutes'),
+  badge1=('1920', 'founded'), badge2=('13', 'institutes'),
   roles_h='Where shall we start?', roles_lead='Choose who you are — we will show what matters to you.',
   calc_h='Is my score enough?', calc_lead='Move the slider to your total for three EGE exams — we will show how many programmes you would have passed with last year’s pass marks.',
   calc_sum='My total score', calc_area='Field', calc_go='Show in the catalogue', calc_src='Pass marks for 2024–2025 from the catalogue. Programmes without a published pass mark are not counted.',
@@ -87,7 +87,7 @@ T = {
         ('2026', 'About 500 teachers learned to build courses with neural networks'), ('2026', 'UrFU scientists explain a puzzling cause of male infertility')],
   ev=[('13–22', 'October', 'Statistics Dictation', 'Open to everyone online'), ('24', 'October', 'Tour Guide School', 'Enrolment for a continuing-education course'),
       ('29', 'October', '“League of Your Name” case championship', 'Applications open'), ('3–12', 'November', 'Big Ethnographic Dictation', 'Online on the campaign website')],
-  inst_h='Institutes', inst_lead='Eight institutes, from radio engineering to the humanities.', inst_all='All units',
+  inst_h='Institutes', inst_lead='13 institutes, from radio engineering to sport. Eight of them already have bachelor’s programmes in our catalogue.', inst_all='All units', inst_more='Also at UrFU:',
   inst=[('IRIT-RTF', 'Radio electronics and IT'), ('INSM', 'Natural sciences and mathematics'), ('INMT', 'New materials and technologies'), ('UralENIN', 'Power engineering'),
         ('ICEA', 'Civil engineering and architecture'), ('UIH', 'Humanities'), ('GSEM', 'Economics and management'), ('IPT', 'Physics and technology')],
   life_h='Campus life', life_all='Clubs, sports and events',
@@ -172,6 +172,8 @@ def main_html(t):
     ev = ''.join(f'<li><a href="Events.dc.html"><b>{d}<small>{m}</small></b><div><div class="fd-ev-t">{x}</div><div class="fd-ev-d">{n}</div></div></a></li>' for d, m, x, n in t['ev'])
     RU = ['ИРИТ-РтФ', 'ИЕНиМ', 'ИНМиТ', 'УралЭНИН', 'ИСА', 'УГИ', 'ИнЭУ', 'ФТИ']
     inst = ''.join(f'<a class="yu-i yu-i{k % 4}" href="Institute.dc.html?i={RU[k]}"><b>{a}</b><span>{n}</span></a>' for k, (a, n) in enumerate(t['inst']))
+    MORE = [('ХТИ', 'Химико-технологический институт'), ('ИФКСиМП', 'Институт физической культуры, спорта и молодёжной политики'), ('ИнФО', 'Институт фундаментального образования'), ('ИТОО', 'Институт технологий открытого образования'), ('УПИШ', 'Уральская передовая инженерная школа')]
+    more_inst = ''.join(f'<a href="Institute.dc.html?i={a}" title="{n}">{a}</a>' for a, n in MORE)
     life = ''.join(f'<a class="yu-l yu-l{k}" href="Life.dc.html"><div class="ph" style="background-image:url(\'photos/{p}.webp\')"></div><b>{x}</b><span>{n}</span></a>' for k, (p, x, n) in enumerate(t['life']))
     tick = ''.join(f'<li>{x}</li>' for x in t['tick'])
     col = ''.join(f'<div class="yu-ph yu-ph{k}" role="img" aria-label="{c}" style="background-image:url(\'photos/{p}.webp\')"></div>' for k, (p, c) in enumerate(t['col']))
@@ -259,6 +261,7 @@ def main_html(t):
 <section class="fd-sec yu-inst-sec"><div class="wrap">
 <div class="fd-head"><div><h2 class="fd-h2">{t['inst_h']}</h2><p class="fd-lead">{t['inst_lead']}</p></div><a class="fd-more" href="Institute.dc.html">{t['inst_all']}</a></div>
 <div class="yu-inst">{inst}</div>
+<p class="yu-more"><span>{t['inst_more']}</span>{more_inst}</p>
 </div></section>
 
 <section class="fd-sec yu-life-sec"><div class="wrap">
