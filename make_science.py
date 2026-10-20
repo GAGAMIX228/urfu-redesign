@@ -216,7 +216,7 @@ def main_html(n_proj, n_school):
 </div>
 <h3 class="sci-jh">Журналы на портале journals.urfu.ru</h3>
 <ul class="sci-jl">{jl}</ul>
-<p class="muted sci-src">Индексы — как указаны на портале; у журналов без подписи сведений на портале нет.</p>
+<p class="muted sci-src">Здесь — 20 журналов, которые сейчас есть на портале; число 23 — по разделу «Наука» сайта urfu.ru. Индексы — как указаны на портале; у журналов без подписи сведений на портале нет.</p>
 <p class="muted sci-src">Источник: <a href="{SRC_J}" target="_blank" rel="noopener">научное издательство, urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a>. <a href="News.dc.html?tag=Наука">Новости науки →</a></p>
 </section>
 </div>

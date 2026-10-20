@@ -175,6 +175,8 @@ def money(s):
 
 def build(src, dst, title, desc, current, extra):
     s = open(src, encoding='utf-8').read()
+    s = re.sub(r'\n?<!-- ru-only -->.*?<!-- /ru-only -->', '', s, flags=re.S)
+    s = re.sub(r'<style id="cg-css">.*?</style>\n?', '', s, flags=re.S)
     s = s.replace('<html lang="ru">', '<html lang="en">', 1)
     s = re.sub(r'<title>[^<]*</title>', '<title>%s</title>' % title, s)
     s = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="%s">' % desc, s)

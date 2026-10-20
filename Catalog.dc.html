@@ -29,6 +29,38 @@
 @media (max-width:360px){.pc-s{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:1100px){.pc{grid-template-columns:1fr}.pc-s{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 16px}}
 </style>
+<style id="cg-css">
+.cg-areas{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.cg-areas li{display:grid;grid-template-columns:200px 90px minmax(0,1fr) 110px 90px 170px;gap:14px;align-items:center;padding:14px 18px;border-radius:16px;background:#FFFFFF;border:1px solid var(--line)}
+.cg-a{font-weight:700;font-size:17px}
+.cg-n{font-size:14px;color:var(--muted)}
+.cg-bar{position:relative;height:14px;border-radius:8px;background:var(--limestone)}
+.cg-bar i{position:absolute;top:0;bottom:0;border-radius:8px;background:linear-gradient(90deg,var(--amethyst),var(--rhodonite))}
+.cg-bar.is-empty{background:repeating-linear-gradient(45deg,var(--limestone) 0 6px,#FFFFFF 6px 12px)}
+.cg-v{display:flex;flex-direction:column;font-family:var(--narrow);font-size:20px;font-weight:700}
+.cg-v small{font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:500;color:var(--muted)}
+.cg-tops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+.cg-tops h3{font-size:20px;font-family:var(--narrow)}
+.cg-top{list-style:none;margin:12px 0 0;padding:0;counter-reset:t;display:flex;flex-direction:column;gap:8px}
+.cg-top li{counter-increment:t;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:2px 10px;align-items:baseline}
+.cg-top li::before{content:counter(t);grid-row:span 2;font-family:var(--narrow);font-size:22px;font-weight:700;color:var(--rhodonite)}
+.cg-top a{font-weight:600}
+.cg-top b{font-family:var(--narrow);font-size:20px;white-space:nowrap}
+.cg-top span{grid-column:2/-1;font-size:13px;color:var(--muted)}
+.cg-steps{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.cg-steps li{display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:16px;background:var(--ink);color:#FFFFFF}
+.cg-steps span{font-family:var(--narrow);font-size:36px;font-weight:700;color:var(--gold);line-height:1}
+.cg-steps small{font-size:14px;color:var(--on-dark-muted)}
+.cg-gl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0 0}
+.cg-gl div{padding:16px 18px;border-radius:16px;background:#FFFFFF;border:1px solid var(--line);border-left:5px solid var(--amethyst)}
+.cg-gl dt{font-weight:700;font-size:17px}
+.cg-gl dd{margin:4px 0 0;font-size:15px;color:var(--muted)}
+.cg-faq{max-width:860px;margin-top:12px}
+.cg-faq p{margin-top:10px}
+@media (max-width:1100px){.cg-areas li{grid-template-columns:minmax(0,1fr) auto;gap:8px 14px}.cg-bar{grid-column:1/-1}.cg-v{flex-direction:row;gap:6px;align-items:baseline;font-size:18px}.cg-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.cg-tops,.cg-gl{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.cg-steps{grid-template-columns:minmax(0,1fr)}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -118,6 +150,35 @@
 </div>
 </div>
 </div>
+<!-- ru-only --><div class="wrap cg">
+<section class="sec" aria-labelledby="cg-a-h">
+<h2 id="cg-a-h">Каталог по областям</h2>
+<p class="muted" style="margin-top:8px;max-width:760px">Разброс проходных баллов (полоса — от самого низкого до самого высокого на шкале 150–300), бюджетные места и цены — по всем программам каталога.</p>
+<ul class="cg-areas"><li><a class="cg-a" href="Catalog.dc.html?area=it">IT</a><span class="cg-n">9 прогр.</span><div class="cg-bar" aria-hidden="true"><i style="left:44.7%;width:42.0%"></i></div><span class="cg-v"><small>балл</small>217–280</span><span class="cg-v"><small>бюджет</small>796</span><span class="cg-v"><small>цена в год</small>246 000–390 000 ₽</span></li><li><a class="cg-a" href="Catalog.dc.html?area=eng">Инженерия</a><span class="cg-n">8 прогр.</span><div class="cg-bar" aria-hidden="true"><i style="left:22.7%;width:33.3%"></i></div><span class="cg-v"><small>балл</small>184–234</span><span class="cg-v"><small>бюджет</small>154</span><span class="cg-v"><small>цена в год</small>246 000–300 000 ₽</span></li><li><a class="cg-a" href="Catalog.dc.html?area=nat">Естественные науки</a><span class="cg-n">6 прогр.</span><div class="cg-bar" aria-hidden="true"><i style="left:47.3%;width:19.3%"></i></div><span class="cg-v"><small>балл</small>221–250</span><span class="cg-v"><small>бюджет</small>150</span><span class="cg-v"><small>цена в год</small>246 000–275 000 ₽</span></li><li><a class="cg-a" href="Catalog.dc.html?area=hum">Гуманитарные</a><span class="cg-n">6 прогр.</span><div class="cg-bar is-empty" aria-hidden="true"></div><span class="cg-v"><small>балл</small>нет данных</span><span class="cg-v"><small>бюджет</small>131</span><span class="cg-v"><small>цена в год</small>246 000–390 000 ₽</span></li><li><a class="cg-a" href="Catalog.dc.html?area=eco">Экономика</a><span class="cg-n">3 прогр.</span><div class="cg-bar is-empty" aria-hidden="true"></div><span class="cg-v"><small>балл</small>нет данных</span><span class="cg-v"><small>бюджет</small>—</span><span class="cg-v"><small>цена в год</small>—</span></li></ul>
+<p class="muted" style="font-size:14px;margin-top:10px">Считаем по данным каталога: проходные баллы 2024–2025 годов, места и цены — с сайта образовательных программ УрФУ. «—» — данных нет.</p>
+</section>
+<section class="sec" aria-labelledby="cg-t-h">
+<h2 id="cg-t-h">Самые-самые</h2>
+<div class="cg-tops">
+<div class="card"><h3>Высокий проходной балл</h3><ol class="cg-top"><li><a href="Program.dc.html?p=Фундаментальная информатика и информационные технологии">Фундаментальная информатика и информационные технологии</a><b>280</b><span>ИЕНиМ · 2025</span></li><li><a href="Program.dc.html?p=Программная инженерия">Программная инженерия</a><b>259</b><span>ИРИТ-РтФ · 2025</span></li><li><a href="Program.dc.html?p=Прикладная информатика">Прикладная информатика</a><b>258</b><span>ИРИТ-РтФ · 2025</span></li><li><a href="Program.dc.html?p=Прикладной искусственный интеллект">Прикладной искусственный интеллект</a><b>255</b><span>ИРИТ-РтФ · 2025</span></li><li><a href="Program.dc.html?p=Информатика и вычислительная техника">Информатика и вычислительная техника</a><b>251</b><span>ИРИТ-РтФ · 2025</span></li></ol></div>
+<div class="card"><h3>Больше всего бюджетных мест</h3><ol class="cg-top"><li><a href="Program.dc.html?p=Информатика и вычислительная техника">Информатика и вычислительная техника</a><b>140</b><span>ИРИТ-РтФ</span></li><li><a href="Program.dc.html?p=Информационная безопасность">Информационная безопасность</a><b>135</b><span>ИРИТ-РтФ</span></li><li><a href="Program.dc.html?p=Прикладная информатика">Прикладная информатика</a><b>130</b><span>ИРИТ-РтФ</span></li><li><a href="Program.dc.html?p=Алгоритмы искусственного интеллекта">Алгоритмы искусственного интеллекта</a><b>105</b><span>ИРИТ-РтФ</span></li><li><a href="Program.dc.html?p=Прикладной искусственный интеллект">Прикладной искусственный интеллект</a><b>105</b><span>ИРИТ-РтФ</span></li></ol></div>
+<div class="card"><h3>Доступная цена</h3><ol class="cg-top"><li><a href="Program.dc.html?p=Интеллектуальные системы в гуманитарной сфере">Интеллектуальные системы в гуманитарной сфере</a><b>246 000 ₽</b><span>УГИ</span></li><li><a href="Program.dc.html?p=Математика">Математика</a><b>246 000 ₽</b><span>ИЕНиМ</span></li><li><a href="Program.dc.html?p=Физика">Физика</a><b>246 000 ₽</b><span>ИЕНиМ</span></li><li><a href="Program.dc.html?p=Металлургия">Металлургия</a><b>246 000 ₽</b><span>ИНМиТ</span></li><li><a href="Program.dc.html?p=История">История</a><b>246 000 ₽</b><span>УГИ</span></li></ol></div>
+</div>
+</section>
+<section class="sec" aria-labelledby="cg-s-h">
+<h2 id="cg-s-h">Как выбрать программу за 5 минут</h2>
+<ol class="cg-steps"><li><span>1</span><b>Отметьте свои ЕГЭ</b><small>Слева — предметы, которые сдаёте. Каталог оставит только подходящие программы.</small></li><li><span>2</span><b>Введите сумму баллов</b><small>Покажем, где хватает баллов прошлого года, а где не хватает и сколько.</small></li><li><span>3</span><b>Сравните до трёх</b><small>Баллы, места, цены и экзамены — в одной таблице.</small></li><li><span>4</span><b>Откройте программу</b><small>Что изучают, кем работают выпускники, кто преподаёт.</small></li><li><span>5</span><b>Не уверены — пройдите подбор</b><small>Три вопроса — и список программ под ваши интересы.</small></li></ol>
+</section>
+<section class="sec" aria-labelledby="cg-g-h">
+<h2 id="cg-g-h">Словарь поступающего</h2>
+<dl class="cg-gl"><div><dt>Проходной балл</dt><dd>Сумма баллов последнего, кто поступил на бюджет в прошлом году. Ориентир, а не гарантия: каждый год он меняется.</dd></div><div><dt>Бюджетные места</dt><dd>Места, где учёбу оплачивает государство. Их число на каждый год утверждают заранее.</dd></div><div><dt>Приоритет</dt><dd>В одном вузе можно выбрать до пяти направлений и расставить их по порядку — зачислят на самое желанное, куда хватит баллов.</dd></div><div><dt>Согласие на зачисление</dt><dd>Подтверждение, что вы идёте именно сюда. Без него не зачислят, даже если баллов хватает.</dd></div><div><dt>Индивидуальные достижения</dt><dd>Дополнительные баллы к сумме ЕГЭ: например, за аттестат с отличием, ГТО, волонтёрство, олимпиады.</dd></div><div><dt>Особая и отдельная квоты</dt><dd>Места для поступающих с особыми правами. Конкурс на них идёт отдельно от общего.</dd></div><div><dt>Целевое обучение</dt><dd>Учёба по договору с компанией: она поддерживает студента, а выпускник работает у неё.</dd></div><div><dt>Минимальный балл</dt><dd>Ниже него по предмету документы не примут. На программах УрФУ — от 40 баллов.</dd></div></dl>
+<p style="margin-top:14px"><a href="Admission.dc.html">Как поступить — сроки и шаги →</a></p>
+</section>
+<section class="sec" aria-labelledby="cg-f-h">
+<h2 id="cg-f-h">Вопросы о каталоге</h2>
+<div class="cg-faq"><details><summary>Почему у некоторых программ нет проходного балла?</summary><p class="muted">На странице программы его не публиковали — например, если бюджетных мест не было или конкурс шёл только среди поступающих по особым правам. Такие программы мы показываем без балла, а не придумываем его.</p></details><details><summary>Что значит год рядом с баллом?</summary><p class="muted">Год, за который опубликован проходной балл. Обычно это 2025, у части программ — 2024: свежее данных на сайте программ не нашлось.</p></details><details><summary>Откуда цены и места?</summary><p class="muted">С сайта образовательных программ УрФУ (programs.edu.urfu.ru) и из приказов университета. Точную цену на ваш год пишут в договоре.</p></details><details><summary>Сколько программ можно сравнить?</summary><p class="muted">До трёх. Нажмите «+ Сравнить» на карточках — появится таблица рядом друг с другом.</p></details><details><summary>Где магистратура и аспирантура?</summary><p class="muted">В прототипе каталог показывает бакалавриат — с него начинают после школы. Магистерские программы есть на сайте образовательных программ УрФУ.</p></details></div>
+</section>
+</div><!-- /ru-only -->
 </main><footer class="ft"><div class="wrap"><div class="ft-grid">
 <div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="40" height="46" aria-hidden="true" viewBox="10 6 82 94"><defs><linearGradient id="ulA2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B5CFF"></stop><stop offset="1" stop-color="#5A1FD1"></stop></linearGradient><linearGradient id="ulB2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4D8D"></stop><stop offset="1" stop-color="#C2185B"></stop></linearGradient><linearGradient id="ulF2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"></stop><stop offset="1" stop-color="#000" stop-opacity="0"></stop></linearGradient></defs><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="url(#ulA2)"></path><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="url(#ulB2)"></path><path d="M46 70 L60 56 L54 72 Z" fill="url(#ulF2)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого<br>Президента России<br>Б.Н. Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p><p style="margin-top:12px">Контакт-центр, бесплатно по России:<br><a href="tel:88001005044" style="color:#FFFFFF;font-weight:600;font-size:18px">8-800-100-50-44</a><br><a href="mailto:contact@urfu.ru">contact@urfu.ru</a></p></div>
 <div class="ft-col"><div class="ft-h">Разделы</div><a href="Admission.dc.html">Поступление</a><a href="Schedule.dc.html">Обучение</a><a href="Science.dc.html">Наука</a><a href="Life.dc.html">Жизнь в УрФУ</a><a href="Contacts.dc.html">Партнёрам</a><a href="Institute.dc.html">Об университете</a></div>
