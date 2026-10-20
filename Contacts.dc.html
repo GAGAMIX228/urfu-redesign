@@ -29,6 +29,7 @@
 .cn{flex:0 0 32px;height:32px;border-radius:50%;color:#FFFFFF;font-weight:700;display:flex;align-items:center;justify-content:center}
 .cmap svg{display:block}
 </style>
+<style id="ct-css">.ct-search{max-width:520px;margin-top:16px}.ct-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}@media (max-width:1000px){.ct-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:620px){.ct-grid{grid-template-columns:minmax(0,1fr)}}</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -60,19 +61,20 @@
 <h2 style="margin-top:48px;font-size:28px">Юридический адрес</h2>
 <p style="margin-top:8px;font-size:17px">Главный учебный корпус УрФУ: 620062, Свердловская область, г. Екатеринбург, ул. Мира, д. 19</p>
 </div>
-<aside class="side" style="display:flex;flex-direction:column;gap:16px">
-<div class="field"><label for="dep">Найти службу</label><input autocomplete="off" type="search" id="dep" name="dep" class="input" placeholder="Например, приёмная комиссия…" value="{{q}}" onChange="{{onQ}}"></div>
-<sc-for list="{{cards}}" as="c" hint-placeholder-count="6">
+
+</div>
+<section class="sec" aria-labelledby="ct-h"><h2 id="ct-h">Справочник служб</h2><p class="muted" style="margin-top:8px">Телефоны, адреса и часы работы — от приёмной комиссии до бюро пропусков.</p>
+<div class="field ct-search"><label for="dep">Найти службу</label><input autocomplete="off" type="search" id="dep" name="dep" class="input" placeholder="Например, приёмная комиссия…" value="{{q}}" onChange="{{onQ}}"></div>
+<div class="ct-grid"><sc-for list="{{cards}}" as="c" hint-placeholder-count="6">
 <div class="card"><div style="font-weight:600">{{c.t}}</div>
 <sc-for list="{{c.rows}}" as="r" hint-placeholder-count="2">
 <sc-if value="{{r.link}}" hint-placeholder-val="{{true}}"><a href="{{r.href}}" style="display:block;margin-top:4px">{{r.txt}}</a></sc-if>
 <sc-if value="{{r.plain}}" hint-placeholder-val="{{false}}"><div class="muted" style="margin-top:4px">{{r.txt}}</div></sc-if>
 </sc-for>
 </div>
-</sc-for>
+</sc-for></div>
 <sc-if value="{{none}}" hint-placeholder-val="{{false}}"><p class="muted">Ничего не нашлось. Позвоните в контакт-центр: 8-800-100-50-44.</p></sc-if>
-</aside>
-</div>
+</section>
 </div>
 </main><footer class="ft"><div class="wrap"><div class="ft-grid">
 <div class="ft-col"><a class="brand" href="Main.dc.html"><svg class="mark" width="40" height="46" aria-hidden="true" viewBox="10 6 82 94"><defs><linearGradient id="ulA2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B5CFF"></stop><stop offset="1" stop-color="#5A1FD1"></stop></linearGradient><linearGradient id="ulB2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4D8D"></stop><stop offset="1" stop-color="#C2185B"></stop></linearGradient><linearGradient id="ulF2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"></stop><stop offset="1" stop-color="#000" stop-opacity="0"></stop></linearGradient></defs><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="url(#ulA2)"></path><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="url(#ulB2)"></path><path d="M46 70 L60 56 L54 72 Z" fill="url(#ulF2)"></path></svg><span class="lk"><b>Уральский<br>федеральный<br>университет</b><i>имени первого<br>Президента России<br>Б.Н. Ельцина</i></span></a><p>Уральский федеральный университет</p><p>Екатеринбург, ул. Мира, 19</p><p style="margin-top:12px">Контакт-центр, бесплатно по России:<br><a href="tel:88001005044" style="color:#FFFFFF;font-weight:600;font-size:18px">8-800-100-50-44</a><br><a href="mailto:contact@urfu.ru">contact@urfu.ru</a></p></div>
@@ -97,6 +99,18 @@ const all = [
 { t: 'Реклама и партнёрство', key: 'партнёрам бизнес реклама сотрудничество', rows: [T('+7 (343) 375-93-53'), M('partner@urfu.ru')] },
 { t: 'Корреспонденция ректору', key: 'ректор письмо обращение', rows: [M('rector@urfu.ru')] },
 { t: 'Редакция портала', key: 'сайт ошибка опечатка', rows: [M('site@urfu.ru')] },
+{ t: 'Контакт-центр УрФУ', key: 'любой вопрос справка горячая бесплатно', rows: [T('8-800-100-50-44'), T('+7 (343) 375-44-44'), M('contact@urfu.ru'), P('пн–пт 8:30–19:00, сб 10:00–16:00')] },
+{ t: 'Медсанчасть УрФУ', key: 'врач медосмотр здоровье поликлиника справка заселение', rows: [P('ул. Комсомольская, 59'), P('пн–пт 8:00–18:00')] },
+{ t: 'Бюро пропусков', key: 'пропуск qr турникет студенческий не работает', rows: [P('ауд. И-104')] },
+{ t: 'Паспортные отделы студгородка', key: 'регистрация общежитие прописка заселение', rows: [P('ул. Коминтерна, 11 — корпуса № 3, 5, 7–15'), P('ул. Чапаева, 16 — корпуса № 1, 2, 4, 6'), P('ул. 100-летия Уральского университета, 6/2 — НВК'), P('пн–чт 8:30–17:00, сб 8:30–16:00')] },
+{ t: 'Союз студентов УрФУ', key: 'студенты права актив пос профком', rows: [P('ГУК-309')] },
+{ t: 'Центр инклюзивного образования', key: 'инвалидность овз тьютор доступная среда', rows: [T('+7 (343) 375-94-30'), T('8-800-302-71-55'), P('горячая линия: пн–чт 8:00–17:00, пт 8:00–16:00')] },
+{ t: 'Центр взаимодействия с работодателями', key: 'целевое обучение работа практика карьера работодатель', rows: [T('+7 (343) 375-45-82')] },
+{ t: 'Конкурсы и гранты', key: 'наука грант премия рнф молодые учёные', rows: [T('+7 (343) 374-59-75'), P('ул. Мира, 19, Э-302'), T('+7 (343) 389-93-26'), P('пр. Ленина, 51, ауд. 243')] },
+{ t: 'Горячая линия для студентов', key: 'права психолог стипендия жалоба минобрнауки', rows: [T('8-800-222-55-71'), P('доб. 1 — правовая защита, доб. 2 — психологическая помощь')] },
+{ t: 'Приёмная проректора по образовательной деятельности', key: 'учёба образование руководство', rows: [T('+7 (343) 375-45-26'), P('ул. Мира, 19, ГУК-301')] },
+{ t: 'Приёмная проректора по воспитательной работе', key: 'студенческая жизнь воспитательная руководство', rows: [T('+7 (343) 375-93-05'), P('ул. Мира, 19, ГУК-216')] },
+{ t: 'Приёмная проректора по международным связям', key: 'иностранцы международное руководство', rows: [T('+7 (343) 374-54-34'), P('ул. Мира, 19, ГУК-208')] },
 { t: 'ИРИТ-РтФ, дирекция', key: 'институт радиоэлектроники информационных технологий ртф ирит', rows: [T('+7 (343) 375-97-00'), M('rtf@urfu.ru'), P('ул. Мира, 32')] }
 ];
 const cards = all.filter(c => !q || (c.t + ' ' + c.key).toLowerCase().includes(q));
