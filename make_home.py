@@ -209,7 +209,8 @@ def main_html(t):
     RU = ['ИРИТ-РтФ', 'ИЕНиМ', 'ИНМиТ', 'УралЭНИН', 'ИСА', 'УГИ', 'ИнЭУ', 'ФТИ']
     inst = ''.join(f'<a class="yu-i yu-i{k % 4}" href="Institute.dc.html?i={RU[k]}"><b>{a}</b><span>{n}</span></a>' for k, (a, n) in enumerate(t['inst']))
     MORE = [('ХТИ', 'Химико-технологический институт'), ('ИФКСиМП', 'Институт физической культуры, спорта и молодёжной политики'), ('ИнФО', 'Институт фундаментального образования'), ('ИТОО', 'Институт технологий открытого образования'), ('УПИШ', 'Уральская передовая инженерная школа')]
-    more_inst = ''.join(f'<a href="Institute.dc.html?i={a}" title="{n}">{a}</a>' for a, n in MORE)
+    EN_MORE = {'ХТИ': 'Chemical Technology', 'ИФКСиМП': 'Sport and Youth Policy', 'ИнФО': 'Fundamental Education', 'ИТОО': 'Open Education', 'УПИШ': 'Advanced Engineering School'}
+    more_inst = ''.join(f'<a href="Institute.dc.html?i={a}" title="{n}">{a}</a>' if t.get('who') else f'<a href="Institute.dc.html?i={a}" lang="en">{EN_MORE[a]}</a>' for a, n in MORE)
     life = ''.join(f'<a class="yu-l yu-l{k}" href="Life.dc.html"><div class="ph" style="background-image:url(\'photos/{p}.webp\')"></div><b>{x}</b><span>{n}</span></a>' for k, (p, x, n) in enumerate(t['life']))
     tick = ''.join(f'<li>{x}</li>' for x in t['tick'])
     col = ''.join(f'<div class="yu-ph yu-ph{k}" role="img" aria-label="{c}" style="background-image:url(\'photos/{p}.webp\')"></div>' for k, (p, c) in enumerate(t['col']))

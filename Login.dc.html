@@ -110,7 +110,7 @@
 <button type="submit" class="btn lg-submit" id="r-go">Зарегистрироваться</button>
 </form></sc-if>
 
-<sc-if value="{{isRegNo}}" hint-placeholder-val="{{false}}"><div class="lg-note"><p>Студентам и сотрудникам регистрироваться не нужно: учётную запись создаёт университет — после зачисления или приёма на работу. Один логин подходит для всех сервисов УрФУ.</p><button type="button" class="btn2" id="r-back" style="margin-top:12px" onClick="{{toIn}}">Перейти ко входу</button></div></sc-if>
+<sc-if value="{{isRegNo}}" hint-placeholder-val="{{false}}"><div class="lg-note"><p>Студентам и сотрудникам здесь регистрироваться не нужно: после зачисления учётную запись активируют на id.urfu.ru — по телефону или почте, которые указали при поступлении. Один логин подходит для всех сервисов УрФУ и Wi-Fi.</p><button type="button" class="btn2" id="r-back" style="margin-top:12px" onClick="{{toIn}}">Перейти ко входу</button></div></sc-if>
 
 <sc-if value="{{hasMsg}}" hint-placeholder-val="{{false}}"><div class="lg-msg" id="lg-msg" tabindex="-1" role="status"><p>{{msg}}</p><sc-if value="{{hasEx}}" hint-placeholder-val="{{true}}"><a href="Schedule.dc.html">Посмотреть, как выглядит расписание</a></sc-if></div></sc-if>
 </div>
@@ -118,7 +118,6 @@
 <aside class="lg-side" data-role="{{roleKey}}" aria-labelledby="side-h">
 <h2 id="side-h">Что будет в кабинете: {{roleName}}</h2>
 <ul><sc-for list="{{feat}}" as="f" hint-placeholder-count="4"><li>{{f}}</li></sc-for></ul>
-<a class="btn2 lg-demo" href="Cabinet.dc.html">Открыть демо-кабинет студента</a>
 <div class="lg-help"><b>Не получается войти?</b><br>Техподдержка: <a href="tel:+73432272070">+7 (343) 227-20-70</a>, <a href="mailto:support@urfu.ru">support@urfu.ru</a></div>
 </aside>
 </div>
@@ -152,7 +151,7 @@ const submitIn = ev => {
   const e = {};
   if (!s.login.trim()) e.login = TX.eLogin;
   if (!s.pass) e.pass = TX.ePass;
-  if (Object.keys(e).length) fail(e, [['login', 'f-login'], ['pass', 'f-pass']]); else if (s.role === 'student') location.href = 'Cabinet.dc.html'; else done(TX.okIn);
+  if (Object.keys(e).length) fail(e, [['login', 'f-login'], ['pass', 'f-pass']]); else done(TX.okIn);
 };
 const submitReg = ev => {
   ev.preventDefault();
