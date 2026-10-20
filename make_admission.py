@@ -144,6 +144,51 @@ def block():
 </div>
 </section>
 
+<!-- ru-only --><section id="ach" class="adm-sec" aria-labelledby="ach-h">
+<h2 id="ach-h">Баллы за достижения</h2>
+<p class="muted adm-lead">К сумме ЕГЭ добавляют баллы за индивидуальные достижения — всего не больше 10. Отметьте, что у вас есть.</p>
+<div class="idc">
+<div class="idc-list" role="group" aria-label="Мои достижения"><button type="button" class="idc-b" data-idc="att" data-pts="6" data-grp="" aria-pressed="false"><span>Аттестат с отличием</span><b>+6</b></button><button type="button" class="idc-b" data-idc="army" data-pts="10" data-grp="" aria-pressed="false"><span>Служба в армии — по призыву, контракту или мобилизации</span><b>+10</b></button><button type="button" class="idc-b" data-idc="gto" data-pts="2" data-grp="" aria-pressed="false"><span>Золотой знак ГТО</span><b>+2</b></button><button type="button" class="idc-b" data-idc="vol" data-pts="1" data-grp="" aria-pressed="false"><span>Волонтёрство — от 100 часов на dobro.ru</span><b>+1</b></button><button type="button" class="idc-b" data-idc="ms" data-pts="3" data-grp="" aria-pressed="false"><span>Мастер спорта или КМС</span><b>+3</b></button><button type="button" class="idc-b" data-idc="td" data-pts="4" data-grp="" aria-pressed="false"><span>Очный этап «Тест-драйва в Уральском федеральном»</span><b>+4</b></button><button type="button" class="idc-b" data-idc="izm" data-pts="4" data-grp="" aria-pressed="false"><span>Олимпиада «Изумруд» — очный заключительный этап</span><b>+4</b></button><button type="button" class="idc-b" data-idc="gs" data-pts="2" data-grp="" aria-pressed="false"><span>Курсы «Золотого сечения» по направлению «Наука»</span><b>+2</b></button><button type="button" class="idc-b" data-idc="vs1" data-pts="5" data-grp="vs" aria-pressed="false"><span>Региональный этап ВсОШ по профильному предмету — участие</span><b>+5</b></button><button type="button" class="idc-b" data-idc="vs2" data-pts="7" data-grp="vs" aria-pressed="false"><span>Региональный этап ВсОШ — победа или призёрство</span><b>+7</b></button><button type="button" class="idc-b" data-idc="bp1" data-pts="3" data-grp="bp" aria-pressed="false"><span>«Большая перемена» — призёр</span><b>+3</b></button><button type="button" class="idc-b" data-idc="bp2" data-pts="6" data-grp="bp" aria-pressed="false"><span>«Большая перемена» — победитель</span><b>+6</b></button><button type="button" class="idc-b" data-idc="ab" data-pts="1" data-grp="" aria-pressed="false"><span>«Абилимпикс» — победа или призёрство</span><b>+1</b></button></div>
+<div class="idc-out" aria-live="polite"><span class="idc-k">Плюс к сумме ЕГЭ</span><p class="idc-sum"><b id="idc-n">0</b><small> из 10</small></p><div class="idc-bar" aria-hidden="true"><i id="idc-bar"></i></div><p class="idc-note" id="idc-note">Ничего не отмечено.</p></div>
+</div>
+<p class="muted adm-src">По правилам приёма 2025 года: участие и победа в одном конкурсе не складываются — считается лучший результат. Правила 2027 года УрФУ опубликует до 1 ноября 2026-го. Источник: <a href="https://web.archive.org/web/2025/https://urfu.ru/ru/applicant/docs-abiturient/olimp/" target="_blank" rel="noopener">«Индивидуальные достижения», urfu.ru<span class="sr"> (копия в веб-архиве, откроется в новой вкладке)</span></a>.</p>
+</section>
+
+<section id="talent" class="adm-sec" aria-labelledby="tal-h">
+<h2 id="tal-h">Стипендия за высокие баллы</h2>
+<p class="muted adm-lead">Программа для талантливых первокурсников: повышенная стипендия на первый семестр, дальше — если зимняя сессия сдана на «отлично». Платят и бюджетникам, и контрактникам очной формы.</p>
+<div class="tal">
+<div class="tal-c"><b>10 000 ₽</b><span>в месяц</span><ul><li>инженерные и естественнонаучные направления — от 270 баллов</li><li>гуманитарные и экономические — от 285 баллов</li></ul></div>
+<div class="tal-c is-mid"><b>20 000 ₽</b><span>в месяц</span><ul><li>IT-направления — от 280 баллов</li><li>группы 14, 15 и 27 (ядерная энергетика, машиностроение, управление в технических системах) — от 260 баллов</li><li>поступившие без экзаменов как победители и призёры перечневых олимпиад</li></ul></div>
+<div class="tal-c is-top"><b>30 000 ₽</b><span>в месяц</span><ul><li>победители и призёры Всероссийской олимпиады школьников</li><li>члены сборных на международных олимпиадах</li></ul></div>
+</div>
+<p class="muted adm-src">Условия приёма-2025, в сумму входят баллы за достижения и 100 баллов олимпиадникам. Источник: <a href="https://web.archive.org/web/2025/https://urfu.ru/ru/students/study/scholarships/talented/" target="_blank" rel="noopener">«Стипендии талантливым первокурсникам», urfu.ru<span class="sr"> (копия в веб-архиве, откроется в новой вкладке)</span></a>.</p>
+</section>
+
+<section id="target" class="adm-sec" aria-labelledby="cel-h">
+<h2 id="cel-h">Целевое обучение: как это работает</h2>
+<p class="muted adm-lead">Бюджетное место по договору с заказчиком — госорганом, госкомпанией, предприятием оборонной промышленности и другими. Конкурс — отдельный, в пределах целевой квоты.</p>
+<ol class="cel">
+<li><b>Найдите предложение</b><span>на платформе «Работа в России» — там заказчики публикуют, кого готовы учить</span></li>
+<li><b>Заполните заявку</b><span>на договор — по форме выбранного предложения</span></li>
+<li><b>Подайте вместе с заявлением</b><span>с 20 июня по 25 июля — через Госуслуги, личный кабинет абитуриента или лично</span></li>
+<li><b>Подпишите договор</b><span>после приказа о зачислении — не позже начала учебного года</span></li>
+</ol>
+<div class="cel-who">
+<div><h3>Студент</h3><p>Осваивает программу и после выпуска работает у заказчика не меньше 3 лет.</p></div>
+<div><h3>Заказчик</h3><p>Поддерживает во время учёбы, может организовать практику и гарантирует трудоустройство.</p></div>
+<div><h3>Университет</h3><p>Организует практику и сообщает заказчику об успеваемости.</p></div>
+</div>
+<p class="muted adm-src">Вопросы — центр взаимодействия с работодателями УрФУ: <a href="tel:+73433754582">+7 (343) 375-45-82</a>. Источник: <a href="https://web.archive.org/web/2025/https://urfu.ru/ru/applicant/docs-abiturient/sponsored/" target="_blank" rel="noopener">«Приём на целевое обучение», urfu.ru<span class="sr"> (копия в веб-архиве, откроется в новой вкладке)</span></a>.</p>
+</section>
+
+<section class="adm-sec adm-two" aria-label="Особые случаи">
+<div class="card"><h3>Поступающим с инвалидностью</h3><p class="muted" style="margin-top:6px">Бюджетные места по особой квоте, особые условия на вступительных испытаниях. В университете работает центр инклюзивного образования — тьюторы сопровождают студентов.</p>
+<ul class="adm-ct"><li><b>Центр инклюзивного образования</b><a href="tel:+73433759430">+7 (343) 375-94-30</a></li><li><b>Горячая линия по обучению людей с инвалидностью</b><a href="tel:88003027155">8-800-302-71-55</a><span>пн–чт 8:00–17:00, пт 8:00–16:00</span></li></ul></div>
+<div class="card"><h3>После 9 класса — в колледж</h3><p class="muted" style="margin-top:6px">Программы среднего профессионального образования ведёт Нижнетагильский машиностроительный техникум — он входит в УрФУ с 2003 года.</p>
+<ul class="adm-ct"><li><b>Отборочная комиссия</b><span>Нижний Тагил, ул. Красногвардейская, 59, ауд. 220</span><a href="tel:+73435255610">+7 (3435) 25-56-10</a><span>пн–чт 9:00–17:00, пт 9:00–16:00</span></li></ul></div>
+</section><!-- /ru-only -->
+
 <section id="year" class="adm-sec" aria-labelledby="year-h">
 <h2 id="year-h">Приём-2026 в цифрах</h2>
 <div class="g4 yr">
@@ -256,6 +301,43 @@ CSS = '''
 .sch-more .chip{cursor:default}
 @media (max-width:900px){.lf,.sch{grid-template-columns:1fr}}
 @media (max-width:900px){.tl-cols,.cost{grid-template-columns:1fr}}
+.idc{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;margin-top:20px;align-items:start}
+.idc-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.idc-b{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;padding:10px 14px;border-radius:14px;border:2px solid var(--line);background:#FFFFFF;color:var(--ink);font:inherit;font-size:15px;text-align:left;cursor:pointer}
+.idc-b b{flex:0 0 auto;font-family:var(--narrow);font-size:22px;color:var(--amethyst)}
+.idc-b[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:#FFFFFF}
+.idc-b[aria-pressed="true"] b{color:var(--gold)}
+.idc-b:focus-visible{outline:3px solid var(--amethyst);outline-offset:2px}
+.idc-out{position:sticky;top:20px;padding:22px;border-radius:18px;background:var(--gold-soft);border:2px solid var(--ink)}
+.idc-k{font-size:14px;font-weight:600}
+.idc-sum{font-family:var(--narrow);font-weight:700;line-height:1;margin-top:6px}
+.idc-sum b{font-size:72px}
+.idc-sum small{font-size:26px}
+.idc-bar{height:12px;border-radius:8px;background:#FFFFFF;margin-top:12px;overflow:hidden}
+.idc-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amethyst),var(--rhodonite));transition:width .25s var(--ease)}
+.idc-note{margin-top:12px;font-size:15px}
+.tal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+.tal-c{display:flex;flex-direction:column;padding:22px;border-radius:18px;background:#FFFFFF;border:1px solid var(--line);border-top:6px solid var(--malachite)}
+.tal-c.is-mid{border-top-color:var(--amethyst)}.tal-c.is-top{border-top-color:var(--rhodonite);background:var(--ink);color:#FFFFFF}
+.tal-c b{font-family:var(--narrow);font-size:44px;line-height:1}
+.tal-c>span{font-size:14px;color:var(--muted)}.tal-c.is-top>span{color:var(--on-dark-muted)}
+.tal-c ul{margin:14px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.cel{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:c}
+.cel li{counter-increment:c;display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:16px;background:var(--ink);color:#FFFFFF}
+.cel li::before{content:counter(c);font-family:var(--narrow);font-size:34px;font-weight:700;color:var(--gold);line-height:1}
+.cel span{font-size:14px;color:var(--on-dark-muted)}
+.cel-who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+.cel-who div{padding:16px 18px;border-radius:16px;background:#FFFFFF;border:1px solid var(--line)}
+.cel-who h3{font-size:19px;font-family:var(--narrow)}
+.cel-who p{font-size:15px;margin-top:4px;color:var(--muted)}
+.adm-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.adm-ct{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.adm-ct li{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:12px;background:var(--limestone)}
+.adm-ct a{font-weight:700;font-size:18px}
+.adm-ct span{font-size:14px;color:var(--muted)}
+@media (max-width:1000px){.idc{grid-template-columns:minmax(0,1fr)}.idc-out{position:static;order:-1}.cel{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.tal,.cel-who,.adm-two{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:620px){.idc-list,.cel{grid-template-columns:minmax(0,1fr)}.idc-sum b{font-size:56px}}
 @media (max-width:520px){.cost-out{grid-template-columns:1fr}.cost{padding:20px}}
 '''
 

@@ -49,3 +49,34 @@
     add('p', 'lf-v', ok ? (agree ? 'Сейчас вы в зоне бюджетных мест.' : 'Вы в зоне бюджетных мест — не забудьте подать согласие.') : 'Пока ниже бюджетной границы. Следите за списком: места освобождаются после каждого этапа.');
   });
 })();
+
+/* Баллы за достижения: сумма не больше 10, в одной группе считается лучший результат. */
+(function () {
+  var KEY = 'urfu-idc', on = [];
+  try { on = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) {}
+  function plural(n) { return n % 10 === 1 && n % 100 !== 11 ? 'балл' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'балла' : 'баллов'); }
+  function show() {
+    var bs = document.querySelectorAll('.idc-b'); if (!bs.length) return;
+    var raw = 0;
+    bs.forEach(function (b) { var p = on.indexOf(b.getAttribute('data-idc')) !== -1; if (b.getAttribute('aria-pressed') !== String(p)) b.setAttribute('aria-pressed', String(p)); if (p) raw += Number(b.getAttribute('data-pts')); });
+    var n = Math.min(10, raw), el = document.getElementById('idc-n'), bar = document.getElementById('idc-bar'), note = document.getElementById('idc-note');
+    if (el) el.textContent = String(n);
+    if (bar) bar.style.width = (n * 10) + '%';
+    if (note) note.textContent = !on.length ? 'Ничего не отмечено.' : (raw > 10 ? 'Набрано ' + raw + ' ' + plural(raw) + ', но засчитают только 10 — это максимум.' : (n === 10 ? 'Это максимум — больше 10 баллов не дают.' : 'До максимума — ' + (10 - n) + ' ' + plural(10 - n) + '.'));
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.idc-b'); if (!b) return;
+    var id = b.getAttribute('data-idc'), g = b.getAttribute('data-grp');
+    if (on.indexOf(id) !== -1) on = on.filter(function (x) { return x !== id; });
+    else {
+      if (g) document.querySelectorAll('.idc-b[data-grp="' + g + '"]').forEach(function (o) { var k = o.getAttribute('data-idc'); on = on.filter(function (x) { return x !== k; }); });
+      on.push(id);
+    }
+    try { localStorage.setItem(KEY, JSON.stringify(on)); } catch (err) {}
+    show();
+  });
+  var root = document.getElementById('dc-root');
+  if (root) new MutationObserver(function () { var el = document.getElementById('idc-n'); if (el && on.length && el.textContent === '0') show(); }).observe(root, { childList: true });
+  document.addEventListener('DOMContentLoaded', show);
+  show();
+})();
