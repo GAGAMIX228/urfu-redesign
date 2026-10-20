@@ -186,6 +186,45 @@ def main_html(n_proj, n_school):
 </div>
 </section>
 
+<section class="sci-sec" aria-labelledby="path-h">
+<h2 id="path-h">Путь в науке</h2>
+<p class="muted sci-lead">От первой курсовой до защиты — все ступени есть в самом университете.</p>
+<ol class="sci-path">
+<li><b>Бакалавриат</b><span>Проектный практикум, студенческие лаборатории, первые доклады на конференциях.</span></li>
+<li><b>Магистратура</b><span>Своя тема исследования и публикации вместе с руководителем.</span></li>
+<li><b>Аспирантура</b><span>Подготовка диссертации — по направлениям аспирантуры УрФУ.</span></li>
+<li><b>Защита</b><span>В диссертационных советах университета.</span></li>
+<li><b>Молодой учёный</b><span>Гранты, премии, международные лаборатории и научные школы.</span></li>
+</ol>
+</section>
+
+<section class="sci-sec" aria-labelledby="rate-h">
+<h2 id="rate-h">Научный рейтинг студента</h2>
+<div class="sci-rate">
+<div><p class="sci-lead" style="margin-top:0">Достижения за учебный год — два семестра — студент загружает в научное портфолио. Модератор их проверяет, и из них складывается рейтинг. По нему назначают <b>повышенную стипендию</b> за научную деятельность.</p>
+<p class="muted" style="margin-top:12px;font-size:15px">У части достижений есть предельный балл. Подробности — в сервисе «Учёт научных достижений».</p></div>
+<div class="sci-formula" role="group" aria-label="Из чего складывается рейтинг">
+<p class="sci-fx" aria-hidden="true">РС<sub>н</sub> = Б<sub>п</sub> + Б<sub>м</sub> + Б<sub>ис</sub> + Б<sub>г</sub> + Б<sub>ид</sub> + Б<sub>с</sub> + Б<sub>ст</sub></p>
+<ul class="sci-fl"><li><b>Публикации</b></li><li><b>Научные мероприятия</b></li><li><b>Патенты и права на разработки</b></li><li><b>Гранты</b></li><li><b>Инновационная деятельность</b></li><li><b>Стипендии</b></li><li><b>Стажировки</b></li></ul>
+</div>
+</div>
+<p class="muted sci-src">По разделу «Про рейтинги» <a href="https://privet.urfu.ru/ratings" target="_blank" rel="noopener">«Навигатора первокурсника» УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
+</section>
+
+<section class="sci-sec" aria-labelledby="gr-h">
+<h2 id="gr-h">Премии и гранты для молодых учёных</h2>
+<p class="muted sci-lead">Конкурсы, которые университет собирает в один список. Сроки — по циклу 2025 года: они повторяются каждый год, точные даты 2026 уточняйте у отдела.</p>
+<ul class="sci-gr">
+<li><em>до 1 августа</em><b>Премия имени Татищева и де Геннина</b><span>Екатеринбург</span></li>
+<li><em>до 1 сентября</em><b>Премия губернатора Свердловской области в сфере информационных технологий</b><span>Свердловская область</span></li>
+<li><em>до 22 сентября</em><b>Премия РАО «Молодым учёным за успехи в науке»</b><span>Российская академия образования</span></li>
+<li><em>до 15 октября</em><b>Премия Президента РФ в области науки и инноваций для молодых учёных</b><span>Россия</span></li>
+</ul>
+<div class="sci-funds"><span>Российский научный фонд</span><span>Фонд президентских грантов</span><span>Гранты Президента РФ</span><span>Премии Правительства РФ</span><span>Гранты на международное сотрудничество</span></div>
+<div class="card sci-grc"><b>Контакты по конкурсам и грантам</b><span>ул. Мира, 19, ауд. Э-302 · <a href="tel:+73433745975">+7 (343) 374-59-75</a></span><span>пр. Ленина, 51, ауд. 243 · <a href="tel:+73433899326">+7 (343) 389-93-26</a></span><span class="muted">Там же — порядок оформления документов и электронная подпись заявок для РНФ.</span></div>
+<p class="muted sci-src">Источник: <a href="https://web.archive.org/web/20250727202056/https://urfu.ru/ru/science/grants/" target="_blank" rel="noopener">«Конкурсы и гранты», urfu.ru (копия в веб-архиве, 2025)<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
+</section>
+
 <section class="sci-sec" aria-labelledby="sch-h">
 <h2 id="sch-h">Ведущие научные школы</h2>
 <p class="muted sci-lead">Научные коллективы, которым учёный совет присвоил статус ведущей школы.</p>
@@ -206,6 +245,21 @@ def main_html(n_proj, n_school):
 <p class="muted sci-lead">Научное оборудование университета, на котором можно заказать исследования и анализы. В центре три лаборатории:</p>
 <ul class="sci-ckp">{ckp}</ul>
 <p class="muted sci-src">Список оборудования, услуги и цены — на <a href="https://ckp.urfu.ru/" target="_blank" rel="noopener">ckp.urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
+</section>
+
+<section class="sci-sec" aria-labelledby="inf-h">
+<h2 id="inf-h">Где делают науку</h2>
+<p class="muted sci-lead">Научные подразделения и сервисы, которые перечислены в разделе «Наука» сайта УрФУ.</p>
+<div class="sci-inf">
+<div><b>Уральский математический центр</b><span>Региональный научно-образовательный математический центр.</span></div>
+<div><b>«Урал-Карбон»</b><span>Карбоновый полигон Свердловской области: как экосистемы поглощают углерод.</span></div>
+<div><b>Международные лаборатории</b><span>Совместные коллективы с учёными из других стран.</span></div>
+<div><b>Научно-исследовательская часть</b><span>Договоры, гранты и сопровождение проектов.</span></div>
+<div><b>Зональная научная библиотека</b><span>Фонды университета и доступ к научным базам.</span></div>
+<div><b>Электронный научный архив</b><span>Статьи, диссертации и ВКР в открытом доступе — <a href="https://elar.urfu.ru/" target="_blank" rel="noopener">elar.urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a>.</span></div>
+<div><b>Портал молодёжной науки</b><span>Конкурсы, школы и конференции — <a href="https://youthscience.urfu.ru/" target="_blank" rel="noopener">youthscience.urfu.ru<span class="sr"> (откроется в новой вкладке)</span></a>.</span></div>
+<div><b>Диссертационные советы</b><span>Защиты кандидатских и докторских диссертаций.</span></div>
+</div>
 </section>
 
 <section class="sci-sec" aria-labelledby="jr-h">
@@ -304,6 +358,39 @@ CSS = '''
 '''
 
 
+CSS2 = '''
+/* Наука v3 */
+.sci-path{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;counter-reset:pt}
+.sci-path li{position:relative;counter-increment:pt;display:flex;flex-direction:column;gap:6px;padding:52px 16px 0 0}
+.sci-path li::before{content:counter(pt);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--gold);font-family:var(--narrow);font-size:22px;font-weight:700;z-index:1}
+.sci-path li::after{content:"";position:absolute;left:40px;right:0;top:19px;height:3px;background:linear-gradient(90deg,var(--amethyst),var(--rhodonite))}
+.sci-path li:last-child::after{display:none}
+.sci-path b{font-family:var(--narrow);font-size:22px}
+.sci-path span{font-size:15px;color:var(--muted)}
+.sci-rate{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:18px;align-items:start}
+.sci-formula{padding:22px;border-radius:18px;background:var(--ink);color:#FFFFFF}
+.sci-fx{font-family:var(--narrow);font-size:26px;font-weight:700;color:var(--gold);overflow-wrap:anywhere}
+.sci-fx sub{font-size:.6em}
+.sci-fl{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.sci-fl li{padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.12);font-size:14px}
+.sci-gr{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sci-gr li{display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:16px;background:#FFFFFF;border:1px solid var(--line);border-top:5px solid var(--gold)}
+.sci-gr em{font-style:normal;font-family:var(--narrow);font-size:22px;font-weight:700;color:var(--rhodonite-d,#C81A62)}
+.sci-gr b{font-size:16px}
+.sci-gr span{font-size:14px;color:var(--muted)}
+.sci-funds{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.sci-funds span{padding:8px 14px;border-radius:12px;background:var(--limestone);font-weight:600;font-size:14px}
+.sci-grc{display:flex;flex-direction:column;gap:4px;margin-top:16px;max-width:620px}
+.sci-inf{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+.sci-inf div{display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:16px;background:#FFFFFF;border:1px solid var(--line);border-left:5px solid var(--malachite)}
+.sci-inf b{font-family:var(--narrow);font-size:20px}
+.sci-inf span{font-size:14px;color:var(--muted)}
+@media (max-width:1000px){.sci-path{grid-template-columns:minmax(0,1fr);gap:14px}.sci-path li{padding:0 0 0 56px;min-height:44px}.sci-path li::after{left:19px;right:auto;top:40px;bottom:-14px;width:3px;height:auto}.sci-gr,.sci-inf{grid-template-columns:repeat(2,minmax(0,1fr))}.sci-rate{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.sci-gr,.sci-inf{grid-template-columns:minmax(0,1fr)}.sci-fx{font-size:22px}}
+/* /Наука v3 */
+'''
+
+
 def main():
     base = open('NotFound.dc.html', encoding='utf-8').read()
     head, rest = base.split('<main', 1)
@@ -329,7 +416,11 @@ def main():
     open('Science.dc.html', 'w', encoding='utf-8', newline='').write(out)
     css = open('site.css', encoding='utf-8').read()
     if '/* Наука */' not in css:
-        open('site.css', 'a', encoding='utf-8', newline='').write(CSS)
+        css += CSS
+    if '/* Наука v3 */' in css:
+        a = css.index('\n/* Наука v3 */'); b = css.index('/* /Наука v3 */', a) + len('/* /Наука v3 */\n')
+        css = css[:a] + css[b:]
+    open('site.css', 'w', encoding='utf-8', newline='').write(css.rstrip('\n') + '\n' + CSS2)
     from collections import Counter
     print('Science.dc.html: проектов', len(ps), 'школ', n_school, Counter(a for p in ps for a in p[2]))
 
