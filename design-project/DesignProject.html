@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>УрФУ — дизайн-проект нового сайта</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Вёрстка под печать: альбомный A4, каждый .s — один лист. PDF собирает make_pdf.py */
+@font-face{font-family:'IBM Plex Sans';src:url('../fonts/IBMPlexSans-Regular.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'IBM Plex Sans';src:url('../fonts/IBMPlexSans-Medium.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'IBM Plex Sans';src:url('../fonts/IBMPlexSans-SemiBold.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'IBM Plex Sans';src:url('../fonts/IBMPlexSans-Bold.woff2') format('woff2');font-weight:700}
+@font-face{font-family:'PT Sans Narrow';src:url('../fonts/PTSansNarrow-Bold-cyr.woff2') format('woff2');font-weight:700;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'PT Sans Narrow';src:url('../fonts/PTSansNarrow-Bold-lat.woff2') format('woff2');font-weight:700;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+2190-21FF,U+2212}
+
+:root{
+  --rho:#E0246F; --rho-d:#C81A62; --gold:#FFC21A; --gold-soft:#FFF4D1; --mal:#00B386; --mal-d:#0A7F62;
+  --ame:#6B2BE8; --ame-d:#5420C4; --ame-soft:#EFE8FF; --ink:#16112B; --ink-2:#2A2150;
+  --muted:#5B5670; --paper:#F8F6FF; --lime:#EFE9FF; --line:#E4DFF2; --line-2:#C9C0E3; --on-dark:#CFC8E6;
+}
+@page{size:297mm 210mm;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#8E88A8}
+body{font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);font-size:15px;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,.nar{font-family:'PT Sans Narrow','IBM Plex Sans',sans-serif;font-weight:700;letter-spacing:-.01em;line-height:1.02;margin:0}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+/* лист */
+.s{position:relative;width:297mm;height:210mm;overflow:hidden;background:var(--paper);page-break-after:always;break-after:page;padding:15mm 16mm 17mm}
+.s:last-child{page-break-after:auto;break-after:auto}
+@media screen{.s{margin:16px auto;box-shadow:0 10px 40px rgba(0,0,0,.25)}}
+.dark{background:var(--ink);color:#fff}
+.dark .muted{color:var(--on-dark)}
+.muted{color:var(--muted)}
+
+/* подвал листа: лента самоцветов и номер */
+.foot{position:absolute;left:16mm;right:16mm;bottom:7mm;display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted)}
+.dark .foot{color:var(--on-dark)}
+.foot .rib{display:flex;height:4px;width:44px;flex:none}
+.foot .rib i{flex:1}
+.foot .sp{flex:1}
+.foot b{font-weight:600;color:inherit}
+.rib i:nth-child(1){background:var(--rho)}.rib i:nth-child(2){background:var(--gold)}.rib i:nth-child(3){background:var(--mal)}.rib i:nth-child(4){background:var(--ame)}
+
+/* заголовок листа */
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ame);margin-bottom:6px}
+.dark .kick{color:var(--gold)}
+.kick span{display:inline-block;background:var(--ame);color:#fff;padding:2px 7px;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%)}
+.dark .kick span{background:var(--gold);color:var(--ink)}
+.h{font-size:50px;margin-bottom:8px}
+.lead{font-size:17px;max-width:235mm;color:var(--muted)}
+.dark .lead{color:var(--on-dark)}
+
+/* срезанный угол — «грань камня» */
+.cut{clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)}
+.cut-l{clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,0 100%)}
+
+/* окно браузера и телефон для снимков */
+.win{background:#fff;border-radius:8px;box-shadow:0 2px 4px rgba(22,17,43,.08),0 14px 34px rgba(22,17,43,.16);overflow:hidden;border:1px solid var(--line)}
+.win .bar{height:16px;background:#F1EEF9;display:flex;align-items:center;gap:4px;padding:0 7px;border-bottom:1px solid var(--line)}
+.win .bar i{width:6px;height:6px;border-radius:50%;background:#CFC8E6}
+.win .bar u{margin-left:8px;flex:1;height:8px;border-radius:4px;background:#fff;text-decoration:none;font-size:6.5px;line-height:8px;padding-left:5px;color:var(--muted);font-style:normal}
+.win img{display:block;width:100%}
+.ph{background:#0F0B1F;border-radius:20px;padding:5px;box-shadow:0 14px 34px rgba(22,17,43,.22)}
+.ph img{display:block;width:100%;border-radius:15px}
+.cap{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.35}
+.cap b{color:var(--ink);font-weight:600}
+.dark .cap{color:var(--on-dark)}.dark .cap b{color:#fff}
+
+/* сетки */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:9mm}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:7mm}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:6mm}
+
+/* карточки */
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.card h3{font-size:22px;margin-bottom:5px}
+.card p{font-size:13.5px;color:var(--muted)}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--ame-soft);color:var(--ame-d)}
+
+/* большие цифры */
+.big{font-family:'PT Sans Narrow',sans-serif;font-weight:700;font-size:54px;line-height:.95;letter-spacing:-.02em}
+.stat p{font-size:12px;color:var(--muted);margin-top:4px}
+.dark .stat p{color:var(--on-dark)}
+.stat b.t{display:block;font-size:13px;font-weight:600;margin-top:4px}
+
+/* ===== 1. Обложка ===== */
+.cover{padding:0;background:var(--ink);color:#fff}
+.cover .bg{position:absolute;inset:0;background:
+  radial-gradient(60% 70% at 85% 10%,rgba(107,43,232,.55),transparent 70%),
+  radial-gradient(50% 60% at 70% 100%,rgba(224,36,111,.42),transparent 70%),
+  radial-gradient(40% 50% at 100% 60%,rgba(255,194,26,.22),transparent 70%)}
+.cover .in{position:absolute;left:18mm;top:17mm;width:132mm}
+.cover .mark{width:22mm;height:auto;display:block;margin-bottom:9mm}
+.cover h1{font-size:76px;line-height:.92;margin:4mm 0 6mm}
+.cover h1 em{font-style:normal;color:var(--gold)}
+.cover .sub{font-size:17px;line-height:1.4;color:var(--on-dark);max-width:125mm}
+.cover .rbn{display:flex;width:70mm;height:6px;margin:7mm 0}
+.cover .rbn i{flex:1}
+.cover .meta{max-width:110mm;font-size:13px;color:var(--on-dark);line-height:1.6}
+.cover .meta b{color:#fff;font-weight:600}
+.cover .shots{position:absolute;right:-14mm;top:26mm;width:150mm}
+.cover .shots .win{transform:rotate(-2deg);border:0}
+.cover .shots .ph{position:absolute;width:43mm;left:-20mm;bottom:-26mm;transform:rotate(3deg)}
+.cover .qr{position:absolute;left:18mm;bottom:15mm;display:flex;gap:12px;align-items:center}
+.cover .qr .q{background:#fff;padding:5px;border-radius:6px;width:24mm;height:24mm}
+.cover .qr .q img{width:100%;height:100%;display:block}
+.cover .qr p{font-size:11.5px;color:var(--on-dark);line-height:1.5}
+.cover .qr p b{display:block;color:#fff;font-size:14px;font-weight:600}
+
+/* ===== 2. Коротко ===== */
+.toc{columns:2;column-gap:12mm;font-size:14px;margin-top:8mm}
+.toc li{break-inside:avoid;padding:3.5px 0;border-bottom:1px solid var(--line);display:flex;gap:8px}
+.toc li b{color:var(--ame);font-weight:700;width:24px;flex:none}
+.toc ol{list-style:none;margin:0;padding:0}
+.bigq{font-family:'PT Sans Narrow',sans-serif;font-size:37px;line-height:1.12;font-weight:700;margin:5mm 0 0}
+.bigq em{font-style:normal;background:linear-gradient(transparent 62%,var(--gold) 62%)}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:6mm;margin-top:10mm}
+.kpi .stat{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.kpi .stat p{font-size:13.5px}.kpi .stat b.t{font-size:15px}
+.kpi .stat:nth-child(1){border-top:4px solid var(--rho)}.kpi .stat:nth-child(2){border-top:4px solid var(--gold)}
+.kpi .stat:nth-child(3){border-top:4px solid var(--mal)}.kpi .stat:nth-child(4){border-top:4px solid var(--ame)}
+.kpi .big{font-size:52px}
+.arrow{color:var(--muted);font-size:30px;margin:0 2px}
+
+/* ===== 3. Проблемы ===== */
+.prob{display:grid;grid-template-columns:132mm 1fr;gap:9mm;margin-top:7mm}
+.plist{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.plist .p{background:#fff;border:1px solid var(--line);border-left:4px solid var(--rho);border-radius:6px;padding:12px 13px}
+.plist .big{font-size:46px;color:var(--rho-d)}
+.plist b.t{display:block;font-size:14.5px;font-weight:600;margin:2px 0 2px}
+.plist p{font-size:12.5px;color:var(--muted);line-height:1.35}
+.src{font-size:10px;color:var(--muted);margin-top:5mm}
+
+/* ===== 4. Принципы ===== */
+.prin{display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:8mm}
+.prin .card{padding:20px 18px 22px;border:0;color:#fff;min-height:118mm;display:flex;flex-direction:column}
+.prin .card .n{font-family:'PT Sans Narrow',sans-serif;font-size:90px;line-height:.8;opacity:.35}
+.prin .card h3{font-size:31px;margin:auto 0 8px;color:#fff}
+.prin .card p{color:rgba(255,255,255,.9);font-size:15px}
+.prin .c1{background:var(--rho-d)}.prin .c2{background:var(--ame)}.prin .c3{background:var(--mal-d)}.prin .c4{background:var(--ink-2)}
+
+/* ===== 5. Было → стало ===== */
+.ba{display:grid;grid-template-columns:104mm 12mm 1fr;gap:0;margin-top:5mm;align-items:start}
+.old{background:#ECEAF1;border-radius:8px;padding:13px 14px;font-size:12px}
+.old h4,.newm h4{margin:0 0 6px;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.old .row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px}
+.old .row span{background:#fff;border:1px solid #D9D5E3;border-radius:3px;padding:2px 6px;color:#4A4560}
+.old .big{font-size:46px;color:#7A748E}
+.mid{display:flex;align-items:center;justify-content:center;height:100%;font-size:34px;color:var(--ame)}
+.newm .big{font-size:46px;color:var(--ame)}
+.newm .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:3.5mm}
+.newm .col{background:#fff;border:1px solid var(--line);border-top:4px solid var(--ame);border-radius:6px;padding:10px 12px}
+.newm .col:nth-child(6n+1){border-top-color:var(--rho)}.newm .col:nth-child(6n+2){border-top-color:var(--gold)}
+.newm .col:nth-child(6n+3){border-top-color:var(--mal)}.newm .col:nth-child(6n+5){border-top-color:var(--rho)}.newm .col:nth-child(6n+6){border-top-color:var(--mal)}
+.newm .col b{display:block;font-size:15.5px;margin-bottom:3px}
+.newm .col span{display:block;font-size:12.5px;color:var(--muted);line-height:1.4}
+.chg{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:7mm}
+.chg .card{padding:9px 12px}
+.chg .card h3{font-size:19px}
+.chg .card p{font-size:12.5px;line-height:1.4}
+
+/* ===== 6. Роли ===== */
+.roles{display:flex;gap:6px;flex-wrap:wrap;margin:4mm 0 0}
+.roles{flex-wrap:nowrap}.roles span{border:2px solid var(--ink);border-radius:999px;padding:2px 10px;font-weight:600;font-size:12px;background:#fff;white-space:nowrap}
+.roles span.me{border:0;background:none;padding-left:0}
+.roles span.on{background:var(--ink);color:#fff}
+.rl{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:6mm}
+.rlist{display:grid;grid-template-columns:repeat(5,1fr);gap:4mm;margin-top:6mm}
+.rlist div{font-size:12.5px;color:var(--muted);border-top:3px solid var(--ame);padding-top:5px;line-height:1.35}
+.rlist div b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px}
+.rlist div:nth-child(1){border-color:var(--rho)}.rlist div:nth-child(2){border-color:var(--ame)}.rlist div:nth-child(3){border-color:var(--mal)}.rlist div:nth-child(4){border-color:var(--ink-2)}.rlist div:nth-child(5){border-color:var(--gold)}
+
+/* ===== 7. Путь до ответа ===== */
+table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.path th{text-align:left;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:7px 10px;background:#F3F0FB;font-weight:700}
+.path td{padding:8.5px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.35}
+.path td:first-child{font-weight:600;width:48mm;font-size:13px}
+.path .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-weight:700;font-size:12px;margin-right:7px;flex:none}
+.path .cell{display:flex;align-items:flex-start}
+.path .o .n{background:#ECEAF1;color:#4A4560}
+.path .w .n{background:var(--ame);color:#fff}
+.path .w .n.z{background:var(--mal-d)}
+.path .o{color:#5B5670}
+.path tfoot td{background:var(--ink);color:#fff;font-weight:600;font-size:13.5px}
+.path tfoot .n{background:var(--gold)!important;color:var(--ink)!important}
+
+/* ===== экраны ===== */
+.scr3{display:grid;grid-template-columns:repeat(3,1fr);gap:8mm;margin-top:6mm}
+.scr3 .win img,.scr4 .win img{height:var(--ih);object-fit:cover;object-position:top}
+.scr4{display:grid;grid-template-columns:repeat(4,1fr);gap:6mm;margin-top:5mm}
+.scr4 .cap{margin-top:7px;font-size:12px}
+.scr4 .cap b{display:block;font-size:18px;font-family:'PT Sans Narrow',sans-serif;margin-bottom:3px}
+.feat{list-style:none;padding:0;margin:6px 0 0;font-size:12.5px;color:var(--muted)}
+.feat li{padding-left:12px;position:relative;margin-bottom:2px;line-height:1.35}
+.feat li:before{content:"";position:absolute;left:0;top:6px;width:6px;height:6px;background:var(--ame);clip-path:polygon(0 0,100% 0,100% 100%)}
+
+/* телефоны */
+.phones{display:grid;grid-template-columns:repeat(6,1fr);gap:5mm;margin-top:6mm}
+.phones .cap{text-align:center;font-size:10.5px}
+.pnote{display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:6mm}
+.pnote div{font-size:12.5px;color:var(--on-dark);border-left:3px solid var(--gold);padding-left:8px;line-height:1.38}
+.pnote div b{display:block;color:#fff;font-size:14.5px;margin-bottom:1px}
+
+/* ===== стиль ===== */
+.brand{display:grid;grid-template-columns:86mm 1fr;gap:10mm;margin-top:6mm}
+.logo-box{background:#fff;border-radius:10px;border:1px solid var(--line);height:92mm;display:flex;align-items:center;justify-content:center;position:relative}
+.logo-box svg{width:46mm;height:auto}
+.logo-box .lbl{position:absolute;left:12px;bottom:10px;font-size:10px;color:var(--muted)}
+.logo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:4mm}
+.logo-row div{height:24mm;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:7px;font-family:'PT Sans Narrow',sans-serif;font-size:14px;line-height:1}
+.logo-row svg{height:13mm;width:auto}
+.gems{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.gem{border-radius:8px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.gem .sw{height:34mm;display:flex;align-items:flex-end;padding:8px 10px;font-family:'PT Sans Narrow',sans-serif;font-size:22px}
+.gem .tx{padding:8px 11px;font-size:12px;color:var(--muted);line-height:1.35}
+.gem .tx b{display:block;color:var(--ink);font-size:13px;font-family:ui-monospace,Consolas,monospace}
+.dev{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:5mm}
+.dev .card{padding:10px 12px}
+.dev .card h3{font-size:19px}
+.dev .card p{font-size:12.5px}
+.demo-rib{display:flex;height:7px;width:100%;margin:6px 0 4px}.demo-rib i{flex:1}
+.demo-cut{height:30px;background:var(--ame);margin:6px 0 2px}
+.demo-hex{width:46px;height:52px;background:var(--rho);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'PT Sans Narrow',sans-serif;font-size:15px;margin:4px 0}
+
+/* дизайн-система */
+.ds{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr) minmax(0,1fr);gap:9mm;margin-top:6mm}
+.ds h4{margin:0 0 8px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.pair{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:7px 10px;margin-bottom:6px;font-size:13px}
+.pair .aa{width:34px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex:none}
+.pair .r{margin-left:auto;font-weight:700;font-size:14px;white-space:nowrap}
+.pair .ok{font-size:9px;font-weight:700;background:#DDF6EE;color:#0A6A52;border-radius:3px;padding:1px 5px;margin-left:6px}
+.type1{font-family:'PT Sans Narrow',sans-serif;font-size:50px;line-height:1}
+.type2{font-size:15px;line-height:1.5}
+.el{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:12px}
+.btn{display:inline-flex;align-items:center;height:36px;padding:0 15px;border-radius:7px;font-weight:700;font-size:13.5px;white-space:nowrap}
+.btn.p{background:var(--ame);color:#fff}.btn.sec{border:2px solid var(--ink);color:var(--ink);background:#fff}
+.chip{display:inline-flex;height:28px;align-items:center;padding:0 12px;border-radius:999px;border:1.5px solid var(--ink);font-size:12.5px;font-weight:600;background:#fff}
+.chip.on{background:var(--ink);color:#fff}
+.inp{height:36px;border:2px solid var(--ink);border-radius:7px;background:#fff;display:flex;align-items:center;padding:0 10px;font-size:11.5px;color:var(--muted);width:100%}
+.ds2{display:grid;grid-template-columns:repeat(3,1fr);gap:7mm;margin-top:8mm}
+.ds2 .card{display:flex;gap:14px;align-items:center;padding:14px 16px}
+.ds2 .card h3{font-size:19px}
+.ds2 .card p{font-size:12.5px}
+.focus{flex:none;height:36px;padding:0 15px;border-radius:7px;background:var(--ame);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;outline:3px solid var(--ame);outline-offset:3px}
+.rads{flex:none;display:flex;gap:6px}.rads i{width:30px;height:30px;background:var(--lime);border:2px solid var(--ame)}
+.grid-demo{flex:none;width:64px;height:40px;border:2px solid var(--ink);border-radius:5px;padding:0 6px;display:flex;gap:3px}.grid-demo i{flex:1;background:var(--ame-soft)}
+.tap{width:44px;height:44px;border:2px dashed var(--ame);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9.5px;color:var(--ame);font-weight:700;text-align:center;line-height:1.1}
+
+/* доступность */
+.a11y{display:grid;grid-template-columns:160mm 1fr;gap:10mm;margin-top:6mm}
+.chk{list-style:none;margin:0;padding:0}
+.chk li{display:flex;gap:10px;margin-bottom:12px;font-size:13px;color:var(--on-dark);line-height:1.38}
+.chk li b{display:block;color:#fff;font-size:15px}
+.chk li i{flex:none;width:18px;height:18px;border-radius:4px;background:var(--mal);position:relative;margin-top:1px}
+.chk li i:after{content:"";position:absolute;left:6px;top:2.5px;width:4px;height:8px;border:solid var(--ink);border-width:0 2.4px 2.4px 0;transform:rotate(45deg)}
+
+/* 20 функций */
+.f20{display:grid;grid-template-columns:repeat(5,1fr);gap:4.5mm;margin-top:7mm}
+.f20 div{background:#fff;border:1px solid var(--line);border-radius:6px;padding:11px 12px;min-height:29mm;font-size:12px;color:var(--muted);line-height:1.33;position:relative}
+.f20 div b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px;font-weight:600}
+.f20 div:before{content:"";position:absolute;left:0;top:12px;width:4px;height:17px;background:var(--ame)}
+.f20 div:nth-child(4n+1):before{background:var(--rho)}.f20 div:nth-child(4n+2):before{background:var(--gold)}.f20 div:nth-child(4n+3):before{background:var(--mal)}
+
+/* данные и проверка */
+.srcs{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:6mm}
+.srcs .card{padding:14px 16px;min-height:27mm}
+.srcs .card h3{font-size:20px}
+.srcs .card p{font-size:13px}
+.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:6mm;margin-top:6mm}
+.checks .stat p{font-size:13.5px}
+.checks .stat{border-top:3px solid var(--mal);padding-top:6px}
+.checks .big{font-size:58px;white-space:nowrap;letter-spacing:-.02em;color:var(--mal-d)}
+
+/* итог */
+.res{display:grid;grid-template-columns:1fr 1.25fr 1fr 1fr 1fr;gap:4mm;margin-top:6mm}
+.res .stat{background:rgba(255,255,255,.06);border:1px solid var(--ink-2);border-radius:8px;padding:13px 14px}
+.res .big{font-size:36px;white-space:nowrap;letter-spacing:-.03em;color:var(--gold)}
+.res .stat p{font-size:13px}
+.next{display:grid;grid-template-columns:repeat(3,1fr);gap:6mm 8mm;margin-top:6mm}
+.next div{font-size:13px;color:var(--on-dark);line-height:1.38;border-left:3px solid var(--ame);padding-left:8px}
+.next div b{display:block;color:#fff;font-size:15px}
+.links{position:absolute;left:16mm;right:16mm;bottom:17mm;display:flex;gap:9mm;align-items:center;background:#fff;color:var(--ink);border-radius:10px;padding:10px 14px}
+.links .q{width:25mm;height:25mm;flex:none}
+.links .q img{width:100%;height:100%;display:block}
+.links div{font-size:13px;line-height:1.6}
+.links div b{font-size:14px}
+.links a{color:var(--ame-d);text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- ═══ 1. Обложка ═══ -->
+<section class="s cover">
+  <div class="bg"></div>
+  <div class="in">
+    <svg class="mark" viewBox="6 4 90 98" aria-hidden="true"><defs><linearGradient id="ulA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B5CFF"/><stop offset="1" stop-color="#5A1FD1"/></linearGradient><linearGradient id="ulB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4D8D"/><stop offset="1" stop-color="#C2185B"/></linearGradient><linearGradient id="ulF" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient></defs><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="url(#ulA)"/><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="url(#ulB)"/><path d="M46 70 L60 56 L54 72 Z" fill="url(#ulF)"/></svg>
+    <div class="kick"><span>Дизайн-проект</span> конкурс «Взломай веб-дизайн» · 2026</div>
+    <h1>Один УрФУ —<br><em>один вход</em></h1>
+    <p class="sub">Новый сайт Уральского федерального университета, собранный вокруг задач людей, а не вокруг устройства университета.</p>
+    <div class="rbn rib"><i></i><i></i><i></i><i></i></div>
+    <p class="meta"><b>Работающий прототип</b>, а не картинки: 27 страниц, каталог программ, расписание, кабинет студента, поиск, английская версия.<br>Только настоящие данные УрФУ — с источниками.</p>
+  </div>
+  <div class="shots">
+    <div class="win"><div class="bar"><i></i><i></i><i></i><u>gagamix228.github.io/urfu-redesign</u></div><img src="img/d-main.jpg" alt=""></div>
+    <div class="ph"><img src="img/m-main.jpg" alt=""></div>
+  </div>
+  <div class="qr">
+    <div class="q"><img src="img/qr.svg" alt="QR-код ссылки на сайт"></div>
+    <p><b>gagamix228.github.io/urfu-redesign</b>Наведите камеру телефона — сайт откроется.<br>Код: github.com/GAGAMIX228/urfu-redesign</p>
+  </div>
+</section>
+
+<!-- ═══ 2. Коротко ═══ -->
+<section class="s">
+  <div class="kick"><span>01</span> Коротко</div>
+  <h2 class="h">Главная идея</h2>
+  <p class="bigq">Человек приходит на сайт университета <em>с задачей</em>: узнать, хватит ли баллов, найти расписание, заселиться в общежитие. Сейчас urfu.ru показывает ему <em>устройство университета</em>. Новый сайт показывает ответ.</p>
+  <div class="kpi">
+    <div class="stat"><div class="big num">22<span class="arrow">→</span>6</div><b class="t">пунктов меню</b><p>Разделы по задачам вместо двух рядов по оргструктуре</p></div>
+    <div class="stat"><div class="big num">419<span class="arrow">→</span>145</div><b class="t">ссылок на главной</b><p>Без 206 ссылок, спрятанных в выпадающих меню</p></div>
+    <div class="stat"><div class="big num">15<span class="arrow">→</span>4</div><b class="t">действия до ответа</b><p>Сумма по 7 частым задачам, где ответ на urfu.ru есть</p></div>
+    <div class="stat"><div class="big num">0</div><b class="t">ошибок доступности</b><p>WCAG 2.2 AA, проверка axe на всех страницах, телефон и компьютер</p></div>
+  </div>
+  <ol class="toc">
+    <li><b>02</b>Что мешает на urfu.ru сейчас</li>
+    <li><b>03</b>Четыре принципа</li>
+    <li><b>04</b>Было → стало: меню</li>
+    <li><b>05</b>Главная под роль</li>
+    <li><b>06</b>Путь до ответа: 8 задач</li>
+    <li><b>07</b>Поступающему</li>
+    <li><b>08</b>Студенту</li>
+    <li><b>09</b>Телефон</li>
+    <li><b>10</b>Фирменный стиль «Яркий Урал»</li>
+    <li><b>11</b>Дизайн-система</li>
+    <li><b>12</b>Доступность</li>
+    <li><b>13</b>20 вещей, которых нет на urfu.ru</li>
+    <li><b>14</b>Только настоящие данные</li>
+    <li><b>15</b>Итог и что дальше</li>
+  </ol>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>2</b></div>
+</section>
+
+<!-- ═══ 3. Проблемы ═══ -->
+<section class="s">
+  <div class="kick"><span>02</span> Разбор</div>
+  <h2 class="h">Что мешает на urfu.ru сейчас</h2>
+  <p class="lead">Мы разобрали главную страницу urfu.ru по её копии в веб-архиве от 12 октября 2026 года и прошли по ней частые задачи. Цифры посчитаны по коду страницы, а не на глаз.</p>
+  <div class="prob">
+    <div>
+      <div class="win"><div class="bar"><i></i><i></i><i></i><u>urfu.ru/ru — копия в веб-архиве, 12.10.2026</u></div><img src="img/old-urfu.jpg" alt=""></div>
+      <p class="cap"><b>Главная urfu.ru сейчас.</b> Два ряда меню: 8 пунктов «для кого» и 14 — по устройству университета.</p>
+    </div>
+    <div class="plist">
+      <div class="p"><div class="big num">419</div><b class="t">ссылок на главной</b><p>206 спрятаны в выпадающих меню. В одном меню «Абитуриентам» — 67 ссылок.</p></div>
+      <div class="p"><div class="big num">22</div><b class="t">пункта меню в двух рядах</b><p>«Все разделы» (8 — для кого) и «Меню» (14 — по устройству университета).</p></div>
+      <div class="p"><div class="big num">40</div><b class="t">других сайтов УрФУ</b><p>115 ссылок с главной уводят на поддомены и внешние сайты — у каждого своё меню.</p></div>
+      <div class="p"><div class="big num">0</div><b class="t">раз слово «общежитие»</b><p>Есть только «Поселение». Адресов общежитий нет и на самой странице «Поселение».</p></div>
+      <div class="p"><div class="big num">×5</div><b class="t">одна и та же ссылка</b><p>«Списки поступающих», «Списки зачисленных», «Спорт» — по 5 раз на главной.</p></div>
+      <div class="p"><div class="big num">4</div><b class="t">разных личных кабинета</b><p>Студенту, сотруднику, партнёру, участнику ВЭД. В меню «Партнерам» — пустой раздел.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Источник: копия urfu.ru/ru от 12.10.2026 в веб-архиве (web.archive.org)</span><span class="sp"></span><b>3</b></div>
+</section>
+
+<!-- ═══ 4. Принципы ═══ -->
+<section class="s">
+  <div class="kick"><span>03</span> Подход</div>
+  <h2 class="h">Четыре принципа</h2>
+  <p class="lead">На них держится каждая страница. Если новое решение им противоречит — меняем решение, а не принципы.</p>
+  <div class="prin">
+    <div class="card cut-l c1"><div class="n">1</div><h3>Меню по задачам</h3><p>Шесть разделов вместо оргструктуры: Поступление, Обучение, Наука, Жизнь в УрФУ, Партнёрам, Об университете. Человеку не нужно знать, как устроен университет, чтобы найти ответ.</p></div>
+    <div class="card cut-l c2"><div class="n">2</div><h3>Роли на первом экране</h3><p>«Я поступаю», «Я учусь», «Я работаю», «Я партнёр», «International» — главная перестраивается под роль: свой заголовок, порядок блоков, панель «Главное для вас».</p></div>
+    <div class="card cut-l c3"><div class="n">3</div><h3>Один сайт и один поиск</h3><p>Приём, каталог, институты, общежития — разделы одного сайта с общим шаблоном. Один поиск понимает «общага» и «стипуха» и прощает опечатки. Один вход в кабинет.</p></div>
+    <div class="card cut-l c4"><div class="n">4</div><h3>Телефон и доступность</h3><p>Нижняя панель на телефоне, всё от 320 пикселей ширины. Контраст WCAG AA, работа с клавиатуры, версия для слабовидящих поверх любой страницы.</p></div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>4</b></div>
+</section>
+
+<!-- ═══ 5. Было → стало ═══ -->
+<section class="s">
+  <div class="kick"><span>04</span> Структура</div>
+  <h2 class="h">Было → стало: меню</h2>
+  <div class="ba">
+    <div class="old">
+      <div class="big num">22</div><h4>пункта меню на urfu.ru сейчас</h4>
+      <h4>Ряд «для кого» — 8</h4>
+      <div class="row"><span>Студентам</span><span>Абитуриентам</span><span>Школьникам</span><span>Сотрудникам</span><span>Выпускникам</span><span>Партнерам</span><span>Работодателям</span><span>СМИ</span></div>
+      <h4>Главное меню — 14</h4>
+      <div class="row"><span>Об университете</span><span>Новый кампус</span><span>Наука</span><span>Образование</span><span>Международная деятельность</span><span>Инновации</span><span>Эндаумент</span><span>Творчество</span><span>Спорт</span><span>Устойчивое развитие</span><span>Институты</span><span>Филиалы</span><span>Контакты</span><span>Обратная связь</span></div>
+      <h4>Личный кабинет — 4 входа</h4>
+      <div class="row" style="margin-bottom:0"><span>Студенту</span><span>Сотруднику</span><span>Партнеру</span><span>Участнику ВЭД</span></div>
+    </div>
+    <div class="mid">→</div>
+    <div class="newm">
+      <div class="big num">6</div><h4>разделов в новом меню · + 5 ролей на главной, 1 кабинет, поиск</h4>
+      <div class="cols">
+        <div class="col"><b>Поступление</b><span>Как поступить<br>Подбор за 3 вопроса<br>Каталог и проходные баллы<br>Общежития</span></div>
+        <div class="col"><b>Обучение</b><span>Расписание<br>Личный кабинет<br>Институты и кафедры<br>Центр помощи</span></div>
+        <div class="col"><b>Наука</b><span>54 проекта «Приоритет-2030»<br>Научные школы<br>Студенту и бизнесу</span></div>
+        <div class="col"><b>Жизнь в УрФУ</b><span>29 организаций, спорт<br>Творчество, традиции<br>Календарь событий</span></div>
+        <div class="col"><b>Партнёрам</b><span>Сотрудничество<br>Работодателям<br>Контакты служб</span></div>
+        <div class="col"><b>Об университете</b><span>Новости<br>Новый кампус, эндаумент<br>Устойчивое развитие, филиалы</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="chg">
+    <div class="card"><h3>Убрали из главного меню</h3><p>Эндаумент, Инновации, Устойчивое развитие, Новый кампус, Филиалы — важны, но нужны немногим. Теперь они внутри «Об университете», в одном клике.</p></div>
+    <div class="card"><h3>Объединили</h3><p>8 вкладок «для кого» → 5 ролей на главной. Творчество и Спорт → «Жизнь в УрФУ». Контакты и Обратная связь → один справочник служб с поиском. 4 кабинета → один вход.</p></div>
+    <div class="card"><h3>Добавили</h3><p>Подбор программы за 3 вопроса, расписание с поиском группы, цены общежитий таблицей, центр помощи, календарь событий, умный поиск, отсчёт до приёма документов, английскую версию.</p></div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>5</b></div>
+</section>
+
+<!-- ═══ 6. Роли ═══ -->
+<section class="s">
+  <div class="kick"><span>05</span> Главная</div>
+  <h2 class="h">Главная под роль</h2>
+  <p class="lead">Одна кнопка на первом экране — и страница перестраивается: заголовок, порядок блоков, подсказки поиска и панель «Главное для вас». Выбор запоминается.</p>
+  <div class="rl">
+    <div><div class="roles"><span class="me">Я —</span><span class="on">поступаю</span><span>учусь</span><span>работаю</span><span>партнёр</span><span>International</span></div>
+      <div class="win" style="margin-top:4mm"><div class="bar"><i></i><i></i><i></i><u>Main.dc.html?role=abit — «Я поступаю»</u></div><img src="img/d-main-abit.jpg" alt=""></div>
+      <p class="cap"><b>«Поступление в УрФУ — на одном экране»</b> — проходные баллы прошлых лет, сроки, стоимость и общежития.</p></div>
+    <div><div class="roles"><span class="me">Я —</span><span>поступаю</span><span class="on">учусь</span><span>работаю</span><span>партнёр</span><span>International</span></div>
+      <div class="win" style="margin-top:4mm"><div class="bar"><i></i><i></i><i></i><u>Main.dc.html?role=student — «Я учусь»</u></div><img src="img/d-main-student.jpg" alt=""></div>
+      <p class="cap"><b>«Что у вас сегодня?»</b> — пары группы, общежитие, помощь и события на первом месте.</p></div>
+  </div>
+  <div class="rlist">
+    <div><b>Поступаю</b>Каталог, календарь приёма, подбор за 3 вопроса, стоимость</div>
+    <div><b>Учусь</b>Расписание, центр помощи, общежитие, молодёжные лаборатории</div>
+    <div><b>Работаю</b>Наука, справочник служб, новости и мероприятия</div>
+    <div><b>Партнёр</b>Исследования на заказ, практиканты и выпускники, совместные проекты</div>
+    <div><b>International</b>Programmes in English, how to apply, where to live</div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>6</b></div>
+</section>
+
+<!-- ═══ 7. Путь до ответа ═══ -->
+<section class="s">
+  <div class="kick"><span>06</span> Проверка задачами</div>
+  <h2 class="h">Путь до ответа: 8 частых задач</h2>
+  <p class="lead">Считаем действия от главной до ответа: открыть меню, нажать ссылку, скачать файл. 0 — ответ виден на главной сразу. Где мы не лучше — так и пишем.</p>
+  <table class="path">
+    <thead><tr><th>Задача</th><th>urfu.ru сейчас</th><th>Новый сайт</th></tr></thead>
+    <tbody>
+      <tr><td>Хватит ли моих баллов на бюджет</td><td class="o"><div class="cell"><span class="n">2</span>Меню «Абитуриентам» → «Калькулятор ЕГЭ» — открывается отдельный сайт</div></td><td class="w"><div class="cell"><span class="n z">0</span>Ползунок баллов на главной: на сколько программ проходишь и сколько там бюджетных мест</div></td></tr>
+      <tr><td>Когда подавать документы</td><td class="o"><div class="cell"><span class="n">2</span>Меню «Абитуриентам» → «Календарь приема» → таблица</div></td><td class="w"><div class="cell"><span class="n z">0</span>На главной: дата начала приёма и отсчёт дней</div></td></tr>
+      <tr><td>Сколько стоит обучение</td><td class="o"><div class="cell"><span class="n">3</span>Меню → «Стоимость обучения» → приказ PDF на 16 МБ, найти свою программу</div></td><td class="w"><div class="cell"><span class="n">1</span>«Каталог» — цена за год в карточке каждой программы</div></td></tr>
+      <tr><td>Адрес общежития</td><td class="o"><div class="cell"><span class="n">—</span>«Поселение»: порядок заселения, а адресов нет — только на отдельном сайте кампуса</div></td><td class="w"><div class="cell"><span class="n">1</span>«Общежития» на главной → карта и список с адресами</div></td></tr>
+      <tr><td>Сколько стоит общежитие</td><td class="o"><div class="cell"><span class="n">4</span>Меню → «Поселение» → «Плата за проживание» → скан приказа в PDF, 3 МБ</div></td><td class="w"><div class="cell"><span class="n">1</span>«Общежития» → таблица: сколько в месяц, вдвоём в комнате</div></td></tr>
+      <tr><td>Расписание своей группы</td><td class="o"><div class="cell"><span class="n">2</span>Меню «Студентам» → «Расписание занятий» → ввести группу</div></td><td class="w"><div class="cell"><span class="n">1</span>«Расписание» → номер группы. Сайт запоминает группу — в следующий раз сразу пары</div></td></tr>
+      <tr><td>Телефон приёмной комиссии</td><td class="o"><div class="cell"><span class="n">1</span>Значок телефона в шапке → список служб</div></td><td class="w"><div class="cell"><span class="n z">0</span>Внизу главной, рядом с контакт-центром</div></td></tr>
+      <tr><td>Версия для слабовидящих</td><td class="o"><div class="cell"><span class="n">1</span>Значок в шапке → отдельная версия сайта</div></td><td class="w"><div class="cell"><span class="n">1</span>Значок «глаз» → панель поверх любой страницы. Здесь мы не быстрее — но не нужен отдельный сайт</div></td></tr>
+    </tbody>
+    <tfoot><tr><td>Итого по 7 задачам, где ответ на urfu.ru есть</td><td><div class="cell"><span class="n">15</span>действий</div></td><td><div class="cell"><span class="n">4</span>действия</div></td></tr></tfoot>
+  </table>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Пути на urfu.ru пройдены по копиям страниц в веб-архиве: главная — 12.10.2026, внутренние — 2025–2026</span><span class="sp"></span><b>7</b></div>
+</section>
+
+<!-- ═══ 8. Поступающему ═══ -->
+<section class="s">
+  <div class="kick"><span>07</span> Экраны</div>
+  <h2 class="h">Поступающему</h2>
+  <p class="lead">От «куда я прохожу?» до «как заселиться» — без PDF-приказов и отдельных сайтов.</p>
+  <div class="scr3" style="--ih:92mm">
+    <div><div class="win"><div class="bar"><i></i><i></i><i></i><u>Каталог программ</u></div><img src="img/t-catalog.jpg" alt=""></div>
+      <p class="cap"><b>Каталог программ.</b></p>
+      <ul class="feat"><li>Фильтр по своим предметам ЕГЭ и сумме баллов</li><li>Проходной балл, бюджетные места и цена в карточке</li><li>Сравнение до трёх программ рядом</li></ul></div>
+    <div><div class="win"><div class="bar"><i></i><i></i><i></i><u>Страница программы</u></div><img src="img/t-program.jpg" alt=""></div>
+      <p class="cap"><b>Страница программы.</b></p>
+      <ul class="feat"><li>Главные цифры на первом экране</li><li>Учебный план, проекты, преподаватели и партнёры — с programs.edu.urfu.ru</li><li>«Подать документы», «Сравнить», «Поделиться»</li></ul></div>
+    <div><div class="win"><div class="bar"><i></i><i></i><i></i><u>Как поступить</u></div><img src="img/t-admission.jpg" alt=""></div>
+      <p class="cap"><b>Как поступить.</b></p>
+      <ul class="feat"><li>Пять шагов от выбора до заселения</li><li>Калькулятор стоимости и баллов за достижения</li><li>Целевое обучение, стипендии за высокие баллы</li></ul></div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Цены, баллы и места — из открытых данных приёма УрФУ</span><span class="sp"></span><b>8</b></div>
+</section>
+
+<!-- ═══ 9. Студенту ═══ -->
+<section class="s">
+  <div class="kick"><span>08</span> Экраны</div>
+  <h2 class="h">Студенту</h2>
+  <div class="scr4" style="--ih:96mm">
+    <div><div class="win"><div class="bar"><i></i><i></i><i></i><u>Расписание</u></div><img src="img/t-schedule.jpg" alt=""></div>
+      <p class="cap"><b>Расписание группы</b>Буквы группы списком, дефис ставится сам. Недели, вид «день», «идёт сейчас», добавить в календарь телефона. Пары — пример, подписано.</p></div>
+    <div><div class="win"><div class="bar"><i></i><i></i><i></i><u>Личный кабинет · демо</u></div><img src="img/t-cabinet.jpg" alt=""></div>
+      <p class="cap"><b>Кабинет студента</b>Баллы по шкале БРС, калькулятор стипендии по суммам 2026 года, пропуск, чек-лист первокурсника. Демо — подписано на странице.</p></div>
+    <div><div class="win"><div class="bar"><i></i><i></i><i></i><u>Центр помощи</u></div><img src="img/t-help.jpg" alt=""></div>
+      <p class="cap"><b>Центр помощи</b>30 ответов с источниками, «Мне нужно…», справочник служб, словарик первокурсника: «большак», «пекус», «хвостовка».</p></div>
+    <div><div class="win"><div class="bar"><i></i><i></i><i></i><u>Кампус и общежития</u></div><img src="img/t-dorms.jpg" alt=""></div>
+      <p class="cap"><b>Кампус и общежития</b>Цена каждого общежития по приказам УрФУ, карта двух кампусов, заселение по шагам, коридор или секция.</p></div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Суммы стипендий и правила заселения — «Навигатор первокурсника» (privet.urfu.ru)</span><span class="sp"></span><b>9</b></div>
+</section>
+
+<!-- ═══ 10. Телефон ═══ -->
+<section class="s dark">
+  <div class="kick"><span>09</span> Телефон</div>
+  <h2 class="h">Сначала — телефон</h2>
+  <p class="lead">Абитуриенты и студенты открывают сайт в основном с телефона. Поэтому каждый экран проверен на ширине 320–430 пикселей.</p>
+  <div class="phones">
+    <div><div class="ph"><img src="img/m-main.jpg" alt=""></div><p class="cap">Главная</p></div>
+    <div><div class="ph"><img src="img/m-menu.jpg" alt=""></div><p class="cap">Меню — 6 разделов</p></div>
+    <div><div class="ph"><img src="img/m-catalog.jpg" alt=""></div><p class="cap">Каталог</p></div>
+    <div><div class="ph"><img src="img/m-schedule.jpg" alt=""></div><p class="cap">Расписание</p></div>
+    <div><div class="ph"><img src="img/m-cabinet.jpg" alt=""></div><p class="cap">Кабинет</p></div>
+    <div><div class="ph"><img src="img/m-dorms.jpg" alt=""></div><p class="cap">Общежития</p></div>
+  </div>
+  <div class="pnote">
+    <div><b>Нижняя панель</b>Главная, поиск, каталог, расписание, кабинет — под большим пальцем.</div>
+    <div><b>Расписание как приложение</b>На телефоне — экран на всю высоту, листаются дни.</div>
+    <div><b>Крупные цели</b>Каждая кнопка не меньше 44 × 44 пикселей.</div>
+    <div><b>Ничего не вылезает</b>Проверено роботом на всех 141 адресе сайта, от 320 пикселей.</div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>10</b></div>
+</section>
+
+<!-- ═══ 11. Фирменный стиль ═══ -->
+<section class="s">
+  <div class="kick"><span>10</span> Стиль</div>
+  <h2 class="h">Фирменный стиль «Яркий Урал»</h2>
+  <div class="brand">
+    <div>
+      <div class="logo-box">
+        <svg viewBox="6 4 90 98" aria-hidden="true"><defs><linearGradient id="lA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B5CFF"/><stop offset="1" stop-color="#5A1FD1"/></linearGradient><linearGradient id="lB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4D8D"/><stop offset="1" stop-color="#C2185B"/></linearGradient><linearGradient id="lF" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient></defs><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="url(#lA)"/><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="url(#lB)"/><path d="M46 70 L60 56 L54 72 Z" fill="url(#lF)"/></svg>
+        <span class="lbl">Знак «Лента»</span>
+      </div>
+      <div class="logo-row">
+        <div style="background:var(--ink);color:#fff"><svg viewBox="6 4 90 98" aria-hidden="true"><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="#fff"/><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="#fff"/></svg></div>
+        <div style="background:#fff;border:1px solid var(--line)"><svg viewBox="6 4 90 98" aria-hidden="true"><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="#16112B"/><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="#16112B"/></svg></div>
+        <div style="background:var(--gold)"><svg viewBox="6 4 90 98" aria-hidden="true"><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="#5A1FD1"/><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="#C2185B"/></svg></div>
+      </div>
+      <p class="cap">Буква «У», сложенная из ленты аметистового и родонитового цвета. Читается и в шапке сайта, и на значке вкладки 16 пикселей. Есть одноцветные версии.</p>
+    </div>
+    <div>
+      <p class="lead" style="max-width:none;margin-bottom:5mm">Сочные цвета уральских самоцветов: родонит — камень Екатеринбурга, золото, малахит и аметист. Ими окрашены роли на главной, шапки разделов и плитки.</p>
+      <div class="gems">
+        <div class="gem"><div class="sw" style="background:#E0246F;color:#fff">Родонит</div><div class="tx"><b>#E0246F</b>«Я поступаю», акценты</div></div>
+        <div class="gem"><div class="sw" style="background:#6B2BE8;color:#fff">Аметист</div><div class="tx"><b>#6B2BE8</b>основной цвет, кнопки, ссылки</div></div>
+        <div class="gem"><div class="sw" style="background:#00B386;color:#16112B">Малахит</div><div class="tx"><b>#00B386</b>«Я работаю», успех</div></div>
+        <div class="gem"><div class="sw" style="background:#FFC21A;color:#16112B">Золото</div><div class="tx"><b>#FFC21A</b>«International», даты</div></div>
+      </div>
+      <div class="dev">
+        <div class="card"><h3>Лента самоцветов</h3><div class="demo-rib rib"><i></i><i></i><i></i><i></i></div><p>Четыре цвета подряд — под заголовками и в подвале. Узнаётся с одного взгляда.</p></div>
+        <div class="card"><h3>Срезанный угол</h3><div class="demo-cut cut"></div><p>Как грань огранённого камня: у плашек, кнопок-меток и карточек.</p></div>
+        <div class="card"><h3>Шестигранник</h3><div class="demo-hex">1920</div><p>Форма кристалла — для главных цифр рядом с фото.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Подробно — страница «Логотип и стиль»: Logo.dc.html</span><span class="sp"></span><b>11</b></div>
+</section>
+
+<!-- ═══ 12. Дизайн-система ═══ -->
+<section class="s">
+  <div class="kick"><span>11</span> Система</div>
+  <h2 class="h">Дизайн-система</h2>
+  <p class="lead">Один набор цветов, шрифтов и элементов на всех страницах. Контраст посчитан по формуле WCAG — для обычного текста нужно не меньше 4,5 : 1.</p>
+  <div class="ds">
+    <div>
+      <h4>Пары «текст — фон»</h4>
+      <div class="pair"><span class="aa" style="background:#F8F6FF;color:#16112B;border:1px solid var(--line)">Аа</span>Основной текст<span class="r num">18,3 : 1</span><span class="ok">AA</span></div>
+      <div class="pair"><span class="aa" style="background:#F8F6FF;color:#5B5670;border:1px solid var(--line)">Аа</span>Подписи<span class="r num">7,0 : 1</span><span class="ok">AA</span></div>
+      <div class="pair"><span class="aa" style="background:#6B2BE8;color:#fff">Аа</span>Кнопки и ссылки<span class="r num">6,7 : 1</span><span class="ok">AA</span></div>
+      <div class="pair"><span class="aa" style="background:#E0246F;color:#fff">Аа</span>Текст на родоните<span class="r num">4,5 : 1</span><span class="ok">AA</span></div>
+      <div class="pair"><span class="aa" style="background:#00B386;color:#16112B">Аа</span>Текст на малахите<span class="r num">6,8 : 1</span><span class="ok">AA</span></div>
+      <div class="pair"><span class="aa" style="background:#16112B;color:#FFC21A">Аа</span>Золото на тёмном<span class="r num">11,3 : 1</span><span class="ok">AA</span></div>
+    </div>
+    <div>
+      <h4>Заголовки · PT Sans Narrow</h4>
+      <div class="type1">Поступление<br>в УрФУ</div>
+      <p class="cap" style="margin-bottom:6mm">Узкий и плотный — как надписи на фасадах. Длинные русские слова помещаются в заголовок даже на телефоне.</p>
+      <h4>Текст · IBM Plex Sans</h4>
+      <p class="type2">Основной текст — 16–19 пикселей, межстрочный интервал 1,5. Подписи — 14–15, не меньше 13. <b>Полужирный — для цифр и главного в строке.</b></p>
+      <p class="cap">Оба шрифта лежат на самом сайте — без внешних сервисов.</p>
+    </div>
+    <div>
+      <h4>Кнопки</h4>
+      <div class="el"><span class="btn p">Подобрать программу</span><span class="btn sec">Как поступить</span></div>
+      <h4>Чипы-фильтры</h4>
+      <div class="el"><span class="chip on">Все</span><span class="chip">IT</span><span class="chip">Инженерия</span><span class="chip">Экономика</span></div>
+      <h4>Метки</h4>
+      <div class="el"><span class="tag">Бакалавриат</span><span class="tag" style="background:#DDF6EE;color:#0A6A52">Ваших баллов хватает</span></div>
+      <h4>Поле ввода</h4>
+      <div class="el"><span class="inp">Например, 240…</span></div>
+      <h4>Размер нажатия</h4>
+      <div class="el"><span class="tap">44 × 44</span><span class="cap" style="margin:0;flex:1">Не меньше — на всех кнопках и ссылках-плитках.</span></div>
+    </div>
+  </div>
+  <div class="ds2">
+    <div class="card"><span class="focus">Фокус</span><div><h3>Фокус всегда виден</h3><p>Рамка 3 пикселя цвета аметиста вокруг того, что выбрано с клавиатуры.</p></div></div>
+    <div class="card"><span class="rads"><i style="border-radius:4px"></i><i style="border-radius:8px"></i><i style="border-radius:10px"></i></span><div><h3>Скругления 4 / 8 / 10</h3><p>Три размера на весь сайт — заданы один раз в site.css.</p></div></div>
+    <div class="card"><span class="grid-demo"><i></i><i></i><i></i><i></i></span><div><h3>Ширина 1280 пикселей</h3><p>Поля по краям: 32 на компьютере, 16 на телефоне, 12 на самых узких.</p></div></div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Все значения — в одном месте, в site.css: поменять цвет можно для всего сайта сразу</span><span class="sp"></span><b>12</b></div>
+</section>
+
+<!-- ═══ 13. Доступность ═══ -->
+<section class="s dark">
+  <div class="kick"><span>12</span> Для всех</div>
+  <h2 class="h">Доступность</h2>
+  <p class="lead">Сайт университета должен работать для каждого: с плохим зрением, без мыши, на старом телефоне.</p>
+  <div class="a11y">
+    <div><div class="win" style="border:0"><div class="bar"><i></i><i></i><i></i><u>Панель «Версия для слабовидящих» — на любой странице</u></div><img src="img/d-a11y.jpg" alt=""></div>
+      <p class="cap"><b>Не отдельный сайт, а панель поверх страницы:</b> размер текста, 5 цветовых схем, изображения, интервал. Настройки запоминаются.</p></div>
+    <ul class="chk">
+      <li><i></i><div><b>0 ошибок WCAG 2.2 AA</b>Проверка axe на всех страницах, на телефоне и компьютере.</div></li>
+      <li><i></i><div><b>Всё — с клавиатуры</b>Tab и Enter, фокус всегда виден, ссылка «Перейти к содержимому».</div></li>
+      <li><i></i><div><b>Смысл не только цветом</b>Статусы подписаны словами.</div></li>
+      <li><i></i><div><b>Меньше движения</b>Если в системе включено «уменьшить движение», анимации выключаются.</div></li>
+      <li><i></i><div><b>Лёгкие страницы</b>~300 КБ, без внешних сервисов и чужих скриптов.</div></li>
+      <li><i></i><div><b>Английская версия</b>Главная, каталог, поступление и вход.</div></li>
+    </ul>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>13</b></div>
+</section>
+
+<!-- ═══ 14. 20 функций ═══ -->
+<section class="s">
+  <div class="kick"><span>13</span> Возможности</div>
+  <h2 class="h">20 вещей, которых нет на urfu.ru</h2>
+  <p class="lead">Или до которых там нужно долго идти. Каждая — рабочая страница прототипа, а не картинка.</p>
+  <div class="f20">
+    <div><b>Главная под роль</b>5 ролей: свой заголовок, порядок блоков и «Главное для вас»</div>
+    <div><b>Хватит ли баллов</b>Ползунок на главной и фильтр в каталоге против проходных прошлых лет</div>
+    <div><b>Подбор за 3 вопроса</b>Интересы, предметы, баллы — и список подходящих программ</div>
+    <div><b>Сравнение программ</b>До трёх рядом: баллы, места, цена, экзамены</div>
+    <div><b>Страница программы</b>Учебный план, проекты, преподаватели, партнёры</div>
+    <div><b>Календарь и стоимость</b>Даты приёма-2026 и цена за год, семестр и 4 года</div>
+    <div><b>Найди себя в списках</b>Демо поиска по СНИЛС: место, баллы, согласие</div>
+    <div><b>Расписание группы</b>Недели, вид «день», «идёт сейчас», в календарь телефона</div>
+    <div><b>Общежития и цены</b>Все общежития с ценами по приказам и карта двух кампусов</div>
+    <div><b>Центр помощи</b>30 ответов с источниками, справочник, словарик</div>
+    <div><b>Наука</b>54 проекта «Приоритет-2030» с поиском, 28 научных школ</div>
+    <div><b>Кабинет студента</b>Пары, баллы БРС, стипендия 2026, пропуск — демо</div>
+    <div><b>Баллы за достижения</b>Аттестат, ГТО, олимпиады — плюс к ЕГЭ, не больше 10</div>
+    <div><b>Куда с моими ЕГЭ</b>Выбираете предметы — видите институты и программы</div>
+    <div><b>Новости</b>Лента по месяцам с источниками, поиск, афиша</div>
+    <div><b>Умный поиск</b>Понимает «общага» и «стипуха», прощает опечатки, Ctrl+K</div>
+    <div><b>Для слабовидящих</b>Размер, 5 схем, изображения, интервал — на любой странице</div>
+    <div><b>Студенческая жизнь</b>29 настоящих организаций с фильтром, традиции</div>
+    <div><b>Справочник служб</b>20 служб с поиском: от приёмной до бюро пропусков</div>
+    <div><b>English</b>Главная, каталог, поступление и вход на английском</div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Полный список с переходами — на странице «Концепция»: Concept.dc.html</span><span class="sp"></span><b>14</b></div>
+</section>
+
+<!-- ═══ 15. Данные и проверка ═══ -->
+<section class="s">
+  <div class="kick"><span>14</span> Честность</div>
+  <h2 class="h">Только настоящие данные</h2>
+  <p class="lead">Цифры, даты, цены и контакты взяты из открытых источников. Где показан пример (пары в расписании, демо-кабинет, поиск в списках), это подписано прямо на странице.</p>
+  <div class="srcs">
+    <div class="card"><h3>urfu.ru</h3><p>Календарь приёма, контакты, научные проекты и школы, ответы приёмной комиссии — копии в веб-архиве</p></div>
+    <div class="card"><h3>Приказы УрФУ</h3><p>Цены всех общежитий</p></div>
+    <div class="card"><h3>programs.edu.urfu.ru</h3><p>Учебный план, преподаватели, партнёры и проекты программ</p></div>
+    <div class="card"><h3>«Навигатор первокурсника»</h3><p>Суммы стипендий 2026 года, пропуск, заселение, словарик, 29 организаций — privet.urfu.ru</p></div>
+    <div class="card"><h3>Сайты институтов</h3><p>История и лаборатории ИРИТ-РтФ, шкала БРС, мероприятия для школьников</p></div>
+    <div class="card"><h3>СМИ</h3><p>РИА Новости, «Коммерсантъ», ОТВ, E1.ru — новости и итоги приёма</p></div>
+  </div>
+  <h3 class="nar" style="font-size:28px;margin-top:12mm">Как мы проверяли</h3>
+  <div class="checks">
+    <div class="stat"><div class="big num">0</div><p>ошибок доступности (axe, WCAG 2.2 AA) на всех страницах</p></div>
+    <div class="stat"><div class="big num">141</div><p>адрес обойдён роботом — без битых ссылок и ошибок скриптов</p></div>
+    <div class="stat"><div class="big num">320–1920</div><p>пикселей ширины — ничего не вылезает за экран</p></div>
+    <div class="stat"><div class="big num">~300 КБ</div><p>весит обычная страница; без внешних сервисов и чужих скриптов</p></div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Под каждой ценой и цифрой на сайте — ссылка на источник</span><span class="sp"></span><b>15</b></div>
+</section>
+
+<!-- ═══ 16. Итог ═══ -->
+<section class="s dark">
+  <div class="kick"><span>15</span> Итог</div>
+  <h2 class="h">Результат в цифрах</h2>
+  <div class="res">
+    <div class="stat"><div class="big num">22 → 6</div><p>пунктов меню</p></div>
+    <div class="stat"><div class="big num">419 → 145</div><p>ссылок на главной</p></div>
+    <div class="stat"><div class="big num">40 → 0</div><p>других сайтов в ссылках с главной</p></div>
+    <div class="stat"><div class="big num">15 → 4</div><p>действий до ответа по 7 частым задачам</p></div>
+    <div class="stat"><div class="big num">— → 1</div><p>адрес общежития: на urfu.ru не найти</p></div>
+  </div>
+  <h3 class="nar" style="font-size:24px;margin-top:7mm">Что дальше — после конкурса</h3>
+  <p class="lead" style="margin-top:2mm">Прототип показывает, как должен работать сайт. Чтобы он стал настоящим, его нужно подключить к системам университета.</p>
+  <div class="next">
+    <div><b>Расписание</b>Подключить к базе приложения «УрФУ.Учеба» — вместо примера появятся настоящие пары.</div>
+    <div><b>Личный кабинет</b>Вход через id.urfu.ru: баллы, справки и пропуск — из iStudent.</div>
+    <div><b>Каталог и цены</b>Брать программы, места и баллы с programs.edu.urfu.ru — один источник.</div>
+    <div><b>Новости и события</b>Выгрузка из редакции портала; прошедшие события сайт уже убирает сам.</div>
+    <div><b>Проверка на людях</b>Задания готовы: время и клики по шести частым задачам против urfu.ru.</div>
+    <div><b>Английская версия</b>Перевести остальные разделы.</div>
+  </div>
+  <div class="links">
+    <div class="q"><img src="img/qr.svg" alt="QR-код ссылки на сайт"></div>
+    <div><b>Посмотреть сайт:</b> <a href="https://gagamix228.github.io/urfu-redesign/">gagamix228.github.io/urfu-redesign</a> — начните с главной и выберите роль<br>
+    <b>Концепция и разбор urfu.ru:</b> <a href="https://gagamix228.github.io/urfu-redesign/Concept.dc.html">gagamix228.github.io/urfu-redesign/Concept.dc.html</a><br>
+    <b>Код:</b> <a href="https://github.com/GAGAMIX228/urfu-redesign">github.com/GAGAMIX228/urfu-redesign</a></div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта · конкурс «Взломай веб-дизайн», 2026</span><span class="sp"></span><b>16</b></div>
+</section>
+
+</body>
+</html>
