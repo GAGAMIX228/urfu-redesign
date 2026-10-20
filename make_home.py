@@ -148,6 +148,20 @@ def panels_html(t):
     return '<div class="me-panels">' + ''.join(out) + '</div>'
 
 
+def nums_html(t):
+    """«УрФУ в цифрах» на русской главной — только числа, которые уже подтверждены на страницах сайта."""
+    if not t.get('who'):
+        return ''
+    N = [('1920', 'год основания', 'Institute.dc.html'), ('13', 'институтов', 'Institute.dc.html'), ('49 832', 'заявления на бюджет в 2026 году', 'Article.dc.html'),
+         ('18', 'общежитий в двух кампусах', 'Dorms.dc.html'), ('54', 'проекта «Приоритет-2030»', 'Science.dc.html'), ('28', 'ведущих научных школ', 'Science.dc.html#sch-h')]
+    li = ''.join(f'<li><a href="{h}"><b>{a}</b><span>{b}</span></a></li>' for a, b, h in N)
+    return f"""
+<section class="fd-sec yu-nums-sec" aria-labelledby="nums-h"><div class="wrap">
+<h2 class="fd-h2" id="nums-h">УрФУ в цифрах</h2>
+<ul class="yu-nums">{li}</ul>
+</div></section>"""
+
+
 def now_html(t):
     """«Этой осенью» на русской главной: сроки, которые идут сейчас (источники — на страницах по ссылкам)."""
     if not t.get('who'):
@@ -289,6 +303,7 @@ def main_html(t):
 <div class="yu-life">{life}</div>
 </div></section>
 {sci_html(t)}
+{nums_html(t)}
 <section class="yu-ask" aria-labelledby="ask-h"><div class="wrap yu-ask-in">
 <div><h2 id="ask-h">{t['ask_h']}</h2><p>{t['ask_lead']}</p><a class="btn2 yu-btn-line" href="{t['ask_all'][0]}">{t['ask_all'][1]}</a></div>
 <div class="yu-ask-list">{ask}</div>
