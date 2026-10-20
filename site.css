@@ -1209,5 +1209,5 @@ li:nth-child(5n+2) > .stp{--c:var(--amethyst)}li:nth-child(5n+3) > .stp{--c:#0A7
 .cab-rl li{display:flex;gap:10px;align-items:center}
 .cab-rl i{flex:0 0 18px;height:18px;border-radius:5px}
 @media (max-width:900px){.cab-cols{grid-template-columns:minmax(0,1fr)}.cab-sum{grid-template-columns:repeat(2,minmax(0,1fr))}.cab-fl{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:520px){.cab .card{padding:20px 16px}.cab-gh{font-size:32px}.cab-scale{grid-template-columns:repeat(2,minmax(0,1fr))}.cab-sbig{font-size:40px}.cab-sum b{font-size:26px}}
+@media (max-width:520px){.cab-dorms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.cab-dorms .chip{white-space:normal;text-align:left;justify-content:flex-start;line-height:1.25;padding:6px 10px;font-size:13px}.cab .card{padding:20px 16px}.cab-gh{font-size:32px}.cab-scale{grid-template-columns:repeat(2,minmax(0,1fr))}.cab-sbig{font-size:40px}.cab-sum b{font-size:26px}}
 /* /Кабинет v3 */
