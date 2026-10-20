@@ -506,8 +506,19 @@ html[class*="vi-"] *{animation:none !important;transition:none !important}
 /* ═══ «Яркий Урал» на внутренних страницах ═══ */
 /* цветная шапка: у каждого раздела свой самоцвет; текст на всех — тёмный (контраст проверен) */
 .phead{--ph:#C9B2FF;background:var(--ph) !important;overflow:hidden;padding-bottom:64px}
-body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead{--ph:var(--gold)}
-body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead{--ph:#FF8DB8}
+body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead{--ph:var(--rhodonite-d)}
+body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead{--ph:var(--amethyst)}
+/* Шапки-самоцветы: на тёмном родоните и аметисте текст белый (контраст: белый 5,6:1 и 6,7:1, подписи #F1ECFF — 4,8:1 и 5,8:1).
+   Только без цветовых схем версии для слабовидящих — у них свои цвета. */
+html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead h1,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead h1{color:#FFFFFF !important}
+html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead p,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead p,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead .muted,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead .muted,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead .crumbs,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead .crumbs,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead .crumbs a,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead .crumbs a{color:#F1ECFF !important}
+html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead a:not(.btn):not(.btn2):not(.chip):not(.tag),html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead a:not(.btn):not(.btn2):not(.chip):not(.tag){color:#FFFFFF !important}
+html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead :focus-visible,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead :focus-visible{outline-color:#FFFFFF !important}
+html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead::after,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead::after{background:rgba(255,255,255,.12) !important}
+html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead::before,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead::before{background:rgba(0,0,0,.12) !important}
+html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead .ph-hex::before,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead .ph-hex::before{background:var(--gold) !important}
+html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Admission"]) .phead .g4 .muted,html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead .g4 .muted{color:var(--muted) !important}
+html:not([class*="vi-c"]) body:has(.hd .nav a[aria-current="page"][href^="Life"]) .phead .btn{background:var(--gold) !important;color:var(--ink) !important;border-color:var(--gold) !important}
 body:has(.hd .nav a[aria-current="page"][href^="Contacts"]) .phead{--ph:#5FE3BE}
 .phead::after{content:"";display:block !important;position:absolute;right:-60px;top:-40px;width:340px;height:340px;background:rgba(255,255,255,.28);
   clip-path:polygon(50% 0,100% 30%,100% 70%,50% 100%,0 70%,0 30%);pointer-events:none}
