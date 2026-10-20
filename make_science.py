@@ -287,7 +287,7 @@ const AN = {}; AREAS.forEach(x => AN[x[0]] = x[1]);
 const words = q0.toLowerCase().split(/\\s+/).filter(w => w.length > 1).map(w => w.slice(0, Math.max(4, w.length - 2)));
 const all = P.filter(p => (t === 'all' || p[0] === t) && (a === 'all' || p[2].indexOf(a) !== -1) && words.every(w => p[1].toLowerCase().indexOf(w) !== -1));
 const filtered = !!q0 || a !== 'all' || t !== 'all';
-const LIM = 30, open = st.all || filtered;
+const LIM = 60, open = st.all || filtered;
 const list = (open ? all : all.slice(0, LIM)).map(p => ({ k: p[0], kn: TS[p[0]], t: p[1], an: p[2].map(x => AN[x]).join(' · ') }));
 const n = all.length;
 const form = n % 10 === 1 && n % 100 !== 11 ? 'проект' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'проекта' : 'проектов';
@@ -297,7 +297,7 @@ return {
   areas: [['all', 'Все области']].concat(AREAS).map(x => ({ n: x[1], on: String(x[0] === a), pick: () => this.setState({ a: x[0] }) })),
   types: TYPES.map(x => ({ n: x[1], on: String(x[0] === t), pick: () => this.setState({ t: x[0] }) })),
   list, none: n === 0, more: !open && n > LIM, total: n,
-  countText: filtered ? (n ? 'Нашлось ' + n + ' ' + form : 'Ничего не нашлось') : 'Показаны ' + Math.min(LIM, n) + ' из ' + n + ' проектов',
+  countText: filtered ? (n ? 'Нашлось ' + n + ' ' + form : 'Ничего не нашлось') : (n <= LIM ? 'Все ' + n + ' ' + form : 'Показаны ' + LIM + ' из ' + n + ' проектов'),
   showAll: () => this.setState({ all: true }),
   reset: () => this.setState({ q: '', a: 'all', t: 'all' }),
   pickYoung: () => { this.setState({ t: 'young', a: 'all', q: '' }); go('proj-h'); },
