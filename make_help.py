@@ -14,8 +14,11 @@ SRC = {
     'kom': 'https://www.kommersant.ru/doc/8607360',
     'insma': 'https://insma.urfu.ru/shkolniku/',
     'prog': 'https://programs.edu.urfu.ru/ru/9797/pages/iot/',
+    'privet': 'https://privet.urfu.ru/money',
+    'pbaza': 'https://privet.urfu.ru/baza',
+    'pmil': 'https://privet.urfu.ru/military',
 }
-SRCN = {'kom': 'Коммерсантъ', 'insma': 'insma.urfu.ru', 'prog': 'programs.edu.urfu.ru'}
+SRCN = {'kom': 'Коммерсантъ', 'insma': 'insma.urfu.ru', 'prog': 'programs.edu.urfu.ru', 'privet': 'Навигатор первокурсника', 'pbaza': 'Навигатор первокурсника', 'pmil': 'Навигатор первокурсника'}
 
 TOPICS = [('all', 'Все'), ('adm', 'Поступление'), ('dorm', 'Общежитие'), ('study', 'Учёба'), ('health', 'Здоровье'), ('money', 'Деньги'), ('it', 'Wi-Fi и почта')]
 
@@ -36,8 +39,12 @@ FAQ = [
     ('study', 'Куда жаловаться, если нарушают права студента?', 'Горячая линия Минобрнауки по правовой и социальной защите студентов: 8-800-222-55-71, добавочный 1. Учёба и аттестация, перевод, стипендии, общежитие, документы об образовании.', '', '', 'line'),
     ('health', 'Где медпункт и поликлиника?', 'Медсанчасть УрФУ — ул. Комсомольская, 59, пн–пт 8:00–18:00. В кампусе Новокольцовский — медцентр на ул. 100-летия Университета, стр. 10, пн–пт 8:30–17:00.', 'Contacts.dc.html', 'На карте', 'pos'),
     ('health', 'Мне тяжело, нужна психологическая помощь', 'Горячая линия психологической помощи студентам: 8-800-222-55-71, добавочный 2. Тревога, напряжение в учёбе, трудности в отношениях. Звонок бесплатный.', '', '', 'line'),
+    ('money', 'Сколько платят стипендию?', 'Государственная академическая в 2026 году: 2 314,20 ₽ в месяц на 1 курсе до первой сессии (её получают все бюджетники очной формы), 3 008,20 ₽ — после сессии на «хорошо» и «отлично», 4 398 ₽ — отличникам. В магистратуре — 4 398 ₽ и 6 480,60 ₽ отличникам. Это без уральского коэффициента — на руки чуть больше.', 'Cabinet.dc.html#cs-h', 'Посчитать в кабинете', 'privet'),
+    ('money', 'Когда назначают стипендию после сессии?', 'По итогам зимней сессии — на период с 1 февраля по 30 июня, по итогам летней — с 1 июля по 31 января. Нужно сдать сессию на «хорошо» и «отлично» без долгов.', '', '', 'privet'),
     ('money', 'Кто поможет со стипендией и выплатами?', 'Начисления ведёт ваш институт. Если выплату задерживают или отказывают без причины — горячая линия Минобрнауки 8-800-222-55-71, добавочный 1.', '', '', 'line'),
     ('money', 'Как оплатить общежитие или медосмотр?', 'Через сервис электронных платежей УрФУ pay.urfu.ru, Систему быстрых платежей по QR-коду или в кассе медсанчасти.', '', '', 'pos'),
+    ('study', 'Как получить пропуск в университет?', 'Загрузите фото и подпишите согласие в личном кабинете студента. После проверки фото (до 5 рабочих дней) в кабинете появится QR-код — по нему проходят до 26 октября. За это время дирекция института выдаёт пластиковый пропуск. Не работает пропуск — бюро пропусков, ауд. И-104.', 'Cabinet.dc.html#cp-h', 'Статус пропуска', 'pbaza'),
+    ('study', 'Дают ли студентам отсрочку от армии?', 'Да: студентам очной формы — на весь нормативный срок обучения. А ещё в УрФУ есть военный учебный центр: туда поступают по заявлению на имя ректора, с направлением из военкомата и сдачей нормативов.', 'Cabinet.dc.html#ca-h', 'Справка в военкомат', 'pmil'),
     ('it', 'Не работает Wi-Fi, почта или доступ к сервисам', 'Техподдержка УрФУ: +7 (343) 227-20-70, support@urfu.ru.', '', '', 'cont'),
     ('it', 'Я первокурсник — что сделать в первую очередь?', 'Активировать учётную запись в личном кабинете студента и выбрать там вид спорта для занятий физкультурой. Если войти не получается — техподдержка: +7 (343) 227-20-70.', 'Login.dc.html', 'Личный кабинет', 'kom'),
     ('study', 'Когда осенью 2026 года начались очные занятия?', 'После 15 октября. С 1 сентября все курсы учились в гибридном и дистанционном формате: в Екатеринбурге 11–17 сентября проходил Международный фестиваль молодёжи. Так решил приказ ректора.', 'News.dc.html', 'Новости', 'kom'),
@@ -57,7 +64,7 @@ TASKS = [
     ('Пройти медосмотр', 'Где и что взять', 'Help.dc.html?q=медосмотр'),
     ('Оплатить общежитие', 'Онлайн и по QR-коду', 'Help.dc.html?q=оплат'),
     ('Починить Wi-Fi и почту', 'Телефон техподдержки', 'Help.dc.html?q=wi-fi'),
-    ('Узнать про стипендию', 'Кто начисляет', 'Help.dc.html?q=стипенд'),
+    ('Узнать про стипендию', 'Суммы 2026 года', 'Help.dc.html?q=стипенд'),
     ('Поговорить с психологом', 'Бесплатная горячая линия', '#hl-h'),
 ]
 
@@ -111,7 +118,7 @@ def main_html():
 <sc-if value="{{{{dirNone}}}}" hint-placeholder-val="{{{{false}}}}"><p class="muted">По этому запросу служб не нашлось — <button type="button" class="hp-link" onClick="{{{{clear}}}}">показать все</button>.</p></sc-if>
 </div>
 <h2 id="if-h" style="margin-top:56px">Что делать, если…</h2>
-<div class="hp-scs"><a class="hp-sc" href="Help.dc.html?q=стипенд"><b>Не пришла стипендия</b><span>Сначала — в дирекцию своего института. Если не помогли — горячая линия Минобрнауки 8-800-222-55-71, доб. 1.</span></a><a class="hp-sc" href="Help.dc.html?q=wi-fi"><b>Не могу войти в кабинет или почту</b><span>Техподдержка УрФУ: +7 (343) 227-20-70, support@urfu.ru.</span></a><a class="hp-sc" href="#hl-h"><b>Нарушают мои права</b><span>Учёба, перевод, общежитие, документы — горячая линия 8-800-222-55-71, доб. 1. Звонок бесплатный.</span></a><a class="hp-sc" href="#hl-h"><b>Тяжело, тревожно</b><span>Психологическая помощь студентам: 8-800-222-55-71, доб. 2. Бесплатно по России.</span></a><a class="hp-sc" href="Help.dc.html?q=мед"><b>Заболел</b><span>Медсанчасть УрФУ — ул. Комсомольская, 59, пн–пт 8:00–18:00. В Новокольцовском — свой медцентр.</span></a><a class="hp-sc" href="Cabinet.dc.html#cr-h"><b>Нужна справка в военкомат</b><span>Закажите в кабинете студента — вместе с другими справками.</span></a></div>
+<div class="hp-scs"><a class="hp-sc" href="Help.dc.html?q=стипенд"><b>Не пришла стипендия</b><span>Сначала — в дирекцию своего института. Если не помогли — горячая линия Минобрнауки 8-800-222-55-71, доб. 1.</span></a><a class="hp-sc" href="Help.dc.html?q=wi-fi"><b>Не могу войти в кабинет или почту</b><span>Техподдержка УрФУ: +7 (343) 227-20-70, support@urfu.ru.</span></a><a class="hp-sc" href="#hl-h"><b>Нарушают мои права</b><span>Учёба, перевод, общежитие, документы — горячая линия 8-800-222-55-71, доб. 1. Звонок бесплатный.</span></a><a class="hp-sc" href="#hl-h"><b>Тяжело, тревожно</b><span>Психологическая помощь студентам: 8-800-222-55-71, доб. 2. Бесплатно по России.</span></a><a class="hp-sc" href="Help.dc.html?q=мед"><b>Плохо со здоровьем</b><span>Медсанчасть УрФУ — ул. Комсомольская, 59, пн–пт 8:00–18:00. В Новокольцовском — свой медцентр.</span></a><a class="hp-sc" href="Cabinet.dc.html#cr-h"><b>Нужна справка в военкомат</b><span>Закажите в кабинете студента — вместе с другими справками.</span></a></div>
 
 <h2 id="where-h" style="margin-top:56px">Где что находится</h2>
 <ul class="hp-where">
@@ -132,8 +139,19 @@ def main_html():
 </div>
 <p class="muted" style="font-size:14px;margin-top:12px">По данным <a href="https://privet.urfu.ru/navigation" target="_blank" rel="noopener">«Навигатора первокурсника» УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>. Расписание есть и в официальном приложении «УрФУ.Учеба».</p>
 
+<h2 id="dict-h" style="margin-top:56px">Словарик первокурсника</h2>
+<p class="muted" style="margin-top:8px;max-width:720px">Слова, которые вы услышите в первую же неделю.</p>
+<dl class="hp-dict"><div><dt>Паркет</dt><dd>Фойе второго этажа ГУК — место встреч, здесь пережидают «большак».</dd></div><div><dt>Большак</dt><dd>Большая перемена между 3-й и 4-й парой: 45 минут на Мира, 19 и 40 минут на Ленина, 51.</dd></div><div><dt>ГУК</dt><dd>Главный учебный корпус, ул. Мира, 19.</dd></div><div><dt>Куба</dt><dd>Учебный корпус на ул. Куйбышева, 48 — так его зовут студенты ИЕНиМ.</dd></div><div><dt>Пекус</dt><dd>Первокурсник. Не обидно — с любовью.</dd></div><div><dt>Хвостовка</dt><dd>Экзаменационный лист: его берут в дирекции перед пересдачей.</dd></div><div><dt>БРС</dt><dd>Балльно-рейтинговая система: баллы из 100, которые превращаются в оценку.</dd></div><div><dt>Стипа</dt><dd>Стипендия.</dd></div><div><dt>ПОС</dt><dd>Союз студентов УрФУ: события и защита прав студентов. ГУК-309.</dd></div><div><dt>ПБ</dt><dd>Профбюро — союз студентов вашего института.</dd></div><div><dt>Деканат</dt><dd>Дирекция института: вопросы про учёбу и расписание — туда.</dd></div><div><dt>Вектан, сопромат, термех</dt><dd>Векторный анализ, сопротивление материалов, теоретическая механика.</dd></div></dl>
+
+<div class="hp-two hp-num">
+<div class="card"><h3>Как читать номер группы</h3><p class="hp-code" aria-hidden="true"><span class="c1">РИ</span><span class="c2">1</span><span class="c3">4</span><span class="c4">0944</span></p><ul class="hp-cl"><li><i class="c1"></i>Буквы — институт</li><li><i class="c2"></i>Первая цифра — курс</li><li><i class="c3"></i>Вторая — последняя цифра года поступления</li><li><i class="c4"></i>Дальше — шифр направления</li></ul></div>
+<div class="card"><h3>Как читать номер аудитории</h3><p class="hp-code" aria-hidden="true"><span class="c1">Р</span><span class="c2">1</span><span class="c4">38а</span></p><ul class="hp-cl"><li><i class="c1"></i>Буквы — корпус. У корпусов в центре города букв обычно нет</li><li><i class="c2"></i>Первая цифра — этаж</li><li><i class="c4"></i>Дальше — номер по порядку от входа в коридор</li></ul></div>
+</div>
+<p class="muted" style="font-size:14px;margin-top:12px">По разделам «Об университете» и «Интересные факты» <a href="https://privet.urfu.ru/about" target="_blank" rel="noopener">«Навигатора первокурсника»<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
+
 <h2 id="svc-h" style="margin-top:56px">Полезные сервисы УрФУ</h2>
 <div class="hp-svcs">
+<a href="https://istudent.urfu.ru/" target="_blank" rel="noopener"><b>istudent.urfu.ru</b><span>Личный кабинет студента: зачётка, справки, физкультура</span><i class="sr"> (откроется в новой вкладке)</i></a>
 <a href="https://pay.urfu.ru/" target="_blank" rel="noopener"><b>pay.urfu.ru</b><span>Оплата общежития, медосмотра и услуг</span><i class="sr"> (откроется в новой вкладке)</i></a>
 <a href="https://programs.edu.urfu.ru/" target="_blank" rel="noopener"><b>programs.edu.urfu.ru</b><span>Учебные планы, преподаватели и документы программ</span><i class="sr"> (откроется в новой вкладке)</i></a>
 <a href="https://dovuz.urfu.ru/" target="_blank" rel="noopener"><b>dovuz.urfu.ru</b><span>Олимпиады и занятия для школьников</span><i class="sr"> (откроется в новой вкладке)</i></a>
@@ -282,6 +300,19 @@ CSS = '''
 @media (max-width:980px){.hp-need{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:620px){.hp-f2{grid-template-columns:1fr}}
 @media (max-width:980px){.hp-body{grid-template-columns:1fr}.hp-side{position:static}}
+.hp-dict{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0 0}
+.hp-dict div{padding:16px 18px;border-radius:16px;background:#FFFFFF;border:1px solid var(--limestone)}
+.hp-dict dt{font-family:var(--narrow);font-size:22px;font-weight:700;color:var(--amethyst)}
+.hp-dict dd{margin:4px 0 0;font-size:15px}
+.hp-num{margin-top:24px}
+.hp-code{display:flex;gap:4px;margin-top:12px;font-family:var(--narrow);font-size:36px;font-weight:700;line-height:1}
+.hp-code span{padding:6px 10px;border-radius:10px}
+.hp-code .c1,.hp-cl .c1{background:#FFD9E7}.hp-code .c2,.hp-cl .c2{background:#FFF0C2}.hp-code .c3,.hp-cl .c3{background:#CFF3E6}.hp-code .c4,.hp-cl .c4{background:#E3D6FF}
+.hp-cl{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.hp-cl li{display:flex;gap:10px;align-items:center}
+.hp-cl i{flex:0 0 18px;height:18px;border-radius:5px}
+@media (max-width:900px){.hp-dict{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.hp-dict{grid-template-columns:1fr}}
 @media (max-width:620px){.hp-dir{grid-template-columns:1fr}.hp-search input{font-size:16px}}
 '''
 
