@@ -79,6 +79,37 @@
 @media (max-width:1000px){.cf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.cf-grid{grid-template-columns:1fr}}
 </style>
+<style id="ds-css">
+.ds-h{font-family:var(--narrow);font-size:26px;margin-top:36px}
+.ds-col{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.ds-col li{display:flex;flex-direction:column;gap:4px;font-size:14px}
+.ds-sw{display:flex;flex-direction:column;justify-content:flex-end;min-height:120px;padding:14px;border-radius:16px;border:1px solid var(--line)}
+.ds-sw b{font-family:var(--narrow);font-size:22px}
+.ds-col code{font-weight:700;font-size:15px}
+.ds-col>li>span{color:var(--muted)}
+.ds-col em{font-style:normal;font-weight:600;font-size:13px}
+.ds-col em.is-ok{color:#04735A}.ds-col em.is-big{color:#8A5A00}
+.ds-pairs{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.ds-pairs li{display:grid;grid-template-columns:56px 1fr;gap:2px 12px;align-items:center;padding:10px;border-radius:14px;background:#FFFFFF;border:1px solid var(--line)}
+.ds-tx{grid-row:span 2;display:grid;place-items:center;height:56px;border-radius:10px;font-family:var(--narrow);font-size:28px;font-weight:700;border:1px solid var(--line)}
+.ds-pairs b{font-size:14px}.ds-pairs li>span:last-child{font-family:var(--narrow);font-size:20px;font-weight:700}
+.ds-type{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.ds-type .card{display:flex;flex-direction:column;gap:6px}
+.ds-k{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.ds-t1{font-family:var(--narrow);font-weight:700;font-size:48px;line-height:1}.ds-t2{font-family:var(--narrow);font-weight:700;font-size:32px;line-height:1.1}.ds-t3{font-family:var(--narrow);font-weight:700;font-size:24px}
+.ds-b1{font-size:18px}.ds-b2{font-size:15px;color:var(--muted)}.ds-b3{font-size:16px}
+.ds-ui{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:16px}
+.ds-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.ds-in{display:inline-flex;align-items:center;color:var(--muted);min-width:200px}
+.ds-cut{display:inline-block;padding:16px 26px;background:var(--rhodonite);color:#FFFFFF;font-weight:700;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
+.ds-tap{display:grid;place-items:center;width:44px;height:44px;border:2px dashed var(--amethyst);border-radius:8px;font-size:10px;font-weight:700}
+.ds-rules{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ds-rules li{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:16px;background:var(--ink);color:#FFFFFF}
+.ds-rules b{font-family:var(--narrow);font-size:20px;color:var(--gold)}
+.ds-rules span{font-size:15px;color:var(--on-dark-muted)}
+@media (max-width:1000px){.ds-col{grid-template-columns:repeat(3,minmax(0,1fr))}.ds-pairs{grid-template-columns:repeat(2,minmax(0,1fr))}.ds-ui,.ds-rules{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.ds-col{grid-template-columns:repeat(2,minmax(0,1fr))}.ds-pairs,.ds-type,.ds-ui,.ds-rules{grid-template-columns:minmax(0,1fr)}.ds-t1{font-size:38px}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -114,7 +145,7 @@
 <div class="sec-head"><div><div class="kicker">Идея</div><h2>Четыре принципа</h2></div></div>
 <div class="qgrid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
 <div class="q"><span class="t">Меню по задачам</span><span class="d">Шесть разделов вместо оргструктуры: Поступление, Обучение, Наука, Жизнь, Партнёрам, Об университете.</span></div>
-<div class="q"><span class="t">Роли на первом экране</span><span class="d">«Я поступаю», «Я учусь», «Я работаю», «International» — у каждого свои главные дела сразу на главной.</span></div>
+<div class="q"><span class="t">Роли на первом экране</span><span class="d">«Я поступаю», «Я учусь», «Я работаю», «Я партнёр», «International» — у каждого свои главные дела сразу на главной.</span></div>
 <div class="q"><span class="t">Один сайт и один поиск</span><span class="d">Приём, каталог и институты — разделы одного сайта с общим шаблоном и общим поиском.</span></div>
 <div class="q"><span class="t">Телефон и доступность</span><span class="d">Мобильное меню и нижняя панель на телефоне, контраст WCAG AA, работа с клавиатуры, версия для слабовидящих.</span></div>
 </div>
@@ -136,7 +167,7 @@
 
 <section class="wrap sec" id="structure">
 <div class="sec-head"><div><div class="kicker" style="--k:var(--a4)">Структура и навигация</div><h2>Было → стало</h2></div></div>
-<p class="muted" style="max-width:760px;margin-top:8px;font-size:17px">Сейчас на главной urfu.ru 22 пункта меню в двух рядах и 4 разных личных кабинета — меню повторяет устройство университета. Мы собрали сайт вокруг задач человека: 6 разделов, 4 роли на главной и один вход в личный кабинет.</p>
+<p class="muted" style="max-width:760px;margin-top:8px;font-size:17px">Сейчас на главной urfu.ru 22 пункта меню в двух рядах и 4 разных личных кабинета — меню повторяет устройство университета. Мы собрали сайт вокруг задач человека: 6 разделов, 5 ролей на главной и один вход в личный кабинет.</p>
 <div class="st-grid">
 <div class="st-old"><div class="st-h"><span class="st-num">22</span><span>пункта меню сейчас<br><small>urfu.ru, главная страница</small></span></div>
 <div class="st-lbl">Ряд «для кого» — 8</div><div class="st-chips"><span class="st-chip">Студентам</span><span class="st-chip">Абитуриентам</span><span class="st-chip">Школьникам</span><span class="st-chip">Сотрудникам</span><span class="st-chip">Выпускникам</span><span class="st-chip">Партнерам</span><span class="st-chip">Работодателям</span><span class="st-chip">СМИ</span></div>
@@ -144,12 +175,12 @@
 <div class="st-lbl">Личный кабинет — 4 входа</div><div class="st-chips"><span class="st-chip">Студенту</span><span class="st-chip">Сотруднику</span><span class="st-chip">Партнеру</span><span class="st-chip">Участнику ВЭД</span></div>
 </div>
 <div class="st-arrow" aria-hidden="true">→</div>
-<div class="st-newcol"><div class="st-h"><span class="st-num" style="color:var(--a1)">6</span><span>разделов в новом меню<br><small>+ 4 роли на главной, 1 личный кабинет, поиск</small></span></div>
+<div class="st-newcol"><div class="st-h"><span class="st-num" style="color:var(--a1)">6</span><span>разделов в новом меню<br><small>+ 5 ролей на главной, 1 личный кабинет, поиск</small></span></div>
 <div class="st-cards"><a class="st-new" href="Admission.dc.html" style="--c:var(--a1)"><b>Поступление</b><ul><li>Как поступить</li><li>Подбор программы за 3 вопроса</li><li>Каталог и проходные баллы</li><li>Общежития</li></ul></a><a class="st-new" href="Schedule.dc.html" style="--c:var(--a2)"><b>Обучение</b><ul><li>Расписание</li><li>Личный кабинет</li><li>Институты и кафедры</li></ul></a><a class="st-new" href="Science.dc.html" style="--c:var(--a3)"><b>Наука</b><ul><li>54 проекта «Приоритет-2030»</li><li>Научные школы</li><li>Студенту и бизнесу</li></ul></a><a class="st-new" href="Life.dc.html" style="--c:var(--a4)"><b>Жизнь в УрФУ</b><ul><li>Клубы и спорт</li><li>Творчество</li><li>Календарь событий</li></ul></a><a class="st-new" href="Contacts.dc.html" style="--c:var(--a1)"><b>Партнёрам</b><ul><li>Сотрудничество и реклама</li><li>Работодателям</li><li>Контакты служб</li></ul></a><a class="st-new" href="Institute.dc.html" style="--c:var(--a2)"><b>Об университете</b><ul><li>Новости</li><li>Новый кампус, эндаумент</li><li>Устойчивое развитие</li><li>Филиалы</li></ul></a></div></div>
 </div>
 <div class="st-changes">
 <div><h3>Убрали из главного меню</h3><p>Эндаумент, Инновации, Устойчивое развитие, Новый кампус, Филиалы — важны, но нужны немногим. Теперь они внутри «Об университете», в одном клике.</p></div>
-<div><h3>Объединили</h3><p>8 вкладок «для кого» → 4 роли на первом экране главной. Творчество и Спорт → «Жизнь в УрФУ». Образование и Институты → «Обучение». Контакты и Обратная связь → один раздел с поиском службы. 4 личных кабинета → один вход.</p></div>
+<div><h3>Объединили</h3><p>8 вкладок «для кого» → 5 ролей на первом экране главной. Творчество и Спорт → «Жизнь в УрФУ». Образование и Институты → «Обучение». Контакты и Обратная связь → один раздел с поиском службы. 4 личных кабинета → один вход.</p></div>
 <div><h3>Добавили</h3><p>Подбор программы за 3 вопроса, расписание в один клик с поиском группы, цены общежитий таблицей, центр помощи с поиском, страницу науки, календарь событий, общежития отдельным разделом, умный поиск с подсказками, отсчёт до приёма документов, английскую версию.</p></div>
 </div>
 </section>
@@ -183,10 +214,41 @@
 
 <section class="wrap sec" id="features">
 <div class="kicker" style="--k:var(--a2)">Функции</div><h2>Что умеет новый сайт</h2>
-<p class="muted" style="margin-top:12px;max-width:760px;font-size:18px">16 вещей, которых нет на urfu.ru сейчас или до которых там нужно долго идти. Каждая карточка ведёт на рабочую страницу.</p>
-<div class="cf-grid"><a class="card cf" href="Main.dc.html?role=student"><b>Главная под роль</b><span class="muted">5 ролей: поступаю, учусь, работаю, партнёр, International — свой заголовок, порядок блоков и панель «Главное для вас».</span></a><a class="card cf" href="Catalog.dc.html"><b>Хватит ли баллов</b><span class="muted">Ползунок на главной и фильтр в каталоге: сумма ЕГЭ против проходных прошлых лет.</span></a><a class="card cf" href="Quiz.dc.html"><b>Подбор за 3 вопроса</b><span class="muted">Интересы, предметы и баллы — и сразу список подходящих программ.</span></a><a class="card cf" href="Catalog.dc.html?cmp=Программная инженерия"><b>Сравнение программ</b><span class="muted">До трёх программ рядом: баллы, места, цена, экзамены.</span></a><a class="card cf" href="Program.dc.html"><b>Страница программы</b><span class="muted">Учебный план по темам, проекты, преподаватели, партнёры — с официального сайта программ.</span></a><a class="card cf" href="Admission.dc.html#calendar"><b>Календарь и стоимость</b><span class="muted">Настоящие даты приёма-2026 и калькулятор цены за год, семестр и 4 года.</span></a><a class="card cf" href="Admission.dc.html#lists"><b>Найди себя в списках</b><span class="muted">Демо поиска по СНИЛС или коду: место, баллы, согласие.</span></a><a class="card cf" href="Schedule.dc.html"><b>Расписание группы</b><span class="muted">Буквы группы списком, дефис сам; недели, вид «день», «идёт сейчас», в календарь телефона.</span></a><a class="card cf" href="Dorms.dc.html#price-h"><b>Общежития и цены</b><span class="muted">Все 15 общежитий с ценами по приказам УрФУ и карта двух кампусов.</span></a><a class="card cf" href="Help.dc.html"><b>Центр помощи</b><span class="muted">26 ответов с источниками, «Мне нужно…», справочник служб, горячие линии.</span></a><a class="card cf" href="Science.dc.html"><b>Наука</b><span class="muted">54 проекта «Приоритет-2030» с поиском, 28 научных школ, открытия 2026 года.</span></a><a class="card cf" href="Cabinet.dc.html"><b>Кабинет студента</b><span class="muted">Пары, дедлайны, уведомления, справки и плата за общежитие — демо.</span></a><a class="card cf" href="News.dc.html"><b>Новости</b><span class="muted">Лента по месяцам с источниками, поиск, афиша, подписка.</span></a><a class="card cf" href="Search.dc.html"><b>Поиск</b><span class="muted">По всему сайту, понимает «общага» и «стипуха», прощает опечатки; открывается по Ctrl+K.</span></a><a class="card cf" href="Main.dc.html"><b>Для слабовидящих</b><span class="muted">Размер текста, 5 цветовых схем, изображения, интервал — на любой странице.</span></a><a class="card cf" href="MainEn.dc.html"><b>English</b><span class="muted">Главная, каталог, поступление и вход — на английском.</span></a></div>
+<p class="muted" style="margin-top:12px;max-width:760px;font-size:18px">18 вещей, которых нет на urfu.ru сейчас или до которых там нужно долго идти. Каждая карточка ведёт на рабочую страницу.</p>
+<div class="cf-grid"><a class="card cf" href="Main.dc.html?role=student"><b>Главная под роль</b><span class="muted">5 ролей: поступаю, учусь, работаю, партнёр, International — свой заголовок, порядок блоков и панель «Главное для вас».</span></a><a class="card cf" href="Catalog.dc.html"><b>Хватит ли баллов</b><span class="muted">Ползунок на главной и фильтр в каталоге: сумма ЕГЭ против проходных прошлых лет.</span></a><a class="card cf" href="Quiz.dc.html"><b>Подбор за 3 вопроса</b><span class="muted">Интересы, предметы и баллы — и сразу список подходящих программ.</span></a><a class="card cf" href="Catalog.dc.html?cmp=Программная инженерия"><b>Сравнение программ</b><span class="muted">До трёх программ рядом: баллы, места, цена, экзамены.</span></a><a class="card cf" href="Program.dc.html"><b>Страница программы</b><span class="muted">Учебный план по темам, проекты, преподаватели, партнёры — с официального сайта программ.</span></a><a class="card cf" href="Admission.dc.html#calendar"><b>Календарь и стоимость</b><span class="muted">Настоящие даты приёма-2026 и калькулятор цены за год, семестр и 4 года.</span></a><a class="card cf" href="Admission.dc.html#lists"><b>Найди себя в списках</b><span class="muted">Демо поиска по СНИЛС или коду: место, баллы, согласие.</span></a><a class="card cf" href="Schedule.dc.html"><b>Расписание группы</b><span class="muted">Буквы группы списком, дефис сам; недели, вид «день», «идёт сейчас», в календарь телефона.</span></a><a class="card cf" href="Dorms.dc.html#price-h"><b>Общежития и цены</b><span class="muted">Все 15 общежитий с ценами по приказам УрФУ и карта двух кампусов.</span></a><a class="card cf" href="Help.dc.html"><b>Центр помощи</b><span class="muted">30 ответов с источниками, «Мне нужно…», справочник служб, словарик первокурсника.</span></a><a class="card cf" href="Science.dc.html"><b>Наука</b><span class="muted">54 проекта «Приоритет-2030» с поиском, 28 научных школ, открытия 2026 года.</span></a><a class="card cf" href="Cabinet.dc.html"><b>Кабинет студента</b><span class="muted">Пары, баллы по шкале УрФУ, стипендия по суммам 2026 года, пропуск и чек-лист первокурсника — демо.</span></a><a class="card cf" href="Admission.dc.html#ach"><b>Баллы за достижения</b><span class="muted">Отметьте аттестат, ГТО, олимпиады — посчитаем плюс к ЕГЭ по правилам приёма, не больше 10.</span></a><a class="card cf" href="Institute.dc.html#im-ex-h"><b>Куда с моими ЕГЭ</b><span class="muted">Выберите предметы — покажем институты и программы, куда они подходят.</span></a><a class="card cf" href="News.dc.html"><b>Новости</b><span class="muted">Лента по месяцам с источниками, поиск, афиша, подписка.</span></a><a class="card cf" href="Search.dc.html"><b>Поиск</b><span class="muted">По всему сайту, понимает «общага» и «стипуха», прощает опечатки; открывается по Ctrl+K.</span></a><a class="card cf" href="Main.dc.html"><b>Для слабовидящих</b><span class="muted">Размер текста, 5 цветовых схем, изображения, интервал — на любой странице.</span></a><a class="card cf" href="MainEn.dc.html"><b>English</b><span class="muted">Главная, каталог, поступление и вход — на английском.</span></a></div>
 </section>
 
+<section class="wrap sec" id="ds">
+<div class="sec-head"><div><div class="kicker" style="--k:var(--a2)">Дизайн-система</div><h2>Из чего собран сайт</h2></div></div>
+<p class="muted" style="margin-top:12px;max-width:760px;font-size:18px">Один набор цветов, шрифтов и элементов на всех страницах. Контраст посчитан по формуле WCAG — для обычного текста нужно не меньше 4,5:1.</p>
+<h3 class="ds-h">Цвета</h3>
+<ul class="ds-col"><li><div class="ds-sw" style="background:#6B2BE8;color:#FFFFFF"><b>Аметист</b><span>Текст 6.7:1</span></div><code>#6B2BE8</code><span>основной цвет, кнопки, ссылки</span><em class="is-ok">контраст AA</em></li><li><div class="ds-sw" style="background:#E0246F;color:#FFFFFF"><b>Родонит</b><span>Текст 4.5:1</span></div><code>#E0246F</code><span>акценты, «Я поступаю»</span><em class="is-ok">контраст AA</em></li><li><div class="ds-sw" style="background:#00B386;color:#16112B"><b>Малахит</b><span>Текст 6.8:1</span></div><code>#00B386</code><span>«Я работаю», успех</span><em class="is-ok">контраст AA</em></li><li><div class="ds-sw" style="background:#FFC21A;color:#16112B"><b>Золото</b><span>Текст 11.3:1</span></div><code>#FFC21A</code><span>даты, «International»</span><em class="is-ok">контраст AA</em></li><li><div class="ds-sw" style="background:#16112B;color:#FFFFFF"><b>Чернила</b><span>Текст 18.3:1</span></div><code>#16112B</code><span>текст и тёмные блоки</span><em class="is-ok">контраст AA</em></li><li><div class="ds-sw" style="background:#F8F6FF;color:#16112B"><b>Бумага</b><span>Текст 17.1:1</span></div><code>#F8F6FF</code><span>фон страниц</span><em class="is-ok">контраст AA</em></li></ul>
+<h3 class="ds-h">Пары «текст — фон»</h3>
+<ul class="ds-pairs"><li><span class="ds-tx" style="color:#16112B;background:#FFFFFF">Аа</span><b>Основной текст</b><span>18.3:1</span></li><li><span class="ds-tx" style="color:#5B5670;background:#FFFFFF">Аа</span><b>Подписи</b><span>7.0:1</span></li><li><span class="ds-tx" style="color:#6B2BE8;background:#FFFFFF">Аа</span><b>Ссылки</b><span>6.7:1</span></li><li><span class="ds-tx" style="color:#FFFFFF;background:#16112B">Аа</span><b>Текст на тёмном</b><span>18.3:1</span></li><li><span class="ds-tx" style="color:#FFC21A;background:#16112B">Аа</span><b>Золото на тёмном</b><span>11.3:1</span></li></ul>
+<h3 class="ds-h">Шрифты</h3>
+<div class="ds-type">
+<div class="card"><span class="ds-k">Заголовки · PT Sans Narrow</span><p class="ds-t1">Поступление в УрФУ</p><p class="ds-t2">Каталог программ</p><p class="ds-t3">Сколько стоит жить</p><span class="muted">Узкий и плотный — как надписи на фасадах. Помещает длинные русские слова в заголовок на телефоне.</span></div>
+<div class="card"><span class="ds-k">Текст · IBM Plex Sans</span><p class="ds-b1">Основной текст — 16–19 px, межстрочный 1,5.</p><p class="ds-b2">Подписи и пояснения — 14–15 px, не меньше 13.</p><p class="ds-b3"><b>Полужирный</b> — для цифр и главного в строке.</p><span class="muted">Оба шрифта лежат на самом сайте, без внешних сервисов.</span></div>
+</div>
+<h3 class="ds-h">Элементы</h3>
+<div class="ds-ui card">
+<div><span class="ds-k">Кнопки</span><div class="ds-row"><span class="btn">Подобрать программу</span><span class="btn2">Как поступить</span></div></div>
+<div><span class="ds-k">Чипы-фильтры</span><div class="ds-row"><span class="chip" style="background:var(--ink);color:#FFFFFF;border-color:var(--ink)">Все</span><span class="chip">IT</span><span class="chip">Инженерия</span></div></div>
+<div><span class="ds-k">Метки</span><div class="ds-row"><span class="tag">Бакалавриат</span><span class="tag" style="background:var(--blue-soft);color:var(--blue-dark)">Ваших баллов хватает</span></div></div>
+<div><span class="ds-k">Поле ввода</span><div class="ds-row"><span class="input ds-in">Например, 240…</span></div></div>
+<div><span class="ds-k">Срезанный угол</span><div class="ds-row"><span class="ds-cut">Грань камня</span></div></div>
+<div><span class="ds-k">Размер нажатия</span><div class="ds-row"><span class="ds-tap">44 × 44</span><span class="muted" style="font-size:14px">не меньше — на всех кнопках</span></div></div>
+</div>
+<h3 class="ds-h">Правила, которые держим везде</h3>
+<ul class="ds-rules">
+<li><b>Один шаблон</b><span>Шапка, меню, поиск и подвал одинаковые на всех страницах.</span></li>
+<li><b>Пример подписан</b><span>Если данные демонстрационные — на странице так и написано.</span></li>
+<li><b>Источник рядом</b><span>Под цифрами и ценами — откуда они взяты.</span></li>
+<li><b>Клавиатура</b><span>Всё работает с Tab и Enter, фокус всегда виден.</span></li>
+<li><b>Без цвета не теряется смысл</b><span>Статусы подписаны словами, а не только цветом.</span></li>
+<li><b>Меньше движения</b><span>Если в системе включено «уменьшить движение» — анимации выключаются.</span></li>
+</ul>
+</section>
 <section class="wrap sec" id="data">
 <div class="row" style="align-items:flex-start">
 <div class="main">
@@ -197,7 +259,8 @@
 <li><b>Приказы УрФУ</b><span>Цены всех общежитий на 2025 год</span></li>
 <li><b>programs.edu.urfu.ru</b><span>Учебный план, преподаватели, партнёры и проекты программы</span></li>
 <li><b>Подразделения УрФУ</b><span>Мероприятия для школьников ИЕНиМ, газета в электронном архиве</span></li>
-<li><b>СМИ</b><span>РИА Новости, «Коммерсантъ», ОТВ — новости и итоги приёма</span></li>
+<li><b>«Навигатор первокурсника»</b><span>Суммы стипендий 2026 года, пропуск, заселение в общежитие, словарик — privet.urfu.ru</span></li>
+<li><b>СМИ</b><span>РИА Новости, «Коммерсантъ», ОТВ, E1.ru — новости и итоги приёма</span></li>
 </ul>
 </div>
 <div class="side">
