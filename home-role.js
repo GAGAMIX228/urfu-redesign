@@ -83,21 +83,3 @@
   document.addEventListener('DOMContentLoaded', apply);
   apply();
 })();
-
-/* «Этой осенью»: прошедшие сроки скрываем, показываем не больше пяти ближайших. */
-(function () {
-  function prune() {
-    var list = document.querySelector('.yu-now'); if (!list) return;
-    var t = new Date(), today = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0'), shown = 0;
-    list.querySelectorAll('li[data-end]').forEach(function (li) {
-      var keep = li.getAttribute('data-end') >= today && (li.getAttribute('data-start') || '') <= today && shown < 5;
-      if (keep) shown++;
-      if (li.hidden !== !keep) li.hidden = !keep;
-    });
-    var sec = list.closest('section'); if (sec && sec.hidden !== !shown) sec.hidden = !shown;
-  }
-  var root = document.getElementById('dc-root');
-  if (root) new MutationObserver(prune).observe(root, { childList: true, subtree: true });
-  document.addEventListener('DOMContentLoaded', prune);
-  prune();
-})();

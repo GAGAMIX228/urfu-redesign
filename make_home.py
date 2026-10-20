@@ -177,7 +177,7 @@ def now_html(t):
     return f"""
 <section class="fd-sec yu-now-sec" aria-labelledby="now-h"><div class="wrap">
 <div class="fd-head"><div><h2 class="fd-h2" id="now-h">Этой осенью</h2><p class="fd-lead">Сроки, которые идут прямо сейчас.</p></div><a class="fd-more" href="Events.dc.html">Календарь событий</a></div>
-<ol class="yu-now">{li}</ol>
+<ol class="yu-now" data-prune data-max="5">{li}</ol>
 </div></section>"""
 
 
@@ -202,7 +202,10 @@ def sci_html(t):
 def main_html(t):
     steps = ''.join(f'<li><b>{d}</b><span>{w}</span></li>' for d, w in t['steps'][:3])
     news = ''.join(f'<li><a href="{"Article.dc.html" if ("2026" in x or "50,000" in x) else "News.dc.html"}"><small>{d}</small><span class="fd-t">{x}</span></a></li>' for i, (d, x) in enumerate(t['news']))
-    ev = ''.join(f'<li><a href="Events.dc.html"><b>{d}<small>{m}</small></b><div><div class="fd-ev-t">{x}</div><div class="fd-ev-d">{n}</div></div></a></li>' for d, m, x, n in t['ev'])
+    MON = {'января': (2027, 1), 'октября': (2026, 10), 'ноября': (2026, 11), 'декабря': (2026, 12), 'January': (2027, 1), 'October': (2026, 10), 'November': (2026, 11), 'December': (2026, 12)}
+    def end(d, m):
+        y, mo = MON[m]; return f'{y}-{mo:02d}-{int(d.split("–")[-1]):02d}'
+    ev = ''.join(f'<li data-end="{end(d, m)}"><a href="Events.dc.html"><b>{d}<small>{m}</small></b><div><div class="fd-ev-t">{x}</div><div class="fd-ev-d">{n}</div></div></a></li>' for d, m, x, n in t['ev'])
     RU = ['ИРИТ-РтФ', 'ИЕНиМ', 'ИНМиТ', 'УралЭНИН', 'ИСА', 'УГИ', 'ИнЭУ', 'ФТИ']
     inst = ''.join(f'<a class="yu-i yu-i{k % 4}" href="Institute.dc.html?i={RU[k]}"><b>{a}</b><span>{n}</span></a>' for k, (a, n) in enumerate(t['inst']))
     MORE = [('ХТИ', 'Химико-технологический институт'), ('ИФКСиМП', 'Институт физической культуры, спорта и молодёжной политики'), ('ИнФО', 'Институт фундаментального образования'), ('ИТОО', 'Институт технологий открытого образования'), ('УПИШ', 'Уральская передовая инженерная школа')]
@@ -287,7 +290,7 @@ def main_html(t):
 </div>
 <div class="yu-evbox">
 <div class="fd-head"><h2 class="fd-col-h">{t['ev_h']}</h2><a class="fd-more" href="Events.dc.html">{t['ev_all']}</a></div>
-<ul class="fd-list fd-ev">{ev}</ul>
+<ul class="fd-list fd-ev" data-prune>{ev}</ul><p class="fd-ev-empty" data-prune-empty hidden><a href="Events.dc.html">{t['ev_all']}</a></p>
 </div>
 </div></section>
 

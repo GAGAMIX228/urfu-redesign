@@ -192,3 +192,26 @@ document.addEventListener('keydown', function (e) {
   function hint() { [].forEach.call(document.querySelectorAll('.hd a.ico[href="Search.dc.html"]'), function (a) { if (!a.title) a.title = 'Поиск (Ctrl+K)'; a.setAttribute('aria-keyshortcuts', 'Control+K'); }); }
   var root = document.getElementById('dc-root'); if (root) new MutationObserver(hint).observe(root, { childList: true }); hint();
 })();
+
+/* Списки со сроками: data-prune на списке, data-end (и data-start) на пунктах — прошедшее скрываем сами.
+   data-max — сколько пунктов показать; [data-prune-empty] рядом показывается, когда не осталось ничего. */
+(function () {
+  function today() { var t = new Date(); return t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0'); }
+  function prune() {
+    var d = today();
+    [].forEach.call(document.querySelectorAll('[data-prune]'), function (list) {
+      var max = Number(list.getAttribute('data-max')) || 99, shown = 0;
+      [].forEach.call(list.querySelectorAll('[data-end]'), function (li) {
+        var keep = li.getAttribute('data-end') >= d && (li.getAttribute('data-start') || '') <= d && shown < max;
+        if (keep) shown++;
+        if (li.hidden !== !keep) li.hidden = !keep;
+      });
+      var box = list.parentElement, empty = box && box.querySelector('[data-prune-empty]');
+      if (empty && empty.hidden !== shown > 0) empty.hidden = shown > 0;
+    });
+  }
+  var root = document.getElementById('dc-root');
+  if (root) new MutationObserver(prune).observe(root, { childList: true, subtree: true });
+  document.addEventListener('DOMContentLoaded', prune);
+  prune();
+})();
