@@ -74,6 +74,30 @@
 @media (max-width:900px){.im-fit,.im-addr{grid-template-columns:repeat(2,minmax(0,1fr))}.im-eg,.im-fy{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:620px){.im-fit,.im-addr{grid-template-columns:minmax(0,1fr)}.im-bars li{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px}.im-bar{grid-column:1/-1;grid-row:2}}
 </style>
+<style id="ir3-css">
+.ir-camp{background:var(--ink);color:#FFFFFF;border-radius:24px;padding:36px;margin-top:40px}
+.ir-camp .muted,.ir-camp .muted a{color:var(--on-dark-muted)}
+.ir-camp h2{color:#FFFFFF}
+.ir-camp-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center}
+.ir-cn{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ir-cn li{display:flex;flex-direction:column;gap:2px;padding:14px;border-radius:14px;background:rgba(255,255,255,.08)}
+.ir-cn b{font-family:var(--narrow);font-size:28px;color:var(--gold);line-height:1.05}
+.ir-cn span{font-size:14px;color:var(--on-dark-muted)}
+.ir-hist{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.ir-hist li{display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:16px;background:#FFFFFF;border:1px solid var(--line);border-top:5px solid var(--rhodonite)}
+.ir-hist li:nth-child(2n){border-top-color:var(--amethyst)}
+.ir-hist b{font-family:var(--narrow);font-size:30px;line-height:1}
+.ir-hist span{font-size:14px;color:var(--muted)}
+.ir-labs{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ir-labs li{padding:12px 16px;border-radius:12px;background:var(--limestone);font-weight:600;font-size:15px}
+.ir-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ir-pj{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.ir-pj span{padding:6px 12px;border-radius:999px;border:1px solid var(--line-strong);font-size:14px;font-weight:600}
+.ir-radio{background:var(--gold-soft);border-color:var(--gold)}
+.ir-may{display:inline-block;font-family:var(--narrow);font-size:44px;font-weight:700;color:var(--rhodonite-d,#C81A62);line-height:1}
+@media (max-width:1000px){.ir-camp-in,.ir-two{grid-template-columns:minmax(0,1fr)}.ir-hist{grid-template-columns:repeat(2,minmax(0,1fr))}.ir-labs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.ir-camp{padding:24px 18px;border-radius:18px}.ir-cn{grid-template-columns:repeat(2,minmax(0,1fr))}.ir-hist,.ir-labs{grid-template-columns:minmax(0,1fr)}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -112,7 +136,7 @@
 <nav aria-label="Разделы института" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:32px">
 <a class="chip" href="#progs" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Программы</a>
 <sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}"><a class="chip" href="#deps" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Кафедры и центры</a>
-<a class="chip" href="#labs" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Лаборатории</a><a class="chip" href="#partners" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Партнёры</a><a class="chip" href="#life" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Жизнь института</a></sc-if>
+<a class="chip" href="#labs" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Лаборатории</a><a class="chip" href="#partners" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Партнёры</a><a class="chip" href="#life" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Жизнь института</a><a class="chip" href="#campus" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Новый кампус</a><a class="chip" href="#history" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">История</a></sc-if>
 <a class="chip" href="#cont" style="background:var(--ink-2);color:#FFFFFF;border-color:#2B4866">Контакты</a>
 </nav>
 </div>
@@ -178,6 +202,37 @@
 <div class="card in-news" style="margin-top:20px"><span class="tag">Новость института · 1 июля 2025</span><b>ИРИТ-РтФ выиграл грант «Топ-ИТ» и подтвердил статус одного из ведущих центров IT-образования в России</b><p class="muted">Ещё один грант — на развитие Data Science и искусственного интеллекта.</p></div>
 <p class="muted" style="font-size:14px;margin-top:12px">По данным <a href="https://programs.edu.urfu.ru/ru/9797/pages/employers/" target="_blank" rel="noopener">сайта образовательных программ УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
 </section></sc-if>
+<!-- irit3 --><sc-if value="{{isIrit}}" hint-placeholder-val="{{true}}">
+<section id="campus" class="sec ir-camp" aria-labelledby="ir-c-h">
+<div class="ir-camp-in">
+<div><span class="tag" style="background:var(--gold);color:var(--ink)">Новокольцовский</span><h2 id="ir-c-h" style="margin-top:12px">Новый кампус института</h2>
+<p style="margin-top:12px;max-width:560px">Учебный комплекс в Новокольцовском — для нового поколения инженеров. Там же учебно-научный центр «Микроэлектроника» и Центр российских вычислительных технологий, где проверяют отечественное ПО и оборудование.</p>
+<a class="btn" href="Dorms.dc.html#cmp-h" style="margin-top:16px">Кампус и общежития рядом</a></div>
+<ul class="ir-cn">
+<li><b>40 300 м²</b><span>учебный комплекс</span></li><li><b>85</b><span>аудиторий и компьютерных классов</span></li>
+<li><b>700</b><span>мест в конференц-зале</span></li><li><b>23</b><span>коворкинга</span></li>
+<li><b>12</b><span>зон самостоятельной работы</span></li><li><b>3 000+ м²</b><span>лабораторий</span></li>
+</ul>
+</div>
+<p class="muted" style="font-size:14px;margin-top:12px">По странице <a href="https://rtf.urfu.ru/about-institute/campus/" target="_blank" rel="noopener">«Новый кампус ИРИТ-РТФ»<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
+</section>
+<section id="history" class="sec" aria-labelledby="ir-h-h">
+<h2 id="ir-h-h">Радиофаку — больше 70 лет</h2>
+<ol class="ir-hist"><li><b>1952</b><span>Создан радиотехнический факультет Уральского политехнического института: три кафедры, 200 первокурсников.</span></li><li><b>1959</b><span>Студенческое конструкторское бюро СКБ-1 — первое в институте и одно из первых в стране.</span></li><li><b>1962</b><span>Студенты РТФ за год сами построили 11-й студенческий корпус — общежитие № 11.</span></li><li><b>1970</b><span>Факультет переехал в собственное здание — 6-й учебный корпус УПИ.</span></li><li><b>1971</b><span>Первая докторская диссертация выпускника радиофака — Б. А. Панченко.</span></li><li><b>1988</b><span>Первый набор на «Вычислительные машины, комплексы, системы и сети».</span></li><li><b>1999</b><span>Первый набор по информационной безопасности.</span></li><li><b>2004</b><span>Радиотехнический факультет стал институтом.</span></li><li><b>2011</b><span>Новое имя — Институт радиоэлектроники и информационных технологий — РтФ.</span></li><li><b>2019</b><span>Первым в городе перевёл бакалавриат на индивидуальные образовательные траектории.</span></li></ol>
+<p class="muted" style="font-size:14px;margin-top:12px">По странице <a href="https://rtf.urfu.ru/about-institute/istoria-instituta/" target="_blank" rel="noopener">«История института»<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
+</section>
+<section id="alllabs" class="sec" aria-labelledby="ir-l-h">
+<h2 id="ir-l-h">Все научные центры и лаборатории</h2>
+<ul class="ir-labs"><li>Лаборатория искусственного интеллекта</li><li>Лаборатория разработки игр и решений виртуальной реальности</li><li>Лаборатория робототехники</li><li>Мастерская радиоэлектроники и робототехники</li><li>УНЦ «Зеркальная лаборатория индустриального ИИ»</li><li>УНЦ «Информационная безопасность»</li><li>Центр космического мониторинга</li><li>Центр тестирования навигационной аппаратуры GPS/ГЛОНАСС</li><li>Центр электромагнитных измерений</li><li>Медико-биологический инженерный центр</li><li>Студенческий центр высоких технологий</li><li>Центр трансфера компетенций</li><li>НИЦ РЭСЛА</li></ul>
+</section>
+<section id="proj" class="sec" aria-labelledby="ir-p-h">
+<div class="ir-two">
+<div class="card"><h2 id="ir-p-h" style="font-size:30px">Проектное обучение</h2><p style="margin-top:10px">С 2009 года студенты учатся на реальных задачах от предприятий и организаций. Лучшие проекты показывают директорам компаний на выставке — из нескольких сотен заявок туда отбирают 30–40.</p><div class="ir-pj"><span>Информатика и вычислительная техника</span><span>Алгоритмы искусственного интеллекта</span><span>Прикладная информатика</span><span>Программная инженерия</span><span>Информационная безопасность</span><span>Электроника, радиотехника и системы связи</span><span>Управление в технических системах</span><span>Технология полиграфического и упаковочного производства</span></div><p class="muted" style="font-size:14px;margin-top:10px">Направления бакалавриата, где есть проектное обучение.</p></div>
+<div class="card ir-radio"><span class="ir-may">7 мая</span><h2 style="font-size:30px;margin-top:6px">День радио</h2><p style="margin-top:10px">Главный праздник института — уже больше 20 лет. Студенты, выпускники и преподаватели идут шествием от главного корпуса к памятнику А. С. Попову, моют памятник, дают концерт и салют. Вокруг — целая неделя событий: Кубок ИРИТ-РТФ, квесты и выставка лучших студенческих проектов.</p></div>
+</div>
+<p class="muted" style="font-size:14px;margin-top:12px">По страницам <a href="https://rtf.urfu.ru/about-institute/project-workshop/" target="_blank" rel="noopener">«Проектный практикум»<span class="sr"> (откроется в новой вкладке)</span></a> и <a href="https://rtf.urfu.ru/about-institute/radio-day/" target="_blank" rel="noopener">«День радио»<span class="sr"> (откроется в новой вкладке)</span></a> сайта ИРИТ-РтФ.</p>
+</section>
+</sc-if><!-- /irit3 -->
 <sc-if value="{{notIrit}}" hint-placeholder-val="{{false}}"><section id="where" class="sec">
 <h2>Где учиться</h2>
 <div class="in-addr"><sc-for list="{{addrs}}" as="a" hint-placeholder-count="2"><div class="card"><b>{{a.a}}</b><span class="muted">{{a.n}}</span></div></sc-for></div>
@@ -317,7 +372,7 @@ const addrAll = [{ a: 'ул. Мира, 32', who: 'ИРИТ-РтФ' }];
 Object.keys(INFO).forEach(k => (INFO[k].addrs || []).forEach(([a]) => { const f = addrAll.find(x => x.a === a); if (f) { if (f.who.indexOf(k) === -1) f.who += ', ' + k; } else addrAll.push({ a, who: k }); }));
 const mine = ALL_PROGS.filter(q => q.inst === key);
 const scores = mine.filter(q => !isNaN(parseInt(q.score, 10))).map(q => ({ name: q.name, score: q.score, sy: q.sy || '2025', w: Math.round(parseInt(q.score, 10) / 300 * 100), href: 'Program.dc.html?p=' + encodeURIComponent(q.name) })).sort((a, b) => b.score - a.score);
-const exMap = {}; mine.forEach(q => { (exMap[q.exams] = exMap[q.exams] || []).push(q.name); });
+const exMap = {}; mine.forEach(q => { const e = q.exams.replace('физика или информатика', 'информатика или физика'); (exMap[e] = exMap[e] || []).push(q.name); });
 const exams = Object.keys(exMap).map(e => ({ ex: e[0].toUpperCase() + e.slice(1), names: exMap[e].join(', ') }));
 const IMORE = { exBtns, exSum, exFit, addrAll, scores, hasScores: scores.length > 0, exams, hasExams: exams.length > 0, hasPos: !!POS[key], pos: POS[key] || '', posHref: 'https://' + (POS[key] || '') };
 // /imore-logic
