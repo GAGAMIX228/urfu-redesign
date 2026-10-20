@@ -98,6 +98,21 @@
 @media (max-width:1000px){.ir-camp-in,.ir-two{grid-template-columns:minmax(0,1fr)}.ir-hist{grid-template-columns:repeat(2,minmax(0,1fr))}.ir-labs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:620px){.ir-camp{padding:24px 18px;border-radius:18px}.ir-cn{grid-template-columns:repeat(2,minmax(0,1fr))}.ir-hist,.ir-labs{grid-template-columns:minmax(0,1fr)}}
 </style>
+<style id="il2-css">
+.il-t{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#FFFFFF}
+.il-r{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr)) minmax(0,1.2fr);gap:12px;padding:14px 18px;border-top:1px solid var(--line);align-items:center}
+.il-r:first-child{border-top:0}
+.il-rh{background:var(--limestone);font-size:13px;font-weight:700;color:var(--muted)}
+.il-r a{font-family:var(--narrow);font-size:22px;font-weight:700}
+.il-r span{font-family:var(--narrow);font-size:20px;font-weight:700}
+.il-rh span{font-family:inherit;font-size:13px}
+.il-r small{display:none}
+.il-fil{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;margin-top:16px;align-items:center}
+.il-fil b{font-family:var(--narrow);font-size:24px}
+.il-fc{display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:14px;background:var(--limestone)}
+.il-fc a{font-weight:700;font-size:18px}
+@media (max-width:760px){.il-rh{display:none}.il-r{grid-template-columns:repeat(2,minmax(0,1fr))}.il-r .il-n{grid-column:1/-1}.il-r span{display:flex;flex-direction:column}.il-r small{display:block;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:500;color:var(--muted)}.il-fil{grid-template-columns:minmax(0,1fr)}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -126,7 +141,19 @@
 <div class="im-addr"><sc-for list="{{addrAll}}" as="a" hint-placeholder-count="8"><div><b>{{a.a}}</b><span>{{a.who}}</span></div></sc-for></div>
 <p style="margin-top:12px"><a href="Contacts.dc.html">Корпуса на карте кампуса →</a> · <a href="Help.dc.html#bld-h">Как называют корпуса →</a></p>
 </section>
-<section class="sec"><div class="in-top"><div><h2>Не знаете, какой институт выбрать?</h2><p style="margin-top:10px;max-width:620px">Начните с программы, а не с института: три вопроса — и список программ с проходными баллами.</p></div><a class="btn" href="Quiz.dc.html">Подобрать программу</a></div></section>
+<!-- ilist2 --><section class="sec" aria-labelledby="il-t-h">
+<h2 id="il-t-h">Институты в цифрах</h2>
+<p class="muted" style="margin-top:8px;max-width:720px">По программам бакалавриата из каталога сайта: сколько их, самый высокий проходной балл, бюджетные места и цена за год.</p>
+<div class="il-t" role="table" aria-label="Институты в цифрах">
+<div class="il-r il-rh" role="row"><span role="columnheader">Институт</span><span role="columnheader">Программ</span><span role="columnheader">Лучший балл</span><span role="columnheader">Бюджет</span><span role="columnheader">Цена в год</span></div>
+<sc-for list="{{itab}}" as="r" hint-placeholder-count="8"><div class="il-r" role="row"><span role="cell" class="il-n"><a href="{{r.href}}">{{r.short}}</a></span><span role="cell"><small>Программ</small>{{r.n}}</span><span role="cell"><small>Лучший балл</small>{{r.top}}</span><span role="cell"><small>Бюджет</small>{{r.b}}</span><span role="cell"><small>Цена в год</small>{{r.p}}</span></div></sc-for>
+</div>
+<p class="muted" style="font-size:14px;margin-top:10px">Проходные баллы 2024–2025 годов. «—» — в каталоге нет данных.</p>
+</section>
+<section class="sec" aria-labelledby="il-f-h">
+<h2 id="il-f-h">Филиал в Нижнем Тагиле</h2>
+<div class="card il-fil"><div><b>Нижнетагильский технологический институт (филиал) УрФУ</b><p class="muted" style="margin-top:6px">В его составе — Нижнетагильский машиностроительный техникум: программы среднего профессионального образования. Техникум основан в 1931 году для Уралвагонзавода и входит в университет с 2003 года.</p></div><div class="il-fc"><span>Свердловская область, Нижний Тагил, ул. Красногвардейская, 59</span><a href="tel:+73435255610">+7 (3435) 25-56-10</a></div></div>
+</section><!-- /ilist2 --><section class="sec"><div class="in-top"><div><h2>Не знаете, какой институт выбрать?</h2><p style="margin-top:10px;max-width:620px">Начните с программы, а не с института: три вопроса — и список программ с проходными баллами.</p></div><a class="btn" href="Quiz.dc.html">Подобрать программу</a></div></section>
 </div><!-- /imore --></sc-if><sc-if value="{{isOne}}" hint-placeholder-val="{{true}}"><section class="phead has-ph dark">
 <div class="wrap" style="padding-bottom:64px"><div class="ph-hex" style="--img:url('photos/glavnyj-korpus-fasad.webp')" aria-hidden="true"></div>
 <div class="crumbs" style="color:var(--on-dark-muted)"><a href="Main.dc.html" style="color:var(--on-dark-muted)">Главная</a> / <a href="Institute.dc.html" style="color:var(--on-dark-muted)">Об университете</a> / Институты / {{short}}</div>
@@ -358,6 +385,13 @@ const all = Object.keys(INST).map(k => { const c = ALL_PROGS.filter(p => p.inst 
 const progs = ALL_PROGS.filter(p => p.inst === key).map(p => ({ score: '—', budget: '—', price: '—', sy: '2025', ...p })).map(p => ({
   name: p.name, href: 'Program.dc.html?p=' + encodeURIComponent(p.name),
   info: [!isNaN(parseInt(p.score, 10)) ? 'Проходной балл ' + p.sy + ': ' + p.score : '', p.budget !== '—' ? 'Бюджетных мест: ' + p.budget : '', p.price !== '—' ? p.price + ' в год' : ''].filter(Boolean).join(' · ') }));
+// ilist2-logic
+const num = x => { const m = String(x || '').replace(/\D/g, ''); return m ? parseInt(m, 10) : 0; };
+const itab = Object.keys(INST).map(k => { const ps = ALL_PROGS.filter(q => q.inst === k); const sc = ps.map(q => num(q.score)).filter(Boolean); const bu = ps.map(q => num(q.budget)).filter(Boolean); const pr = ps.map(q => num(q.price)).filter(Boolean);
+  const r = n => n.toLocaleString('ru-RU') + ' ₽';
+  return { short: k, href: 'Institute.dc.html?i=' + encodeURIComponent(k), n: String(ps.length), top: sc.length ? String(Math.max(...sc)) : '—', b: bu.length ? String(bu.reduce((a, b) => a + b, 0)) : '—', p: pr.length ? (Math.min(...pr) === Math.max(...pr) ? r(pr[0]) : 'от ' + r(Math.min(...pr))) : '—', cnt: ps.length }; }).filter(x => x.cnt).sort((a, b) => b.cnt - a.cnt);
+const ILIST2 = { itab };
+// /ilist2-logic
 // imore-logic
 const POS = {'ИРИТ-РтФ': 'vk.com/irit_rtf', 'ИнЭУ': 'vk.com/poselenie_ineu', 'ИЕНиМ': 'vk.com/poselenie_ien_urfu', 'УГИ': 'vk.com/urgi_hostel', 'ИНМиТ': 'vk.com/poselinmt', 'ИСА': 'vk.com/isa1924_urfu', 'ФТИ': 'vk.com/profburo_fti', 'УралЭНИН': 't.me/enin_poselenie', 'ХТИ': 'vk.com/hti_urfu', 'ИФКСиМП': 'vk.com/poselenifksimp', 'ИнФО': 'vk.com/info_urfu', 'УПИШ': 'vk.com/upish_urfu'};
 const EXN = [['math', 'Математика'], ['inf', 'Информатика'], ['phys', 'Физика'], ['chem', 'Химия'], ['bio', 'Биология'], ['soc', 'Обществознание'], ['hist', 'История'], ['lit', 'Литература'], ['lang', 'Иностранный язык']];
@@ -380,7 +414,7 @@ return { isAll, isOne: !isAll, all, short: key, full: INST[key][0], lead: INST[k
   addrs: ((INFO[key] || {}).addrs || []).map(([a, n]) => ({ a, n })), hasSite: !!(INFO[key] || {}).site, site: (INFO[key] || {}).site || '', siteN: ((INFO[key] || {}).site || '').replace(/^https?:\/\//, '').replace(/\/$/, ''),
   hasPart: !!((INFO[key] || {}).part || []).length, part: (INFO[key] || {}).part || [], school: !!(INFO[key] || {}).school,
   hasP26: !!((INFO[key] || {}).p26 || []).length, p26: ((INFO[key] || {}).p26 || []).map(([n, b, c, p]) => ({ n, b: String(b), c: String(c), p, href: 'Program.dc.html?p=' + encodeURIComponent(n) })),
-  ...IMORE, };
+  ...IMORE, ...ILIST2, };
 }
 }
 </script>
