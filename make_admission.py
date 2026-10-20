@@ -182,7 +182,7 @@ def block():
 <p class="muted adm-src">Вопросы — центр взаимодействия с работодателями УрФУ: <a href="tel:+73433754582">+7 (343) 375-45-82</a>. Источник: <a href="https://web.archive.org/web/2025/https://urfu.ru/ru/applicant/docs-abiturient/sponsored/" target="_blank" rel="noopener">«Приём на целевое обучение», urfu.ru<span class="sr"> (копия в веб-архиве, откроется в новой вкладке)</span></a>.</p>
 </section>
 
-<section class="adm-sec adm-two" aria-label="Особые случаи">
+<section id="special" class="adm-sec adm-two" aria-label="Особые случаи">
 <div class="card"><h3>Поступающим с инвалидностью</h3><p class="muted" style="margin-top:6px">Бюджетные места по особой квоте, особые условия на вступительных испытаниях. В университете работает центр инклюзивного образования — тьюторы сопровождают студентов.</p>
 <ul class="adm-ct"><li><b>Центр инклюзивного образования</b><a href="tel:+73433759430">+7 (343) 375-94-30</a></li><li><b>Горячая линия по обучению людей с инвалидностью</b><a href="tel:88003027155">8-800-302-71-55</a><span>пн–чт 8:00–17:00, пт 8:00–16:00</span></li></ul></div>
 <div class="card"><h3>После 9 класса — в колледж</h3><p class="muted" style="margin-top:6px">Программы среднего профессионального образования ведёт Нижнетагильский машиностроительный техникум — он входит в УрФУ с 2003 года.</p>
