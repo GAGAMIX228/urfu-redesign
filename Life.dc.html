@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="description" content="Студенческая жизнь в УрФУ: клубы, спортивные секции, творчество, волонтёрство и события.">
+<meta name="description" content="Студенческая жизнь УрФУ: 29 организаций, традиции и большие проекты, спорт и события — по «Навигатору первокурсника».">
 <title>Жизнь в УрФУ</title>
 <!-- og -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Редизайн сайта УрФУ">
 <meta property="og:title" content="Жизнь в УрФУ">
-<meta property="og:description" content="Студенческая жизнь в УрФУ: клубы, спортивные секции, творчество, волонтёрство и события.">
+<meta property="og:description" content="Студенческая жизнь УрФУ: 29 организаций, традиции и большие проекты, спорт и события — по «Навигатору первокурсника».">
 <meta property="og:url" content="https://gagamix228.github.io/urfu-redesign/Life.dc.html">
 <meta property="og:image" content="https://gagamix228.github.io/urfu-redesign/photos/og-card.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -22,6 +22,38 @@
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="logo-live.css">
+<style id="lf-css">
+.lf-nums{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.lf-nums li{display:flex;flex-direction:column;gap:4px;padding:20px 16px}
+.lf-nums li+li{border-left:1px solid var(--line-strong)}
+.lf-nums b{font-family:var(--narrow);font-size:clamp(32px,3.2vw,46px);line-height:1}
+.lf-nums span{font-size:14px;color:var(--muted)}
+.lf-cats{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.lf-cats .chip{cursor:pointer}
+.lf-cats .chip[aria-pressed="true"]{background:var(--ink);color:#FFFFFF;border-color:var(--ink)}
+.lf-cats small{opacity:.7;font-weight:600}
+.lf-count{margin-top:14px;font-weight:700}
+.lf-orgs{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.lf-orgs li{display:flex;flex-direction:column;gap:8px}
+.lf-orgs b{font-family:var(--narrow);font-size:21px;line-height:1.15}
+.lf-orgs p{font-size:15px;flex:1}
+.lf-orgs a{font-size:14px;font-weight:600;align-self:flex-start;padding:4px 0}
+.lf-proj{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.lf-proj li{display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:16px;background:#FFFFFF;border:1px solid var(--line);border-top:5px solid var(--rhodonite)}
+.lf-proj li:nth-child(4n+2){border-top-color:var(--gold)}.lf-proj li:nth-child(4n+3){border-top-color:var(--malachite)}.lf-proj li:nth-child(4n+4){border-top-color:var(--amethyst)}
+.lf-when{align-self:flex-start;padding:2px 10px;border-radius:999px;background:var(--limestone);font-size:13px;font-weight:700}
+.lf-proj b{font-family:var(--narrow);font-size:22px}
+.lf-proj p{font-size:15px;color:var(--muted)}
+.lf-ev{display:flex;gap:16px;align-items:center;text-decoration:none;color:var(--ink)}
+.lf-evd{text-align:center;min-width:56px}
+.lf-evd b{display:block;font-family:var(--narrow);font-size:28px;color:var(--rhodonite-d,#C81A62);white-space:nowrap}
+.lf-evd span{font-size:13px;color:var(--muted)}
+.lf-join{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:36px;border-radius:20px;background:var(--gold-soft);border:2px solid var(--ink)}
+.lf-join p{max-width:620px}
+.lf-join-b{display:flex;gap:10px;flex-wrap:wrap}
+@media (max-width:1000px){.lf-nums{grid-template-columns:repeat(3,minmax(0,1fr))}.lf-nums li:nth-child(4){border-left:0}.lf-nums li:nth-child(n+4){border-top:1px solid var(--line-strong)}.lf-orgs{grid-template-columns:repeat(2,minmax(0,1fr))}.lf-proj{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.lf-nums{grid-template-columns:repeat(2,minmax(0,1fr))}.lf-nums li{border-left:0 !important;border-top:1px solid var(--line-strong)}.lf-nums li:nth-child(2n){border-left:1px solid var(--line-strong) !important}.lf-nums li:nth-child(-n+2){border-top:0}.lf-orgs,.lf-proj{grid-template-columns:minmax(0,1fr)}.lf-join{padding:24px 18px}}
+</style>
 </head>
 <body>
 <template id="dc-tpl">
@@ -41,54 +73,64 @@
 <div class="crumbs"><a href="Main.dc.html">Главная</a> / Жизнь в УрФУ</div>
 <div class="row" style="align-items:center;margin-top:8px">
 <div class="main"><h1 class="big" style="font-size:52px">Жизнь в УрФУ — это не только пары</h1>
-<p style="font-size:19px;margin-top:16px;max-width:620px;color:#2B3946">Клубы, спорт, творчество и волонтёрство. Найдите своих.</p>
-<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn" href="#clubs">Найти клуб</a><a class="btn2" href="Events.dc.html">Календарь событий</a></div></div>
+<p style="font-size:19px;margin-top:16px;max-width:620px;color:#2B3946">29 студенческих организаций, 20 творческих коллективов, Универсиада по 17 видам спорта. Найдите своих.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn" href="#orgs">Найти свою команду</a><a class="btn2" href="Events.dc.html">Календарь событий</a></div></div>
 <div class="side"><div class="ph art t1 photo" style="--img:url('photos/studenty.webp');height:300px;position:relative;overflow:hidden"></div></div>
 </div>
 </div>
 </section>
 <div class="wrap">
-<section id="clubs" class="sec">
-<h2>Клубы и секции</h2>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px">
-<sc-for list="{{cats}}" as="c" hint-placeholder-count="6">
-<sc-if value="{{c.on}}" hint-placeholder-val="{{false}}"><button class="chip on" onClick="{{c.pick}}">{{c.label}}</button></sc-if>
-<sc-if value="{{c.off}}" hint-placeholder-val="{{true}}"><button class="chip" onClick="{{c.pick}}">{{c.label}}</button></sc-if>
-</sc-for>
-</div>
-<div class="g4" style="margin-top:24px">
-<sc-for list="{{clubs}}" as="k" hint-placeholder-count="8">
-<div class="card" style="display:flex;flex-direction:column;gap:10px;min-height:190px">
-<span class="tag" style="align-self:flex-start;background:{{k.bg}}">{{k.cat}}</span>
-<div style="font-family:var(--narrow);font-weight:700;font-size:18px">{{k.t}}</div>
-<div class="muted" style="font-size:14px;flex:1">{{k.d}}</div>
-</div>
-</sc-for>
-</div>
+<ul class="lf-nums" aria-label="Студенческая жизнь в цифрах"><li><b>29</b><span>студенческих организаций</span></li><li><b>19 000+</b><span>студентов в Союзе студентов</span></li><li><b>20</b><span>творческих коллективов</span></li><li><b>30</b><span>студенческих отрядов</span></li><li><b>17</b><span>видов спорта в Универсиаде</span></li><li><b>17</b><span>землячеств иностранных студентов</span></li></ul>
+
+<section id="orgs" class="sec" aria-labelledby="orgs-h">
+<h2 id="orgs-h">Студенческие организации</h2>
+<p class="muted" style="margin-top:8px;max-width:760px">Все организации из «Навигатора первокурсника» УрФУ. Выберите, что вам ближе.</p>
+<div class="lf-cats" role="group" aria-label="Направление"><sc-for list="{{cats}}" as="c" hint-placeholder-count="7"><button type="button" class="chip" aria-pressed="{{c.on}}" onClick="{{c.pick}}">{{c.label}} <small>{{c.n}}</small></button></sc-for></div>
+<p class="lf-count" aria-live="polite">{{count}}</p>
+<ul class="lf-orgs"><sc-for list="{{orgs}}" as="o" hint-placeholder-count="8"><li class="card">
+<span class="tag" style="align-self:flex-start">{{o.cat}}</span>
+<b>{{o.t}}</b>
+<sc-if value="{{o.hasD}}" hint-placeholder-val="{{true}}"><p class="muted">{{o.d}}</p></sc-if>
+<sc-if value="{{o.hasL}}" hint-placeholder-val="{{true}}"><a href="{{o.href}}" target="_blank" rel="noopener">{{o.l}}<span class="sr"> (откроется в новой вкладке)</span></a></sc-if>
+</li></sc-for></ul>
+<p class="muted" style="font-size:14px;margin-top:12px">По разделу «Студенческие организации» <a href="https://privet.urfu.ru/orgs" target="_blank" rel="noopener">«Навигатора первокурсника» УрФУ<span class="sr"> (откроется в новой вкладке)</span></a>; описания сокращены.</p>
 </section>
+
+<section class="sec" aria-labelledby="proj-h">
+<h2 id="proj-h">Традиции и большие проекты</h2>
+<p class="muted" style="margin-top:8px;max-width:760px">Их ждут каждый год. Можно прийти зрителем — или помочь в организации.</p>
+<ol class="lf-proj"><li><span class="lf-when">начало учёбы</span><b>Неделя первокурсника</b><p>Квизы и квесты по корпусам и организациям, фестиваль у главного корпуса.</p></li><li><span class="lf-when">19 октября</span><b>Хоровод УрФУ</b><p>День рождения университета: сотни студентов водят хоровод на площади у ГУК, потом — торт.</p></li><li><span class="lf-when">первый курс</span><b>Дебют первокурсников</b><p>Каждая группа готовит творческий номер. Победители института выходят на университетский этап.</p></li><li><span class="lf-when">премия</span><b>«Студент года УрФУ»</b><p>12 номинаций и три этапа: заявка, очные тренинги, защита проекта в финале.</p></li><li><span class="lf-when">карьера</span><b>«Время карьеры»</b><p>Знакомство с работодателями, стажировки, подготовка к собеседованиям. Больше 100 000 участников со всей страны.</p></li><li><span class="lf-when">день IT</span><b>«Пик IT»</b><p>День открытых дверей IT-отрасли для школьников и студентов. Генеральный партнёр — СКБ Контур.</p></li><li><span class="lf-when">фестиваль</span><b>Фестиваль «Дружба народов»</b><p>Землячества показывают свою культуру: спорт, мастер-классы и концерт.</p></li><li><span class="lf-when">весь год</span><b>Универсиада УрФУ</b><p>Соревнования институтских команд по 17 видам спорта — и для профи, и для любителей.</p></li><li><span class="lf-when">театр</span><b>Бенефис</b><p>Институты ставят спектакли по 30–35 минут — на сцене сразу 40–60 человек.</p></li><li><span class="lf-when">наука</span><b>«НаукаФест»</b><p>Достижения молодёжных лабораторий, научно-популярные лекции и экспресс-хакатон.</p></li><li><span class="lf-when">9 мая</span><b>Парад 9 мая</b><p>Парад у главного корпуса со студентами военного учебного центра и легкоатлетическая эстафета.</p></li><li><span class="lf-when">лето</span><b>Выпускной УрФУ</b><p>100 лучших выпускников получают дипломы из рук ректора на площади у ГУК.</p></li></ol>
+<p class="muted" style="font-size:14px;margin-top:12px">По разделу «Крупные проекты» <a href="https://privet.urfu.ru/projects" target="_blank" rel="noopener">«Навигатора первокурсника»<span class="sr"> (откроется в новой вкладке)</span></a>.</p>
+</section>
+
 <section class="sec">
 <div class="g2" style="align-items:stretch">
 <div class="ph art t2 photo" role="img" aria-label="Дворец водных видов спорта в новом кампусе в Новокольцовском" style="--img:url('photos/dvorec-vodnyh-vidov-sporta.webp');min-height:320px;position:relative;overflow:hidden"></div>
 <div class="card" style="padding:40px;display:flex;flex-direction:column;justify-content:center;gap:16px;background:var(--ink);color:#FFFFFF;border-color:var(--ink)">
 <span class="tag" style="align-self:flex-start;background:var(--ink-2);color:#FFFFFF">Спорт</span>
 <h2 style="color:#FFFFFF">Физкультура по интересам</h2>
-<p style="color:var(--on-dark-muted)">Можно выбрать секцию вместо общей физкультуры.</p>
-<a class="btn" href="#clubs" style="align-self:flex-start;background:#FFFFFF;color:var(--ink)">Смотреть секции</a>
+<p style="color:var(--on-dark-muted)">Секцию физкультуры первокурсник выбирает сам — в личном кабинете студента на istudent.urfu.ru. А за институт можно выступить на Универсиаде: обратитесь к спорторгу института или в Союз студентов.</p>
+<a class="btn" href="Cabinet.dc.html#cg-first" style="align-self:flex-start;background:#FFFFFF;color:var(--ink)">Чек-лист первокурсника</a>
 </div>
 </div>
 </section>
-<section class="sec">
-<h2>Ближайшие события</h2>
-<div class="g3" style="margin-top:24px">
-<a class="card" href="Events.dc.html" style="display:flex;gap:16px;align-items:center"><div style="text-align:center;min-width:56px"><div style="font-family:var(--narrow);font-size:28px;font-weight:700;color:var(--copper);white-space:nowrap">25</div><div class="muted" style="font-size:13px">окт</div></div><div style="font-weight:600">Твой ход — всероссийский студенческий проект</div></a>
-<a class="card" href="Events.dc.html" style="display:flex;gap:16px;align-items:center"><div style="text-align:center;min-width:56px"><div style="font-family:var(--narrow);font-size:28px;font-weight:700;color:var(--copper);white-space:nowrap">31</div><div class="muted" style="font-size:13px">окт</div></div><div style="font-weight:600">Во имя героев</div></a>
-<a class="card" href="Events.dc.html" style="display:flex;gap:16px;align-items:center"><div style="text-align:center;min-width:56px"><div style="font-family:var(--narrow);font-size:28px;font-weight:700;color:var(--copper);white-space:nowrap">3–12</div><div class="muted" style="font-size:13px">ноя</div></div><div style="font-weight:600">Большой этнографический диктант</div></a>
+
+<section class="sec" aria-labelledby="ev-h">
+<h2 id="ev-h">Ближайшие события</h2>
+<div class="g3" style="margin-top:24px" data-prune>
+<a class="card lf-ev" data-end="2026-10-25" href="Events.dc.html"><div class="lf-evd"><b>25</b><span>окт</span></div><div style="font-weight:600">Твой ход — всероссийский студенческий проект</div></a>
+<a class="card lf-ev" data-end="2026-10-31" href="Events.dc.html"><div class="lf-evd"><b>31</b><span>окт</span></div><div style="font-weight:600">Во имя героев</div></a>
+<a class="card lf-ev" data-end="2026-11-12" href="Events.dc.html"><div class="lf-evd"><b>3–12</b><span>ноя</span></div><div style="font-weight:600">Большой этнографический диктант</div></a>
+<a class="card lf-ev" data-end="2026-11-14" href="Events.dc.html"><div class="lf-evd"><b>12–14</b><span>ноя</span></div><div style="font-weight:600">Российские регионы в фокусе перемен</div></a>
+<a class="card lf-ev" data-end="2027-01-19" href="Events.dc.html"><div class="lf-evd"><b>19</b><span>янв</span></div><div style="font-weight:600">Изумруд.Студент — олимпиада УрФУ</div></a>
 </div>
+<p class="muted" data-prune-empty hidden style="margin-top:12px">Новые события — в <a href="Events.dc.html">календаре</a>.</p>
 </section>
+
 <section class="sec">
-<div style="background:var(--blue-soft);border-radius:8px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
-<div><h2>Хотите создать свой клуб?</h2><p class="muted" style="margin-top:8px">Расскажем, как получить помещение, поддержку и место в календаре.</p></div>
-<a class="btn" href="Contacts.dc.html">Написать нам</a>
+<div class="lf-join">
+<div><h2>Хочу в актив</h2><p style="margin-top:8px">Приходите в Союз студентов УрФУ — ГУК-309: подскажут, с чего начать, и помогут с любым вопросом. В каждом институте есть своё профбюро.</p></div>
+<div class="lf-join-b"><a class="btn" href="https://vk.com/posnews" target="_blank" rel="noopener">Союз студентов ВКонтакте<span class="sr"> (откроется в новой вкладке)</span></a><a class="btn2" href="Institute.dc.html#il-s-h">Профбюро институтов</a></div>
 </div>
 </section>
 </div>
@@ -103,24 +145,18 @@
 <script type="text/x-dc" id="dc-logic">
 class Component extends DCLogic {
 renderVals() {
-const c = (this.state && this.state.c) || 'Все';
-const cats = ['Все','Спорт','Творчество','Наука и IT','Волонтёрство','Медиа'];
-const bg = {'Спорт':'#E8EEF7','Творчество':'#EEF1F4','Наука и IT':'#E4EAF2','Волонтёрство':'#EEF1F4','Медиа':'#EEF1F4'};
-const all = [
-{t:'Секция волейбола', cat:'Спорт', d:'Тренировки для новичков и сборной'},
-{t:'Секция плавания', cat:'Спорт', d:'Бассейн спорткомплекса, разные уровни'},
-{t:'Студенческий театр', cat:'Творчество', d:'Постановки, сценическая речь, фестивали'},
-{t:'Вокальная студия', cat:'Творчество', d:'Хор и сольный вокал'},
-{t:'Клуб программирования', cat:'Наука и IT', d:'Олимпиады, хакатоны, командные проекты'},
-{t:'Клуб робототехники', cat:'Наука и IT', d:'Собираем роботов и участвуем в соревнованиях'},
-{t:'Волонтёрский центр', cat:'Волонтёрство', d:'Социальные и городские проекты'},
-{t:'Студенческий медиацентр', cat:'Медиа', d:'Фото, видео, тексты и соцсети'}
-];
-const clubs = all.filter(x => c === 'Все' || x.cat === c).map(x => ({ ...x, bg: bg[x.cat] }));
-return { cats: cats.map(l => ({ label: l, on: l === c, off: l !== c, pick: () => this.setState({ c: l }) })), clubs };
+const CATS = [["all", "Все"], ["self", "Самоуправление и забота"], ["job", "Работа и карьера"], ["art", "Творчество и игры"], ["sport", "Спорт и туризм"], ["intl", "Международное и языки"], ["vol", "Волонтёрство"]], ORGS = [["Союз студентов УрФУ", "self", "Самая большая студенческая организация: защищает интересы более 19 000 студентов, ведёт образовательные проекты, помогает с трудоустройством.", "vk.com/posnews"], ["Ассоциация студентов-наставников", "self", "Старшекурсники помогают первокурсникам освоиться в университете. Стать наставником можно со второго курса.", "vk.com/asn_urfu"], ["Объединённый совет студенческого городка", "self", "Работает со всеми общежитиями: помогает с бытовыми вопросами и организует досуг жителей.", "vk.com/ossg.urfu"], ["Студенческий психологический клуб УГИ", "self", "Психология для всех, кому интересно, и бесплатная краткосрочная поддержка — три встречи.", "vk.com/studentpsychologicalclub"], ["Отряд охраны правопорядка «Феникс»", "self", "С 1994 года охраняет общественный порядок в университете и Екатеринбурге.", "vk.com/coonp_urfu"], ["Штаб студенческих отрядов", "job", "30 отрядов: строительные, педагогические, проводники, археологический. Летняя работа за плату и практика.", "vk.com/so_urfu"], ["Команда продвижения УрФУ", "job", "Студенты бесплатно ездят в свои города рассказать школьникам об университете. Выезды — осенью и весной.", "vk.com/kpurfu"], ["AIESEC", "job", "Лидерские программы по России и международные стажировки.", "vk.com/aiesec_ekaterinburg"], ["Союз молодых инноваторов", "job", "Поддерживает инновационные идеи и развивает предпринимательские навыки.", "vk.com/sminnovators"], ["Клуб переговорных технологий «Юниверс»", "job", "Учат договариваться и выходить из конфликтов: курс, мастер-классы, деловые игры.", "vk.com/universe_urfu"], ["Центр творчества УрФУ", "art", "20 творческих коллективов — от школы ведущих до рок-клуба. Номера и сценарии для событий университета.", "vk.com/creation_urfu"], ["Совет студенческих СМИ", "art", "Объединяет студенческие редакции. Каждый год — Медиашкола для новичков.", "vk.com/urfu_smi"], ["Ролевой проект", "art", "Квесты, ролевые и настольные игры, D&D — всё про гик-культуру.", "vk.com/roleplayfti"], ["Клуб настольных игр «Играриум»", "art", "Каждый месяц — вечера настольных игр. Новичкам всё объяснят ведущие.", "vk.com/igrariuminfo"], ["Спорт УрФУ", "sport", "Сборные и соревнования — для спортсменов и тех, кто просто любит активный отдых.", "vk.com/sporturfu"], ["Киберспорт УрФУ", "sport", "", ""], ["Турклуб «Романтик»", "sport", "Готовит к категорийным походам: пеший, горный, лыжный и велотуризм.", "vk.com/turclub_romantic"], ["Турклуб «Рифей»", "sport", "", ""], ["Велком центр УрФУ", "sport", "Студенческий туристический кластер, работает по проекту «Твой маршрут — Россия».", "vk.com/uralwelcome"], ["Совет по культурно-историческому наследию Урала", "sport", "Свои туристические проекты: экскурсии, маршруты, сопровождение гостей.", "vk.com/sapkinu"], ["Студенческая организация объединённых наций", "intl", "Помогает иностранным студентам освоиться. В организации — 17 землячеств.", "vk.com/international_students_urfu"], ["ISU Ural Federal", "intl", "Одно из двух российских подразделений International Student Union: помощь иностранным студентам.", "vk.com/isu.uralfederal"], ["Бадди УрФУ", "intl", "Студенты-«бадди» помогают иностранным первокурсникам: адаптация и документы.", "vk.com/buddysysturfu"], ["Клуб иностранных языков", "intl", "Занятия ведут студенты и носители языка: игры, кинопоказы, дебаты.", "vk.com/club_urfu"], ["Екатеринбургская международная модель ООН", "intl", "Моделирование заседаний ООН и молодёжная дипломатия.", "vk.com/eimun"], ["Юношеское лингвистическое сообщество", "intl", "", ""], ["МОСТ УрФУ", "intl", "", ""], ["Волонтёрский центр «Волонтёры Урала»", "vol", "Помогают на событиях университета, города и страны — от Олимпиады в Сочи до чемпионата мира по футболу 2018 года.", "vk.com/volural"], ["Патриотический клуб «Я горжусь»", "vol", "Студенческий клуб в рамках федерального проекта «Патриотическое воспитание».", "vk.com/ya_gorzhus_urfu"]];
+const c = (this.state && this.state.c) || 'all';
+const CN = {}; CATS.forEach(([k, n]) => CN[k] = n);
+const list = ORGS.filter(o => c === 'all' || o[1] === c);
+const plural = n => n % 10 === 1 && n % 100 !== 11 ? 'организация' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'организации' : 'организаций');
+return {
+  cats: CATS.map(([k, n]) => ({ label: n, n: String(k === 'all' ? ORGS.length : ORGS.filter(o => o[1] === k).length), on: String(k === c), pick: () => this.setState({ c: k }) })),
+  count: list.length + ' ' + plural(list.length),
+  orgs: list.map(([t, k, d, l]) => ({ t, cat: CN[k], d: d || 'Описание и контакты — в «Навигаторе первокурсника».', hasD: true, l: l || 'privet.urfu.ru/orgs', hasL: true, href: 'https://' + (l || 'privet.urfu.ru/orgs') }))
+};
 }
 }
-
 </script>
 <script src="dc-lite.js"></script>
 <script src="site.js"></script>
