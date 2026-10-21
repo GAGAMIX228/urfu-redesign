@@ -38,4 +38,5 @@ try:
     open(OUT, 'wb').write(base64.b64decode(d))
     print(os.path.abspath(OUT), os.path.getsize(OUT) // 1024, 'КБ')
 finally:
-    p.kill()
+    # закрываем Edge целиком, вместе с дочерними процессами
+    subprocess.run(['taskkill', '/F', '/T', '/PID', str(p.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

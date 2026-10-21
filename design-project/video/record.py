@@ -33,6 +33,7 @@ window.__setCur=function(x,y,s){mk();document.getElementById('__cur').style.tran
 
 p = subprocess.Popen([EDGE, '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--remote-debugging-port=9497',
                       '--user-data-dir=' + os.path.join(FR, 'profile'), 'about:blank'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+STEADY = "(()=>{const d=(window.top===window?document:document);document.documentElement.classList.add('rv-done');document.querySelectorAll('.rv').forEach(e=>e.classList.add('rv-in'));document.querySelectorAll('*').forEach(e=>{if(getComputedStyle(e).contentVisibility==='auto')e.style.contentVisibility='visible'});return 1})()"
 n = [0]; frames = [0]; cur = [W * 0.6, H * 0.6]; cap = ['']
 try:
     for _ in range(60):
@@ -54,9 +55,9 @@ try:
     cmd('Page.addScriptToEvaluateOnNewDocument', source=OVERLAY)
 
     def shot():
-        d = cmd('Page.captureScreenshot', format='jpeg', quality=88, optimizeForSpeed=True)['data']
+        d = cmd('Page.captureScreenshot', format='png')['data']
         frames[0] += 1
-        open(os.path.join(FR, '%05d.jpg' % frames[0]), 'wb').write(base64.b64decode(d))
+        open(os.path.join(FR, '%05d.png' % frames[0]), 'wb').write(base64.b64decode(d))
 
     def hold(sec):
         for _ in range(round(sec * FPS)): shot()
@@ -68,10 +69,11 @@ try:
         ev('window.__setCur(%f,%f)' % tuple(cur))
 
     def go(url, wait=2.2):
-        print('→', url, flush=True)
+        print('→', url, 'с кадра', frames[0] + 1, flush=True)
         cmd('Storage.clearDataForOrigin', origin=BASE.rstrip('/'), storageTypes='local_storage,session_storage')
         cmd('Page.navigate', url=url if url.startswith('http') else BASE + url); time.sleep(wait)
         ev("document.fonts.ready.then(()=>1)")
+        ev(STEADY); time.sleep(0.4)
         ev('window.__setCap(%s)' % json.dumps(cap[0])); place_cursor()
 
     ease = lambda t: t * t * (3 - 2 * t)
@@ -114,7 +116,7 @@ try:
     # скорость анимаций сайта — под скорость съёмки
     go('Main.dc.html')
     t0 = time.time()
-    for _ in range(8): cmd('Page.captureScreenshot', format='jpeg', quality=88, optimizeForSpeed=True)
+    for _ in range(8): cmd('Page.captureScreenshot', format='png')
     per = (time.time() - t0) / 8
     rate = max(0.1, min(1.0, (1000 / FPS) / (per * 1000)))
     cmd('Animation.setPlaybackRate', playbackRate=rate)
@@ -131,7 +133,7 @@ try:
 
     # 2. Хватит ли баллов
     caption('«Хватит ли баллов?» — прямо на главной')
-    ensure_visible('#calc-r', 420, 1.2)
+    ensure_visible('#calc-r', 420, 1.9)
     x, y, _ = center('#calc-r'); move(x - 40, y, 0.5)
     k = round(1.6 * FPS)
     for i in range(1, k + 1):
@@ -149,7 +151,7 @@ try:
 
     # 4. Поиск
     caption('Поиск понимает «общагу» и «стипуху»'); go('Search.dc.html'); hold(0.4)
-    click('#sq', 0.5); ev("(()=>{const i=document.querySelector('#sq');i.value='';i.dispatchEvent(new Event('input',{bubbles:true}))})()"); hold(0.3); type_text('общага', 3); hold(3.0)
+    click('#sq', 0.5); ev("(()=>{const i=document.querySelector('#sq');i.value='';i.dispatchEvent(new Event('input',{bubbles:true}))})()"); hold(0.4); cmd('Input.insertText', text='общага'); hold(3.6)
 
     # 5. Общежития
     caption('Цена каждого общежития — по приказам УрФУ'); go('Dorms.dc.html'); hold(0.6)
@@ -169,26 +171,30 @@ try:
     caption('С телефона — так же удобно'); cur[:] = [-100, -100]
     go('design-project/video/phone.html#Main.dc.html', 3.0); hold(1.2)
     fs = lambda js: ev("(()=>{const w=document.getElementById('f').contentWindow;%s})()" % js)
+    IN_FRAME = "const D=w.document;D.documentElement.classList.add('rv-done');D.querySelectorAll('.rv').forEach(e=>e.classList.add('rv-in'));D.querySelectorAll('*').forEach(e=>{if(w.getComputedStyle(e).contentVisibility==='auto')e.style.contentVisibility='visible'});return 1"
+    fs(IN_FRAME); time.sleep(0.4)
     k = round(1.6 * FPS)
     for i in range(1, k + 1):
         fs("w.scrollTo({top:%f,behavior:'instant'})" % (900 * ease(i / k))); shot()
     hold(1.4)
-    fs("w.location.href='../../Catalog.dc.html'"); time.sleep(2.2); hold(2.6)
+    fs("w.location.href='../../Catalog.dc.html'"); time.sleep(2.2); fs(IN_FRAME); time.sleep(0.4); hold(2.6)
 
     # 9. Финал
     caption(''); cur[:] = [-100, -100]; go('design-project/video/card.html#end', 1.5); hold(4.5)
     print('кадров:', frames[0], '≈ %.1f с' % (frames[0] / FPS), flush=True)
 finally:
-    p.kill()
+    # закрываем Edge целиком, вместе с дочерними процессами
+    subprocess.run(['taskkill', '/F', '/T', '/PID', str(p.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 # сборка видео
 ff = imageio_ffmpeg.get_ffmpeg_exe()
 os.makedirs(os.path.dirname(os.path.abspath(OUT)), exist_ok=True)
-subprocess.run([ff, '-y', '-loglevel', 'error', '-framerate', str(FPS), '-i', os.path.join(FR, '%05d.jpg'),
-                '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', OUT], check=True)
+subprocess.run([ff, '-y', '-loglevel', 'error', '-framerate', str(FPS), '-i', os.path.join(FR, '%05d.png'),
+                '-c:v', 'libx264', '-preset', 'slow', '-crf', '16', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', OUT], check=True)
 # кадры для проверки — каждые 2 с
 chk = os.path.join(HERE, '..', '..', '.preview', 'video-check'); shutil.rmtree(chk, ignore_errors=True); os.makedirs(chk)
-for f in sorted(glob.glob(os.path.join(FR, '*.jpg')))[::FPS * 2]:
-    Image.open(f).resize((640, 360)).save(os.path.join(chk, os.path.basename(f)), quality=80)
-shutil.rmtree(FR, ignore_errors=True)
+for f in sorted(glob.glob(os.path.join(FR, '*.png')))[::FPS * 2]:
+    Image.open(f).convert('RGB').resize((640, 360)).save(os.path.join(chk, os.path.basename(f)[:-4] + '.jpg'), quality=80)
+if os.environ.get('KEEP'): print('кадры:', FR)
+else: shutil.rmtree(FR, ignore_errors=True)
 print(os.path.abspath(OUT), os.path.getsize(OUT) // 1024, 'КБ')
