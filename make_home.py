@@ -43,10 +43,11 @@ T = {
   steps=[('20 июня', 'Приём документов открыт'), ('25 июля', 'Последний день для бюджета по ЕГЭ'), ('20 августа', 'Последний день для платного'), ('1 сентября', 'Первая пара')],
   cta1=('Quiz.dc.html', 'Подобрать программу за 3 вопроса'), cta2=('Admission.dc.html', 'Как поступить'),
   news_h='Новости', news_all='Все новости', ev_h='События', ev_all='Календарь',
-  news=[('15 октября', 'После 15 октября — снова очные занятия'), ('8 октября', 'На Урале создали титановые сплавы для авиадвигателей'),
-        ('30 сентября', 'Ректор УрФУ: ИИ может изменить защиту дипломных работ'), ('Июль 2026', 'Почти 50 тысяч заявлений на бюджет: итоги приёма-2026')],
-  ev=[('13–22', 'октября', 'Статистический диктант', 'Онлайн, можно успеть'), ('24', 'октября', 'Школа экскурсоводов', 'Набор на программу допобразования'),
-      ('29', 'октября', 'Кейс-чемпионат «Лига твоего имени»', 'Приём заявок'), ('3–12', 'ноября', 'Большой этнографический диктант', 'Онлайн на сайте акции')],
+  news=[('19 октября', 'УрФУ — 106 лет: университет основан 19 октября 1920 года'), ('15 октября', 'После 15 октября — снова очные занятия'),
+        ('8 октября', 'На Урале создали титановые сплавы для авиадвигателей'), ('Июль 2026', 'Почти 50 тысяч заявлений на бюджет: итоги приёма-2026')],
+  ev=[('24', 'октября', 'Школа экскурсоводов', 'Набор на программу допобразования'), ('29', 'октября', 'Кейс-чемпионат «Лига твоего имени»', 'Приём заявок'),
+      ('3–12', 'ноября', 'Большой этнографический диктант', 'Онлайн на сайте акции'), ('21–22', 'ноября', 'Уральский турнир юных биологов', 'Для школьных команд · ИЕНиМ'),
+      ('19', 'января', 'Олимпиада «Изумруд»', 'Отборочный этап · 8–11 классы и колледжи')],
   inst_h='Институты', inst_lead='13 институтов — от радиотехники до спорта. У восьми программы бакалавриата уже есть в нашем каталоге.', inst_all='Все подразделения', inst_more='Ещё в УрФУ:',
   inst=[('ИРИТ-РтФ', 'Радиоэлектроника и IT'), ('ИЕНиМ', 'Естественные науки и математика'), ('ИНМиТ', 'Новые материалы и технологии'), ('УралЭНИН', 'Энергетика'),
         ('ИСА', 'Строительство и архитектура'), ('УГИ', 'Гуманитарные науки'), ('ИнЭУ', 'Экономика и управление'), ('ФТИ', 'Физика и технологии')],
@@ -85,8 +86,9 @@ T = {
   news_h='News', news_all='All news', ev_h='Events', ev_all='Calendar',
   news=[('July 2026', 'Almost 50,000 applications for state-funded places in 2026'), ('2026', 'UrFU joins the pilot of the new higher education system'),
         ('2026', 'About 500 teachers learned to build courses with neural networks'), ('2026', 'UrFU scientists explain a puzzling cause of male infertility')],
-  ev=[('13–22', 'October', 'Statistics Dictation', 'Open to everyone online'), ('24', 'October', 'Tour Guide School', 'Enrolment for a continuing-education course'),
-      ('29', 'October', '“League of Your Name” case championship', 'Applications open'), ('3–12', 'November', 'Big Ethnographic Dictation', 'Online on the campaign website')],
+  ev=[('24', 'October', 'Tour Guide School', 'Enrolment for a continuing-education course'), ('29', 'October', '“League of Your Name” case championship', 'Applications open'),
+      ('3–12', 'November', 'Big Ethnographic Dictation', 'Online on the campaign website'), ('21–22', 'November', 'Ural Young Biologists Tournament', 'School teams · Institute of Natural Sciences'),
+      ('19', 'January', 'Izumrud Olympiad', 'Qualifying stage · grades 8–11 and colleges')],
   inst_h='Institutes', inst_lead='13 institutes, from radio engineering to sport. Eight of them already have bachelor’s programmes in our catalogue.', inst_all='All units', inst_more='Also at UrFU:',
   inst=[('IRIT-RTF', 'Radio electronics and IT'), ('INSM', 'Natural sciences and mathematics'), ('INMT', 'New materials and technologies'), ('UralENIN', 'Power engineering'),
         ('ICEA', 'Civil engineering and architecture'), ('UIH', 'Humanities'), ('GSEM', 'Economics and management'), ('IPT', 'Physics and technology')],
@@ -291,7 +293,7 @@ def main_html(t):
 </div>
 <div class="yu-evbox">
 <div class="fd-head"><h2 class="fd-col-h">{t['ev_h']}</h2><a class="fd-more" href="Events.dc.html">{t['ev_all']}</a></div>
-<ul class="fd-list fd-ev" data-prune>{ev}</ul><p class="fd-ev-empty" data-prune-empty hidden><a href="Events.dc.html">{t['ev_all']}</a></p>
+<ul class="fd-list fd-ev" data-prune data-max="4">{ev}</ul><p class="fd-ev-empty" data-prune-empty hidden><a href="Events.dc.html">{t['ev_all']}</a></p>
 </div>
 </div></section>
 
