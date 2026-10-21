@@ -270,15 +270,15 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
 .srcs .card{padding:14px 16px;min-height:27mm}
 .srcs .card h3{font-size:20px}
 .srcs .card p{font-size:13px}
-.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:6mm;margin-top:6mm}
+.checks{display:grid;grid-template-columns:repeat(5,1fr);gap:6mm;margin-top:6mm}
 .checks .stat p{font-size:13.5px}
 .checks .stat{border-top:3px solid var(--mal);padding-top:6px}
-.checks .big{font-size:58px;white-space:nowrap;letter-spacing:-.02em;color:var(--mal-d)}
+.checks .big{font-size:46px;white-space:nowrap;letter-spacing:-.02em;color:var(--mal-d)}
 
 /* итог */
 .res{display:grid;grid-template-columns:1fr 1.25fr 1fr 1fr 1fr;gap:4mm;margin-top:6mm}
 .res .stat{background:rgba(255,255,255,.06);border:1px solid var(--ink-2);border-radius:8px;padding:13px 14px}
-.res .big{font-size:36px;white-space:nowrap;letter-spacing:-.03em;color:var(--gold)}
+.res .big{font-size:44px;white-space:nowrap;letter-spacing:-.03em;color:var(--gold)}
 .res .stat p{font-size:13px}
 .next{display:grid;grid-template-columns:repeat(3,1fr);gap:6mm 8mm;margin-top:6mm}
 .next div{font-size:13px;color:var(--on-dark);line-height:1.38;border-left:3px solid var(--ame);padding-left:8px}
@@ -289,6 +289,19 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
 .links div{font-size:13px;line-height:1.6}
 .links div b{font-size:14px}
 .links a{color:var(--ame-d);text-decoration:none;font-weight:600}
+
+/* ===== Как внедрить ===== */
+.im{display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:6mm}
+.im div{background:#fff;border:1px solid var(--line);border-top:5px solid var(--c);border-radius:8px;padding:12px 14px;min-height:58mm}
+.im i{display:block;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.im b{display:block;font-family:'PT Sans Narrow',sans-serif;font-size:23px;line-height:1.05;margin:4px 0 6px}
+.im p{font-size:12.5px;color:var(--muted);line-height:1.42}
+.im em{display:block;margin-top:7px;font-style:normal;font-size:12px;font-weight:600}
+.im3{display:grid;grid-template-columns:repeat(3,1fr);gap:7mm;margin-top:7mm}
+.im3 h3{font-size:21px;margin-bottom:5px}
+.im3 ul{list-style:none;margin:0;padding:0}
+.im3 li{position:relative;padding-left:14px;margin-bottom:6px;font-size:12.5px;line-height:1.4}
+.im3 li:before{content:"";position:absolute;left:0;top:6px;width:7px;height:7px;background:var(--ame);clip-path:polygon(0 0,100% 0,100% 100%)}
 </style>
 </head>
 <body>
@@ -340,7 +353,8 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
     <li><b>12</b>Доступность</li>
     <li><b>13</b>20 вещей, которых нет на urfu.ru</li>
     <li><b>14</b>Только настоящие данные</li>
-    <li><b>15</b>Итог и что дальше</li>
+    <li><b>15</b>Как внедрить</li>
+    <li><b>16</b>Итог</li>
   </ol>
   <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>2</b></div>
 </section>
@@ -667,13 +681,33 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
     <div class="stat"><div class="big num">141</div><p>адрес обойдён роботом — без битых ссылок и ошибок скриптов</p></div>
     <div class="stat"><div class="big num">320–1920</div><p>пикселей ширины — ничего не вылезает за экран</p></div>
     <div class="stat"><div class="big num">~300 КБ</div><p>весит обычная страница; без внешних сервисов и чужих скриптов</p></div>
+    <div class="stat"><div class="big num">1–2,2 с</div><p>до главного блока на телефоне при медленном мобильном интернете; норма — до 2,5 с</p></div>
   </div>
   <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Под каждой ценой и цифрой на сайте — ссылка на источник</span><span class="sp"></span><b>15</b></div>
 </section>
 
-<!-- ═══ 16. Итог ═══ -->
+<!-- ═══ 16. Как внедрить ═══ -->
+<section class="s">
+  <div class="kick"><span>15</span> Внедрение</div>
+  <h2 class="h">Как внедрить — по шагам</h2>
+  <p class="lead">Прототип — обычные HTML, CSS и немного JavaScript, без фреймворков и внешних сервисов. Шаблон и стили переносятся в систему, с которой работает редакция. Запускать можно по частям, не выключая urfu.ru.</p>
+  <div class="im">
+    <div style="--c:var(--rho)"><i>Этап 1</i><b>Бета рядом с urfu.ru</b><p>Новая версия — по кнопке «Попробовать новый сайт», старый работает как работал. Смотрим, что ищут и не находят.</p><em>Готово уже сейчас</em></div>
+    <div style="--c:var(--gold)"><i>Этап 2</i><b>Подключить данные</b><p>Каталог и цены — с programs.edu.urfu.ru, расписание — из базы «УрФУ.Учеба», вход — через id.urfu.ru.</p><em>Нужен доступ к данным</em></div>
+    <div style="--c:var(--mal)"><i>Этап 3</i><b>Перенести разделы</b><p>По одному: сначала для поступающих, потом для студентов. Со старых адресов — постоянная переадресация.</p><em>Раздел за разделом</em></div>
+    <div style="--c:var(--ame)"><i>Этап 4</i><b>Один шаблон для поддоменов</b><p>Сайты институтов и служб получают ту же шапку, меню и подвал — человек не «выпадает» на чужое меню.</p><em>40 сайтов в ссылках с главной</em></div>
+  </div>
+  <div class="im3">
+    <div><h3>Как редакция обновляет сайт</h3><ul><li><b>Новости и события</b> — одна строка: дата, срок, ссылка. Прошедшее сайт скрывает сам.</li><li><b>Цены и баллы</b> — раз в год по приказу, со ссылкой на источник.</li><li><b>Новые страницы</b> — из готовых блоков дизайн-системы.</li></ul></div>
+    <div><h3>Что нужно от университета</h3><ul><li>Доступ к открытым данным расписания и программ.</li><li>Решение, кто в редакции ведёт новые страницы.</li><li>Тестовый адрес для беты.</li><li>Проверка на студентах и абитуриентах до запуска раздела.</li></ul></div>
+    <div><h3>Что не потерять</h3><ul><li><b>Ссылки</b> — переадресация со всех старых адресов.</li><li><b>Доступность</b> — проверка axe перед каждой публикацией (сейчас 0 ошибок).</li><li><b>Скорость</b> — главный блок на телефоне не дольше 2,5 с (сейчас 1–2,2 с).</li></ul></div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>16</b></div>
+</section>
+
+<!-- ═══ 17. Итог ═══ -->
 <section class="s dark">
-  <div class="kick"><span>15</span> Итог</div>
+  <div class="kick"><span>16</span> Итог</div>
   <h2 class="h">Результат в цифрах</h2>
   <div class="res">
     <div class="stat"><div class="big num">22 → 6</div><p>пунктов меню</p></div>
@@ -682,23 +716,14 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
     <div class="stat"><div class="big num">15 → 4</div><p>действий до ответа по 7 частым задачам</p></div>
     <div class="stat"><div class="big num">— → 1</div><p>адрес общежития: на urfu.ru не найти</p></div>
   </div>
-  <h3 class="nar" style="font-size:24px;margin-top:7mm">Что дальше — после конкурса</h3>
-  <p class="lead" style="margin-top:2mm">Прототип показывает, как должен работать сайт. Чтобы он стал настоящим, его нужно подключить к системам университета.</p>
-  <div class="next">
-    <div><b>Расписание</b>Подключить к базе приложения «УрФУ.Учеба» — вместо примера появятся настоящие пары.</div>
-    <div><b>Личный кабинет</b>Вход через id.urfu.ru: баллы, справки и пропуск — из iStudent.</div>
-    <div><b>Каталог и цены</b>Брать программы, места и баллы с programs.edu.urfu.ru — один источник.</div>
-    <div><b>Новости и события</b>Выгрузка из редакции портала; прошедшие события сайт уже убирает сам.</div>
-    <div><b>Проверка на людях</b>Задания готовы: время и клики по шести частым задачам против urfu.ru.</div>
-    <div><b>Английская версия</b>Перевести остальные разделы.</div>
-  </div>
+  <p class="lead" style="margin-top:16mm;max-width:235mm;font-size:34px;color:#fff;font-family:'PT Sans Narrow',sans-serif;font-weight:700;line-height:1.15">Сайт, где человек находит ответ, а не устройство университета. Работающий прототип: 27 страниц, только настоящие данные, 0&nbsp;ошибок доступности.</p>
   <div class="links">
     <div class="q"><img src="img/qr.svg" alt="QR-код ссылки на сайт"></div>
     <div><b>Посмотреть сайт:</b> <a href="https://gagamix228.github.io/urfu-redesign/">gagamix228.github.io/urfu-redesign</a> — начните с главной и выберите роль<br>
     <b>Концепция и разбор urfu.ru:</b> <a href="https://gagamix228.github.io/urfu-redesign/Concept.dc.html">gagamix228.github.io/urfu-redesign/Concept.dc.html</a><br>
     <b>Код:</b> <a href="https://github.com/GAGAMIX228/urfu-redesign">github.com/GAGAMIX228/urfu-redesign</a></div>
   </div>
-  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Бурдин Кирилл Алексеевич · дизайн-проект нового сайта УрФУ · конкурс «Взломай веб-дизайн», 2026</span><span class="sp"></span><b>16</b></div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Бурдин Кирилл Алексеевич · дизайн-проект нового сайта УрФУ · конкурс «Взломай веб-дизайн», 2026</span><span class="sp"></span><b>17</b></div>
 </section>
 
 </body>

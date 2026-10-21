@@ -17,6 +17,7 @@ tail = s[s.index('<script src="dc-lite.js"></script>'):]
 MAIN = """<main id="main" tabindex="-1" style="outline:none"><section class="phead">
 <div class="wrap" style="padding-bottom:56px">
 <div class="crumbs"><a href="Main.dc.html">Главная</a> / <a href="Catalog.dc.html">Каталог программ</a> / {{name}}</div>
+<sc-if value="{{hasMiss}}" hint-placeholder-val="{{false}}"><p class="pg-miss" role="status" style="margin-top:16px;max-width:900px;padding:14px 18px;border-radius:10px;background:var(--ink);color:#FFFFFF;font-size:16px;line-height:1.5">Программы «{{miss}}» в прототипе нет. Ниже для примера — «{{name}}». Все программы прототипа — в <a href="Catalog.dc.html" style="color:#FFFFFF">каталоге</a>, все программы УрФУ — на <a href="https://programs.edu.urfu.ru/" style="color:#FFFFFF">сайте образовательных программ</a>.</p></sc-if>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><span class="tag" style="background:#FFFFFF">Бакалавриат</span><sc-if value="{{hasCode}}" hint-placeholder-val="{{true}}"><span class="tag" style="background:#FFFFFF">{{code}}</span></sc-if><a class="tag" href="{{instHref}}" style="background:#FFFFFF;text-decoration:none" title="{{instFull}}">{{instL}}</a></div>
 <h1 class="big" style="font-size:52px;margin-top:20px;max-width:900px">{{name}}</h1>
 <p style="font-size:19px;margin-top:16px;max-width:760px;color:#2B3946">{{lead}}</p>
@@ -345,7 +346,8 @@ const EXTRA = {
   skills: [['Писать код', 'Алгоритмы, структуры данных, несколько языков программирования.'], ['Проектировать системы', 'Архитектура, базы данных, требования к продукту.'], ['Работать в команде', 'Командные проекты по методологиям разработки.'], ['Проверять качество', 'Тестирование, ревью кода, сопровождение.']],
   jobs: ['Backend-разработчик', 'Frontend-разработчик', 'Инженер по тестированию', 'Системный аналитик', 'DevOps-инженер', 'Руководитель проектов'] }};
 let want = 'Программная инженерия';
-try { const q = new URLSearchParams(location.search).get('p'); if (q && ALL_PROGS.some(x => x.name === q)) want = q; } catch (e) {}
+let miss = '';
+try { const q = new URLSearchParams(location.search).get('p'); if (q && ALL_PROGS.some(x => x.name === q)) want = q; else if (q) miss = q; } catch (e) {}
 const P = { score: '—', budget: '—', price: '—', sy: '2025', ...ALL_PROGS.find(x => x.name === want) };
 const X = EXTRA[P.name] || {};
 const DF = {}; __DFLAGS__.forEach(([f, n]) => { DF[f] = P.name === n; });
@@ -378,6 +380,7 @@ const similar = ALL_PROGS.filter(x => x.k === P.k && x.name !== P.name)
   .sort((a, b) => (isNaN(parseInt(a.score, 10)) ? 1 : 0) - (isNaN(parseInt(b.score, 10)) ? 1 : 0)).slice(0, 3)
   .map(x => ({ name: x.name, inst: x.inst, instL: (IL[x.inst] || [x.inst])[0], instFull: (IL[x.inst] || [x.inst, x.inst])[1], href: href(x.name), info: !isNaN(parseInt(x.score, 10)) ? 'Проходной балл ' + x.sy + ': ' + x.score : (x.budget && x.budget !== '—' ? 'Бюджетных мест: ' + x.budget + (x.price ? ' · ' + x.price : '') : '') }));
 return {
+  miss, hasMiss: !!miss,
   name: P.name, inst: P.inst, instL: (IL[P.inst] || [P.inst])[0], instFull: (IL[P.inst] || [P.inst, P.inst])[1], instHref: 'Institute.dc.html?i=' + encodeURIComponent(P.inst), area: P.area, code: CODE[P.name] || '', hasCode: !!CODE[P.name],
   lead: X.lead || ('Программа бакалавриата ' + (INST[P.inst] || P.inst) + '. Вступительные испытания: ' + P.exams + '.'),
   score: P.score, budget: P.budget, price: P.price, sy: P.sy, form: X.form || 'Очная',

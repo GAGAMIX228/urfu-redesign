@@ -138,10 +138,10 @@
 <section class="hero dark"><div class="wrap">
 <div class="hero-grid" style="padding-bottom:64px">
 <div>
-<span class="eyebrow rv">Конкурс «Взломай веб-дизайн» · редизайн сайта УрФУ</span>
-<h1 class="rv rv2">Один УрФУ&nbsp;—<br><em>один вход</em></h1>
-<p class="hero-lead rv rv3">Сайт, построенный вокруг задач людей, а не вокруг устройства университета. В фирменных цветах уральских самоцветов.</p>
-<div class="rv rv4" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px"><a class="btn" href="Main.dc.html" style="background:#FFFFFF;color:var(--ink)">Открыть сайт <span class="arrow">→</span></a></div>
+<span class="eyebrow">Конкурс «Взломай веб-дизайн» · редизайн сайта УрФУ</span>
+<h1>Один УрФУ&nbsp;—<br><em>один вход</em></h1>
+<p class="hero-lead">Сайт, построенный вокруг задач людей, а не вокруг устройства университета. В фирменных цветах уральских самоцветов.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px"><a class="btn" href="Main.dc.html" style="background:#FFFFFF;color:var(--ink)">Открыть сайт <span class="arrow">→</span></a></div>
 </div>
 <div class="hero-art" aria-hidden="true" style="display:flex;justify-content:center">
 <svg width="288" height="330" viewBox="10 6 82 94"><defs><linearGradient id="ulA2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B5CFF"></stop><stop offset="1" stop-color="#5A1FD1"></stop></linearGradient><linearGradient id="ulB2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4D8D"></stop><stop offset="1" stop-color="#C2185B"></stop></linearGradient><linearGradient id="ulF2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"></stop><stop offset="1" stop-color="#000" stop-opacity="0"></stop></linearGradient></defs><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="url(#ulA2)"></path><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="url(#ulB2)"></path><path d="M46 70 L60 56 L54 72 Z" fill="url(#ulF2)"></path></svg>
@@ -269,6 +269,53 @@
 <li><b>Английская версия</b><span>Сейчас на английском главная, каталог, поступление и вход — дальше остальные разделы.</span></li>
 </ol>
 </section><!-- /next -->
+<!-- impl --><section class="wrap sec" id="impl" aria-labelledby="impl-h">
+<style id="impl-css">
+.im-lead{margin-top:12px;max-width:820px;font-size:18px}
+.im-steps{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;counter-reset:im}
+.im-steps li{position:relative;padding:20px 20px 22px;border-radius:12px;background:#FFFFFF;border:1px solid var(--line);border-top:5px solid var(--c,var(--amethyst));counter-increment:im}
+.im-steps li:nth-child(1){--c:var(--rhodonite)}.im-steps li:nth-child(2){--c:var(--gold)}.im-steps li:nth-child(3){--c:var(--malachite)}.im-steps li:nth-child(4){--c:var(--amethyst)}
+.im-steps li::before{content:"Этап " counter(im);display:block;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.im-steps b{display:block;font-family:var(--narrow,'PT Sans Narrow'),sans-serif;font-size:24px;line-height:1.1;margin-bottom:8px}
+.im-steps span{display:block;font-size:15px;color:var(--muted);line-height:1.5}
+.im-steps em{display:block;margin-top:10px;font-style:normal;font-size:14px;font-weight:600;color:var(--ink)}
+.im-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px}
+.im-cols h3{font-size:22px;margin-bottom:12px}
+.im-cols ul{margin:0;padding:0;list-style:none}
+.im-cols li{position:relative;padding:0 0 12px 22px;font-size:15px;line-height:1.5;color:var(--text)}
+.im-cols li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;background:var(--amethyst);clip-path:polygon(0 0,100% 0,100% 100%)}
+.im-cols li b{font-weight:600}
+@media (max-width:1000px){.im-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.im-cols{grid-template-columns:1fr}}
+@media (max-width:560px){.im-steps{grid-template-columns:1fr}}
+</style>
+<div class="sec-head"><div><h2 id="impl-h">Как внедрить — по шагам</h2></div></div>
+<p class="muted im-lead">Прототип — обычные HTML, CSS и немного JavaScript, без фреймворков и внешних сервисов. Его не нужно переписывать: шаблон и стили переносятся в ту систему управления сайтом, с которой работает редакция. Запускать можно по частям, не выключая urfu.ru.</p>
+<ol class="im-steps">
+<li><b>Бета рядом с urfu.ru</b><span>Новая версия открывается по кнопке «Попробовать новый сайт», старый работает как работал. Смотрим, что люди ищут и не находят, собираем отзывы.</span><em>Готово уже сейчас</em></li>
+<li><b>Подключить данные</b><span>Каталог, места и цены — с programs.edu.urfu.ru. Расписание — из той же базы, что у приложения «УрФУ.Учеба». Вход — через id.urfu.ru.</span><em>Нужен доступ к данным</em></li>
+<li><b>Перенести разделы</b><span>По одному: сначала всё для поступающих, потом для студентов. Со старых адресов — постоянная переадресация, чтобы не потерять закладки и места в поиске.</span><em>Раздел за разделом</em></li>
+<li><b>Один шаблон для поддоменов</b><span>Сайты институтов и служб получают ту же шапку, меню и подвал. Человек перестаёт «выпадать» на другой сайт с другим меню.</span><em>40 сайтов в ссылках с главной</em></li>
+</ol>
+<div class="im-cols">
+<div><h3>Как редакция обновляет сайт</h3><ul>
+<li><b>Новости и события</b> — одна строка: дата, срок, ссылка. Прошедшее сайт скрывает сам — это уже работает.</li>
+<li><b>Цены и баллы</b> — раз в год по приказу, рядом с каждой цифрой — ссылка на источник.</li>
+<li><b>Новые страницы</b> — из готовых блоков дизайн-системы: цветная шапка, карточки, таблицы, вопросы и ответы.</li>
+</ul></div>
+<div><h3>Что нужно от университета</h3><ul>
+<li>Доступ к открытым данным расписания и образовательных программ.</li>
+<li>Решение, кто в редакции ведёт новые страницы.</li>
+<li>Тестовый адрес для беты.</li>
+<li>Проверка на студентах и абитуриентах до запуска каждого раздела.</li>
+</ul></div>
+<div><h3>Что не потерять</h3><ul>
+<li><b>Ссылки</b> — переадресация со всех старых адресов urfu.ru.</li>
+<li><b>Доступность</b> — проверка axe перед каждой публикацией. Сейчас — 0 ошибок WCAG 2.2 AA.</li>
+<li><b>Скорость</b> — главный блок на телефоне не дольше 2,5 с. Сейчас — 1,0–2,2 с при медленном мобильном интернете.</li>
+</ul></div>
+</div>
+</section><!-- /impl -->
+
 <section class="wrap sec" id="data">
 <div class="row" style="align-items:flex-start">
 <div class="main">
@@ -292,6 +339,7 @@
 <li><b>141</b><span>адрес обойдён роботом — без битых ссылок</span></li>
 <li><b>320–1920</b><span>пикселей ширины — ничего не вылезает за экран</span></li>
 <li><b>~300 КБ</b><span>весит обычная страница; без внешних сервисов и чужих скриптов</span></li>
+<li><b>1,0–2,2 с</b><span>до главного блока на телефоне при медленном мобильном интернете (как в Lighthouse: 1,6 Мбит/с, процессор ×4; норма — до 2,5 с)</span></li>
 </ul>
 </div>
 </div>

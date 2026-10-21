@@ -215,3 +215,20 @@ document.addEventListener('keydown', function (e) {
   document.addEventListener('DOMContentLoaded', prune);
   prune();
 })();
+
+/* Фото ниже первого экрана: data-bg="photos/…" — картинка грузится, только когда до неё почти долистали. */
+(function () {
+  function show(el) { el.style.setProperty('--img', "url('" + el.getAttribute('data-bg') + "')"); el.setAttribute('data-bg-on', ''); }
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); show(e.target); } });
+  }, { rootMargin: '600px 0px' }) : null;
+  function scan() {
+    [].forEach.call(document.querySelectorAll('[data-bg]:not([data-bg-on]):not([data-bg-wait])'), function (el) {
+      if (io) { el.setAttribute('data-bg-wait', ''); io.observe(el); } else show(el);
+    });
+  }
+  var root = document.getElementById('dc-root');
+  if (root) new MutationObserver(scan).observe(root, { childList: true, subtree: true });
+  document.addEventListener('DOMContentLoaded', scan);
+  scan();
+})();
