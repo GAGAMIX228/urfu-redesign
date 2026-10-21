@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Видео — заставка</title>
+<style>
+@font-face{font-family:'IBM Plex Sans';src:url('../../fonts/IBMPlexSans-Regular.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'IBM Plex Sans';src:url('../../fonts/IBMPlexSans-SemiBold.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'PT Sans Narrow';src:url('../../fonts/PTSansNarrow-Bold-cyr.woff2') format('woff2');font-weight:700;unicode-range:U+0400-045F,U+2116}
+@font-face{font-family:'PT Sans Narrow';src:url('../../fonts/PTSansNarrow-Bold-lat.woff2') format('woff2');font-weight:700;unicode-range:U+0000-00FF,U+2000-206F,U+2190-21FF}
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#16112B;color:#fff;font-family:'IBM Plex Sans',sans-serif}
+.bg{position:absolute;inset:0;background:radial-gradient(60% 70% at 85% 10%,rgba(107,43,232,.55),transparent 70%),radial-gradient(50% 60% at 70% 100%,rgba(224,36,111,.42),transparent 70%),radial-gradient(40% 50% at 100% 60%,rgba(255,194,26,.22),transparent 70%)}
+.in{position:absolute;left:160px;top:50%;transform:translateY(-50%);width:1500px}
+.mark{width:130px;display:block;margin-bottom:46px}
+.k{display:inline-block;font-weight:600;font-size:26px;letter-spacing:.08em;text-transform:uppercase;color:#FFC21A;margin-bottom:22px}
+h1{font-family:'PT Sans Narrow',sans-serif;font-weight:700;font-size:150px;line-height:.9;margin:0 0 36px;letter-spacing:-.01em}
+h1 em{font-style:normal;color:#FFC21A}
+p{font-size:36px;line-height:1.35;color:#CFC8E6;margin:0;max-width:1300px}
+.rib{display:flex;width:360px;height:10px;margin:44px 0 36px}.rib i{flex:1}
+.rib i:nth-child(1){background:#E0246F}.rib i:nth-child(2){background:#FFC21A}.rib i:nth-child(3){background:#00B386}.rib i:nth-child(4){background:#6B2BE8}
+.who{font-size:30px;color:#CFC8E6}.who b{color:#fff;font-weight:600}
+.end{display:none;align-items:center;gap:56px;margin-top:40px}
+.end .q{width:230px;height:230px;background:#fff;border-radius:14px;padding:14px;box-sizing:border-box}
+.end .q img{width:100%;height:100%;display:block}
+.end .u{font-family:'PT Sans Narrow',sans-serif;font-weight:700;font-size:64px;line-height:1.05}
+.end .s{font-size:30px;color:#CFC8E6;margin-top:14px}
+body.is-end .end{display:flex}body.is-end .start{display:none}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="in">
+  <svg class="mark" viewBox="6 4 90 98" aria-hidden="true"><defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B5CFF"/><stop offset="1" stop-color="#5A1FD1"/></linearGradient><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4D8D"/><stop offset="1" stop-color="#C2185B"/></linearGradient><linearGradient id="f" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient></defs><path d="M14 10 L36 10 L60 56 L46 70 Z" fill="url(#a)"/><path d="M64 10 L88 10 L56 86 C52 95 44 98 30 96 L26 84 C38 84 42 80 46 70 Z" fill="url(#b)"/><path d="M46 70 L60 56 L54 72 Z" fill="url(#f)"/></svg>
+  <div class="start">
+    <div class="k">Конкурс «Взломай веб-дизайн» · 2026</div>
+    <h1>Один УрФУ —<br><em>один вход</em></h1>
+    <p>Новый сайт Уральского федерального университета, собранный вокруг задач людей. Работающий прототип — минута по главному.</p>
+    <div class="rib"><i></i><i></i><i></i><i></i></div>
+    <div class="who">Автор — <b>Бурдин Кирилл Алексеевич</b></div>
+  </div>
+  <div class="end-wrap">
+    <div class="end">
+      <div class="q"><img src="../img/qr.svg" alt=""></div>
+      <div>
+        <div class="u">gagamix228.github.io/<br>urfu-redesign</div>
+        <div class="s">27 страниц · только настоящие данные УрФУ · 0 ошибок доступности</div>
+        <div class="s">Бурдин Кирилл Алексеевич</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>if (location.hash === '#end') document.body.classList.add('is-end');</script>
+</body>
+</html>
