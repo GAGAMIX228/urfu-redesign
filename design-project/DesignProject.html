@@ -179,7 +179,7 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
 .path th{text-align:left;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:7px 10px;background:#F3F0FB;font-weight:700}
 .path td{padding:8.5px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.35}
 .path td:first-child{font-weight:600;width:48mm;font-size:13px}
-.path .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-weight:700;font-size:12px;margin-right:7px;flex:none}
+.path .n{display:inline-flex;align-items:center;justify-content:center;min-width:22px;padding:0 4px;box-sizing:border-box;height:22px;border-radius:5px;font-weight:700;font-size:12px;margin-right:7px;flex:none}
 .path .cell{display:flex;align-items:flex-start}
 .path .o .n{background:#ECEAF1;color:#4A4560}
 .path .w .n{background:var(--ame);color:#fff}
@@ -336,7 +336,7 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
   <div class="kpi">
     <div class="stat"><div class="big num">22<span class="arrow">→</span>6</div><b class="t">пунктов меню</b><p>Разделы по задачам вместо двух рядов по оргструктуре</p></div>
     <div class="stat"><div class="big num">419<span class="arrow">→</span>145</div><b class="t">ссылок на главной</b><p>Без 206 ссылок, спрятанных в выпадающих меню</p></div>
-    <div class="stat"><div class="big num">15<span class="arrow">→</span>4</div><b class="t">действия до ответа</b><p>Сумма по 7 частым задачам, где ответ на urfu.ru есть</p></div>
+    <div class="stat"><div class="big num">14<span class="arrow">→</span>5</div><b class="t">действий до ответа</b><p>Сумма по 7 частым задачам, где ответ на urfu.ru есть</p></div>
     <div class="stat"><div class="big num">0</div><b class="t">ошибок доступности</b><p>WCAG 2.2 AA, проверка axe на всех страницах, телефон и компьютер</p></div>
   </div>
   <ol class="toc">
@@ -353,8 +353,9 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
     <li><b>12</b>Доступность</li>
     <li><b>13</b>20 вещей, которых нет на urfu.ru</li>
     <li><b>14</b>Только настоящие данные</li>
-    <li><b>15</b>Как внедрить</li>
-    <li><b>16</b>Итог</li>
+    <li><b>15</b>urfu.ru и новый сайт: оценка Google</li>
+    <li><b>16</b>Как внедрить</li>
+    <li><b>17</b>Итог</li>
   </ol>
   <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>2</b></div>
 </section>
@@ -463,16 +464,16 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
     <tbody>
       <tr><td>Хватит ли моих баллов на бюджет</td><td class="o"><div class="cell"><span class="n">2</span>Меню «Абитуриентам» → «Калькулятор ЕГЭ» — открывается отдельный сайт</div></td><td class="w"><div class="cell"><span class="n z">0</span>Ползунок баллов на главной: на сколько программ проходишь и сколько там бюджетных мест</div></td></tr>
       <tr><td>Когда подавать документы</td><td class="o"><div class="cell"><span class="n">2</span>Меню «Абитуриентам» → «Календарь приема» → таблица</div></td><td class="w"><div class="cell"><span class="n z">0</span>На главной: дата начала приёма и отсчёт дней</div></td></tr>
-      <tr><td>Сколько стоит обучение</td><td class="o"><div class="cell"><span class="n">3</span>Меню → «Стоимость обучения» → приказ PDF на 16 МБ, найти свою программу</div></td><td class="w"><div class="cell"><span class="n">1</span>«Каталог» — цена за год в карточке каждой программы</div></td></tr>
+      <tr><td>Сколько стоит обучение</td><td class="o"><div class="cell"><span class="n">2</span>Меню → «Стоимость обучения 2026» — сразу приказ в PDF, свою программу ищешь сам</div></td><td class="w"><div class="cell"><span class="n">1</span>«Каталог» — цена за год в карточке каждой программы</div></td></tr>
       <tr><td>Адрес общежития</td><td class="o"><div class="cell"><span class="n">—</span>«Поселение»: порядок заселения, а адресов нет — только на отдельном сайте кампуса</div></td><td class="w"><div class="cell"><span class="n">1</span>«Общежития» на главной → карта и список с адресами</div></td></tr>
       <tr><td>Сколько стоит общежитие</td><td class="o"><div class="cell"><span class="n">4</span>Меню → «Поселение» → «Плата за проживание» → скан приказа в PDF, 3 МБ</div></td><td class="w"><div class="cell"><span class="n">1</span>«Общежития» → таблица: сколько в месяц, вдвоём в комнате</div></td></tr>
-      <tr><td>Расписание своей группы</td><td class="o"><div class="cell"><span class="n">2</span>Меню «Студентам» → «Расписание занятий» → ввести группу</div></td><td class="w"><div class="cell"><span class="n">1</span>«Расписание» → номер группы. Сайт запоминает группу — в следующий раз сразу пары</div></td></tr>
+      <tr><td>Расписание своей группы</td><td class="o"><div class="cell"><span class="n">2</span>Меню «Студентам» → «Расписание занятий» → ввести группу</div></td><td class="w"><div class="cell"><span class="n">2</span>«Расписание» → номер группы → «Найти». Сайт запоминает группу — в следующий раз сразу пары</div></td></tr>
       <tr><td>Телефон приёмной комиссии</td><td class="o"><div class="cell"><span class="n">1</span>Значок телефона в шапке → список служб</div></td><td class="w"><div class="cell"><span class="n z">0</span>Внизу главной, рядом с контакт-центром</div></td></tr>
       <tr><td>Версия для слабовидящих</td><td class="o"><div class="cell"><span class="n">1</span>Значок в шапке → отдельная версия сайта</div></td><td class="w"><div class="cell"><span class="n">1</span>Значок «глаз» → панель поверх любой страницы. Здесь мы не быстрее — но не нужен отдельный сайт</div></td></tr>
     </tbody>
-    <tfoot><tr><td>Итого по 7 задачам, где ответ на urfu.ru есть</td><td><div class="cell"><span class="n">15</span>действий</div></td><td><div class="cell"><span class="n">4</span>действия</div></td></tr></tfoot>
+    <tfoot><tr><td>Итого по 7 задачам, где ответ на urfu.ru есть</td><td><div class="cell"><span class="n">14</span>действий</div></td><td><div class="cell"><span class="n">5</span>действий</div></td></tr></tfoot>
   </table>
-  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Пути на urfu.ru пройдены по копиям страниц в веб-архиве: главная — 12.10.2026, внутренние — 2025–2026</span><span class="sp"></span><b>7</b></div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Новый сайт прошёл робот 22.10.2026 — ответ найден во всех 8 задачах. urfu.ru — по копиям в веб-архиве: меню — 17.10.2026, внутренние — 2025–2026</span><span class="sp"></span><b>7</b></div>
 </section>
 
 <!-- ═══ 8. Поступающему ═══ -->
@@ -686,9 +687,33 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
   <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Под каждой ценой и цифрой на сайте — ссылка на источник</span><span class="sp"></span><b>15</b></div>
 </section>
 
-<!-- ═══ 16. Как внедрить ═══ -->
+<!-- ═══ 16. Сравнение по Google ═══ -->
 <section class="s">
-  <div class="kick"><span>15</span> Внедрение</div>
+  <div class="kick"><span>15</span> Сравнение</div>
+  <h2 class="h">urfu.ru и новый сайт — по оценке Google</h2>
+  <p class="lead">Google PageSpeed Insights, 22.10.2026: телефон и медленный мобильный интернет. Проверку выполняют серверы Google, одинаково для обоих сайтов. Оценки — из 100.</p>
+  <table class="path">
+    <thead><tr><th>Что сравниваем</th><th>urfu.ru сейчас</th><th>Новый сайт</th></tr></thead>
+    <tbody>
+      <tr><td>Главная: скорость</td><td class="o"><div class="cell"><span class="n">31</span>главный блок появляется через 30,4 с, страница весит 12,5 МБ</div></td><td class="w"><div class="cell"><span class="n">95</span>главный блок — через 2,9 с</div></td></tr>
+      <tr><td>Главная: доступность</td><td class="o"><div class="cell"><span class="n">71</span>картинки без описаний, бледный текст, нет разметки основной части</div></td><td class="w"><div class="cell"><span class="n">100</span>ни одного замечания</div></td></tr>
+      <tr><td>Главная: страница «прыгает» при загрузке</td><td class="o"><div class="cell"><span class="n">0,30</span>норма — до 0,1</div></td><td class="w"><div class="cell"><span class="n">0,03</span>в норме</div></td></tr>
+      <tr><td>Поступающим: скорость</td><td class="o"><div class="cell"><span class="n">43</span>главный блок — через 10,6 с</div></td><td class="w"><div class="cell"><span class="n">97</span>главный блок — через 2,2 с</div></td></tr>
+      <tr><td>Поступающим: доступность</td><td class="o"><div class="cell"><span class="n">63</span>те же проблемы, что на главной</div></td><td class="w"><div class="cell"><span class="n">100</span>ни одного замечания</div></td></tr>
+    </tbody>
+  </table>
+  <h3 class="nar" style="font-size:28px;margin-top:10mm">Робот прошёл 8 задач на новом сайте</h3>
+  <div class="checks">
+    <div class="stat"><div class="big num">8 из 8</div><p>задач — ответ найден и на телефоне, и на компьютере</p></div>
+    <div class="stat"><div class="big num">0–2</div><p>нажатия от главной до ответа (на urfu.ru — до 4 и PDF-приказы)</p></div>
+    <div class="stat"><div class="big num">5 / 14</div><p>действий на 7 задачах: новый сайт / urfu.ru</p></div>
+  </div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Страницы: urfu.ru/ru/ и /ru/applicant/ против главной и «Поступления» прототипа. Ссылки на отчёты — на странице «Концепция»</span><span class="sp"></span><b>16</b></div>
+</section>
+
+<!-- ═══ 17. Как внедрить ═══ -->
+<section class="s">
+  <div class="kick"><span>16</span> Внедрение</div>
   <h2 class="h">Как внедрить — по шагам</h2>
   <p class="lead">Прототип — обычные HTML, CSS и немного JavaScript, без фреймворков и внешних сервисов. Шаблон и стили переносятся в систему, с которой работает редакция. Запускать можно по частям, не выключая urfu.ru.</p>
   <div class="im">
@@ -702,18 +727,18 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
     <div><h3>Что нужно от университета</h3><ul><li>Доступ к открытым данным расписания и программ.</li><li>Решение, кто в редакции ведёт новые страницы.</li><li>Тестовый адрес для беты.</li><li>Проверка на студентах и абитуриентах до запуска раздела.</li></ul></div>
     <div><h3>Что не потерять</h3><ul><li><b>Ссылки</b> — переадресация со всех старых адресов.</li><li><b>Доступность</b> — проверка axe перед каждой публикацией (сейчас 0 ошибок).</li><li><b>Скорость</b> — главный блок на телефоне не дольше 2,5 с (сейчас 1–2,2 с).</li></ul></div>
   </div>
-  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>16</b></div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>УрФУ · дизайн-проект нового сайта</span><span class="sp"></span><b>17</b></div>
 </section>
 
-<!-- ═══ 17. Итог ═══ -->
+<!-- ═══ 18. Итог ═══ -->
 <section class="s dark">
-  <div class="kick"><span>16</span> Итог</div>
+  <div class="kick"><span>17</span> Итог</div>
   <h2 class="h">Результат в цифрах</h2>
   <div class="res">
     <div class="stat"><div class="big num">22 → 6</div><p>пунктов меню</p></div>
     <div class="stat"><div class="big num">419 → 145</div><p>ссылок на главной</p></div>
     <div class="stat"><div class="big num">40 → 0</div><p>других сайтов в ссылках с главной</p></div>
-    <div class="stat"><div class="big num">15 → 4</div><p>действий до ответа по 7 частым задачам</p></div>
+    <div class="stat"><div class="big num">14 → 5</div><p>действий до ответа по 7 частым задачам</p></div>
     <div class="stat"><div class="big num">— → 1</div><p>адрес общежития: на urfu.ru не найти</p></div>
   </div>
   <p class="lead" style="margin-top:16mm;max-width:235mm;font-size:34px;color:#fff;font-family:'PT Sans Narrow',sans-serif;font-weight:700;line-height:1.15">Сайт, где человек находит ответ, а не устройство университета. Работающий прототип: 27 страниц, только настоящие данные, 0&nbsp;ошибок доступности.</p>
@@ -723,7 +748,7 @@ table.path{width:100%;border-collapse:separate;border-spacing:0;margin-top:6mm;f
     <b>Концепция и разбор urfu.ru:</b> <a href="https://gagamix228.github.io/urfu-redesign/Concept.dc.html">gagamix228.github.io/urfu-redesign/Concept.dc.html</a><br>
     <b>Код:</b> <a href="https://github.com/GAGAMIX228/urfu-redesign">github.com/GAGAMIX228/urfu-redesign</a></div>
   </div>
-  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Бурдин Кирилл Алексеевич · дизайн-проект нового сайта УрФУ · конкурс «Взломай веб-дизайн», 2026</span><span class="sp"></span><b>17</b></div>
+  <div class="foot"><span class="rib"><i></i><i></i><i></i><i></i></span><span>Бурдин Кирилл Алексеевич · дизайн-проект нового сайта УрФУ · конкурс «Взломай веб-дизайн», 2026</span><span class="sp"></span><b>18</b></div>
 </section>
 
 </body>

@@ -1,7 +1,7 @@
 """Собирает PDF «Дизайн-проект» из DesignProject.html через Edge.
 Нужен запущенный сайт: python -m http.server 8765 (из корня репозитория).
 Запуск: python design-project/make_pdf.py [куда сохранить.pdf]"""
-import base64, json, os, socket, subprocess, sys, time, urllib.request, websocket
+import base64, json, os, socket, tempfile, subprocess, sys, time, urllib.request, websocket
 
 EDGE = r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -11,7 +11,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, '..', '.preview',
 _s = socket.socket(); _s.bind(('127.0.0.1', 0)); PORT = _s.getsockname()[1]; _s.close()
 p = subprocess.Popen([EDGE, '--headless=new', '--disable-gpu', '--no-first-run', '--remote-debugging-port=%d' % PORT, '--disable-features=CalculateNativeWinOcclusion,UseEcoQoSForBackgroundProcess',
                       '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding',
-                      '--user-data-dir=' + os.path.join(os.environ.get('TEMP', HERE), 'edge-dp-pdf'), 'about:blank'],
+                      '--user-data-dir=' + tempfile.mkdtemp(prefix='urfu-edge-'), 'about:blank'],
                      stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 try:
     for _ in range(60):

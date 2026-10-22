@@ -1,7 +1,7 @@
 """Снимки экранов для PDF «Дизайн-проект».
 Нужен запущенный сайт: python -m http.server 8765 (из корня репозитория).
 Запуск: python design-project/shoot.py [имя ...]  — без имён снимает всё."""
-import base64, json, os, socket, subprocess, sys, time, urllib.request, websocket
+import base64, json, os, socket, tempfile, subprocess, sys, time, urllib.request, websocket
 
 EDGE = r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -39,7 +39,7 @@ only = set(sys.argv[1:])
 _s = socket.socket(); _s.bind(('127.0.0.1', 0)); PORT = _s.getsockname()[1]; _s.close()
 p = subprocess.Popen([EDGE, '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run',
                       '--remote-debugging-port=%d' % PORT, '--disable-features=CalculateNativeWinOcclusion,UseEcoQoSForBackgroundProcess',
-                      '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--user-data-dir=' + os.path.join(os.environ.get('TEMP', HERE), 'edge-dp-shoot'),
+                      '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--user-data-dir=' + tempfile.mkdtemp(prefix='urfu-edge-'),
                       'about:blank'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 try:
     for _ in range(60):
