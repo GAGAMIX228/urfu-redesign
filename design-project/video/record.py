@@ -4,7 +4,7 @@
 
 Каждый кадр снимается отдельно: прокрутка, курсор, ползунок и набор текста двигаются по кадрам,
 анимации сайта замедлены под скорость съёмки — поэтому видео плавное, даже если снимок делается дольше 40 мс."""
-import base64, glob, json, os, shutil, subprocess, sys, tempfile, time, urllib.request, websocket
+import base64, glob, json, os, shutil, socket, subprocess, sys, tempfile, time, urllib.request, websocket
 import imageio_ffmpeg
 from PIL import Image
 
@@ -16,45 +16,74 @@ BASE = 'http://localhost:8765/'
 FPS = 25
 W, H = 1920, 1080
 FR = tempfile.mkdtemp(prefix='urfu-video-')
+# профиль браузера — отдельно от кадров: тысячи новых файлов рядом с профилем тормозят Edge
+PROF = tempfile.mkdtemp(prefix='urfu-edge-')
+# каждый раз новый свободный порт: если прошлый Edge не закрылся, не подключиться к нему по ошибке
+_s = socket.socket(); _s.bind(('127.0.0.1', 0)); PORT = _s.getsockname()[1]; _s.close()
 
 # подпись внизу кадра и курсор — рисуем поверх сайта (только в верхнем окне, не во фреймах)
-OVERLAY = r"""(function(){ if (window.top !== window) return;
+OVERLAY = r"""(function(){
+ // скрипт запускается до появления страницы — стиль добавляем, когда у документа появится корень
+ function pause(){ var r=document.head||document.documentElement; if(!r) return setTimeout(pause,0);
+  var ps=document.createElement('style'); ps.textContent='.yu-tick ul,.yu-b1,.yu-b2,.yu-badge{animation-play-state:paused!important}'; r.appendChild(ps); }
+ pause();
+ if (window.top !== window) return;
 function mk(){ if (document.getElementById('__cap')) return;
- var st=document.createElement('style'); st.textContent='#__cap{position:fixed;left:56px;bottom:52px;z-index:2147483646;max-width:1150px;padding:20px 30px 22px;border-radius:16px;background:rgba(22,17,43,.93);color:#fff;font:700 44px/1.1 "PT Sans Narrow","IBM Plex Sans",sans-serif;box-shadow:0 14px 40px rgba(0,0,0,.35);pointer-events:none}#__cap:before{content:"";position:absolute;left:30px;top:0;width:200px;height:6px;background:linear-gradient(90deg,#E0246F 0 25%,#FFC21A 25% 50%,#00B386 50% 75%,#6B2BE8 75%)}#__cap:empty{display:none}#__cur{position:fixed;left:0;top:0;width:34px;height:34px;z-index:2147483647;pointer-events:none;transform-origin:4px 4px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.4))}';
+ var st=document.createElement('style'); st.textContent='#__cap{position:fixed;left:56px;bottom:52px;z-index:2147483646;max-width:1150px;padding:20px 30px 22px;border-radius:16px;background:rgba(22,17,43,.93);color:#fff;font:700 44px/1.1 "PT Sans Narrow","IBM Plex Sans",sans-serif;box-shadow:0 6px 0 rgba(0,0,0,.18);pointer-events:none}#__cap:before{content:"";position:absolute;left:30px;top:0;width:200px;height:6px;background:linear-gradient(90deg,#E0246F 0 25%,#FFC21A 25% 50%,#00B386 50% 75%,#6B2BE8 75%)}#__cap:empty{display:none}#__cur{position:fixed;left:0;top:0;width:34px;height:34px;z-index:2147483647;pointer-events:none;transform-origin:4px 4px;filter:none}';
  document.documentElement.appendChild(st);
  var c=document.createElement('div'); c.id='__cap'; document.documentElement.appendChild(c);
  var k=document.createElement('div'); k.id='__cur'; k.innerHTML='<svg viewBox="0 0 24 24" width="34" height="34"><path d="M3 2l7 19 2.6-7.6L20 11z" fill="#fff" stroke="#16112B" stroke-width="1.6" stroke-linejoin="round"/></svg>';
  k.style.transform='translate(-100px,-100px)'; document.documentElement.appendChild(k);
 }
 if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', mk); else mk();
+window.__tick=function(){var d=document.getElementById('__tk');if(!d){d=document.createElement('div');d.id='__tk';d.style.cssText='position:fixed;left:0;top:0;width:1px;height:1px;z-index:2147483647;pointer-events:none;opacity:.01';document.documentElement.appendChild(d)}d.style.background=d.style.background==='rgb(0, 0, 0)'?'rgb(1, 1, 1)':'rgb(0, 0, 0)'};
 window.__setCap=function(t){mk();document.getElementById('__cap').textContent=t};
 window.__setCur=function(x,y,s){mk();document.getElementById('__cur').style.transform='translate('+x+'px,'+y+'px) scale('+(s||1)+')'};
 })();"""
 
-p = subprocess.Popen([EDGE, '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--remote-debugging-port=9497',
-                      '--user-data-dir=' + os.path.join(FR, 'profile'), 'about:blank'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+# Windows считает невидимое окно безголового Edge закрытым и «усыпляет» отрисовку — через минуту кадры идут по 2–3 с
+# или не приходят совсем. Эти флаги запрещают усыплять.
+p = subprocess.Popen([EDGE, '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--remote-debugging-port=%d' % PORT,
+                      '--disable-features=CalculateNativeWinOcclusion,UseEcoQoSForBackgroundProcess,IntensiveWakeUpThrottling',
+                      '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--disable-background-timer-throttling',
+                      '--user-data-dir=' + PROF, 'about:blank'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 STEADY = "(()=>{const d=(window.top===window?document:document);document.documentElement.classList.add('rv-done');document.querySelectorAll('.rv').forEach(e=>e.classList.add('rv-in'));document.querySelectorAll('*').forEach(e=>{if(getComputedStyle(e).contentVisibility==='auto')e.style.contentVisibility='visible'});return 1})()"
 n = [0]; frames = [0]; cur = [W * 0.6, H * 0.6]; cap = ['']
 try:
     for _ in range(60):
         try:
-            page = [t for t in json.load(urllib.request.urlopen('http://127.0.0.1:9497/json')) if t['type'] == 'page'][0]; break
+            page = [t for t in json.load(urllib.request.urlopen('http://127.0.0.1:%d/json' % PORT)) if t['type'] == 'page'][0]; break
         except Exception:
             time.sleep(0.3)
     ws = websocket.create_connection(page['webSocketDebuggerUrl'], timeout=40, suppress_origin=True)
 
     def cmd(m, **pr):
-        n[0] += 1; ws.send(json.dumps({'id': n[0], 'method': m, 'params': pr}))
+        n[0] += 1; want = n[0]; ws.send(json.dumps({'id': want, 'method': m, 'params': pr}))
         while True:
-            r = json.loads(ws.recv())
-            if r.get('id') == n[0]: return r.get('result', r)
+            try:
+                r = json.loads(ws.recv())
+            except websocket.WebSocketTimeoutException:
+                raise SystemExit('браузер не ответил на %s (кадр %d)' % (m, frames[0]))
+            if r.get('method') == 'Page.screencastFrame':  # кадр «будильника» — только подтверждаем
+                n[0] += 1; ws.send(json.dumps({'id': n[0], 'method': 'Page.screencastFrameAck', 'params': {'sessionId': r['params']['sessionId']}}))
+                continue
+            if r.get('id') == want: return r.get('result', r)
     ev = lambda e: cmd('Runtime.evaluate', expression=e, returnByValue=True, awaitPromise=True)['result'].get('value')
 
-    cmd('Page.enable'); cmd('Network.enable'); cmd('Network.setCacheDisabled', cacheDisabled=True); cmd('Animation.enable')
+    cmd('Page.enable'); cmd('Network.enable'); cmd('Network.setCacheDisabled', cacheDisabled=True)
     cmd('Emulation.setDeviceMetricsOverride', width=W, height=H, deviceScaleFactor=1, mobile=False)
     cmd('Page.addScriptToEvaluateOnNewDocument', source=OVERLAY)
+    # «будильник»: крошечный поток кадров не даёт Edge перестать рисовать; сами кадры видео — снимками ниже
+    cmd('Page.startScreencast', format='jpeg', quality=10, maxWidth=64, maxHeight=36, everyNthFrame=1)
+
+    def still(sec):
+        """Неподвижная картинка (заставка): повторяем последний кадр, браузер не трогаем."""
+        src = os.path.join(FR, '%05d.png' % frames[0])
+        for _ in range(round(sec * FPS)):
+            frames[0] += 1; shutil.copyfile(src, os.path.join(FR, '%05d.png' % frames[0]))
 
     def shot():
+        ev('window.__tick && window.__tick()')  # без изменений на странице безголовый Edge может не отдать кадр
         d = cmd('Page.captureScreenshot', format='png')['data']
         frames[0] += 1
         open(os.path.join(FR, '%05d.png' % frames[0]), 'wb').write(base64.b64decode(d))
@@ -68,13 +97,36 @@ try:
     def place_cursor():
         ev('window.__setCur(%f,%f)' % tuple(cur))
 
-    def go(url, wait=2.2):
+
+    def last_frame():
+        return Image.open(os.path.join(FR, '%05d.png' % frames[0])).convert('RGB') if frames[0] else Image.new('RGB', (W, H), 'black')
+
+    def crossfade(prev, sec=0.4):
+        """Плавный переход: от последнего кадра прошлой сцены к первому кадру новой."""
+        ev('window.__tick && window.__tick()')
+        d = cmd('Page.captureScreenshot', format='png')['data']
+        import io
+        new = Image.open(io.BytesIO(base64.b64decode(d))).convert('RGB')
+        k = round(sec * FPS)
+        for i in range(1, k + 1):
+            frames[0] += 1
+            Image.blend(prev, new, ease(i / (k + 1))).save(os.path.join(FR, '%05d.png' % frames[0]), compress_level=1)
+
+    def fade_out(sec=0.6):
+        prev = last_frame(); k = round(sec * FPS)
+        for i in range(1, k + 1):
+            frames[0] += 1
+            Image.blend(prev, Image.new('RGB', (W, H), 'black'), ease(i / k)).save(os.path.join(FR, '%05d.png' % frames[0]), compress_level=1)
+
+    def go(url, wait=2.2, fade=True):
         print('→', url, 'с кадра', frames[0] + 1, flush=True)
+        prev = last_frame()
         cmd('Storage.clearDataForOrigin', origin=BASE.rstrip('/'), storageTypes='local_storage,session_storage')
         cmd('Page.navigate', url=url if url.startswith('http') else BASE + url); time.sleep(wait)
         ev("document.fonts.ready.then(()=>1)")
         ev(STEADY); time.sleep(0.4)
         ev('window.__setCap(%s)' % json.dumps(cap[0])); place_cursor()
+        if fade: crossfade(prev)
 
     ease = lambda t: t * t * (3 - 2 * t)
 
@@ -95,14 +147,17 @@ try:
             t = ease(i / k); cur[0] = x0 + (x - x0) * t; cur[1] = y0 + (y - y0) * t
             place_cursor(); shot()
 
-    def click(sel, sec=0.6):
+    def click(sel, sec=0.6, fade=0):
         x, y, _ = center(sel)
         move(x, y, sec)
         for s in (0.85, 0.85):
             ev('window.__setCur(%f,%f,%f)' % (x, y, s)); shot()
         cmd('Input.dispatchMouseEvent', type='mousePressed', x=x, y=y, button='left', clickCount=1)
         cmd('Input.dispatchMouseEvent', type='mouseReleased', x=x, y=y, button='left', clickCount=1)
-        place_cursor(); shot()
+        place_cursor()
+        # резкая смена всей страницы (тёмная схема) — через плавный переход, без вспышки
+        if fade: prev = last_frame(); time.sleep(0.3); crossfade(prev, fade)
+        else: shot()
 
     def type_text(t, per=3):
         for ch in t:
@@ -114,16 +169,15 @@ try:
         scroll_to(max(0, y - top), sec)
 
     # скорость анимаций сайта — под скорость съёмки
-    go('Main.dc.html')
+    go('Main.dc.html', fade=False)
     t0 = time.time()
     for _ in range(8): cmd('Page.captureScreenshot', format='png')
     per = (time.time() - t0) / 8
     rate = max(0.1, min(1.0, (1000 / FPS) / (per * 1000)))
-    cmd('Animation.setPlaybackRate', playbackRate=rate)
-    print('снимок %.0f мс, скорость анимаций ×%.2f' % (per * 1000, rate), flush=True)
+    print('снимок %.0f мс' % (per * 1000), flush=True)
 
     # 0. Заставка
-    caption(''); cur[:] = [-100, -100]; go('design-project/video/card.html', 1.5); hold(4.0)
+    caption(''); cur[:] = [-100, -100]; go('design-project/video/card.html', 1.5); still(4.0)
     cur[:] = [W * 0.55, H * 0.55]
 
     # 1. Главная под роль
@@ -165,7 +219,7 @@ try:
     # 7. Для слабовидящих
     caption('Версия для слабовидящих — на любой странице')
     click('.a11y-lbl', 0.7); hold(0.8)
-    click('.vi-c2', 0.6); hold(2.6)
+    click('.vi-c2', 0.6, fade=0.5); hold(2.6)
 
     # 8. Телефон
     caption('С телефона — так же удобно'); cur[:] = [-100, -100]
@@ -177,14 +231,19 @@ try:
     for i in range(1, k + 1):
         fs("w.scrollTo({top:%f,behavior:'instant'})" % (900 * ease(i / k))); shot()
     hold(1.4)
-    fs("w.location.href='../../Catalog.dc.html'"); time.sleep(2.2); fs(IN_FRAME); time.sleep(0.4); hold(2.6)
+    prev = last_frame()
+    fs("w.location.href='../../Catalog.dc.html'"); time.sleep(2.2); fs(IN_FRAME); time.sleep(0.4); crossfade(prev); hold(2.6)
 
     # 9. Финал
-    caption(''); cur[:] = [-100, -100]; go('design-project/video/card.html#end', 1.5); hold(4.5)
+    caption(''); cur[:] = [-100, -100]; go('design-project/video/card.html#end', 1.5); still(4.5); fade_out(0.8)
     print('кадров:', frames[0], '≈ %.1f с' % (frames[0] / FPS), flush=True)
 finally:
     # закрываем Edge целиком, вместе с дочерними процессами
     subprocess.run(['taskkill', '/F', '/T', '/PID', str(p.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # процессы, которые отцепились от главного, находим по папке профиля
+    subprocess.run(['powershell', '-NoProfile', '-Command',
+                    "Get-CimInstance Win32_Process -Filter \"name='msedge.exe'\" | ? { $_.CommandLine -like '*%s*' } | %% { Stop-Process -Id $_.ProcessId -Force -EA SilentlyContinue }" % os.path.basename(PROF)],
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 # сборка видео
 ff = imageio_ffmpeg.get_ffmpeg_exe()
