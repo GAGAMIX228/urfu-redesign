@@ -1,7 +1,7 @@
 """Снимки экранов для PDF «Дизайн-проект».
 Нужен запущенный сайт: python -m http.server 8765 (из корня репозитория).
 Запуск: python design-project/shoot.py [имя ...]  — без имён снимает всё."""
-import base64, json, os, subprocess, sys, time, urllib.request, websocket
+import base64, json, os, socket, subprocess, sys, time, urllib.request, websocket
 
 EDGE = r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -35,13 +35,16 @@ SHOTS = [
 ]
 only = set(sys.argv[1:])
 
+# каждый раз новый свободный порт и Edge без «усыпления» скрытого окна (см. video/record.py)
+_s = socket.socket(); _s.bind(('127.0.0.1', 0)); PORT = _s.getsockname()[1]; _s.close()
 p = subprocess.Popen([EDGE, '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run',
-                      '--remote-debugging-port=9471', '--user-data-dir=' + os.path.join(os.environ.get('TEMP', HERE), 'edge-dp-shoot'),
+                      '--remote-debugging-port=%d' % PORT, '--disable-features=CalculateNativeWinOcclusion,UseEcoQoSForBackgroundProcess',
+                      '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--user-data-dir=' + os.path.join(os.environ.get('TEMP', HERE), 'edge-dp-shoot'),
                       'about:blank'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 try:
     for _ in range(60):
         try:
-            page = [t for t in json.load(urllib.request.urlopen('http://127.0.0.1:9471/json')) if t['type'] == 'page'][0]; break
+            page = [t for t in json.load(urllib.request.urlopen('http://127.0.0.1:%d/json' % PORT)) if t['type'] == 'page'][0]; break
         except Exception:
             time.sleep(0.3)
     ws = websocket.create_connection(page['webSocketDebuggerUrl'], timeout=120, suppress_origin=True); n = [0]
