@@ -48,14 +48,14 @@ p = subprocess.Popen([EDGE, '--headless=new', '--disable-gpu', '--hide-scrollbar
                       '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--disable-background-timer-throttling',
                       '--user-data-dir=' + PROF, 'about:blank'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 STEADY = "(()=>{const d=(window.top===window?document:document);document.documentElement.classList.add('rv-done');document.querySelectorAll('.rv').forEach(e=>e.classList.add('rv-in'));document.querySelectorAll('*').forEach(e=>{if(getComputedStyle(e).contentVisibility==='auto')e.style.contentVisibility='visible'});return 1})()"
-n = [0]; frames = [0]; cur = [W * 0.6, H * 0.6]; cap = ['']
+failed = ''; n = [0]; frames = [0]; cur = [W * 0.6, H * 0.6]; cap = ['']
 try:
     for _ in range(60):
         try:
             page = [t for t in json.load(urllib.request.urlopen('http://127.0.0.1:%d/json' % PORT)) if t['type'] == 'page'][0]; break
         except Exception:
             time.sleep(0.3)
-    ws = websocket.create_connection(page['webSocketDebuggerUrl'], timeout=40, suppress_origin=True)
+    ws = websocket.create_connection(page['webSocketDebuggerUrl'], timeout=20, suppress_origin=True)
 
     def cmd(m, **pr):
         n[0] += 1; want = n[0]; ws.send(json.dumps({'id': want, 'method': m, 'params': pr}))
@@ -155,7 +155,7 @@ try:
         cmd('Input.dispatchMouseEvent', type='mousePressed', x=x, y=y, button='left', clickCount=1)
         cmd('Input.dispatchMouseEvent', type='mouseReleased', x=x, y=y, button='left', clickCount=1)
         place_cursor()
-        # резкая смена всей страницы (тёмная схема) — через плавный переход, без вспышки
+        # страница после нажатия перестраивается (роль, тёмная схема, расписание) — плавный переход вместо рывка
         if fade: prev = last_frame(); time.sleep(0.3); crossfade(prev, fade)
         else: shot()
 
@@ -182,8 +182,8 @@ try:
 
     # 1. Главная под роль
     caption('Главная перестраивается под роль'); go('Main.dc.html'); hold(0.8)
-    click('button[data-urole="student"]'); hold(2.6)
-    click('button[data-urole="abit"]'); hold(2.0)
+    click('button[data-urole="student"]', fade=0.4); hold(2.6)
+    click('button[data-urole="abit"]', fade=0.4); hold(2.0)
 
     # 2. Хватит ли баллов
     caption('«Хватит ли баллов?» — прямо на главной')
@@ -214,11 +214,11 @@ try:
     # 6. Расписание
     caption('Расписание группы — в один клик'); go('Schedule.dc.html'); hold(0.5)
     click('#sg-n', 0.5); type_text('140944', 2); hold(0.3)
-    click('main button[type="submit"]', 0.5); hold(2.8)
+    click('main button[type="submit"]', 0.5, fade=0.4); hold(2.8)
 
     # 7. Для слабовидящих
     caption('Версия для слабовидящих — на любой странице')
-    click('.a11y-lbl', 0.7); hold(0.8)
+    click('.a11y-lbl', 0.7, fade=0.3); hold(0.8)
     click('.vi-c2', 0.6, fade=0.5); hold(2.6)
 
     # 8. Телефон
@@ -237,6 +237,8 @@ try:
     # 9. Финал
     caption(''); cur[:] = [-100, -100]; go('design-project/video/card.html#end', 1.5); still(4.5); fade_out(0.8)
     print('кадров:', frames[0], '≈ %.1f с' % (frames[0] / FPS), flush=True)
+except SystemExit as e:
+    failed = str(e)
 finally:
     # закрываем Edge целиком, вместе с дочерними процессами
     subprocess.run(['taskkill', '/F', '/T', '/PID', str(p.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -244,6 +246,14 @@ finally:
     subprocess.run(['powershell', '-NoProfile', '-Command',
                     "Get-CimInstance Win32_Process -Filter \"name='msedge.exe'\" | ? { $_.CommandLine -like '*%s*' } | %% { Stop-Process -Id $_.ProcessId -Force -EA SilentlyContinue }" % os.path.basename(PROF)],
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+if failed:
+    # редкий случай: Edge перестал отдавать кадры — пишем всё заново в новом браузере
+    shutil.rmtree(FR, ignore_errors=True)
+    att = int(os.environ.get('REC_TRY', '1'))
+    print(failed, '— попытка', att, 'из 3', flush=True)
+    if att >= 3: sys.exit('не удалось записать за 3 попытки')
+    sys.exit(subprocess.run([sys.executable, __file__] + sys.argv[1:], env=dict(os.environ, REC_TRY=str(att + 1))).returncode)
 
 # сборка видео
 ff = imageio_ffmpeg.get_ffmpeg_exe()
