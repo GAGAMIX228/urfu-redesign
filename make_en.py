@@ -2,7 +2,7 @@
 английская шапка и подвал берутся с MainEn.dc.html, тексты переводятся по словарю ниже.
 Запуск: python make_en.py — после правок русских страниц английские пересобираются этой же командой."""
 import os
-import re
+import json, re
 import sys
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -41,10 +41,30 @@ PROGRAMS = [
     ('Филология', 'Philology'),
     ('Менеджмент', 'Management'),
 ]
-INSTITUTES = [('ИРИТ-РтФ', 'IRIT-RTF'), ('ИЕНиМ', 'INSM'), ('ИНМиТ', 'INMT'), ('УралЭНИН', 'UralENIN'), ('ИнЭУ', 'GSEM'), ('ИСА', 'ICEA'), ('УГИ', 'UIH'), ('ФТИ', 'IPT')]
-EXAM_WORDS = [('творческое испытание', 'creative test'), ('иностранный язык', 'foreign language'), ('обществознание', 'social studies'),
+INSTITUTES = [('ИФКСиМП', 'IPES'), ('ИнФО', 'IFE'), ('ИРИТ-РтФ', 'IRIT-RTF'), ('ИЕНиМ', 'INSM'), ('ИНМиТ', 'INMT'), ('УралЭНИН', 'UralENIN'), ('ИнЭУ', 'GSEM'), ('ИСА', 'ICEA'), ('УГИ', 'UIH'), ('ФТИ', 'IPT')]
+EXAM_WORDS = [('свои вступительные испытания — на сайте программы', 'own entrance tests — see the programme page'), ('география', 'geography'), ('творческое испытание', 'creative test'), ('иностранный язык', 'foreign language'), ('обществознание', 'social studies'),
               ('информатика', 'computer science'), ('математика', 'mathematics'), ('физика', 'physics'), ('химия', 'chemistry'),
               ('биология', 'biology'), ('история', 'history'), ('литература', 'literature'), ('русский', 'Russian'), (' или ', ' or ')]
+
+# английские названия остальных программ — с английской версии programs.edu.urfu.ru (data/programs-2026.json);
+# там, где на сайте перевода нет, — наш перевод
+OUR_EN = {'Математические методы защиты информации': 'Mathematical Methods of Information Security',
+          'Фундаментальная и прикладная физика': 'Fundamental and Applied Physics', 'Оптические технологии и материалы': 'Optical Technologies and Materials',
+          'Информационная безопасность телекоммуникационных систем': 'Information Security of Telecommunication Systems',
+          'Информационно-аналитические системы безопасности': 'Information and Analytical Security Systems',
+          'Социология управления и организаций': 'Sociology of Management and Organisations', 'Финансово-экономическая безопасность': 'Financial and Economic Security',
+          'Экономико-правовое обеспечение экономической безопасности': 'Economic and Legal Support of Economic Security', 'Юриспруденция': 'Law',
+          'Китайский язык и китаистика': 'Chinese Language and Chinese Studies', 'Международное право': 'International Law',
+          'Образовательные технологии и проектирование: история и филология': 'Educational Technologies and Design: History and Philology',
+          'Перевод в цифровой среде': 'Translation in the Digital Environment', 'Печатные, электронные и интернет-издания': 'Print, Electronic and Online Media',
+          'Прикладная этика в бизнесе и промышленности': 'Applied Ethics in Business and Industry', 'Речеведческая экспертиза': 'Forensic Speech Analysis',
+          'Русский язык как иностранный: теория и методика обучения': 'Russian as a Foreign Language: Theory and Teaching Methods',
+          'Социальная политика и социальное развитие': 'Social Policy and Social Development', 'Инженерия неразрушающего контроля': 'Non-Destructive Testing Engineering'}
+_known = dict(PROGRAMS)
+for _p in json.load(open('data/programs-2026.json', encoding='utf-8'))['programs']:
+    if _p.get('y2026') and _p['name'] not in _known:
+        _known[_p['name']] = _p.get('name_en') or OUR_EN.get(_p['name'], '')
+PROGRAMS = sorted([(a, b) for a, b in _known.items() if b], key=lambda x: -len(x[0]))  # длинные первыми, чтобы не задеть части
 
 COMMON = [
     ('[институт]', '[institute]'), ('[балл]', '[score]'), ('[число]', '[number]'), ('[дата]', '[date]'),
@@ -53,6 +73,11 @@ COMMON = [
 ]
 
 CATALOG = [
+    ('Программы бакалавриата и специалитета набора 2026 года в Екатеринбурге — с сайта образовательных программ УрФУ. После школы учатся 4–6 лет.',
+     "Bachelor's and Specialist programmes, 2026 intake, Yekaterinburg — from the UrFU educational programmes website. 4–6 years after school."),
+    ("[['all','Все'],['bach','Бакалавриат'],['spec','Специалитет']]", "[['all','All'],['bach','Bachelor'],['spec','Specialist']]"),
+    ("(p.lvl === 'spec' ? 'Специалитет' : 'Бакалавриат')", "(p.lvl === 'spec' ? 'Specialist' : 'Bachelor')"),
+    ("['geo','География']", "['geo','Geography']"), ("geo:'географию'", "geo:'geography'"),
     ('Отметьте свои предметы ЕГЭ и баллы — покажем, куда вы можете поступить. Не знаете, с чего начать?',
      'Tick your Unified State Exam (EGE) subjects and enter your score — we will show where you can apply. International applicants may take UrFU entrance tests instead of the EGE.'),
     (' <a href="Quiz.dc.html">Подбор за 3 вопроса</a>', ''),
@@ -198,6 +223,9 @@ def build(src, dst, title, desc, current, extra):
     body_start = s.index('<main')
     pre, body = s[:body_start], s[body_start:]
     body = tr_exams(body)
+    body = re.sub(r", (?:lead|head):'(?:[^'\\]|\\.)*'", '', body)
+    body = re.sub(r", mins:\[(?:\s*\[[^\]]*\],?)*\s*\]", '', body)
+    body = re.sub(r"dur:'([^']*)'", lambda m: "dur:'" + re.sub(r'(\d+(?:,\d+)?) (?:года|год|лет)', lambda k: k.group(1).replace(',', '.') + ' years', m.group(1)) + "'", body)
     for a_, b_ in PROGRAMS + extra + COMMON:
         body = body.replace(a_, b_)
     for a_, b_ in INSTITUTES:
@@ -206,7 +234,7 @@ def build(src, dst, title, desc, current, extra):
     for ru, en in EN_LINKS.items():
         body = body.replace('href="%s"' % ru, 'href="%s"' % en).replace("href:'%s'" % ru, "href:'%s'" % en)
     body = body.replace('href="%s" lang="ru"' % dst, 'href="%s" lang="ru"' % src)  # ссылка «Русская версия» — на русскую страницу
-    body = re.sub(r'^const IL = .*$', lambda m: "const IL = {'IRIT-RTF':['Radio electronics and IT','Institute of Radioelectronics and Information Technologies — RTF'],'INSM':['Natural sciences and mathematics','Institute of Natural Sciences and Mathematics'],'INMT':['New materials and technologies','Institute of New Materials and Technologies'],'UralENIN':['Power engineering','Ural Power Engineering Institute'],'ICEA':['Civil engineering and architecture','Institute of Civil Engineering and Architecture'],'UIH':['Humanities','Ural Institute of Humanities'],'GSEM':['Economics and management','Graduate School of Economics and Management'],'IPT':['Physics and technology','Institute of Physics and Technology']};", body, flags=re.M)
+    body = re.sub(r'^const IL = .*$', lambda m: "const IL = {'IPES':['Physical education and sport','Institute of Physical Education, Sport and Youth Policy'],'IFE':['Fundamental education','Institute of Fundamental Education'],'IRIT-RTF':['Radio electronics and IT','Institute of Radioelectronics and Information Technologies — RTF'],'INSM':['Natural sciences and mathematics','Institute of Natural Sciences and Mathematics'],'INMT':['New materials and technologies','Institute of New Materials and Technologies'],'UralENIN':['Power engineering','Ural Power Engineering Institute'],'ICEA':['Civil engineering and architecture','Institute of Civil Engineering and Architecture'],'UIH':['Humanities','Ural Institute of Humanities'],'GSEM':['Economics and management','Graduate School of Economics and Management'],'IPT':['Physics and technology','Institute of Physics and Technology']};", body, flags=re.M)
     s = pre + body
     open(dst, 'w', encoding='utf-8').write(s)
     # что осталось непереведённым в видимой части
