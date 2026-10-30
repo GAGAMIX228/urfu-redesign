@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#16112B">
 <title>Один УрФУ — один вход · прототип редизайна сайта УрФУ</title>
 <!-- og -->
 <meta property="og:type" content="website">
@@ -22,18 +22,49 @@
 <link rel="preload" href="fonts/IBMPlexSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <style>
+/* Только стартовая страница: выбранный тёмный вариант карты проекта. */
+body.ix{--ix-hero-height:602px;background:radial-gradient(900px 520px at 82% calc(var(--ix-hero-height)*.18),var(--hero-1),transparent 65%),radial-gradient(700px 460px at 0 var(--ix-hero-height),var(--hero-2),transparent 70%),radial-gradient(500px 360px at 55% calc(var(--ix-hero-height)*1.1),var(--hero-3),transparent 70%),var(--ink);color:#F8F6FF;color-scheme:dark}
+.ix .ix-hero{background:transparent}
 .ix-hero .hero-grid{grid-template-columns:minmax(0,1fr);padding:72px 0 64px}
 .ix-brand{display:flex;align-items:center;gap:12px;color:#FFFFFF}
 .ix-brand .lk i{color:var(--on-dark-muted)}
-.ix main{padding-bottom:72px}
-.ix h2{font-size:26px;margin:48px 0 16px}
-.ix-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.ix-grid a{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 20px;text-decoration:none;color:var(--text);background:var(--bg);box-shadow:inset 0 3px 0 var(--c,var(--a1));transition:transform .2s var(--ease),box-shadow .2s ease,border-color .2s ease}
-.ix-grid a:nth-child(4n+2){--c:var(--a2)}.ix-grid a:nth-child(4n+3){--c:var(--a3)}.ix-grid a:nth-child(4n+4){--c:var(--a4)}
-.ix-grid a:hover{transform:translateY(-2px);border-color:var(--c,var(--a1));box-shadow:inset 0 3px 0 var(--c,var(--a1)),var(--shadow)}
-.ix-grid b{font-size:17px}.ix-grid span{font-size:14px;color:var(--muted)}
-.ix .credits{padding-left:20px;color:var(--muted);font-size:14px;display:grid;gap:4px}.ix .credits b{color:var(--text);font-weight:600}
-.ix .note{color:var(--muted);font-size:14px;margin-top:48px;max-width:760px}
+.ix-main{padding:16px 0 72px}
+.ix-main:focus{outline:none}
+.ix-chapter{display:grid;grid-template-columns:150px minmax(0,1fr);gap:30px;align-items:start;padding:24px 0}
+.ix-chapter+.ix-chapter{border-top:1px solid rgba(207,200,230,.15)}
+.ix-heading{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin:8px 0 0;font-family:var(--narrow);font-size:27px;font-weight:700;line-height:1.1;color:#F8F6FF}
+.ix-number{display:flex;align-items:center;gap:15px;color:var(--gold);font-size:30px;font-variant-numeric:tabular-nums}
+.ix-number::after{content:"";width:1px;height:25px;background:rgba(207,200,230,.45)}
+.ix-panel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:22px 24px;border-radius:10px;background:linear-gradient(135deg,rgba(40,35,65,.86),rgba(30,27,51,.94))}
+.ix-links{list-style:none;margin:0;padding:0 24px 0 0;min-width:0}
+.ix-links+.ix-links{padding:0 0 0 24px;border-left:1px solid rgba(207,200,230,.14)}
+.ix-links li+li{border-top:1px solid rgba(207,200,230,.15)}
+.ix-entry{--ix-accent:#BA82FF;display:flex;align-items:flex-start;gap:18px;min-height:91px;padding:17px 0;text-decoration:none;color:#F8F6FF;border-radius:4px;transition:background-color .18s ease,color .18s ease;overflow-wrap:anywhere}
+.ix-entry--gold{--ix-accent:#FFD02F}.ix-entry--pink{--ix-accent:#FF4AA0}.ix-entry--green{--ix-accent:#1AE0AE}.ix-entry--blue{--ix-accent:#6AA7FF}
+.ix-icon{flex:0 0 30px;color:var(--ix-accent);margin-top:1px}
+.ix-icon--404{font-family:var(--narrow);font-weight:700;font-size:25px;line-height:30px;white-space:nowrap}
+.ix-entry-copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:6px}
+.ix-entry-copy b{font-size:17px;font-weight:600;line-height:1.3}
+.ix-entry-copy>span{font-size:14px;line-height:1.5;color:#CBC4DF}
+.ix-link-arrow{flex:0 0 18px;color:#D1A7FF;margin-top:5px}
+.ix-entry:hover{background-color:rgba(186,130,255,.08);color:#FFFFFF}
+.ix-entry:hover .ix-entry-copy b{color:#FFD766}
+.ix a:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
+.ix-main ::selection{background:var(--gold);color:var(--ink)}
+.ix-note{max-width:760px;margin:30px 0 0 180px;color:#BEB5D4;font-size:14px;line-height:1.6}
+.ix-chapter--project .ix-entry{min-height:90px;align-items:center}
+.ix-chapter--project .ix-icon{margin-top:0}
+.ix-chapter--project .ix-link-arrow{margin-top:0}
+.ix .to-top{background:#2A2150;border:1px solid #7E6C9F}
+@media (min-width:1600px){.ix-panel{padding:24px 28px}.ix-entry{min-height:96px}}
+@media (max-width:1000px){.ix-chapter{grid-template-columns:130px minmax(0,1fr);gap:22px}.ix-panel{padding:16px 20px}.ix-links{padding-right:18px}.ix-links+.ix-links{padding-left:18px}.ix-entry{gap:12px}.ix-entry-copy b{font-size:16px}.ix-note{margin-left:152px}}
+@media (max-width:800px){.ix-main{padding-top:8px}.ix-chapter{grid-template-columns:minmax(0,1fr);gap:18px;padding:26px 0}.ix-heading{flex-direction:row;align-items:center;gap:16px;margin:0;font-size:28px}.ix-number{font-size:29px;gap:16px}.ix-note{margin-left:0}.ix-panel{padding:14px 20px}}
+@media (max-width:560px){.ix-panel{grid-template-columns:minmax(0,1fr);padding:6px 18px}.ix-links{padding:0}.ix-links+.ix-links{padding:0;border-left:0;border-top:1px solid rgba(207,200,230,.15)}.ix-entry{min-height:84px;padding:17px 0;gap:14px}.ix-entry-copy b{font-size:17px}.ix-icon{width:28px;height:28px;flex-basis:28px}.ix-main{padding-bottom:48px}.ix-heading{font-size:27px}.ix-note{margin-top:22px}}
+@media (prefers-reduced-motion:reduce){.ix-entry{transition:none}}
+/* Сохранённые настройки доступности действуют и на новой стартовой странице. */
+html[class*="vi-c"] .ix-main,html[class*="vi-c"] .ix-panel{background:var(--vi-bg) !important}
+html[class*="vi-c"] .ix-heading,html[class*="vi-c"] .ix-entry,html[class*="vi-c"] .ix-entry-copy>span,html[class*="vi-c"] .ix-note,html[class*="vi-c"] .ix-number,html[class*="vi-c"] .ix-icon,html[class*="vi-c"] .ix-link-arrow{color:var(--vi-fg) !important}
+html[class*="vi-c"] .ix-chapter,html[class*="vi-c"] .ix-links,html[class*="vi-c"] .ix-links li{border-color:var(--vi-fg) !important}
 </style>
 </head>
 <body class="ix">
@@ -43,46 +74,74 @@
 <p class="hero-lead">Прототип редизайна сайта УрФУ для конкурса «Взломай веб-дизайн». Фирменный стиль «Яркий Урал». Все страницы связаны между собой: фильтры, поиск и переключатели работают. Автор — Кирилл Бурдин.</p>
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px"><a class="btn" href="Main.dc.html" style="background:#FFFFFF;color:var(--ink)">Открыть сайт <span class="arrow">→</span></a><a class="btn2" href="Concept.dc.html" style="color:#FFFFFF;border-color:rgba(255,255,255,.4)">Концепция</a></div>
 </div></div></div></header>
-<main><div class="wrap">
-<h2>О проекте</h2>
-<div class="ix-grid">
-<a href="Concept.dc.html"><b>Концепция</b><span>Идея, новая структура сайта, было → стало</span></a>
-<a href="Logo.dc.html"><b>Логотип и стиль</b><span>Знак, знак «Лента», палитра «Яркий Урал», шрифт</span></a>
-</div>
-<h2>Главная</h2>
-<div class="ix-grid">
-<a href="Main.dc.html"><b>Главная</b><span>«Я — …»: главная перестраивается под роль, поиск с подсказками</span></a>
-<a href="MainEn.dc.html"><b>Главная на английском</b><span>Переключатель RU / EN</span></a><a href="CatalogEn.dc.html"><b>Каталог на английском</b><span>Programme catalogue</span></a><a href="AdmissionEn.dc.html"><b>Поступление на английском</b><span>How to apply, для иностранцев</span></a>
-
-</div>
-<h2>Поступление</h2>
-<div class="ix-grid">
-<a href="Catalog.dc.html"><b>Каталог программ</b><span>Фильтр по ЕГЭ и баллам, сравнение</span></a><a href="Quiz.dc.html"><b>Подбор программы</b><span>3 вопроса — и список, куда вы проходите</span></a>
-<a href="Program.dc.html"><b>Страница программы</b><span>Калькулятор «Хватит ли баллов?»</span></a>
-<a href="Admission.dc.html"><b>Как поступить</b><span>Календарь приёма, способы подачи, особые права, стоимость</span></a>
-<a href="Dorms.dc.html"><b>Кампус и общежития</b><span>Два кампуса, карта, цены по приказам УрФУ</span></a>
-</div>
-<h2>Учёба и жизнь</h2>
-<div class="ix-grid">
-<a href="Schedule.dc.html"><b>Расписание</b><span>Номер группы, недели, выгрузка в календарь телефона</span></a>
-<a href="Cabinet.dc.html"><b>Кабинет студента</b><span>Демо: пары, справки, плата за общежитие</span></a>
-<a href="Help.dc.html"><b>Центр помощи</b><span>Поиск по вопросам, справочник служб, горячие линии</span></a>
-<a href="Events.dc.html"><b>Календарь событий</b><span>Список и месяц, добавить в свой календарь</span></a>
-<a href="Life.dc.html"><b>Жизнь в УрФУ</b><span>Клубы и спорт</span></a>
-</div>
-<h2>Университет</h2>
-<div class="ix-grid">
-<a href="Science.dc.html"><b>Наука</b><span>54 проекта «Приоритет-2030» с фильтрами, научные школы</span></a>
-<a href="News.dc.html"><b>Новости</b><span>Лента с фильтром</span></a>
-<a href="Article.dc.html"><b>Статья</b><span>Итоги приёма-2026</span></a>
-<a href="Institute.dc.html"><b>Страница института</b><span>Своя страница у каждого из 8 институтов</span></a>
-<a href="Contacts.dc.html"><b>Контакты и карта</b><span>Карта учебных корпусов и медсанчасти</span></a>
-<a href="Login.dc.html"><b>Личный кабинет</b><span>Один вход для всех; студент попадает в демо-кабинет</span></a>
-<a href="Search.dc.html"><b>Поиск по сайту</b><span>Живой поиск, вкладки</span></a>
-<a href="NotFound.dc.html"><b>Страница 404</b><span>Служебная</span></a>
-</div>
-<p class="note">Цифры по программам, срокам приёма и общежитиям взяты из открытых источников, в основном с сайтов УрФУ. Версия для слабовидящих — кнопка с глазом в шапке любой страницы.</p>
+<main id="main" class="ix-main" tabindex="-1"><div class="wrap">
+<section class="ix-chapter ix-chapter--project" aria-labelledby="ix-chapter-1">
+<h2 id="ix-chapter-1" class="ix-heading"><span class="ix-number" aria-hidden="true">01</span><span>О проекте</span></h2>
+<div class="ix-panel"><ul class="ix-links">
+<li><a class="ix-entry ix-entry--violet" href="Concept.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M8.5 14.5a7 7 0 1 1 7 0c-1 .7-1.5 1.6-1.5 3.5h-4c0-1.9-.5-2.8-1.5-3.5Z"/></svg><span class="ix-entry-copy"><b>Концепция</b><span>Идея, новая структура сайта, было → стало</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+</ul><ul class="ix-links">
+<li><a class="ix-entry ix-entry--violet" href="Logo.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 16-1 5 5-1L20 8l-4-4L4 16Zm10-10 4 4M4 16l4 4M16 4l1.5-1.5a2.8 2.8 0 0 1 4 4L20 8"/></svg><span class="ix-entry-copy"><b>Логотип и стиль</b><span>Знак, знак «Лента», палитра «Яркий Урал», шрифт</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+</ul></div>
+</section>
+<section class="ix-chapter" aria-labelledby="ix-chapter-2">
+<h2 id="ix-chapter-2" class="ix-heading"><span class="ix-number" aria-hidden="true">02</span><span>Главная</span></h2>
+<div class="ix-panel"><ul class="ix-links">
+<li><a class="ix-entry ix-entry--gold" href="Main.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg><span class="ix-entry-copy"><b>Главная</b><span>«Я — …»: главная перестраивается под роль, поиск с подсказками</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--pink" href="CatalogEn.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v16M3 4c4-1 6 0 9 2 3-2 5-3 9-2v15c-4-1-6 0-9 2-3-2-5-3-9-2V4Z"/></svg><span class="ix-entry-copy"><b>Каталог на английском</b><span>Programme catalogue</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+</ul><ul class="ix-links">
+<li><a class="ix-entry ix-entry--violet" href="MainEn.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M4.5 7h15M4.5 17h15M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></svg><span class="ix-entry-copy"><b>Главная на английском</b><span>Переключатель RU / EN</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--violet" href="AdmissionEn.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 8 10-5 10 5-10 5L2 8Zm4 2v7c4 3 8 3 12 0v-7M22 8v8"/></svg><span class="ix-entry-copy"><b>Поступление на английском</b><span>How to apply, для иностранцев</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+</ul></div>
+</section>
+<section class="ix-chapter" aria-labelledby="ix-chapter-3">
+<h2 id="ix-chapter-3" class="ix-heading"><span class="ix-number" aria-hidden="true">03</span><span>Поступление</span></h2>
+<div class="ix-panel"><ul class="ix-links">
+<li><a class="ix-entry ix-entry--gold" href="Catalog.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6V3Zm8 0v5h4M9 12h6M9 16h6"/></svg><span class="ix-entry-copy"><b>Каталог программ</b><span>Фильтр по ЕГЭ и баллам, сравнение</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--green" href="Quiz.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h7m4 0h7M3 12h2m4 0h12M3 18h11m4 0h3"/><circle cx="12" cy="6" r="2"/><circle cx="7" cy="12" r="2"/><circle cx="16" cy="18" r="2"/></svg><span class="ix-entry-copy"><b>Подбор программы</b><span>3 вопроса — и список, куда вы проходите</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--violet" href="Program.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 8 10-5 10 5-10 5L2 8Zm4 2v7c4 3 8 3 12 0v-7M22 8v8"/></svg><span class="ix-entry-copy"><b>Страница программы</b><span>Калькулятор «Хватит ли баллов?»</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+</ul><ul class="ix-links">
+<li><a class="ix-entry ix-entry--pink" href="Admission.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="1"/><path d="M8 3v5M16 3v5M4 10h16M8 14h3M14 14h2M8 17h3"/></svg><span class="ix-entry-copy"><b>Как поступить</b><span>Календарь приёма, способы подачи, особые права, стоимость</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--gold" href="Dorms.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg><span class="ix-entry-copy"><b>Кампус и общежития</b><span>Два кампуса, карта, цены по приказам УрФУ</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+</ul></div>
+</section>
+<section class="ix-chapter" aria-labelledby="ix-chapter-4">
+<h2 id="ix-chapter-4" class="ix-heading"><span class="ix-number" aria-hidden="true">04</span><span>Учёба и жизнь</span></h2>
+<div class="ix-panel"><ul class="ix-links">
+<li><a class="ix-entry ix-entry--pink" href="Schedule.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="1"/><path d="M8 3v5M16 3v5M4 10h16M8 14h3M14 14h2M8 17h3"/></svg><span class="ix-entry-copy"><b>Расписание</b><span>Номер группы, недели, выгрузка в календарь телефона</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--violet" href="Cabinet.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span class="ix-entry-copy"><b>Кабинет студента</b><span>Демо: пары, справки, плата за общежитие</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--gold" href="Help.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.6 2.3c-.8.4-1.1 1-1.1 2.2M12 17h.01"/></svg><span class="ix-entry-copy"><b>Центр помощи</b><span>Поиск по вопросам, справочник служб, горячие линии</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+</ul><ul class="ix-links">
+<li><a class="ix-entry ix-entry--pink" href="Events.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z"/></svg><span class="ix-entry-copy"><b>Календарь событий</b><span>Список и месяц, добавить в свой календарь</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--green" href="Life.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M17 4a3 3 0 0 1 0 6M21 21v-3a6 6 0 0 0-4-5M7 18v3M11 18v3"/></svg><span class="ix-entry-copy"><b>Жизнь в УрФУ</b><span>Клубы и спорт</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+</ul></div>
+</section>
+<section class="ix-chapter" aria-labelledby="ix-chapter-5">
+<h2 id="ix-chapter-5" class="ix-heading"><span class="ix-number" aria-hidden="true">05</span><span>Университет</span></h2>
+<div class="ix-panel"><ul class="ix-links">
+<li><a class="ix-entry ix-entry--pink" href="Science.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6L4 19a1.3 1.3 0 0 0 1 2h14a1.3 1.3 0 0 0 1-2L14 9V3M7 15h10"/></svg><span class="ix-entry-copy"><b>Наука</b><span>54 проекта «Приоритет-2030» с фильтрами, научные школы</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--violet" href="News.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h6M9 11h6M9 15h6M9 18h4"/></svg><span class="ix-entry-copy"><b>Новости</b><span>Лента с фильтром</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--gold" href="Article.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3h16v16h-4l-4 3v-3H4V3ZM8 7h8M8 11h8M8 15h4"/></svg><span class="ix-entry-copy"><b>Статья</b><span>Итоги приёма-2026</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--green" href="Institute.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 8 9-5 9 5H3ZM5 11v7M10 11v7M14 11v7M19 11v7M3 21h18M4 18h16"/></svg><span class="ix-entry-copy"><b>Страница института</b><span>Своя страница у каждого из 8 институтов</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+</ul><ul class="ix-links">
+<li><a class="ix-entry ix-entry--pink" href="Contacts.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="ix-entry-copy"><b>Контакты и карта</b><span>Карта учебных корпусов и медсанчасти</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--blue" href="Login.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span class="ix-entry-copy"><b>Личный кабинет</b><span>Один вход для всех; студент попадает в демо-кабинет</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--violet" href="Search.dc.html"><svg class="ix-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="ix-entry-copy"><b>Поиск по сайту</b><span>Живой поиск, вкладки</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+<li><a class="ix-entry ix-entry--violet" href="NotFound.dc.html"><span class="ix-icon ix-icon--404" aria-hidden="true">404</span><span class="ix-entry-copy"><b>Страница 404</b><span>Служебная</span></span><svg class="ix-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></li>
+</ul></div>
+</section>
+<p class="ix-note">Цифры по программам, срокам приёма и общежитиям взяты из открытых источников, в основном с сайтов УрФУ. Версия для слабовидящих — кнопка с глазом в шапке любой страницы.</p>
 </div></main>
+<script>
+/* Один фон на всю страницу; центры градиентов совпадают с исходной шапкой. */
+(function(){
+  var hero=document.querySelector('.ix-hero');
+  function sync(){document.body.style.setProperty('--ix-hero-height',hero.getBoundingClientRect().height+'px');}
+  sync();
+  if(window.ResizeObserver)new ResizeObserver(sync).observe(hero);
+  else window.addEventListener('resize',sync);
+})();
+</script>
 <script src="site.js"></script>
 </body>
 </html>
+
